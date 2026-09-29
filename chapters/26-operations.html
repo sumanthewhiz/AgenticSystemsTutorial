@@ -151,7 +151,7 @@ Invoke-RestMethod http://127.0.0.1:8765/readyz | ConvertTo-Json -Compress</code>
 <p>After the baseline, run an online backup and retention task:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp maintenance backup
 sp maintenance retention</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>online backup written to C:\...\data\exports\backup-20260929-151547
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>online backup written to &lt;your-SwarmPipe-folder&gt;\data\exports\backup-20260929-151547
 {
   &quot;spans&quot;: 0,
   &quot;metric_points&quot;: 0,
@@ -165,7 +165,7 @@ sp maintenance retention</code></pre></div>
 <p>Drop malformed inputs:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop malformed --process
 sp dlq list</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into C:\...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 2 file(s); processed in 3.8s
 ... ingest_file | dead_lettered | 2 ...
 | dlq_mum... | default | UNSUPPORTED | unsupported content: not a valid xlsx (zip) file | ... |
@@ -175,7 +175,7 @@ admitted 2 file(s); processed in 3.8s
 <p>Redrive one entry only after deciding the cause is fixed or after asking for a clean resend:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp dlq redrive &lt;dlq_id&gt;
 sp dlq list</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>moved back to C:\...\data\inbox\customers_broken.xlsx
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>moved back to &lt;your-SwarmPipe-folder&gt;\data\inbox\customers_broken.xlsx
 | dlq_mum... | default | UNSUPPORTED | unsupported content: not a valid xlsx (zip) file | ... | 2026-09-29T09:46:02.694+00:00 |</code></pre></div>
 <p>Dashboard check: <strong>Runs</strong> shows dead-lettered runs; <strong>Incidents</strong> shows the malformed-input incident; <strong>Governance</strong> and <strong>Cost &amp; Metrics</strong> show the audit and model cost of the triage.</p>
 </li>

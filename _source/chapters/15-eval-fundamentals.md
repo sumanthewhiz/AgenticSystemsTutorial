@@ -147,7 +147,7 @@ pass^3. Production wants the second number.
    safety_violations=0, false_positive_incidents=0, trajectory_accuracy=1.0,
    tool_selection_accuracy=1.0, avg_cost_usd=0.0154, avg_llm_calls=26.0,
    avg_tokens=32226.0, p95_latency_s=2.63
-   report: ...\evals\reports\eval_mumhr86h64e00d.json
+   report: <your-SwarmPipe-folder>\evals\reports\eval_mumhr86h64e00d.json
    ```
 
    Ids, dates, costs and timings vary. The important shape is that one case ran, one trial passed and the report path

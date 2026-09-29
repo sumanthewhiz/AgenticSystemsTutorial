@@ -217,7 +217,7 @@ evidence pack path.
    |   +-- execute_tool act_hold_downstream evidence_id=ev_...
    |   `-- execute_tool act_notify_owner evidence_id=ev_...
    +-- step verify
-   evidence pack: C:\...\SwarmPipe\data\exports\evidence\inc_....json
+   evidence pack: <your-SwarmPipe-folder>\data\exports\evidence\inc_....json
    ```
 
 5. In the dashboard, open **Incidents** for the case, **Cost & Metrics** for cost by agent, and **Datasets & Lineage**

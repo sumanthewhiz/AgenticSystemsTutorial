@@ -7,6 +7,7 @@ SwarmPipe source); internal links and #anchors; required chapter elements (lab, 
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -19,11 +20,13 @@ EVAL_SUITES = {"all", "triage", "redteam", "router", "analyst", "judge"}
 
 
 class Checker:
-    def __init__(self, facts_path: Path):
+    def __init__(self, facts_path: Path, project: str | None = None):
         self.facts = json.loads(facts_path.read_text(encoding="utf-8"))
-        project = Path(self.facts["project"])
-        # facts.json stores the project relative to the tutorial root (the folder above _source)
-        self.project = project if project.is_absolute() else (facts_path.resolve().parent.parent / project).resolve()
+        # SwarmPipe folder: --project, else SWARMPIPE_DIR, else a SwarmPipe folder next to the tutorial folder
+        candidate = project or os.environ.get("SWARMPIPE_DIR") or str(facts_path.resolve().parent.parent.parent / "SwarmPipe")
+        self.project = Path(candidate).resolve()
+        if not (self.project / "swarmpipe").is_dir():
+            raise SystemExit(f"SwarmPipe not found at {self.project}: pass --project <your-SwarmPipe-folder> or set SWARMPIPE_DIR")
         self.cli = {tuple(c["path"].split()): c for c in self.facts["cli"]}
         self.scenarios = {s["name"] for s in self.facts["scenarios"]}
         self.flags = set(self.facts["runtime_flags"])

@@ -37,14 +37,15 @@ Every push to the production branch redeploys the site. Pages serves `404.html` 
 
 ## Edit or extend it
 
-Chapters are Markdown files in `_source\chapters`. See `_source\AUTHORING.md` for the format and rules. Then, with the
-SwarmPipe project checked out next to this folder (`..\SwarmPipe`), rebuild from this folder:
+Chapters are Markdown files in `_source\chapters`. See `_source\AUTHORING.md` for the format and rules. The build uses
+your local SwarmPipe installation, so first tell it where that is, then rebuild from this folder:
 
 ```powershell
-& ..\SwarmPipe\.venv\Scripts\python.exe _source\build.py --check
+$env:SWARMPIPE_DIR = "<your-SwarmPipe-folder>"   # the folder where you installed SwarmPipe
+& "$env:SWARMPIPE_DIR\.venv\Scripts\python.exe" _source\build.py --check
 ```
 
 `--check` validates every command, option, scenario, flag, file path, API route and identifier against SwarmPipe,
 plus all cross-links. If SwarmPipe itself changes, refresh the ground truth first with
-`& ..\SwarmPipe\.venv\Scripts\python.exe _source\extract_facts.py`. Commit the regenerated HTML along with the sources,
-because the hosted site is served straight from the repository.
+`& "$env:SWARMPIPE_DIR\.venv\Scripts\python.exe" _source\extract_facts.py`. Commit the regenerated HTML along with the
+sources, because the hosted site is served straight from the repository.

@@ -167,7 +167,7 @@ then process it with <code>sp tick</code>:</p>
 sp scenarios drop clean_day
 sp tick --timeout 120 --no-scheduler</code></pre></div>
 <div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>next run will crash after step &#x27;transform&#x27;
-dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+dropped [&#x27;sales_2026-09-29.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 first tick exit=137</code></pre></div>
 <p>If you use the <code>crash</code> scenario instead, it sets up the same crash-after-transform behavior for the next file.</p>
 </li>
@@ -231,7 +231,7 @@ sp runs cancel &lt;run_id&gt;</code></pre></div>
 <p>After fixing the source file outside this lab, redrive the DLQ entry:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp dlq redrive &lt;dlq_id&gt;
 sp tick --timeout 120 --no-scheduler</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>moved back to ...\data\inbox\...
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>moved back to &lt;your-SwarmPipe-folder&gt;\data\inbox\...
 admitted 1 file(s); processed in ...</code></pre></div>
 <p>The important concept is not that malformed data magically becomes valid. It is that poison input is isolated and
 visible instead of blocking the whole pipeline.</p>

@@ -221,7 +221,7 @@ afterward to see that denied and answered requests are recorded with the acting 
    ```
 
    ```output
-   dropped ['customers_2026-09-29.csv'] into ...\data\inbox
+   dropped ['customers_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 6.6s
    ...
    | id      | status    | severity | dataset   | root_cause  | title |

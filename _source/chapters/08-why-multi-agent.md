@@ -184,7 +184,7 @@ LLM agents are reserved for interpretation, diagnosis, planning and explanation.
    ```
 
    ```output
-   LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: C:\...\SwarmPipe\data\inbox
+   LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: <your-SwarmPipe-folder>\data\inbox
    ```
 
 2. Open the **Cost & Metrics** tab and look at **By agent**. Baseline ingest spends mostly on `router`,

@@ -150,7 +150,7 @@ spending past the budget.
 
    ```output
    kill switch llm -> on
-   LLM: 15 calls, $0.00339, 16716 tokens | profile offline | kill switches: ['llm'] | inbox: ...\data\inbox
+   LLM: 15 calls, $0.00339, 16716 tokens | profile offline | kill switches: ['llm'] | inbox: <your-SwarmPipe-folder>\data\inbox
    kill switch llm -> off
    ```
 
@@ -173,7 +173,7 @@ spending past the budget.
 2. Expected shape:
 
    ```output
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 12.3s
    | workflow       | status      | n |
    | ingest_dataset | quarantined | 1 |
@@ -217,7 +217,7 @@ spending past the budget.
    ```output
    chaos.llm_outage_models = ["sim-large","sim-small"]
    | chaos.llm_outage_models | ['sim-large', 'sim-small'] | [] |
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 11.5s
    | workflow       | status      | n |
    | ingest_dataset | quarantined | 1 |

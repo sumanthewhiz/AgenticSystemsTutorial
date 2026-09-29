@@ -186,7 +186,7 @@ Spans and metrics are sampled, short-lived and optimized for debugging. Audit is
    ```output
    ts                     level msg
    --                     ----- ---
-   29-09-2026 03:23:56 PM INFO  runtime started: 1 workers, watching C:\...\data\inbox
+   29-09-2026 03:23:56 PM INFO  runtime started: 1 workers, watching <your-SwarmPipe-folder>\data\inbox
    29-09-2026 03:24:00 PM INFO  admitted customers.xlsx (tenant default) -> run run_mumi1iu622216c
    29-09-2026 03:24:23 PM INFO  admitted sales_2026-09-29.csv (tenant default) -> run run_mumi20xd7d04d0
    ```

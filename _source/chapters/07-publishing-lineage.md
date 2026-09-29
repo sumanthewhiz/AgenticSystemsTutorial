@@ -159,7 +159,7 @@ Ids, dates and timings vary.
    ```
 
    ```output
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    | workflow | status    | n |
    | derive   | succeeded | ... |
    ```
@@ -219,7 +219,7 @@ Ids, dates and timings vary.
    ```
 
    ```output
-   dropped (chaos/runtime change only) into ...\data\inbox
+   dropped (chaos/runtime change only) into <your-SwarmPipe-folder>\data\inbox
    admitted 0 file(s); processed in 3.6s
    | status            | severity | dataset     | root_cause               | title                         |
    | awaiting_approval | critical | sales_daily | out_of_band_modification | sales_daily v8 changed outside the pipeline ... |

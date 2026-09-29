@@ -189,7 +189,7 @@ communicate, learn and adjust.
    ```
 
    ```output
-   evidence pack: ...\data\exports\evidence\inc_mumi99x6266f6e.html
+   evidence pack: <your-SwarmPipe-folder>\data\exports\evidence\inc_mumi99x6266f6e.html
    ```
 
 3. Open the HTML file from the printed path. You should see the incident summary, diagnosis, actions, versions, cost
@@ -265,7 +265,7 @@ communicate, learn and adjust.
    ```output
    kill switch global -> off
    ...
-   LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: ...\data\inbox
+   LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: <your-SwarmPipe-folder>\data\inbox
    ```
 :::
 

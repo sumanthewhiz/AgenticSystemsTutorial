@@ -144,7 +144,7 @@ points to the approval id. Chapter 6 shows how to review and approve the propose
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
 sp scenarios drop duplicate --process
 sp runs list --workflow ingest_file --limit 4</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_resent.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_resent.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 1 file(s); processed in 0.0s
 | workflow    | status  |
 | ingest_file | skipped |
@@ -154,7 +154,7 @@ admitted 1 file(s); processed in 0.0s
 <p>Drop malformed files and inspect the DLQ:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop malformed --process
 sp dlq list</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 | workflow    | status        | n |
 | ingest_file | dead_lettered | 2 |
 ...
@@ -166,10 +166,10 @@ sp dlq list</code></pre></div>
 <p>Verify reader coverage:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop encoding --process
 sp scenarios drop pipe_txt --process</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers_2026-09-29_cp1252.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers_2026-09-29_cp1252.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 | ingest_dataset | succeeded | 9 |
 ...
-dropped [&#x27;inventory_2026-09-29.txt&#x27;] into ...\data\inbox
+dropped [&#x27;inventory_2026-09-29.txt&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 | default | inventory | dsv_... | 0 | ...</code></pre></div>
 </li>
 <li>
@@ -184,7 +184,7 @@ delivery did not create a new published dataset version.</p>
 <p>Drop the same clean-day sales file for another tenant:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --tenant acme --process
 sp status</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 1 file(s); processed in 9.5s
 | tenant  | dataset     | published_version_id | hold |
 | acme    | sales_daily | dsv_...              | 0    |

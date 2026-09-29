@@ -230,17 +230,17 @@ knowledge documents.
 :::
 
 :::lab Configure GitHub Copilot CLI for MCP
-1. Add this block to `~/.copilot/mcp-config.json`, replacing `<repo>` with the absolute path of your SwarmPipe folder
-   (with doubled backslashes, for example `C:\\src\\SwarmPipe`):
+1. Add this block to `~/.copilot/mcp-config.json`, replacing `<your-SwarmPipe-folder>` with the absolute path of the
+   folder where you installed SwarmPipe. JSON requires each backslash in that path to be written twice (`\\`):
 
    ```json
    {
      "mcpServers": {
        "swarmpipe": {
          "type": "local",
-         "command": "<repo>\\.venv\\Scripts\\python.exe",
+         "command": "<your-SwarmPipe-folder>\\.venv\\Scripts\\python.exe",
          "args": ["-m", "swarmpipe", "mcp"],
-         "cwd": "<repo>",
+         "cwd": "<your-SwarmPipe-folder>",
          "tools": ["*"]
        }
      }

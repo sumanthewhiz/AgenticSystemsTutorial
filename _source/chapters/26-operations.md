@@ -162,7 +162,7 @@ SwarmPipe is intentionally local. At real scale the shape stays the same, but th
    ```
 
    ```output
-   online backup written to C:\...\data\exports\backup-20260929-151547
+   online backup written to <your-SwarmPipe-folder>\data\exports\backup-20260929-151547
    {
      "spans": 0,
      "metric_points": 0,
@@ -181,7 +181,7 @@ SwarmPipe is intentionally local. At real scale the shape stays the same, but th
    ```
 
    ```output
-   dropped ['sales_2026-09-29_corrupt.csv', 'customers_broken.xlsx'] into C:\...\data\inbox
+   dropped ['sales_2026-09-29_corrupt.csv', 'customers_broken.xlsx'] into <your-SwarmPipe-folder>\data\inbox
    admitted 2 file(s); processed in 3.8s
    ... ingest_file | dead_lettered | 2 ...
    | dlq_mum... | default | UNSUPPORTED | unsupported content: not a valid xlsx (zip) file | ... |
@@ -196,7 +196,7 @@ SwarmPipe is intentionally local. At real scale the shape stays the same, but th
    ```
 
    ```output
-   moved back to C:\...\data\inbox\customers_broken.xlsx
+   moved back to <your-SwarmPipe-folder>\data\inbox\customers_broken.xlsx
    | dlq_mum... | default | UNSUPPORTED | unsupported content: not a valid xlsx (zip) file | ... | 2026-09-29T09:46:02.694+00:00 |
    ```
 

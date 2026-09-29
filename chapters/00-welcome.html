@@ -64,7 +64,7 @@ example <code>swarmpipe/runtime/engine.py</code> for durable execution.</p>
 <div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Example lab</span></div><div class="box-body"><p>Numbered steps with commands you can copy (hover a code block and press <strong>Copy</strong>):</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp status</code></pre></div>
 <p>...followed by what you should see:</p>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>LLM: 26 calls, $0.01536, 32232 tokens | profile offline | kill switches: none | inbox: ...\SwarmPipe\data\inbox</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>LLM: 26 calls, $0.01536, 32232 tokens | profile offline | kill switches: none | inbox: &lt;your-SwarmPipe-folder&gt;\data\inbox</code></pre></div>
 </div></div>
 <div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Example experiment</span></div><div class="box-body"><p>Each concept is easiest to understand when it's missing. These boxes switch a defense off or inject a fault, then ask
 you to predict, observe and explain what happens.</p>
@@ -77,13 +77,15 @@ you to predict, observe and explain what happens.</p>
 <strong>Mark this chapter as complete</strong> button. Your progress is stored in your browser and shown in the top bar and
 on the home page.</p>
 <h2 id="set-up-swarmpipe">Set up SwarmPipe</h2>
-<p>You need a local copy of the SwarmPipe project. All commands in this tutorial are PowerShell and are run from your
-SwarmPipe folder.</p>
+<p>You need a local copy of the SwarmPipe project. This tutorial calls the folder where you installed it
+<strong><code>&lt;your-SwarmPipe-folder&gt;</code></strong>. Wherever you see that placeholder in a command, path or expected output, substitute your
+own folder. All commands in this tutorial are PowerShell and are run from <code>&lt;your-SwarmPipe-folder&gt;</code>.</p>
 <div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Get a working environment</span></div><div class="box-body"><ol>
 <li>
-<p>Open <strong>PowerShell</strong>, get the project (skip the clone if you already have a copy) and activate its virtual environment:</p>
-<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>git clone https://github.com/sumanthewhiz/SwarmPipe.git
-cd SwarmPipe
+<p>Open <strong>PowerShell</strong>, get the project (skip the clone if SwarmPipe is already installed), go to its folder and
+activate its virtual environment:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>git clone https://github.com/sumanthewhiz/SwarmPipe.git   <span class="c"># skip if SwarmPipe is already installed</span>
+cd &lt;your-SwarmPipe-folder&gt;                                <span class="c"># after a fresh clone: the new SwarmPipe folder</span>
 .\.venv\Scripts\Activate.ps1</code></pre></div>
 <p>On a fresh clone the environment doesn't exist yet. Create it once with <code>python -m venv .venv</code>, activate it and run
 <code>pip install -r requirements.txt</code> (Python 3.11 or newer).</p>
@@ -91,8 +93,8 @@ cd SwarmPipe
 <li>
 <p>Initialise the state database, data contracts, knowledge base, agent registry and prompt lock:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>python -m swarmpipe init</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>SwarmPipe initialised - state C:\...\SwarmPipe\data\state\swarmpipe.db
-Watched folder (drop files here): C:\...\SwarmPipe\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>SwarmPipe initialised - state &lt;your-SwarmPipe-folder&gt;\data\state\swarmpipe.db
+Watched folder (drop files here): &lt;your-SwarmPipe-folder&gt;\data\inbox
 {
   &quot;contracts_imported&quot;: [&quot;customers@v1&quot;, &quot;inventory@v1&quot;, &quot;regions@v1&quot;, &quot;sales_daily@v1&quot;],
   &quot;static_lineage_edges&quot;: 12,
@@ -120,9 +122,9 @@ command. With <code>--process</code> they're handled synchronously, without a se
 <p>Load the reference data (a customer master <code>.xlsx</code> with two sheets and a legacy inventory <code>.xls</code>) and four days
 of sales history, which the checks use as their baseline:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop baseline --process</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers.xlsx&#x27;, &#x27;inventory_2026-09-28.xls&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers.xlsx&#x27;, &#x27;inventory_2026-09-28.xls&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 2 file(s); processed in 0.8s
-dropped [&#x27;sales_2026-09-24.csv&#x27;, &#x27;sales_2026-09-25.csv&#x27;, &#x27;sales_2026-09-26.csv&#x27;, &#x27;sales_2026-09-27.csv&#x27;] into ...\data\inbox
+dropped [&#x27;sales_2026-09-24.csv&#x27;, &#x27;sales_2026-09-25.csv&#x27;, &#x27;sales_2026-09-26.csv&#x27;, &#x27;sales_2026-09-27.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 4 file(s); processed in 5.6s</code></pre></div>
 <p>File names carry dates relative to <em>today</em>, so yours will differ. A status summary follows, with tables of runs,
 incidents, approvals and datasets.</p>
@@ -145,7 +147,8 @@ just saw.</p>
 </div></div>
 <div class="box tip"><div class="box-head"><span class="ico">💡</span><span class="kind">Tip</span><span class="title">Ids and numbers differ on every run</span></div><div class="box-body"><p>Incident ids, run ids, timings and costs are generated fresh each time. Compare the <em>shape</em> of your output with the
 examples, not the exact values. Where a command contains a placeholder such as <code>inc_...</code>, <code>run_...</code> or <code>apr_...</code>,
-paste the matching id from your own output (for example from <code>sp incidents list</code> or <code>sp approvals list</code>).</p>
+paste the matching id from your own output (for example from <code>sp incidents list</code> or <code>sp approvals list</code>). Paths that
+start with <code>&lt;your-SwarmPipe-folder&gt;</code> are inside the folder where you installed SwarmPipe.</p>
 </div></div>
 <h2 id="tour-the-dashboard">Tour the dashboard</h2>
 <p>The same system has a web dashboard. Start the full runtime (watcher, workers, event bus, monitors and web server),

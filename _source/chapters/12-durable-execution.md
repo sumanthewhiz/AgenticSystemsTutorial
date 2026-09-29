@@ -178,7 +178,7 @@ Ids, dates and timings vary. Start from the SwarmPipe project folder with `sp` d
 
    ```output
    next run will crash after step 'transform'
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    first tick exit=137
    ```
 
@@ -274,7 +274,7 @@ Ids, dates and timings vary. Start from the SwarmPipe project folder with `sp` d
    ```
 
    ```output
-   moved back to ...\data\inbox\...
+   moved back to <your-SwarmPipe-folder>\data\inbox\...
    admitted 1 file(s); processed in ...
    ```
 

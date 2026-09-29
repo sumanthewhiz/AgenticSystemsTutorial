@@ -145,7 +145,7 @@ sp scenarios drop baseline --process</code></pre></div>
 <p>Drop a truncated sales file:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
 sp runs list --workflow ingest_dataset --limit 4</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 1 file(s); processed in 4.7s
 | workflow       | status      | n  |
 | ingest_dataset | quarantined | 1  |
@@ -225,7 +225,7 @@ sp chaos clear</code></pre></div>
 <p>Onboard a new dataset:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop new_dataset --process
 sp approvals list --status pending</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;vendors_q3.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;vendors_q3.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 | workflow       | status  | n |
 | ingest_dataset | waiting | 1 |
 ...

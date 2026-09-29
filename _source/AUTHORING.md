@@ -4,11 +4,14 @@ This folder holds the **source** of the tutorial. `build.py` turns it into the s
 (`index.html`, `chapters/*.html`, `assets/search-index.js`). Edit Markdown here, then rebuild:
 
 ```powershell
-# run from the tutorial folder, with the SwarmPipe project checked out next to it (..\SwarmPipe)
-& ..\SwarmPipe\.venv\Scripts\python.exe _source\build.py --check              # everything
-& ..\SwarmPipe\.venv\Scripts\python.exe _source\build.py --check --only 06-contracts-and-quality
-& ..\SwarmPipe\.venv\Scripts\python.exe _source\extract_facts.py              # after SwarmPipe itself changes
+# run from the tutorial folder; tell the scripts where you installed SwarmPipe (needed once per PowerShell window)
+$env:SWARMPIPE_DIR = "<your-SwarmPipe-folder>"
+& "$env:SWARMPIPE_DIR\.venv\Scripts\python.exe" _source\build.py --check              # everything
+& "$env:SWARMPIPE_DIR\.venv\Scripts\python.exe" _source\build.py --check --only 06-contracts-and-quality
+& "$env:SWARMPIPE_DIR\.venv\Scripts\python.exe" _source\extract_facts.py              # after SwarmPipe itself changes
 ```
+
+Without `SWARMPIPE_DIR` (or `--project`), the scripts look for a `SwarmPipe` folder next to the tutorial folder.
 
 - `outline.yaml` - parts, chapter order, titles, times, summaries and the topics each chapter owns.
 - `chapters/<slug>.md` - one file per chapter or appendix. `home.md` - the intro on the home page.
@@ -83,12 +86,12 @@ fine. Code fence languages: `powershell` (gets a Copy button), `output` (styled 
 
 ## Running SwarmPipe safely (writers)
 
-A SwarmPipe server may be running from `..\SwarmPipe` against its own `data` folder. **Never** run commands in that
-folder, never run `sp reset` there, never stop Python processes, and never start a server on port 8765. Work in a
-private sandbox copy instead:
+A SwarmPipe server may be running from `<your-SwarmPipe-folder>` against its own `data` folder. **Never** run commands
+in that folder, never run `sp reset` there, never stop Python processes, and never start a server on port 8765. Work in
+a private sandbox copy instead:
 
 ```powershell
-$src = (Resolve-Path ..\SwarmPipe).Path   # run from the tutorial folder
+$src = $env:SWARMPIPE_DIR   # your SwarmPipe folder (set above)
 $sb = Join-Path $env:TEMP "sp_sandbox_<your-name>"
 # exclude the ROOT data folder by full path: a bare "data" would also drop the swarmpipe\data package
 robocopy $src $sb /E /XD "$src\.venv" "$src\data" "$src\.git" __pycache__ .pytest_cache /NFL /NDL /NJH /NJS | Out-Null

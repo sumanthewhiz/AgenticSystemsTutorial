@@ -227,15 +227,15 @@ metadata  : @{acting_as=agent:analyst acting for user:analyst; evidence_id=ev_..
 </div></div>
 <div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Configure GitHub Copilot CLI for MCP</span></div><div class="box-body"><ol>
 <li>
-<p>Add this block to <code>~/.copilot/mcp-config.json</code>, replacing <code>&lt;repo&gt;</code> with the absolute path of your SwarmPipe folder
-(with doubled backslashes, for example <code>C:\\src\\SwarmPipe</code>):</p>
+<p>Add this block to <code>~/.copilot/mcp-config.json</code>, replacing <code>&lt;your-SwarmPipe-folder&gt;</code> with the absolute path of the
+folder where you installed SwarmPipe. JSON requires each backslash in that path to be written twice (<code>\\</code>):</p>
 <div class="code" data-lang="json"><div class="code-head"><span>JSON</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>{
   &quot;mcpServers&quot;: {
     &quot;swarmpipe&quot;: {
       &quot;type&quot;: &quot;local&quot;,
-      &quot;command&quot;: &quot;&lt;repo&gt;\\.venv\\Scripts\\python.exe&quot;,
+      &quot;command&quot;: &quot;&lt;your-SwarmPipe-folder&gt;\\.venv\\Scripts\\python.exe&quot;,
       &quot;args&quot;: [&quot;-m&quot;, &quot;swarmpipe&quot;, &quot;mcp&quot;],
-      &quot;cwd&quot;: &quot;&lt;repo&gt;&quot;,
+      &quot;cwd&quot;: &quot;&lt;your-SwarmPipe-folder&gt;&quot;,
       &quot;tools&quot;: [&quot;*&quot;]
     }
   }

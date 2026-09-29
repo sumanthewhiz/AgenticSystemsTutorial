@@ -117,6 +117,7 @@ def main() -> int:
     ap.add_argument("--check", action="store_true", help="validate against SwarmPipe")
     ap.add_argument("--only", nargs="*", default=None, help="limit the report to these slugs")
     ap.add_argument("--strict", action="store_true", help="exit 1 if any warning")
+    ap.add_argument("--project", default=None, help="your SwarmPipe folder (default: SWARMPIPE_DIR, else a SwarmPipe folder next to this tutorial)")
     args = ap.parse_args()
 
     outline = load_outline()
@@ -188,7 +189,7 @@ def main() -> int:
             return 1
         from sitegen.check import Checker
 
-        checker = Checker(facts_path)
+        checker = Checker(facts_path, args.project)
         for p in pages.values():
             if p.meta.get("placeholder"):
                 continue

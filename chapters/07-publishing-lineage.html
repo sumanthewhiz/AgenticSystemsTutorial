@@ -126,7 +126,7 @@ downstream <code>sales_enriched</code> plus consumers from <code>config/consumer
 <p>Drop a normal day:</p>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
 sp runs list --workflow derive --limit 5</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 | workflow | status    | n |
 | derive   | succeeded | ... |</code></pre></div>
 </li>
@@ -170,7 +170,7 @@ sp runs list --workflow derive --limit 5</code></pre></div>
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop oob_tamper --process
 sp incidents list --limit 8
 sp approvals list --status pending</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped (chaos/runtime change only) into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped (chaos/runtime change only) into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 0 file(s); processed in 3.6s
 | status            | severity | dataset     | root_cause               | title                         |
 | awaiting_approval | critical | sales_daily | out_of_band_modification | sales_daily v8 changed outside the pipeline ... |

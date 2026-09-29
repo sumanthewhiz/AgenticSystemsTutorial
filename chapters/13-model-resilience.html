@@ -154,7 +154,7 @@ sp llm status</code></pre></div>
 sp status
 sp killswitch off --scope llm --reason &quot;lab done&quot; --as oncall</code></pre></div>
 <div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>kill switch llm -&gt; on
-LLM: 15 calls, $0.00339, 16716 tokens | profile offline | kill switches: [&#x27;llm&#x27;] | inbox: ...\data\inbox
+LLM: 15 calls, $0.00339, 16716 tokens | profile offline | kill switches: [&#x27;llm&#x27;] | inbox: &lt;your-SwarmPipe-folder&gt;\data\inbox
 kill switch llm -&gt; off</code></pre></div>
 <p>The accepted states are <code>on</code> and <code>off</code>. The exact scope for model calls is <code>llm</code>.</p>
 </li>
@@ -173,7 +173,7 @@ sp metrics</code></pre></div>
 </li>
 <li>
 <p>Expected shape:</p>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 1 file(s); processed in 12.3s
 | workflow       | status      | n |
 | ingest_dataset | quarantined | 1 |
@@ -206,7 +206,7 @@ sp chaos show
 sp scenarios drop volume_drop --process</code></pre></div>
 <div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>chaos.llm_outage_models = [&quot;sim-large&quot;,&quot;sim-small&quot;]
 | chaos.llm_outage_models | [&#x27;sim-large&#x27;, &#x27;sim-small&#x27;] | [] |
-dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+dropped [&#x27;sales_2026-09-29.csv&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 1 file(s); processed in 11.5s
 | workflow       | status      | n |
 | ingest_dataset | quarantined | 1 |

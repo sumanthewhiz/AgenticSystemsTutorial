@@ -142,7 +142,7 @@ Ids, dates and timings vary. The examples below are trimmed from a real run.
    ```
 
    ```output
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 4.7s
    | workflow       | status      | n  |
    | ingest_dataset | quarantined | 1  |
@@ -252,7 +252,7 @@ Ids, dates and timings vary. The examples below are trimmed from a real run.
    ```
 
    ```output
-   dropped ['vendors_q3.csv'] into ...\data\inbox
+   dropped ['vendors_q3.csv'] into <your-SwarmPipe-folder>\data\inbox
    | workflow       | status  | n |
    | ingest_dataset | waiting | 1 |
    ...

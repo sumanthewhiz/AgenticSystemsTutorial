@@ -81,7 +81,7 @@ sp status
 ...followed by what you should see:
 
 ```output
-LLM: 26 calls, $0.01536, 32232 tokens | profile offline | kill switches: none | inbox: ...\SwarmPipe\data\inbox
+LLM: 26 calls, $0.01536, 32232 tokens | profile offline | kill switches: none | inbox: <your-SwarmPipe-folder>\data\inbox
 ```
 :::
 
@@ -104,15 +104,17 @@ on the home page.
 
 ## Set up SwarmPipe
 
-You need a local copy of the SwarmPipe project. All commands in this tutorial are PowerShell and are run from your
-SwarmPipe folder.
+You need a local copy of the SwarmPipe project. This tutorial calls the folder where you installed it
+**`<your-SwarmPipe-folder>`**. Wherever you see that placeholder in a command, path or expected output, substitute your
+own folder. All commands in this tutorial are PowerShell and are run from `<your-SwarmPipe-folder>`.
 
 :::lab Get a working environment
-1. Open **PowerShell**, get the project (skip the clone if you already have a copy) and activate its virtual environment:
+1. Open **PowerShell**, get the project (skip the clone if SwarmPipe is already installed), go to its folder and
+   activate its virtual environment:
 
    ```powershell
-   git clone https://github.com/sumanthewhiz/SwarmPipe.git
-   cd SwarmPipe
+   git clone https://github.com/sumanthewhiz/SwarmPipe.git   # skip if SwarmPipe is already installed
+   cd <your-SwarmPipe-folder>                                # after a fresh clone: the new SwarmPipe folder
    .\.venv\Scripts\Activate.ps1
    ```
 
@@ -126,8 +128,8 @@ SwarmPipe folder.
    ```
 
    ```output
-   SwarmPipe initialised - state C:\...\SwarmPipe\data\state\swarmpipe.db
-   Watched folder (drop files here): C:\...\SwarmPipe\data\inbox
+   SwarmPipe initialised - state <your-SwarmPipe-folder>\data\state\swarmpipe.db
+   Watched folder (drop files here): <your-SwarmPipe-folder>\data\inbox
    {
      "contracts_imported": ["customers@v1", "inventory@v1", "regions@v1", "sales_daily@v1"],
      "static_lineage_edges": 12,
@@ -168,9 +170,9 @@ command. With `--process` they're handled synchronously, without a server, which
    ```
 
    ```output
-   dropped ['customers.xlsx', 'inventory_2026-09-28.xls'] into ...\data\inbox
+   dropped ['customers.xlsx', 'inventory_2026-09-28.xls'] into <your-SwarmPipe-folder>\data\inbox
    admitted 2 file(s); processed in 0.8s
-   dropped ['sales_2026-09-24.csv', 'sales_2026-09-25.csv', 'sales_2026-09-26.csv', 'sales_2026-09-27.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-24.csv', 'sales_2026-09-25.csv', 'sales_2026-09-26.csv', 'sales_2026-09-27.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 4 file(s); processed in 5.6s
    ```
 
@@ -199,7 +201,8 @@ command. With `--process` they're handled synchronously, without a server, which
 :::tip Ids and numbers differ on every run
 Incident ids, run ids, timings and costs are generated fresh each time. Compare the *shape* of your output with the
 examples, not the exact values. Where a command contains a placeholder such as `inc_...`, `run_...` or `apr_...`,
-paste the matching id from your own output (for example from `sp incidents list` or `sp approvals list`).
+paste the matching id from your own output (for example from `sp incidents list` or `sp approvals list`). Paths that
+start with `<your-SwarmPipe-folder>` are inside the folder where you installed SwarmPipe.
 :::
 
 ## Tour the dashboard

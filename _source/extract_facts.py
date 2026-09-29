@@ -1,7 +1,8 @@
 """Extract ground-truth facts about SwarmPipe for the tutorial (commands, scenarios, agents, tools, ...).
 
 Run with SwarmPipe's interpreter so its dependencies are importable:
-    <SwarmPipe>\\.venv\\Scripts\\python.exe _source\\extract_facts.py [--project <SwarmPipe folder>]
+    <your-SwarmPipe-folder>\\.venv\\Scripts\\python.exe _source\\extract_facts.py [--project <your-SwarmPipe-folder>]
+The SwarmPipe folder comes from --project, else the SWARMPIPE_DIR environment variable, else a sibling SwarmPipe folder.
 
 Uses an isolated temporary workspace, so it never touches the project's own data/ folder or a running server.
 Writes _source/facts.json (used by build.py --check) and _source/facts.md (human-readable reference)."""
@@ -17,7 +18,7 @@ import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DEFAULT_PROJECT = HERE.parent.parent / "SwarmPipe"
+DEFAULT_PROJECT = os.environ.get("SWARMPIPE_DIR") or str(HERE.parent.parent / "SwarmPipe")
 
 
 def walk_cli(cmd, prefix: list[str]) -> list[dict]:
@@ -43,7 +44,7 @@ def walk_cli(cmd, prefix: list[str]) -> list[dict]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--project", default=str(DEFAULT_PROJECT))
+    ap.add_argument("--project", default=DEFAULT_PROJECT)
     args = ap.parse_args()
     project = Path(args.project).resolve()
     sys.path.insert(0, str(project))
@@ -57,7 +58,7 @@ def main() -> None:
     from swarmpipe.config import load_settings
     from swarmpipe.llm import mock
 
-    facts: dict = {"project": os.path.relpath(project, HERE.parent).replace("\\", "/")}  # relative: no local user paths
+    facts: dict = {}  # no project location is stored: facts must not contain machine-local paths
     facts["cli"] = walk_cli(typer.main.get_command(cli_app), [])
     facts["scenarios"] = [{"name": s.name, "description": s.description} for s in scenarios.SCENARIOS.values()]
 

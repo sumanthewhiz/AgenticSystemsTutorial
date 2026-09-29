@@ -183,7 +183,7 @@ those dependencies.</p>
 | ingest_dataset | succeeded | 7 |
 | ingest_file    | succeeded | 6 |
 ...
-LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: C:\...\SwarmPipe\data\inbox</code></pre></div>
+LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: &lt;your-SwarmPipe-folder&gt;\data\inbox</code></pre></div>
 </li>
 <li>
 <p>List just file workflows:</p>
@@ -245,7 +245,7 @@ seeing the same execution path from three angles: data state, trace state and co
 <div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop malformed --process
 sp dlq list
 sp incidents list --limit 5</code></pre></div>
-<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into C:\...\SwarmPipe\data\inbox
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into &lt;your-SwarmPipe-folder&gt;\data\inbox
 admitted 2 file(s); processed in 3.6s
 
 | id       | tenant  | reason      | error                         | run_id  |

@@ -113,7 +113,7 @@ SLOs | p95-oriented ingest and triage objectives
    ```
 
    ```output
-   LLM: 30 calls, $0.0184, 36582 tokens | profile offline | kill switches: none | inbox: C:\...\data\inbox
+   LLM: 30 calls, $0.0184, 36582 tokens | profile offline | kill switches: none | inbox: <your-SwarmPipe-folder>\data\inbox
    | inc_mumhq8or17b7fb | mitigated | critical | default | sales_daily | 1 | truncated_extract | 0.011965 |
    ```
 

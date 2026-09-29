@@ -162,7 +162,7 @@ instructions to agents unless it is explicitly a security test artifact.
    ```
 
    ```output
-   dropped ['runbook_customer_reload.txt'] into C:\...\SwarmPipe\data\inbox
+   dropped ['runbook_customer_reload.txt'] into <your-SwarmPipe-folder>\data\inbox
    | id      | title                         | doc_type | trust      | source                      |
    | doc_... | Runbook: customer master reload | runbook | unverified | inbox/runbook_customer_reload.txt |
 

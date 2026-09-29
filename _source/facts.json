@@ -1,5 +1,4 @@
 {
- "project": "../SwarmPipe",
  "cli": [
   {
    "path": "actions execute",
@@ -2507,16 +2506,16 @@
   "swarmpipe://contracts/inventory",
   "swarmpipe://contracts/regions",
   "swarmpipe://contracts/sales_daily",
-  "swarmpipe://knowledge/doc_mumkcfxw05ad4a",
-  "swarmpipe://knowledge/doc_mumkcfxvd398c4",
-  "swarmpipe://knowledge/doc_mumkcfxvd2bb76",
-  "swarmpipe://knowledge/doc_mumkcfxvf43ccc",
-  "swarmpipe://knowledge/doc_mumkcfxtca17c1",
-  "swarmpipe://knowledge/doc_mumkcfxtf9938d",
-  "swarmpipe://knowledge/doc_mumkcfxs9fc78a",
-  "swarmpipe://knowledge/doc_mumkcfxq0d92e1",
-  "swarmpipe://knowledge/doc_mumkcfxqb38765",
-  "swarmpipe://knowledge/doc_mumkcfxpe332bf"
+  "swarmpipe://knowledge/doc_mumlego5a59e97",
+  "swarmpipe://knowledge/doc_mumlego3465982",
+  "swarmpipe://knowledge/doc_mumlego33a5956",
+  "swarmpipe://knowledge/doc_mumlego1ff6f19",
+  "swarmpipe://knowledge/doc_mumlego1fdc532",
+  "swarmpipe://knowledge/doc_mumlego0528a9e",
+  "swarmpipe://knowledge/doc_mumlegny142560",
+  "swarmpipe://knowledge/doc_mumlegnyd2ef39",
+  "swarmpipe://knowledge/doc_mumlegnx7efd6d",
+  "swarmpipe://knowledge/doc_mumlegnw692cab"
  ],
  "api_routes": [
   [

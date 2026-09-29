@@ -201,7 +201,7 @@ SwarmPipe records certifications in the `model_certifications` table and can req
        "value": 1.0,
        "bar": 0.9,
        "status": "certified",
-       "report": "...\\evals\\reports\\eval_mumj3kq3125124.json"
+       "report": "<your-SwarmPipe-folder>\\evals\\reports\\eval_mumj3kq3125124.json"
      }
    }
    ```
@@ -257,7 +257,7 @@ sp evals harvest
     "hv-inc_mumj3t1526ac2a",
     "hv-inc_mumj3t28cd71b1"
   ],
-  "file": "...\\evals\\datasets\\harvested.jsonl"
+  "file": "<your-SwarmPipe-folder>\\evals\\datasets\\harvested.jsonl"
 }
 ```
 

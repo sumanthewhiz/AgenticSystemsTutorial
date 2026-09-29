@@ -174,7 +174,7 @@ those dependencies.
    | ingest_dataset | succeeded | 7 |
    | ingest_file    | succeeded | 6 |
    ...
-   LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: C:\...\SwarmPipe\data\inbox
+   LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: <your-SwarmPipe-folder>\data\inbox
    ```
 
 2. List just file workflows:
@@ -257,7 +257,7 @@ those dependencies.
    ```
 
    ```output
-   dropped ['sales_2026-09-29_corrupt.csv', 'customers_broken.xlsx'] into C:\...\SwarmPipe\data\inbox
+   dropped ['sales_2026-09-29_corrupt.csv', 'customers_broken.xlsx'] into <your-SwarmPipe-folder>\data\inbox
    admitted 2 file(s); processed in 3.6s
 
    | id       | tenant  | reason      | error                         | run_id  |

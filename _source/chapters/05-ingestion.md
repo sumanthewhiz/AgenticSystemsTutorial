@@ -172,7 +172,7 @@ Ids, dates, timings and costs vary. The output below is trimmed from a real run.
    ```
 
    ```output
-   dropped ['sales_2026-09-29_resent.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29_resent.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 0.0s
    | workflow    | status  |
    | ingest_file | skipped |
@@ -187,7 +187,7 @@ Ids, dates, timings and costs vary. The output below is trimmed from a real run.
    ```
 
    ```output
-   dropped ['sales_2026-09-29_corrupt.csv', 'customers_broken.xlsx'] into ...\data\inbox
+   dropped ['sales_2026-09-29_corrupt.csv', 'customers_broken.xlsx'] into <your-SwarmPipe-folder>\data\inbox
    | workflow    | status        | n |
    | ingest_file | dead_lettered | 2 |
    ...
@@ -204,10 +204,10 @@ Ids, dates, timings and costs vary. The output below is trimmed from a real run.
    ```
 
    ```output
-   dropped ['customers_2026-09-29_cp1252.csv'] into ...\data\inbox
+   dropped ['customers_2026-09-29_cp1252.csv'] into <your-SwarmPipe-folder>\data\inbox
    | ingest_dataset | succeeded | 9 |
    ...
-   dropped ['inventory_2026-09-29.txt'] into ...\data\inbox
+   dropped ['inventory_2026-09-29.txt'] into <your-SwarmPipe-folder>\data\inbox
    | default | inventory | dsv_... | 0 | ...
    ```
 
@@ -225,7 +225,7 @@ Ids, dates, timings and costs vary. The output below is trimmed from a real run.
    ```
 
    ```output
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 9.5s
    | tenant  | dataset     | published_version_id | hold |
    | acme    | sales_daily | dsv_...              | 0    |

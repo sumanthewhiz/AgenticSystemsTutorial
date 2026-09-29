@@ -214,7 +214,7 @@ would stop a medium-risk L3 action from auto-executing.
    ```
 
    ```output
-   dropped ['sales_2026-09-29.csv'] into ...\data\inbox
+   dropped ['sales_2026-09-29.csv'] into <your-SwarmPipe-folder>\data\inbox
    admitted 1 file(s); processed in 10.8s
    ...
    | id      | kind   | status  | subject                           | risk   |
