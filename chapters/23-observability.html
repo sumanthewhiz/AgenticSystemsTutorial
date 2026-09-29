@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 23: Observability: traces, metrics, logs and SLOs · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="23-observability" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability" class="current" aria-current="page"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="23-observability">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VII &middot; Observability, cost and operations</div>
+<h1><span class="num">Chapter 23</span>Observability: traces, metrics, logs and SLOs</h1>
+<div class="meta"><span class="chip">&#9201; 45 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">One trace across every agent, GenAI semantic conventions, sampling, Prometheus metrics, correlated structured logs, and SLOs with error budgets for the pipeline itself.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain why agent observability needs traces across decisions, tools, models and cost</li><li>Read a SwarmPipe trace waterfall from workflow step to agent, model call and tool call</li><li>Use <code>sp metrics</code>, <code>sp metrics --prom</code>, <code>/metrics</code> and <strong>Cost &amp; Metrics</strong> to inspect platform health</li><li>Connect structured JSON logs, traces and audit without confusing their purposes</li><li>Evaluate pipeline SLOs and choose which signals should alert a human</li></ul></div>
+<p>A normal batch pipeline can often be debugged from one failed job and one stack trace. An agentic pipeline is different. The failure may be a slow model call, a repair loop, a tool that returned thin evidence, a specialist that abstained, a quota that forced deterministic fallback, or a policy decision that intentionally stopped an action. You need to see the whole chain, not just the final status.</p>
+<p>SwarmPipe's answer is deliberately simple and local: spans in SQLite and <code>data\traces\*.jsonl</code>, metrics in SQLite and Prometheus text, JSON logs in <code>data\logs\swarmpipe.jsonl</code>, and audit in a separate hash-chained log. The goal is not to imitate a cloud observability stack. The goal is to teach what you must preserve when you move to one.</p>
+<h2 id="why-agent-observability-is-different">Why agent observability is different</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Agent observability</span></div><div class="box-body"><p>The ability to reconstruct what an agentic system did, why it did it, what evidence it used, which model/tool calls were involved, how long each step took and what each step cost.</p>
+</div></div>
+<p>Three things make this harder than ordinary service telemetry. First, non-determinism: even with the same input, a real model can vary. Second, fan-out: one incident can involve a supervisor, specialists, a planner, a critic, an executor, a verifier and a learner. Third, marginal cost: every retry, repair and fallback spends latency and tokens.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">workflow triage</div><div class="node-s">durable run and step checkpoints</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">invoke_agent supervisor</div><div class="node-s">fan-out and diagnosis orchestration</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">invoke_agent investigator_*</div><div class="node-s">specialist reasoning</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">execute_tool search_knowledge</div><div class="node-s">evidence id and tool latency</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">chat diagnoser</div><div class="node-s">prompt, role and route</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">llm.call sim-large</div><div class="node-s">model, tokens, cost and latency</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">policy and execute</div><div class="node-s">deterministic actions and verification</div></div></div><figcaption>One incident trace</figcaption></figure>
+<p>That is why SwarmPipe uses one trace for every agent involved in an incident. <code>runs.trace_id</code> records a run trace; <code>incidents.trace_id</code> records the incident trace; model calls, tool calls and evidence rows carry enough ids to join back.</p>
+<h2 id="traces-and-genai-span-attributes">Traces and GenAI span attributes</h2>
+<p>SwarmPipe's tracing code lives in <code>swarmpipe/observability/tracing.py</code>. It uses OpenTelemetry GenAI semantic-convention names where they fit:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/observability/tracing.py</span>
+GEN_AI_OPERATION = &quot;gen_ai.operation.name&quot;
+GEN_AI_PROVIDER = &quot;gen_ai.provider.name&quot;
+GEN_AI_REQUEST_MODEL = &quot;gen_ai.request.model&quot;
+GEN_AI_RESPONSE_MODEL = &quot;gen_ai.response.model&quot;
+GEN_AI_INPUT_TOKENS = &quot;gen_ai.usage.input_tokens&quot;
+GEN_AI_OUTPUT_TOKENS = &quot;gen_ai.usage.output_tokens&quot;
+GEN_AI_AGENT_NAME = &quot;gen_ai.agent.name&quot;
+GEN_AI_AGENT_ID = &quot;gen_ai.agent.id&quot;
+GEN_AI_TOOL_NAME = &quot;gen_ai.tool.name&quot;
+GEN_AI_TOOL_CALL_ID = &quot;gen_ai.tool.call.id&quot;</code></pre></div>
+<p>Agent spans come from <code>Agent.invoke</code> in <code>swarmpipe/agents/base.py</code>, model spans from <code>ModelGateway.chat</code> and <code>_try_model</code>, and tool spans from <code>ToolGateway.call</code>. SwarmPipe adds its own attributes such as <code>swarmpipe.run_id</code>, <code>swarmpipe.incident_id</code>, <code>swarmpipe.cost_usd</code>, <code>swarmpipe.evidence_id</code>, <code>swarmpipe.route</code> and <code>swarmpipe.root_cause</code>.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Trace implementation</span></div><div class="box-body"><p><code>Tracer.span</code> buffers spans by execution segment. It writes to the <code>spans</code> table and, when <code>tracing.export_jsonl</code> is true, appends OpenTelemetry-shaped JSON lines to <code>data\traces\spans-YYYYMMDD.jsonl</code>.</p>
+</div></div>
+<p>Sampling has two parts. <code>tracing.sample_rate</code> is head sampling for successful traces; the default in <code>config\swarmpipe.yaml</code> is <code>1.0</code>, so local labs keep every successful trace. <code>tracing.always_keep_errors: true</code> is the tail rule: traces with error spans are kept even when head sampling would drop them. This is industry practice beyond SwarmPipe too: sample success aggressively at scale, but keep errors, high latency and safety-relevant traces.</p>
+<h2 id="metrics-logs-and-slos">Metrics, logs and SLOs</h2>
+<p>Metrics are not traces. A metric tells you the system changed shape: model latency rose, cache hits stopped, queue depth grew, SLO burn increased. A trace tells you what happened in one execution.</p>
+<p>SwarmPipe's <code>Metrics</code> class supports counters (<code>inc</code>), gauges (<code>gauge</code>) and summaries/histograms (<code>observe</code>). The CLI command <code>sp metrics</code> summarizes the last 24 hours. <code>sp metrics --prom</code> and the <code>/metrics</code> route expose Prometheus text. The dashboard <strong>Cost &amp; Metrics</strong> tab shows model usage by agent/model, tenant quotas, per-incident cost, SLOs and metric summaries.</p>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Page now</div><div class="card-s"><code>slo_breach</code>, sustained <code>queue_depth</code>, repeated <code>llm_unavailable_total</code>, DLQ growth, breaker opens, audit verification failure</div></div><div class="card"><div class="card-t">Ticket soon</div><div class="card-s">cache-hit regression, moderate p95 latency drift, cost trend, repair-rate increase</div></div><div class="card"><div class="card-t">Record only</div><div class="card-s">individual successful model calls, normal tool calls, routine published versions</div></div></div><figcaption>Signals you should alert on</figcaption></figure>
+<p>SLOs are for the pipeline itself, not for a business dashboard. <code>config\swarmpipe.yaml</code> defines <code>ingest-latency</code>, <code>ingest-success</code> and <code>triage-latency</code>. <code>SLOService.evaluate</code> computes SLI, burn rate and remaining error budget. <code>Scheduler.slo</code> raises a <code>slo_breach</code> signal when a configured SLO is breached; in a verification run, a slow baseline run produced an <code>ingest-latency</code> warning incident.</p>
+<p>Structured logs are implemented in <code>swarmpipe/observability/logging.py</code>. The JSON formatter injects <code>trace_id</code> and <code>span_id</code> from the active span and can carry <code>run_id</code>, <code>incident_id</code>, <code>tenant</code> and <code>agent</code> when code logs inside <code>log_context</code>. Today, most INFO rows are runtime and watcher events; <code>--process</code> CLI runs are intentionally quiet and may produce an empty JSON log. Use logs for coarse runtime breadcrumbs, traces for incident reconstruction, and <a href="22-audit-evidence.html">Chapter 22</a> for audit-grade evidence.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Telemetry is not audit</span></div><div class="box-body"><p>Spans and metrics are sampled, short-lived and optimized for debugging. Audit is complete, hash-chained and optimized for accountability. Do not use a sampled trace as proof that no action happened; use the audit log and evidence pack.</p>
+</div></div>
+<h2 id="hands-on-trace-one-incident">Hands-on: trace one incident</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Read the trace waterfall</span></div><div class="box-body"><ol>
+<li>
+<p>Start from the standard lab state:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop volume_drop --process
+sp incidents list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id                 | status    | severity | tenant  | dataset     | signal_count | root_cause        | cost_usd |
+| inc_mumhq8or17b7fb | mitigated | critical | default | sales_daily | 1            | truncated_extract | 0.011965 |
+...</code></pre></div>
+<p>Ids, dates, timings and costs vary.</p>
+</li>
+<li>
+<p>Show the incident trace:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp trace inc_mumhq8or17b7fb</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>trace fcd46ce15ddb50d4d76c47b3d175356c
+`-- workflow triage +0ms 988ms
+    +-- step investigate +1ms 628ms
+    |   `-- invoke_agent supervisor.fan_out +215ms 415ms
+    |       `-- invoke_agent investigator_quality.investigate +271ms 314ms
+    |           +-- chat investigator ... input_tokens=1087 output_tokens=49 cost_usd=0.00019245
+    |           +-- execute_tool search_knowledge ... name=search_knowledge evidence_id=ev_mumhqdjk2c0510
+    +-- step diagnose +629ms 234ms
+    |   `-- chat diagnoser ... input_tokens=712 output_tokens=63 cost_usd=0.00241
+    `-- step close +935ms 52ms</code></pre></div>
+</li>
+<li>
+<p>Read it from left to right: the workflow step is the durable skeleton, <code>invoke_agent</code> is agent work, <code>chat</code> is the gateway call, <code>llm.call</code> is the provider attempt, and <code>execute_tool</code> records an evidence id.</p>
+</li>
+<li>
+<p>Dashboard check: open <strong>Incidents</strong>, select the incident, then inspect the trace waterfall at the bottom. Open <strong>Runs</strong> for the triage run to compare checkpoints and model calls.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Metrics and Prometheus exposition</span></div><div class="box-body"><ol>
+<li>
+<p>Summarize metrics:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp metrics</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| metric                  | count | sum      | p50    | p95    | max     |
+| llm_calls_total         | 30    | 30.0     | 1.0    | 1.0    | 1.0     |
+| llm_cost_usd_total      | 30    | 0.018405 | ...    | ...    | 0.00694 |
+| llm_latency_ms          | 30    | 477.1182 | 12.50  | 33.37  | 34.97   |
+| triage_diagnosis_seconds| 2     | 10.825   | 4.236  | 6.589  | 6.589   |</code></pre></div>
+</li>
+<li>
+<p>Show Prometheus text:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp metrics --prom</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code># TYPE swarmpipe_actions_executed_total counter
+swarmpipe_actions_executed_total{action=&quot;request_resend&quot;,ok=&quot;true&quot;} 1.0
+# TYPE swarmpipe_agent_invocation_ms summary
+swarmpipe_agent_invocation_ms{agent=&quot;investigator_quality&quot;,op=&quot;investigate&quot;,quantile=&quot;0.95&quot;} 466.1919000209309
+swarmpipe_agent_invocation_ms_count{agent=&quot;investigator_quality&quot;,op=&quot;investigate&quot;} 2</code></pre></div>
+</li>
+<li>
+<p>With a server already running, the same exposition is available at:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Invoke-RestMethod http://127.0.0.1:8765/metrics</code></pre></div>
+</li>
+<li>
+<p>Dashboard check: open <strong>Cost &amp; Metrics</strong>. Compare <strong>By agent</strong>, <strong>By model / status</strong>, <strong>Tenant quotas</strong>, <strong>Per incident</strong> and <strong>Metrics (last 24h)</strong>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">SLOs and JSON logs</span></div><div class="box-body"><ol>
+<li>
+<p>Evaluate SLOs:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp slo</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id             | objective | total | bad | sli    | burn_rate | error_budget_remaining | status   |
+| ingest-latency | 0.95      | 7     | 1   | 0.8571 | 2.8571    | 0.0                    | breached |
+| ingest-success | 0.99      | 7.0   | 0   | 1.0    | 0.0       | 1.0                    | ok       |
+| triage-latency | 0.95      | 2     | 0   | 1.0    | 0.0       | 1.0                    | ok       |</code></pre></div>
+</li>
+<li>
+<p>Inspect JSON logs. In <code>--process</code> labs this file may be empty; with <code>sp run --no-web</code> it contains runtime and watcher INFO rows:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Get-Content .\data\logs\swarmpipe.jsonl |
+  ConvertFrom-Json |
+  Select-Object -First 8 ts,level,msg,trace_id,run_id,incident_id,tenant,agent |
+  Format-Table -AutoSize</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>ts                     level msg
+--                     ----- ---
+29-09-2026 03:23:56 PM INFO  runtime started: 1 workers, watching C:\...\data\inbox
+29-09-2026 03:24:00 PM INFO  admitted customers.xlsx (tenant default) -&gt; run run_mumi1iu622216c
+29-09-2026 03:24:23 PM INFO  admitted sales_2026-09-29.csv (tenant default) -&gt; run run_mumi20xd7d04d0</code></pre></div>
+</li>
+<li>
+<p>For one incident, filter the file the same way:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>$incident = &quot;inc_mumhq8or17b7fb&quot;
+Get-Content .\data\logs\swarmpipe.jsonl |
+  ConvertFrom-Json |
+  Where-Object { $_.incident_id -eq $incident } |
+  Select-Object ts,level,msg,trace_id,run_id,incident_id,tenant,agent</code></pre></div>
+<p>In a verification run this returned no rows because current SwarmPipe does not log per-incident INFO events. That is an honest product gap; the trace and audit surfaces carry the incident detail.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Make model calls slow</span></div><div class="box-body"><ol>
+<li>
+<p>Clear previous chaos, inject latency and drop a failure:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos clear
+sp chaos set llm_latency_ms &quot;[400,900]&quot;
+sp scenarios drop volume_drop --process
+sp trace &lt;incident_id&gt;
+sp metrics
+sp slo</code></pre></div>
+</li>
+<li>
+<p>In a fresh, non-duplicate run you should see longer <code>llm.call</code> spans and higher <code>llm_latency_ms</code> p95. If you accidentally re-drop a duplicate file, SwarmPipe may skip it idempotently; reset or use a different scenario.</p>
+</li>
+<li>
+<p>Explain the result: the slow model is visible in the trace, aggregated in metrics and eventually reflected in SLO burn if enough work exceeds thresholds. Do not page on one slow call; page on sustained burn, queue growth or user-visible failure.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<p>At larger scale, ship spans to an OpenTelemetry collector, metrics to a time-series backend, logs to indexed storage and audit to a retention-controlled evidence store. Keep the correlation fields identical: <code>trace_id</code>, <code>span_id</code>, <code>run_id</code>, <code>incident_id</code>, <code>tenant</code>, <code>agent</code>, <code>model</code>, <code>tool</code> and <code>evidence_id</code>. The backend changes; the questions do not.</p>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why is one trace per incident useful?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It replaces the audit log</button></li><li><button type="button" class="opt" data-correct="true">It lets you follow workflow steps, agents, tools and model calls in one waterfall</button></li><li><button type="button" class="opt" data-correct="false">It proves the model was correct</button></li></ul><div class="q-explain" hidden>The trace is for debugging causality and latency. Correctness still requires evidence and evals.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Which spans use OpenTelemetry GenAI attributes?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Only deterministic data-quality checks</button></li><li><button type="button" class="opt" data-correct="true">Agent invocation, model chat/call and tool execution spans</button></li><li><button type="button" class="opt" data-correct="false">Only the web dashboard</button></li></ul><div class="q-explain" hidden>SwarmPipe uses names such as <code>gen_ai.operation.name</code>, <code>gen_ai.agent.name</code>, <code>gen_ai.request.model</code> and <code>gen_ai.tool.name</code>.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What does <code>tracing.always_keep_errors</code> do?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Keeps error traces even if head sampling would drop them</button></li><li><button type="button" class="opt" data-correct="false">Deletes successful traces</button></li><li><button type="button" class="opt" data-correct="false">Converts logs into audit rows</button></li></ul><div class="q-explain" hidden>It is a tail rule layered on top of head sampling.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Which signal should usually alert a human?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">One successful <code>llm.call</code></button></li><li><button type="button" class="opt" data-correct="true">Sustained SLO burn or repeated model unavailability</button></li><li><button type="button" class="opt" data-correct="false">A normal cache hit</button></li></ul><div class="q-explain" hidden>Alert on user-visible risk and sustained symptoms, not ordinary telemetry.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Why is the incident JSON-log filter allowed to be empty today?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Logs are disabled forever</button></li><li><button type="button" class="opt" data-correct="false">The incident did not happen</button></li><li><button type="button" class="opt" data-correct="true">Current SwarmPipe logs mostly runtime/watcher INFO rows; incident detail is in traces and audit</button></li></ul><div class="q-explain" hidden>The logging framework supports correlation fields, but the implemented INFO call sites are sparse.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Agent observability must connect decisions, tools, model calls, tokens, cost and latency across many agents.</li>
+<li>SwarmPipe traces use GenAI semantic-convention attributes and export spans to <code>data\traces</code> as JSONL.</li>
+<li>Metrics answer &quot;is this getting worse?&quot;; traces answer &quot;what happened in this run?&quot;</li>
+<li><code>sp slo</code> evaluates pipeline SLOs and the scheduler can raise <code>slo_breach</code> signals.</li>
+<li>JSON logs are structured but currently sparse for incident detail; use traces for debugging and audit for proof.</li>
+<li>Alert on sustained burn, unavailability, DLQ growth, queue depth and audit failure; record routine successful calls.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="23-observability"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="22-audit-evidence.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 22 &middot; Audit, evidence packs and kill switches</span></a><a class="next" href="24-cost-capacity.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 24 &middot; Cost, latency and capacity</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#why-agent-observability-is-different">Why agent observability is different</a></li><li class="h2"><a href="#traces-and-genai-span-attributes">Traces and GenAI span attributes</a></li><li class="h2"><a href="#metrics-logs-and-slos">Metrics, logs and SLOs</a></li><li class="h2"><a href="#hands-on-trace-one-incident">Hands-on: trace one incident</a></li><li class="h2"><a href="#production-notes">Production notes</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

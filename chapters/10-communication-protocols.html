@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 10: How agents talk: shared state, messages, A2A and MCP · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="10-communication-protocols" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols" class="current" aria-current="page"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="10-communication-protocols">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part III &middot; Multi-agent systems: the swarm</div>
+<h1><span class="num">Chapter 10</span>How agents talk: shared state, messages, A2A and MCP</h1>
+<div class="meta"><span class="chip">&#9201; 45 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Blackboards vs messages, typed and signed inter-agent messages, agent cards and registries, the A2A protocol for agent-to-agent tasks and MCP for tools, and when to use which.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Distinguish shared state, inter-agent messages, A2A tasks and MCP tools</li><li>Explain how SwarmPipe signs and validates internal AgentMessage envelopes</li><li>Inspect agent cards through the registry, dashboard and A2A endpoints</li><li>Run a real MCP JSON-RPC handshake over stdio</li><li>Break a bad inter-agent route and identify the rejection metric</li></ul></div>
+<p>Agents do not just call models. They communicate. A production system must decide which communication is durable state,
+which is a point-to-point message, which is an external agent task and which is a tool protocol for an assistant such
+as GitHub Copilot CLI. Mixing those surfaces is how teams accidentally give a reasoning agent write access, accept a
+forged instruction or lose the evidence trail.</p>
+<p>SwarmPipe uses four surfaces: a blackboard for shared incident state, signed internal messages for tightly scoped
+tasks, A2A-style HTTP endpoints for agent discovery and task delegation, and MCP over stdio for tools exposed to an
+external host.</p>
+<h2 id="shared-state-versus-messages">Shared state versus messages</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Shared state</span></div><div class="box-body"><p>Durable data that multiple agents can read: run context, incidents, proposals, evidence rows and blackboard entries.
+It is best for facts that must survive crashes and appear in audit/debug views.</p>
+</div></div>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Message</span></div><div class="box-body"><p>A point-to-point envelope for work assignment or reply. It is best for live coordination: &quot;Supervisor asks Schema
+Investigator to investigate this incident&quot; or &quot;Investigator returns a finding.&quot;</p>
+</div></div>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Run context</div><div class="layer-s">per-run durable inputs and step outputs</div></div><div class="layer"><div class="layer-t">Incident blackboard</div><div class="layer-s">append-only case file for shared findings</div></div><div class="layer"><div class="layer-t">AgentMessage</div><div class="layer-s">typed, HMAC-signed internal task and finding messages</div></div><div class="layer"><div class="layer-t">A2A HTTP</div><div class="layer-s">agent cards and tasks for other agents over REST</div></div><div class="layer"><div class="layer-t">MCP stdio</div><div class="layer-s">tool protocol for Copilot CLI and other MCP hosts</div></div></div><figcaption>SwarmPipe communication layers</figcaption></figure>
+<p>The blackboard and run context are the default. They make recovery and audit simple. Messages are used only for
+internal fan-out/fan-in, where a sender and recipient are known.</p>
+<p>This split avoids two common production mistakes. The first is treating a chat transcript as the source of truth. A
+transcript is hard to query, hard to resume and easy to over-share. SwarmPipe instead stores structured rows: the
+incident, signals, evidence, proposals, approvals and blackboard entries. The second mistake is turning every handoff
+into durable global state. A short-lived &quot;please investigate this incident&quot; task is better as a signed message because
+it has one sender, one receiver and one allowed reply.</p>
+<h2 id="signed-internal-messages">Signed internal messages</h2>
+<p>OWASP Agentic AI risk ASI07 covers insecure inter-agent communication. SwarmPipe treats every internal message as
+untrusted until verified. <code>AgentMessage</code> includes an id, type, sender, recipient, task id, payload, timestamp and
+signature. The signature is HMAC-SHA256 over the canonical body, using a key derived from the local master key.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/agents/messaging.py</span>
+ROUTES = {
+    (&quot;supervisor&quot;, &quot;investigator&quot;): {&quot;task&quot;},
+    (&quot;investigator&quot;, &quot;supervisor&quot;): {&quot;finding&quot;},
+    (&quot;external&quot;, &quot;analyst&quot;): {&quot;task&quot;},
+    (&quot;analyst&quot;, &quot;external&quot;): {&quot;result&quot;},
+}</code></pre></div>
+<p>On receive, SwarmPipe checks the signature, the addressed recipient and the route allowlist. Rejections are audited,
+raise <code>MESSAGE_REJECTED</code> and increment <code>agent_messages_rejected_total</code>.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Message security</span></div><div class="box-body"><p>The code is in <code>swarmpipe/agents/messaging.py</code>. The <code>MessageBus.receive</code> method is intentionally deterministic:
+message validation is not delegated to a model.</p>
+</div></div>
+<h2 id="agent-registry-and-agent-cards">Agent registry and agent cards</h2>
+<p>The registry is the inventory of agents: name, description, version, scopes, tools and model route. Each card has a
+hash, so silent changes can be detected.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Agent cards</span></div><div class="box-body"><p><code>swarmpipe/agents/registry.py</code> builds all 27 agents and writes their cards to <code>agent_registry</code>. The dashboard
+<strong>Agents &amp; Tools</strong> tab shows cards, model routes, cost stats and tool counts.</p>
+</div></div>
+<p>A card is more than documentation. It lets humans and other systems discover what an agent can do before sending work.
+SwarmPipe exposes the cards over A2A endpoints:</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /.well-known/agent-card.json</code></td>
+<td>the default Analyst card</td>
+</tr>
+<tr>
+<td><code>GET /a2a/agents</code></td>
+<td>all 27 agent cards</td>
+</tr>
+<tr>
+<td><code>GET /a2a/agents/{agent_id}</code></td>
+<td>one card, such as <code>analyst</code></td>
+</tr>
+<tr>
+<td><code>POST /a2a/agents/analyst/tasks</code></td>
+<td>delegate a data question to the Analyst</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a2a-tasks">A2A tasks</h2>
+<p>A2A is useful when another agent wants to delegate a task to SwarmPipe's Analyst. The task body contains message parts.
+The response is a task with <code>status.state</code>, artifacts and metadata such as acting identity and evidence id.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/web/api.py</span>
+@app.post(&quot;/a2a/agents/analyst/tasks&quot;)
+def a2a_task(body: dict = Body(...), x_user: str | None = Header(None)):
+    u = user(x_user or &quot;analyst&quot;)
+    text = &quot; &quot;.join(p.get(&quot;text&quot;, &quot;&quot;) for p in parts if isinstance(p, dict))
+    res = svc.agents.analyst.ask_question(text, u, body.get(&quot;tenant&quot;, &quot;default&quot;))
+    state = &quot;completed&quot; if not res.get(&quot;refused&quot;) else &quot;rejected&quot;</code></pre></div>
+<p>Notice the identity boundary: the endpoint still resolves a local user and the Analyst still uses governed read-only
+SQL. A2A does not bypass the tool gateway.</p>
+<p>A2A is intentionally agent-shaped rather than tool-shaped. The caller does not choose <code>query_warehouse</code> directly. It
+asks the Analyst for an outcome, and the Analyst decides whether the request is answerable, generates safe SQL, runs it
+through the read-only tool path and returns an artifact. That is the right abstraction when the remote capability is an
+agent with judgment. If you want exact tools and schemas, use MCP instead.</p>
+<h2 id="mcp-tools-for-external-hosts">MCP: tools for external hosts</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">MCP</span></div><div class="box-body"><p>Model Context Protocol is a JSON-RPC protocol that lets a host, such as GitHub Copilot CLI, discover and call tools
+and resources exposed by a local or remote server.</p>
+</div></div>
+<p>SwarmPipe's MCP server runs over stdio with <code>sp mcp</code>. It supports <code>initialize</code>, <code>tools/list</code>, <code>tools/call</code>,
+<code>resources/list</code> and <code>resources/read</code>. Tool annotations such as <code>readOnlyHint</code> and <code>destructiveHint</code> are hints for the
+host UI, not security controls. Authorization remains server-side: <code>sp mcp --as oncall</code> acts as the configured local
+identity; <code>sp mcp --as analyst</code> cannot approve actions. The server never forwards client tokens downstream.</p>
+<p>MCP resources are read-only context objects. SwarmPipe exposes active contracts as <code>swarmpipe://contracts/...</code> and
+knowledge documents as <code>swarmpipe://knowledge/...</code>. A host can read those resources to explain the pipeline without
+calling an action. Tool calls, by contrast, are explicit operations with input schemas and structured results. Keeping
+resources and tools separate makes it easier for a host to show safe context without accidentally changing state.
+That separation also makes protocol logs easier to review after an incident.</p>
+<p>The MCP tools are coarse-grained for an assistant: <code>pipeline_status</code>, <code>list_incidents</code>, <code>get_incident</code>,
+<code>list_datasets</code>, <code>get_lineage_impact</code>, <code>search_knowledge</code>, <code>ask_data_question</code>, <code>list_pending_approvals</code>,
+<code>decide_approval</code>, <code>drop_scenario</code> and <code>get_evidence_pack</code>.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">MCP server</span></div><div class="box-body"><p><code>swarmpipe/mcp_server.py</code> defines the tool list, annotations, resources and JSON-RPC handler. Tool errors are returned
+as <code>isError: true</code>; unknown protocol methods return JSON-RPC error <code>-32601</code>.</p>
+</div></div>
+<h2 id="mcp-versus-a2a">MCP versus A2A</h2>
+<p>Use A2A when you are talking to an agent as an agent: discover its card, send it a task and receive an artifact. Use
+MCP when a host wants tools and resources: list tool schemas, call a tool and read resources such as contracts and
+knowledge documents.</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Prefer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;Ask the Analyst agent a question&quot;</td>
+<td>A2A task</td>
+</tr>
+<tr>
+<td>&quot;Let Copilot inspect incidents and datasets&quot;</td>
+<td>MCP tools</td>
+</tr>
+<tr>
+<td>&quot;Expose runbooks and contracts as readable resources&quot;</td>
+<td>MCP resources</td>
+</tr>
+<tr>
+<td>&quot;Coordinate internal specialists in one process&quot;</td>
+<td>signed <code>AgentMessage</code> plus blackboard</td>
+</tr>
+</tbody>
+</table>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Inspect A2A with PowerShell</span></div><div class="box-body"><ol>
+<li>
+<p>If your SwarmPipe server is already running, use it. Otherwise start it in one terminal:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp run</code></pre></div>
+</li>
+<li>
+<p>In a second terminal, request the Analyst card and all cards:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Invoke-RestMethod http://127.0.0.1:8765/.well-known/agent-card.json
+Invoke-RestMethod http://127.0.0.1:8765/a2a/agents/analyst</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>name        : Analyst
+description : Answers natural-language questions with read-only SQL over published datasets, through the semantic layer.
+version     : 1.0.0</code></pre></div>
+</li>
+<li>
+<p>Send an A2A task:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Invoke-RestMethod -Method Post http://127.0.0.1:8765/a2a/agents/analyst/tasks `
+  -ContentType application/json `
+  -Body &#x27;{&quot;message&quot;:{&quot;parts&quot;:[{&quot;kind&quot;:&quot;text&quot;,&quot;text&quot;:&quot;number of orders by channel&quot;}]}}&#x27;</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>kind   : task
+status : @{state=completed; timestamp=...}
+artifacts : ...
+metadata  : @{acting_as=agent:analyst acting for user:analyst; evidence_id=ev_...}</code></pre></div>
+</li>
+<li>
+<p>Open <strong>Agents &amp; Tools</strong>. Compare the card you fetched with the registry view and its <code>card_hash</code>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Run an MCP handshake over stdio</span></div><div class="box-body"><ol>
+<li>
+<p>From the SwarmPipe folder, pipe JSON-RPC lines into <code>sp mcp</code>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>@&#x27;
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;method&quot;:&quot;initialize&quot;,&quot;params&quot;:{&quot;protocolVersion&quot;:&quot;2025-06-18&quot;,&quot;capabilities&quot;:{},&quot;clientInfo&quot;:{&quot;name&quot;:&quot;lab&quot;,&quot;version&quot;:&quot;0&quot;}}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:2,&quot;method&quot;:&quot;tools/list&quot;,&quot;params&quot;:{}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:3,&quot;method&quot;:&quot;tools/call&quot;,&quot;params&quot;:{&quot;name&quot;:&quot;pipeline_status&quot;,&quot;arguments&quot;:{}}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:4,&quot;method&quot;:&quot;resources/list&quot;,&quot;params&quot;:{}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:5,&quot;method&quot;:&quot;no/such-method&quot;,&quot;params&quot;:{}}
+&#x27;@ | sp mcp --as oncall</code></pre></div>
+</li>
+<li>
+<p>You should see one JSON response per line:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;result&quot;:{&quot;protocolVersion&quot;:&quot;2025-06-18&quot;,
+ &quot;serverInfo&quot;:{&quot;name&quot;:&quot;swarmpipe&quot;,&quot;title&quot;:&quot;SwarmPipe agentic data pipeline&quot;,&quot;version&quot;:&quot;0.1.0&quot;},
+ &quot;instructions&quot;:&quot;SwarmPipe control surface. Acting as user:oncall. ...&quot;}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:2,&quot;result&quot;:{&quot;tools&quot;:[{&quot;name&quot;:&quot;pipeline_status&quot;,...},{&quot;name&quot;:&quot;list_incidents&quot;,...}]}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:3,&quot;result&quot;:{&quot;content&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;text&quot;:&quot;{\&quot;queue_depth\&quot;:0,...}&quot;}],
+ &quot;isError&quot;:false,&quot;structuredContent&quot;:{&quot;queue_depth&quot;:0,...}}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:4,&quot;result&quot;:{&quot;resources&quot;:[{&quot;uri&quot;:&quot;swarmpipe://contracts/customers&quot;,...}]}}
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:5,&quot;error&quot;:{&quot;code&quot;:-32601,&quot;message&quot;:&quot;method not found: no/such-method&quot;}}</code></pre></div>
+</li>
+<li>
+<p>Tool errors are not protocol errors. Try a missing incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>@&#x27;
+{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;method&quot;:&quot;tools/call&quot;,&quot;params&quot;:{&quot;name&quot;:&quot;get_incident&quot;,&quot;arguments&quot;:{&quot;incident_id&quot;:&quot;inc_does_not_exist&quot;}}}
+&#x27;@ | sp mcp --as oncall</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;result&quot;:{&quot;content&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;text&quot;:&quot;KeyError: &#x27;incident not found&#x27;&quot;}],&quot;isError&quot;:true}}</code></pre></div>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Configure GitHub Copilot CLI for MCP</span></div><div class="box-body"><ol>
+<li>
+<p>Add this block to <code>~/.copilot/mcp-config.json</code>, replacing <code>&lt;repo&gt;</code> with the absolute path of your SwarmPipe folder
+(with doubled backslashes, for example <code>C:\\src\\SwarmPipe</code>):</p>
+<div class="code" data-lang="json"><div class="code-head"><span>JSON</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;swarmpipe&quot;: {
+      &quot;type&quot;: &quot;local&quot;,
+      &quot;command&quot;: &quot;&lt;repo&gt;\\.venv\\Scripts\\python.exe&quot;,
+      &quot;args&quot;: [&quot;-m&quot;, &quot;swarmpipe&quot;, &quot;mcp&quot;],
+      &quot;cwd&quot;: &quot;&lt;repo&gt;&quot;,
+      &quot;tools&quot;: [&quot;*&quot;]
+    }
+  }
+}</code></pre></div>
+</li>
+<li>
+<p>Restart Copilot CLI, then ask it to show pipeline status or explain open incidents. If you need an approval through
+MCP, remember that high-risk approvals still require server-side confirmation text and comments where policy says
+so.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Reject a bad internal message</span></div><div class="box-body"><p>Run this snippet from the SwarmPipe folder. It does not modify project files; it constructs messages in memory and
+observes the bus checks.</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>@&#x27;
+from swarmpipe.app import build_services
+svc = build_services(console_logs=False, log_level=&quot;WARNING&quot;)
+msg = svc.bus.send(&quot;supervisor&quot;, &quot;investigator_schema&quot;, &quot;task&quot;, {&quot;incident_id&quot;: &quot;inc_demo&quot;}, &quot;task_demo&quot;)
+print(&quot;valid receive:&quot;, svc.bus.receive(msg, &quot;investigator_schema&quot;))
+msg.payload[&quot;incident_id&quot;] = &quot;tampered&quot;
+try:
+    svc.bus.receive(msg, &quot;investigator_schema&quot;)
+except Exception as exc:
+    print(type(exc).__name__, getattr(exc, &quot;code&quot;, None), str(exc))
+msg2 = svc.bus.send(&quot;supervisor&quot;, &quot;investigator_schema&quot;, &quot;finding&quot;, {&quot;bad&quot;: True}, &quot;task_demo&quot;)
+try:
+    svc.bus.receive(msg2, &quot;investigator_schema&quot;)
+except Exception as exc:
+    print(type(exc).__name__, getattr(exc, &quot;code&quot;, None), str(exc))
+print(&quot;agent_messages_rejected_total&quot;, svc.metrics.summary(&quot;agent_messages_rejected_total&quot;))
+&#x27;@ | python -</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>valid receive: {&#x27;incident_id&#x27;: &#x27;inc_demo&#x27;}
+SwarmError MESSAGE_REJECTED signature mismatch (message tampered or forged)
+SwarmError MESSAGE_REJECTED route supervisor -&gt; investigator_schema (finding) is not allowed
+agent_messages_rejected_total {&#x27;count&#x27;: 2, &#x27;sum&#x27;: 2.0, ...}</code></pre></div>
+<p>The receiver did not ask a model whether the message looked safe. It verified the signature and route mechanically.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Protocols do not replace authorization</span></div><div class="box-body"><p>MCP annotations and A2A cards help clients behave well, but they are not enforcement. SwarmPipe enforces scopes,
+identity, typed confirmations, route allowlists and policy on the server side.</p>
+</div></div>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>What belongs on the incident blackboard?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Durable findings, diagnosis, plans and evidence ids that must survive crashes</button></li><li><button type="button" class="opt" data-correct="false">Raw credentials for downstream tools</button></li><li><button type="button" class="opt" data-correct="false">Unverified commands from a spreadsheet cell</button></li></ul><div class="q-explain" hidden>The blackboard is a shared case file with provenance, not a scratchpad for secrets.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does <code>agent_messages_rejected_total</code> measure?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Failed LLM calls</button></li><li><button type="button" class="opt" data-correct="true">Internal messages rejected for signature, recipient or route problems</button></li><li><button type="button" class="opt" data-correct="false">Dashboard HTTP 404 responses</button></li></ul><div class="q-explain" hidden>Rejected messages are an ASI07 communication-safety signal.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Which protocol is best for Copilot CLI calling SwarmPipe tools?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Internal <code>AgentMessage</code></button></li><li><button type="button" class="opt" data-correct="false">A raw blackboard insert</button></li><li><button type="button" class="opt" data-correct="true">MCP over stdio</button></li></ul><div class="q-explain" hidden>MCP exposes tool schemas, annotations and resources to external hosts.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Why are MCP annotations not enough?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">They are encrypted</button></li><li><button type="button" class="opt" data-correct="true">They are hints for clients, while authorization must be enforced by the server</button></li><li><button type="button" class="opt" data-correct="false">They disable all write tools</button></li></ul><div class="q-explain" hidden>A malicious or limited client might ignore hints; the server still checks identity and policy.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What does an A2A task return for the Analyst?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">A Python process id</button></li><li><button type="button" class="opt" data-correct="true">A task object with status, artifacts and metadata</button></li><li><button type="button" class="opt" data-correct="false">A raw SQLite connection</button></li></ul><div class="q-explain" hidden>A2A is agent-to-agent task delegation, not database access.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Use durable shared state for facts; use signed messages for narrow live coordination.</li>
+<li>SwarmPipe validates internal messages with HMAC signatures, recipient checks and route allowlists.</li>
+<li>Agent cards make capabilities discoverable and card hashes detect silent changes.</li>
+<li>A2A is for agent discovery and task delegation; MCP is for tools and resources exposed to hosts.</li>
+<li>Tool annotations are UX hints, not security boundaries.</li>
+<li>Server-side identity, scope and policy checks are mandatory on every protocol surface.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="10-communication-protocols"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="09-triage-swarm.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 9 &middot; The triage swarm, step by step</span></a><a class="next" href="11-context-memory.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 11 &middot; Context engineering, grounding and memory</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#shared-state-versus-messages">Shared state versus messages</a></li><li class="h2"><a href="#signed-internal-messages">Signed internal messages</a></li><li class="h2"><a href="#agent-registry-and-agent-cards">Agent registry and agent cards</a></li><li class="h2"><a href="#a2a-tasks">A2A tasks</a></li><li class="h2"><a href="#mcp-tools-for-external-hosts">MCP: tools for external hosts</a></li><li class="h2"><a href="#mcp-versus-a2a">MCP versus A2A</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

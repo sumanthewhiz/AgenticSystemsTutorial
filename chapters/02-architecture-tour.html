@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 2: A guided tour of SwarmPipe&#x27;s architecture · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="02-architecture-tour" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour" class="current" aria-current="page"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="02-architecture-tour">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part I &middot; Foundations of agentic systems</div>
+<h1><span class="num">Chapter 2</span>A guided tour of SwarmPipe's architecture</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Beginner</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">Follow one file end to end through durable workflows, 27 agents, two gateways, a warehouse and an incident, and learn the control-plane / data-plane split.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Follow one file from the inbox through publish, quarantine and incident triage</li><li>Name the five SwarmPipe workflows and the job each one owns</li><li>Group the 27 agents into pipeline, triage and service teams</li><li>Explain the control-plane / data-plane split and the composition root</li><li>Use the CLI and dashboard to inspect runs, traces and failure isolation</li></ul></div>
+<p>Agentic systems are easier to trust when you can draw the path of one piece of work. In SwarmPipe that piece of work
+is a file: it lands in the watched folder, becomes durable runs, may publish a dataset version, may raise signals and
+may trigger a triage swarm. The architecture is not &quot;agents everywhere&quot;; it is a data pipeline with agentic decisions
+at specific seams.</p>
+<p>This tour gives you the map you will reuse for the rest of the tutorial.</p>
+<h2 id="the-end-to-end-flow">The end-to-end flow</h2>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">File lands</div><div class="node-s"><code>data\inbox</code>, optionally under a tenant folder</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Watcher admits it</div><div class="node-s">stable size and mtime, extension allowlist, content hash</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t"><code>ingest_file</code></div><div class="node-s">stage, route, read, fan out sheets</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t"><code>ingest_dataset</code></div><div class="node-s">privacy, profile, contract, transform, quality, publish or quarantine</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Signals</div><div class="node-s">failed checks become typed signals</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t"><code>triage</code></div><div class="node-s">investigate, diagnose, plan, govern, act, verify, learn</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Publish or isolate</div><div class="node-s">consumers see a good version, bad data goes to quarantine or DLQ</div></div></div><figcaption>One file through SwarmPipe</figcaption></figure>
+<p>The important production idea is failure isolation. A bad batch can be quarantined while the last good published view
+remains available. A malformed file can move to the dead-letter queue while other files keep flowing.</p>
+<p>There are two boundaries to notice in that path. First, <strong>admission</strong> is separate from <strong>processing</strong>. The watcher does
+not parse a file as soon as it appears; it waits for size and modification time to stay stable, moves the file into
+processing and records a content hash. Second, <strong>loading</strong> is separate from <strong>publishing</strong>. A file can be read and typed
+successfully, then still fail quality checks and never become the published view. Many production data incidents happen
+because teams blur those boundaries and treat &quot;the job completed&quot; as &quot;the data is safe.&quot;</p>
+<h2 id="the-five-workflows">The five workflows</h2>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Workflow definitions</span></div><div class="box-body"><p>The workflow skeletons live in <code>swarmpipe/runtime/workflows.py</code>.</p>
+</div></div>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Steps</th>
+<th>What it owns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ingest_file</code></td>
+<td><code>stage -&gt; route -&gt; read -&gt; fanout -&gt; finalize</code></td>
+<td>One physical file, including multi-sheet fan-out</td>
+</tr>
+<tr>
+<td><code>ingest_dataset</code></td>
+<td><code>load -&gt; privacy -&gt; profile -&gt; onboard -&gt; contract_check -&gt; transform -&gt; quality -&gt; publish -&gt; lineage</code></td>
+<td>One dataset batch or one spreadsheet sheet</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td><code>read -&gt; guard -&gt; summarize -&gt; index -&gt; archive</code></td>
+<td>Free-text documents for the knowledge base</td>
+</tr>
+<tr>
+<td><code>derive</code></td>
+<td><code>check -&gt; build -&gt; publish</code></td>
+<td>Event-driven derived datasets such as <code>sales_enriched</code></td>
+</tr>
+<tr>
+<td><code>triage</code></td>
+<td><code>open -&gt; investigate -&gt; diagnose -&gt; impact -&gt; plan -&gt; govern -&gt; execute -&gt; await_approvals -&gt; verify -&gt; learn -&gt; close</code></td>
+<td>Incident investigation and governed remediation</td>
+</tr>
+</tbody>
+</table>
+<p>Workflows are deterministic skeletons. Some steps invoke agents; the engine still checkpoints every step and resumes
+from recorded state.</p>
+<p>The step names are part of the operating model. When a run fails at <code>route</code>, you investigate file classification. When
+it fails at <code>contract_check</code>, you inspect schema drift and mapping evidence. When it reaches <code>publish</code> with status
+<code>quarantined</code>, the workflow succeeded at protecting consumers even though the batch was bad. That vocabulary is what
+lets CLI output, dashboard traces, eval reports and incidents line up.</p>
+<h2 id="the-27-agents-grouped-by-team">The 27 agents, grouped by team</h2>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Pipeline team</div><div class="card-s"><code>router</code>, <code>privacy_guard</code>, <code>profiler</code>, <code>steward</code>, <code>critic</code>, <code>transformer</code>, <code>data_assurance</code>, <code>publisher</code></div></div><div class="card"><div class="card-t">Triage team</div><div class="card-s"><code>correlator</code>, <code>supervisor</code>, nine <code>investigator_*</code> specialists, <code>impact</code>, <code>planner</code>, <code>executor</code>, <code>verifier</code>, <code>learner</code></div></div><div class="card"><div class="card-t">Service team</div><div class="card-s"><code>analyst</code>, <code>librarian</code>, <code>judge</code></div></div></div><figcaption>SwarmPipe agent teams</figcaption></figure>
+<p>The split is practical. Pipeline agents make ingestion decisions. Triage agents work an incident. Service agents power
+interfaces and evaluations. Only the deterministic <code>executor</code> owns <code>act_*</code> tools, so investigators and planners cannot
+touch the outside world directly.</p>
+<p>This grouping also controls cost. Clean ingestion uses only a few model calls: routing, profiling and sometimes
+contract stewardship or date-format inference. An incident can use many more calls because specialists run ReAct loops,
+the Supervisor diagnoses, the Planner drafts actions and the Learner writes a postmortem. You should expect multi-agent
+work to cost more and reserve it for cases where independent evidence, specialization or governed action is worth it.</p>
+<h2 id="control-plane-and-data-plane">Control plane and data plane</h2>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Data plane</div><div class="layer-s">watcher, engine, workflows, readers, warehouse, knowledge store, event bus and scheduler</div></div><div class="layer"><div class="layer-t">Control plane</div><div class="layer-s">agent registry, identity, policy, approvals, kill switches, model gateway, tool gateway, evals and prompt registry</div></div><div class="layer"><div class="layer-t">Cross-cutting</div><div class="layer-s">traces, metrics, SLOs, audit log and evidence packs</div></div></div><figcaption>Planes in the architecture</figcaption></figure>
+<p><code>swarmpipe/app.py</code> is the composition root. It builds <code>Services</code> once, wires dependencies by hand and registers tools
+and workflows. That's why the eval harness and the test suite can spin up fully isolated instances, each with its own
+data folder.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Composition root</span></div><div class="box-body"><p>The <code>Services</code> constructor creates the state DB, warehouse, event bus, <code>PromptRegistry</code>, <code>ModelGateway</code>,
+<code>ToolGateway</code>, <code>PolicyEngine</code>, <code>AgentRegistry</code>, <code>Engine</code>, <code>Scheduler</code> and <code>FolderWatcher</code>. In a production deployment
+many of these would be separate services; locally they share one process and SQLite for transparency.</p>
+</div></div>
+<h2 id="state-db-warehouse-event-bus-and-scheduler">State DB, warehouse, event bus and scheduler</h2>
+<p>SwarmPipe uses two different stores. The <strong>state database</strong> records control and execution state: <code>runs</code>, <code>steps</code>,
+<code>events</code>, <code>signals</code>, <code>incidents</code>, <code>evidence</code>, <code>proposals</code>, <code>approvals</code>, <code>llm_calls</code>, <code>tool_calls</code>, metrics and audit.
+The <strong>warehouse</strong> stores dataset versions and views: immutable <code>t__...</code> tables, quarantined <code>q__...</code> tables and the
+published view each consumer reads.</p>
+<p>The event bus is an outbox in the state DB. Workflows publish events such as <code>dataset.published</code> or <code>signal.raised</code>;
+dispatchers advance offsets only after consumers succeed. Scheduler monitors handle lease recovery, freshness,
+out-of-band warehouse changes, approval expiry, autonomy review, SLOs and retention.</p>
+<p>Outbox delivery is one of the least glamorous but most important parts of the design. If <code>dataset.published</code> were only
+an in-memory callback, a crash between publishing and downstream rebuild would lose work. By storing the event next to
+the state change, SwarmPipe can replay consumers safely. Consumers track offsets, so a poison event does not erase the
+rest of the stream; this is the same pattern you would keep with Kafka, Service Bus or another production broker.</p>
+<figure class="diagram"><div class="flow vertical"><div class="node"><div class="node-t">Quality check fails</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Signal raised</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Correlator clusters signals into an incident</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Triage run submitted</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Policy decides each proposal</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Executor acts only when allowed</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Verifier checks ground truth</div></div></div><figcaption>Control loop after a failed check</figcaption></figure>
+<h2 id="operator-surfaces">Operator surfaces</h2>
+<p>SwarmPipe has several interfaces over the same state:</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLI</td>
+<td><code>sp status</code>, <code>sp runs list</code>, <code>sp runs show</code>, <code>sp trace</code>, <code>sp incidents show</code></td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>12 tabs: <strong>Overview</strong>, <strong>Scenarios &amp; Chaos</strong>, <strong>Runs</strong>, <strong>Incidents</strong>, <strong>Approvals</strong>, <strong>Datasets &amp; Lineage</strong>, <strong>Agents &amp; Tools</strong>, <strong>Governance</strong>, <strong>Cost &amp; Metrics</strong>, <strong>Evals</strong>, <strong>Ask the data</strong>, <strong>Knowledge &amp; Memory</strong></td>
+</tr>
+<tr>
+<td>REST API</td>
+<td>routes such as <code>/api/runs</code>, <code>/api/incidents</code>, <code>/api/tools</code>, <code>/healthz</code>, <code>/readyz</code>, <code>/metrics</code></td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>read status, incidents, datasets, evidence and governed actions from MCP clients</td>
+</tr>
+<tr>
+<td>A2A</td>
+<td>agent cards and task endpoint, including <code>/a2a/agents/analyst/tasks</code></td>
+</tr>
+</tbody>
+</table>
+<p>The dashboard is not a separate source of truth. It reads the same DB and API that the CLI uses.</p>
+<p>That is why the tutorial can mix surfaces freely. A file dropped from <strong>Scenarios &amp; Chaos</strong> appears in <code>sp runs list</code>.
+An approval created by the triage workflow appears in <strong>Approvals</strong>, can be decided by CLI and can also be served to an
+MCP client. The important architecture rule is one system of record with multiple operator views, not separate state
+per interface.</p>
+<h2 id="folder-layout-and-honest-limitations">Folder layout and honest limitations</h2>
+<p>The main folders are <code>config</code> for contracts and policy, <code>prompts</code> for versioned prompt templates, <code>knowledge</code> for
+trusted runbooks, <code>evals</code> for datasets and gates, <code>swarmpipe</code> for code, <code>docs</code> for reference docs and <code>data</code> for
+runtime state. The <code>data</code> folder is safe to reset; it is created by <code>sp init</code>.</p>
+<p>The README is intentionally honest: one SQLite file stands in for Postgres, Kafka, Temporal and an OpenTelemetry
+collector; one process stands in for distributed services; simulated models are heuristics; local HMAC and <code>X-User</code>
+headers stand in for enterprise identity; pickle is used for internal step artifacts. Those choices make the system
+inspectable on a laptop, not production-hosting advice.</p>
+<details class="box deepdive"><summary><span class="ico">🔍</span><span class="kind">Deep dive</span><span class="title">What would change in a hosted system?</span></summary><div class="box-body"><p>The contracts between components would stay more stable than the components themselves. You might replace SQLite state
+with Postgres, the event outbox with Kafka or Service Bus, the hand-built durable engine with Temporal or Durable
+Functions, and local traces with an OpenTelemetry collector. The data plane would likely move to object storage and a
+warehouse format such as Parquet, Delta or Iceberg. The control plane would use enterprise identity, KMS-backed
+secrets, WORM audit storage and deployment gates. The tutorial's value is that the same concepts are visible without
+those dependencies.</p>
+</div></details>
+<h2 id="hands-on-inspect-the-architecture-from-the-cli">Hands-on: inspect the architecture from the CLI</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Status, workflows and fan-out</span></div><div class="box-body"><ol>
+<li>
+<p>Start from the baseline created in Chapter 0:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>Runs
+| workflow       | status    | n |
+| derive         | blocked   | 1 |
+| derive         | succeeded | 1 |
+| ingest_dataset | succeeded | 7 |
+| ingest_file    | succeeded | 6 |
+...
+LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: C:\...\SwarmPipe\data\inbox</code></pre></div>
+</li>
+<li>
+<p>List just file workflows:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs list --workflow ingest_file --limit 8</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id       | workflow    | status    | current_step |
+|----------+-------------+-----------+--------------|
+| run_...  | ingest_file | succeeded | finalize     |
+...</code></pre></div>
+</li>
+<li>
+<p>Show the <code>customers.xlsx</code> run:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs show run_mumhlx9730df29</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>&quot;children&quot;: [
+  &quot;run_mumhlxev0c4a1e&quot;,
+  &quot;run_mumhlxeva40ea8&quot;
+]
+| stage    | succeeded | deterministic |
+| route    | succeeded | agent         |
+| read     | succeeded | deterministic |
+| fanout   | succeeded | deterministic |
+| finalize | succeeded | deterministic |</code></pre></div>
+<p>This is hierarchical orchestration: one file run waits durably for two child dataset runs.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Read a trace and use the dashboard</span></div><div class="box-body"><ol>
+<li>
+<p>Pick a recent <code>sales_daily</code> dataset run and trace it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp trace run_mumhmxb7165532</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>workflow ingest_file
+  step route
+    invoke_agent router.route
+      chat router
+        llm.call sim-small
+workflow ingest_dataset
+  step privacy
+  step profile
+    chat profiler
+  step quality
+  step publish
+  step lineage</code></pre></div>
+</li>
+<li>
+<p>Open the dashboard if a server is already running, or start one only in your normal SwarmPipe terminal:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp run</code></pre></div>
+<p>Use <strong>Overview</strong> for health and recent work. Use <strong>Runs</strong> to click a run, inspect checkpoints, model calls,
+OpenLineage events and the trace. Do not start a second server if port <code>8765</code> is already in use.</p>
+</li>
+<li>
+<p>Switch to <strong>Datasets &amp; Lineage</strong>. Confirm that <code>sales_daily</code> has immutable versions and <code>sales_enriched</code> is derived
+from it. Then switch to <strong>Cost &amp; Metrics</strong> and look for the model calls used by routing and profiling. You are
+seeing the same execution path from three angles: data state, trace state and cost state.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Malformed files are isolated</span></div><div class="box-body"><ol>
+<li>
+<p>Drop two malformed files:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop malformed --process
+sp dlq list
+sp incidents list --limit 5</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into C:\...\SwarmPipe\data\inbox
+admitted 2 file(s); processed in 3.6s
+
+| id       | tenant  | reason      | error                         | run_id  |
+|----------+---------+-------------+-------------------------------+---------|
+| dlq_...  | default | UNSUPPORTED | unsupported content: NUL ...  | run_... |
+| dlq_...  | default | UNSUPPORTED | unsupported content: not ...  | run_... |
+
+| id      | status    | severity | root_cause      | title                    |
+|---------+-----------+----------+-----------------+--------------------------|
+| inc_... | mitigated | high     | malformed_input | customers_broken.xlsx... |</code></pre></div>
+</li>
+</ol>
+<p>The bad files go to the DLQ, an incident is opened and the already-published datasets stay available. That is failure
+isolation: malformed input is contained instead of poisoning the whole pipeline.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Local architecture is a teaching architecture</span></div><div class="box-body"><p>Do not confuse &quot;all in one process&quot; with &quot;how to host it at scale.&quot; The semantics matter: durable steps, idempotent
+side effects, event offsets, policy decisions, evidence ids and audit records. At larger scale you would likely keep
+those semantics and replace local SQLite/runtime pieces with managed stores, queues and workflow engines.</p>
+</div></div>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Which workflow owns one physical file and creates child runs for sheets?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true"><code>ingest_file</code></button></li><li><button type="button" class="opt" data-correct="false"><code>ingest_dataset</code></button></li><li><button type="button" class="opt" data-correct="false"><code>triage</code></button></li></ul><div class="q-explain" hidden><code>ingest_file</code> routes and reads the file, then fans out one <code>ingest_dataset</code> child per dataset or sheet.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What is the difference between the state DB and the warehouse?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">They are two names for the same tables</button></li><li><button type="button" class="opt" data-correct="true">The state DB records execution/control state; the warehouse stores dataset versions and published views</button></li><li><button type="button" class="opt" data-correct="false">The warehouse stores only logs</button></li></ul><div class="q-explain" hidden>Runs, incidents and calls live in state; data versions and consumer views live in the warehouse.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Why is <code>app.py</code> called the composition root?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It contains all business logic</button></li><li><button type="button" class="opt" data-correct="true">It constructs and wires the services once, then passes dependencies explicitly</button></li><li><button type="button" class="opt" data-correct="false">It renders the dashboard</button></li></ul><div class="q-explain" hidden>Explicit wiring avoids hidden globals and makes isolated eval/sandbox instances possible.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What happens to malformed input in the break-it lab?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It overwrites the last published version</button></li><li><button type="button" class="opt" data-correct="true">It moves to the DLQ and opens an incident while other data remains available</button></li><li><button type="button" class="opt" data-correct="false">It is silently ignored</button></li></ul><div class="q-explain" hidden>Isolation is the point: bad files are visible and recoverable, not allowed to poison consumers.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>SwarmPipe is organized around five durable workflows, not free-floating agents.</li>
+<li>The 27 agents are grouped into pipeline, triage and service teams with different privileges.</li>
+<li>Control-plane services decide identity, policy, models, tools and approvals; data-plane services move and store work.</li>
+<li>The state DB and warehouse serve different purposes.</li>
+<li>The CLI, dashboard, REST API, MCP and A2A surfaces all inspect the same underlying system.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="02-architecture-tour"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="01-llm-to-agent.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 1 &middot; From an LLM call to an agent</span></a><a class="next" href="03-prompts-models-gateway.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 3 &middot; Prompts, models and the model gateway</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#the-end-to-end-flow">The end-to-end flow</a></li><li class="h2"><a href="#the-five-workflows">The five workflows</a></li><li class="h2"><a href="#the-27-agents-grouped-by-team">The 27 agents, grouped by team</a></li><li class="h2"><a href="#control-plane-and-data-plane">Control plane and data plane</a></li><li class="h2"><a href="#state-db-warehouse-event-bus-and-scheduler">State DB, warehouse, event bus and scheduler</a></li><li class="h2"><a href="#operator-surfaces">Operator surfaces</a></li><li class="h2"><a href="#folder-layout-and-honest-limitations">Folder layout and honest limitations</a></li><li class="h2"><a href="#hands-on-inspect-the-architecture-from-the-cli">Hands-on: inspect the architecture from the CLI</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

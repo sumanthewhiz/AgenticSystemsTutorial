@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 21: Policy-as-code, approvals and the autonomy ladder · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="21-policy-autonomy" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy" class="current" aria-current="page"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="21-policy-autonomy">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VI &middot; Security, identity and governance</div>
+<h1><span class="num">Chapter 21</span>Policy-as-code, approvals and the autonomy ladder</h1>
+<div class="meta"><span class="chip">&#9201; 50 min</span><span class="chip">Level: Intermediate → Advanced</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Let agents act only through a catalog, decided by policy-as-code: risk tiers, escalations, durable human approvals, and an autonomy ladder that is earned with evidence and withdrawn automatically.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain why production agents act through an action catalog instead of free-form tool use</li><li>Read a SwarmPipe policy decision and connect it to risk tier, autonomy level and escalation rules</li><li>Run policy what-if commands for confidence, injection, blast radius, regulated consumers and freeze windows</li><li>Approve a durable action, observe execution and use one-click rollback</li><li>Explain how autonomy is earned with evidence and withdrawn automatically</li></ul></div>
+<p>Once an agent can recommend a fix, the next question is not &quot;can the model do it?&quot; The question is &quot;under what policy
+may this system act, for this tenant, on this dataset, with this evidence?&quot; If that answer lives in a prompt, the
+model is governing itself. That is not production governance.</p>
+<p>SwarmPipe separates planning from authorization. The Planner proposes actions from a catalog. A deterministic policy
+engine decides whether each action is denied, shown as information, recommended, sent for approval or executed
+automatically. The autonomy ladder is earned from real outcomes and capped by risk.</p>
+<h2 id="action-catalog-not-free-form-actions">Action catalog, not free-form actions</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Action catalog</span></div><div class="box-body"><p>A typed list of actions an agent may propose or execute. Each action has a name, parameter schema, risk tier,
+verification function and optional compensation.</p>
+</div></div>
+<p>Free-form actions sound flexible: &quot;do whatever is needed.&quot; In production, they are how a model invents
+<code>disable_checks</code>, emails a URL or publishes data that failed validation. SwarmPipe's actions live in
+<code>swarmpipe\tools\actions.py</code>: <code>notify_owner</code>, <code>request_resend</code>, <code>hold_downstream</code>, <code>release_hold</code>,
+<code>rollback_dataset</code>, <code>reprocess_with_mapping</code>, <code>update_contract</code> and <code>force_publish</code>.</p>
+<p>The catalog is not just a list. Each action has:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pydantic params</td>
+<td>invalid arguments fail before execution</td>
+</tr>
+<tr>
+<td>Risk tier</td>
+<td>policy can treat low, medium, high and critical actions differently</td>
+</tr>
+<tr>
+<td>Reversibility</td>
+<td>rollback and compensation are part of the action contract</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>the Verifier checks ground truth after execution</td>
+</tr>
+<tr>
+<td>Tool spec</td>
+<td>only the Executor gets <code>act_*</code> write tools</td>
+</tr>
+</tbody>
+</table>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Diagnosis</div><div class="node-s">grounded root cause and confidence</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Planner</div><div class="node-s">proposes catalog actions only</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Critic</div><div class="node-s">reviews plan against evidence</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Policy</div><div class="node-s">evaluates risk, autonomy and escalations</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Approval</div><div class="node-s">durable wait when required</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Executor</div><div class="node-s">runs typed action through the tool gateway</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Verifier</div><div class="node-s">checks ground truth and compensates on failure</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Autonomy</div><div class="node-s">records evidence for promotion or demotion</div></div></div><figcaption>Governed action path</figcaption></figure>
+<h2 id="policy-as-code">Policy-as-code</h2>
+<p><code>config\policies.yaml</code> is the contract between the business and the agent platform. It defines the ladder effects:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>level_effects:
+  L0: inform_only
+  L1: recommend
+  L2: require_approval
+  L3: auto_execute_notify
+  L4: auto_execute</code></pre></div>
+<p>It also defines risk and caps per action. For example, <code>request_resend</code> starts at L3 and may reach L4, while
+<code>force_publish</code> starts at L1 and is capped at L2 with typed confirmation and annotation required.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Autonomy ladder</span></div><div class="box-body"><p>The allowed effect for an action class in a tenant: L0 inform only, L1 recommend, L2 require approval, L3 auto-execute
+with notification and rollback, L4 auto-execute within policy.</p>
+</div></div>
+<p><code>swarmpipe\governance\policy.py</code> describes the decision order in code:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>EFFECTS = [&quot;auto_execute&quot;, &quot;auto_execute_notify&quot;, &quot;require_approval&quot;, &quot;recommend&quot;, &quot;inform_only&quot;, &quot;deny&quot;]
+AUTO_EFFECTS = {&quot;auto_execute&quot;, &quot;auto_execute_notify&quot;}
+
+def stricter(a: str, b: str) -&gt; str:
+    return a if EFFECTS.index(a) &gt;= EFFECTS.index(b) else b</code></pre></div>
+<p>Escalations only move decisions stricter. Denials win. The model cannot talk policy into becoming looser.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Policy code map</span></div><div class="box-body"><ul>
+<li><code>config\policies.yaml</code>: ladder effects, action risk, defaults, max levels, escalations, denials, freeze windows and autonomy rules.</li>
+<li><code>swarmpipe\governance\policy.py</code>: <code>PolicyEngine.evaluate</code>, <code>ActionContext</code> and <code>PolicyDecision</code>.</li>
+<li><code>swarmpipe\governance\approvals.py</code>: durable approvals and typed confirmation.</li>
+<li><code>swarmpipe\governance\autonomy.py</code>: evidence counters, promotion review and automatic demotion.</li>
+<li><code>swarmpipe\tools\actions.py</code>: catalog execution, verification and compensation.</li>
+</ul>
+</div></div>
+<h2 id="escalations-and-denials">Escalations and denials</h2>
+<p>Escalations are context-sensitive brakes:</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>low-confidence</code></td>
+<td>confidence below 0.75 requires approval</td>
+</tr>
+<tr>
+<td><code>injection-suspected</code></td>
+<td>suspected prompt injection requires approval</td>
+</tr>
+<tr>
+<td><code>blast-radius</code></td>
+<td>high or critical actions affecting more than 3 consumers require approval</td>
+</tr>
+<tr>
+<td><code>regulated-consumer</code></td>
+<td>high or critical actions touching regulated consumers require approval</td>
+</tr>
+<tr>
+<td><code>freeze-window</code></td>
+<td>medium or higher risk changes require approval during a freeze</td>
+</tr>
+<tr>
+<td><code>global-auto-cap</code></td>
+<td>too many automatic actions in one hour require approval</td>
+</tr>
+</tbody>
+</table>
+<p>The denial rule is stricter: <code>cooldown</code> refuses repeated state-changing actions on the same target within five minutes
+from another incident. It prevents remediation flapping.</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Railway signals</span></div><div class="box-body"><p>The Planner can suggest a route, but policy is the signaling system. A green signal may become amber because of a
+freeze window, red because of a kill switch, or stay red forever because the track is not allowed for that train.</p>
+</div></div>
+<h2 id="durable-approvals-and-typed-confirmation">Durable approvals and typed confirmation</h2>
+<p>Approvals are not chat messages. They are durable rows tied to a run, incident, proposal, risk and user decision. When
+a triage run needs approval, it waits. If the process restarts, the wait remains. Approval records include
+<code>requires_confirmation</code> for high-risk actions, and the CLI supports:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp approvals approve &lt;approval_id&gt; --as oncall --comment &quot;reviewed&quot; --confirm &lt;required-text&gt;</code></pre></div>
+<p><code>force_publish</code> is the canonical &quot;be careful&quot; action: critical risk, typed confirmation, annotation required and
+hard-capped below full autonomy.</p>
+<p>The approval surface also matters. The dashboard <strong>Approvals</strong> tab, the CLI and MCP all operate on the same durable
+approval rows. That means a workflow does not care whether a human clicks a dashboard button or runs a command; it
+resumes from the same recorded decision. This is different from asking a model, &quot;should I proceed?&quot; A model answer is
+another artifact to evaluate. An approval is an authorization event with a user, timestamp, comment, optional
+confirmation text and policy context. If the operator is unavailable, the run stays waiting rather than guessing.</p>
+<h2 id="lab-policy-what-if-matrix">Lab: policy what-if matrix</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Read policy decisions</span></div><div class="box-body"><p>Start from any initialized SwarmPipe workspace with the baseline loaded, then run:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp policy request_resend --dataset sales_daily --tenant default --confidence 0.93 --blast 1 --no-injection --no-regulated
+sp policy request_resend --dataset sales_daily --tenant default --confidence 0.60 --blast 1 --no-injection --no-regulated
+sp policy force_publish --dataset sales_daily --tenant default --confidence 0.93 --blast 6 --injection --regulated</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;effect&quot;: &quot;auto_execute_notify&quot;,
+  &quot;action&quot;: &quot;request_resend&quot;,
+  &quot;level&quot;: &quot;L3&quot;,
+  &quot;risk&quot;: &quot;low&quot;,
+  &quot;reasons&quot;: [&quot;autonomy level L3 for &#x27;request_resend&#x27; (tenant default) -&gt; auto_execute_notify&quot;]
+}
+{
+  &quot;effect&quot;: &quot;require_approval&quot;,
+  &quot;action&quot;: &quot;request_resend&quot;,
+  &quot;reasons&quot;: [
+    &quot;autonomy level L3 for &#x27;request_resend&#x27; (tenant default) -&gt; auto_execute_notify&quot;,
+    &quot;Diagnosis confidence is below 0.75&quot;
+  ],
+  &quot;matched_rules&quot;: [&quot;level:L3&quot;, &quot;low-confidence&quot;]
+}
+{
+  &quot;effect&quot;: &quot;recommend&quot;,
+  &quot;action&quot;: &quot;force_publish&quot;,
+  &quot;level&quot;: &quot;L1&quot;,
+  &quot;risk&quot;: &quot;critical&quot;,
+  &quot;typed_confirmation&quot;: true,
+  &quot;annotation_required&quot;: true
+}</code></pre></div>
+<p>The third decision is important: even with <code>--injection</code>, <code>--regulated</code> and high blast radius, the result is
+<code>recommend</code> because <code>force_publish</code> starts at L1. Escalations cannot make a decision looser, and a recommend-only
+critical action is already stricter than approval.</p>
+<p>Now test the freeze-window flag:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set policy.freeze_window true
+sp policy rollback_dataset --dataset sales_daily --tenant default --confidence 0.93 --blast 1 --no-injection --no-regulated
+sp chaos set policy.freeze_window false</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>policy.freeze_window = true
+{
+  &quot;effect&quot;: &quot;require_approval&quot;,
+  &quot;action&quot;: &quot;rollback_dataset&quot;,
+  &quot;level&quot;: &quot;L2&quot;,
+  &quot;risk&quot;: &quot;medium&quot;,
+  &quot;matched_rules&quot;: [&quot;level:L2&quot;]
+}
+policy.freeze_window = false</code></pre></div>
+<p>Because <code>rollback_dataset</code> is already L2, the freeze window does not visibly change the effect in this example. It
+would stop a medium-risk L3 action from auto-executing.</p>
+</div></div>
+<h2 id="lab-schema-drift-approval-flow">Lab: schema drift approval flow</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Approve a medium-risk action</span></div><div class="box-body"><ol>
+<li>
+<p>Start clean and load the baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+</li>
+<li>
+<p>Drop schema drift:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop schema_drift --process
+sp approvals list --status pending</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 10.8s
+...
+| id      | kind   | status  | subject                           | risk   |
+| apr_... | action | pending | reprocess_with_mapping on sales_daily | medium |</code></pre></div>
+</li>
+<li>
+<p>Approve the mapping after reviewing the incident evidence:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp approvals approve &lt;approval_id&gt; --as oncall --comment &quot;mapping reviewed&quot;
+sp tick --timeout 90
+sp incidents list --limit 3</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>approved reprocess_with_mapping on sales_daily by user:oncall
+admitted 0 file(s); processed in 0.0s
+...
+| id      | status   | severity | dataset     | root_cause             |
+| inc_... | resolved | critical | sales_daily | schema_change_upstream |</code></pre></div>
+<p>No <code>--confirm</code> was required because this approval was medium risk. Use <code>--confirm</code> when <code>requires_confirmation</code>
+is populated, especially for critical actions such as <code>force_publish</code>.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="autonomy-is-earned-and-withdrawn">Autonomy is earned and withdrawn</h2>
+<p><code>swarmpipe\governance\autonomy.py</code> records proposals, approvals, rejections, executions, verification results,
+rollbacks and human agreement. Promotion needs evidence and a human approval by default:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>autonomy_rules:
+  promote: {min_samples: 5, min_approval_rate: 0.9, min_verification_rate: 1.0, max_rollbacks: 0, auto_promote: false}
+  demote:  {max_verification_failures: 1, max_rollbacks: 1}</code></pre></div>
+<p>Demotion is automatic because safety should not wait for a committee. If a human rolls back an L3 action, that is
+evidence that the action class was too autonomous for current conditions.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Roll back an auto-executed action</span></div><div class="box-body"><ol>
+<li>
+<p>List autonomy levels:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp autonomy list --tenant default</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| tenant  | action          | level | max_level | risk   | executed | verified_ok |
+| default | hold_downstream | L3    | L3        | medium | 0        | 0           |
+| default | force_publish   | L1    | L2        | critical | 0      | 0           |</code></pre></div>
+</li>
+<li>
+<p>Drop a volume drop. <code>hold_downstream</code> auto-executes at L3:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id      | status    | severity | dataset     | root_cause        |
+| inc_... | mitigated | critical | sales_daily | truncated_extract |
+...
+EXECUTED_PROPOSALS
+{&#x27;id&#x27;: &#x27;prp_...&#x27;, &#x27;action&#x27;: &#x27;hold_downstream&#x27;, &#x27;status&#x27;: &#x27;verified&#x27;, &#x27;policy_effect&#x27;: &#x27;auto_execute_notify&#x27;}</code></pre></div>
+</li>
+<li>
+<p>Roll it back:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp actions rollback &lt;proposal_id&gt; --as oncall
+sp autonomy list --tenant default</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;rolled_back&quot;: &quot;prp_...&quot;,
+  &quot;result&quot;: {&quot;released&quot;: [&quot;sales_enriched&quot;]}
+}
+...
+| tenant  | action          | level | max_level | risk   |
+| default | hold_downstream | L2    | L3        | medium |</code></pre></div>
+<p>The rollback released the hold and automatically demoted <code>hold_downstream</code> from L3 to L2.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Set a dangerous action to L4</span></div><div class="box-body"><p>Try to over-promote <code>force_publish</code>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp autonomy set force_publish L4 --tenant default --reason &quot;lab cap test&quot; --as admin</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;tenant&quot;: &quot;default&quot;,
+  &quot;action&quot;: &quot;force_publish&quot;,
+  &quot;from&quot;: &quot;L1&quot;,
+  &quot;to&quot;: &quot;L2&quot;
+}</code></pre></div>
+<p>The request asked for L4, but the policy cap forced L2. Some actions should never be fully autonomous: publishing data
+that failed checks is a business-risk decision, not a model-confidence decision.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">The human can be the weak link</span></div><div class="box-body"><p>Approvals reduce excessive agency, but humans can approve bad requests. Show policy reasons, evidence ids, impact,
+blast radius and typed confirmation text. Then keep downstream controls: verification, compensation, egress allowlists,
+audit and automatic demotion.</p>
+</div></div>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why does SwarmPipe use an action catalog?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">To make prompts shorter only</button></li><li><button type="button" class="opt" data-correct="true">To prevent agents from inventing arbitrary side effects</button></li><li><button type="button" class="opt" data-correct="false">To avoid human approvals entirely</button></li></ul><div class="q-explain" hidden>Unknown actions such as <code>disable_checks</code> are invalid before policy evaluation can approve them.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does L3 mean in SwarmPipe?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Inform only</button></li><li><button type="button" class="opt" data-correct="false">Recommend only</button></li><li><button type="button" class="opt" data-correct="true">Auto-execute with notification and one-click rollback</button></li></ul><div class="q-explain" hidden>L3 is useful for reversible, low-blast-radius actions with verification evidence.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Can an escalation make a policy decision looser?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Yes, if the model is confident</button></li><li><button type="button" class="opt" data-correct="true">No, escalations only make effects stricter</button></li><li><button type="button" class="opt" data-correct="false">Yes, during a freeze window</button></li></ul><div class="q-explain" hidden><code>stricter()</code> chooses the stricter effect; denials win over all effects.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Why did <code>force_publish</code> not become L4?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Its <code>max_level</code> caps it at L2</button></li><li><button type="button" class="opt" data-correct="false">It was missing from the catalog</button></li><li><button type="button" class="opt" data-correct="false">The dataset had no owner</button></li></ul><div class="q-explain" hidden>Critical actions can be permanently capped regardless of evidence.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What happens after a rollback or verification failure?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The action is automatically promoted</button></li><li><button type="button" class="opt" data-correct="true">The autonomy manager can demote the action class immediately</button></li><li><button type="button" class="opt" data-correct="false">The audit log is deleted</button></li></ul><div class="q-explain" hidden>Safety withdrawals are automatic; promotions require evidence and usually human approval.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Production agents should propose from a typed catalog, not invent side effects.</li>
+<li>Policy-as-code combines action risk, tenant autonomy, context and escalations outside the model.</li>
+<li>Durable approvals let workflows wait safely across restarts and require typed confirmation for high-risk actions.</li>
+<li>Autonomy is per tenant and action class; it is earned from approvals and verification, then capped by policy.</li>
+<li>Rollbacks and verification failures are evidence, so SwarmPipe demotes autonomy automatically.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="21-policy-autonomy"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="20-identity-access.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 20 &middot; Identity, delegation and governed data access</span></a><a class="next" href="22-audit-evidence.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 22 &middot; Audit, evidence packs and kill switches</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#action-catalog-not-free-form-actions">Action catalog, not free-form actions</a></li><li class="h2"><a href="#policy-as-code">Policy-as-code</a></li><li class="h2"><a href="#escalations-and-denials">Escalations and denials</a></li><li class="h2"><a href="#durable-approvals-and-typed-confirmation">Durable approvals and typed confirmation</a></li><li class="h2"><a href="#lab-policy-what-if-matrix">Lab: policy what-if matrix</a></li><li class="h2"><a href="#lab-schema-drift-approval-flow">Lab: schema drift approval flow</a></li><li class="h2"><a href="#autonomy-is-earned-and-withdrawn">Autonomy is earned and withdrawn</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

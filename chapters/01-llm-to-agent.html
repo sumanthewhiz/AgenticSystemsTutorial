@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 1: From an LLM call to an agent · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="01-llm-to-agent" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent" class="current" aria-current="page"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="01-llm-to-agent">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part I &middot; Foundations of agentic systems</div>
+<h1><span class="num">Chapter 1</span>From an LLM call to an agent</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Beginner</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">Build the mental model: prompts, structured outputs, tools and the agent loop, and why production systems put a deterministic skeleton around probabilistic steps.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain what an LLM call does, why it is non-deterministic and how temperature changes behavior</li><li>Describe messages, roles, typed JSON outputs and tool/function calling from first principles</li><li>Trace the observe-think-act-observe loop and recognize the ReAct pattern in SwarmPipe</li><li>Choose between a fixed workflow, router, single agent and multi-agent system</li><li>Show how SwarmPipe wraps probabilistic model steps in deterministic fallbacks</li></ul></div>
+<p>A production agent is not &quot;a model with vibes.&quot; It is ordinary software that lets a model make a few bounded
+decisions, then validates, records and contains those decisions. That distinction matters when a file lands late,
+an upstream schema changes or a model is unavailable: the pipeline must keep moving even when the model is only partly
+useful.</p>
+<p>This chapter builds the mental model from the smallest piece, one LLM call, to the larger thing you will use through
+the rest of the tutorial: an agent running inside a deterministic workflow.</p>
+<h2 id="what-an-llm-call-really-is">What an LLM call really is</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Large language model</span></div><div class="box-body"><p>An LLM predicts the next token in a sequence. A <strong>token</strong> is a chunk of text, often a word fragment. The model receives
+messages as context, estimates likely next tokens, emits one, then repeats until it stops.</p>
+</div></div>
+<p>That sounds mechanical because it is. The useful behavior comes from scale and training: next-token prediction over a
+huge corpus learns patterns for summarizing, classifying, extracting JSON and planning. It is still not a database, a
+calculator or a promise of truth. It is a probabilistic text engine.</p>
+<p><strong>Temperature</strong> controls sampling. At temperature <code>0.0</code>, the model tends to pick the highest-probability token, so
+outputs are steadier. Higher temperatures sample from more alternatives, which can help brainstorming but hurts
+repeatability. SwarmPipe uses low temperature for operational decisions because production pipelines prefer boring
+consistency over creative surprise.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Message roles</span></div><div class="box-body"><p>A model call is usually a list of messages. A <strong>system</strong> message contains durable instructions (&quot;You are the Router
+agent...&quot;). A <strong>user</strong> message contains the task and data. Assistant messages are prior model outputs; tool-result
+messages feed observations back into the loop.</p>
+</div></div>
+<p>Roles are conventions enforced by the model provider, not a security boundary. SwarmPipe treats any file name, cell,
+document or tool result marked untrusted as data, not instructions; Chapter 19 goes deep on prompt injection and
+spotlighting.</p>
+<h2 id="from-free-text-to-typed-output">From free text to typed output</h2>
+<p>Free text is hard to operate. If a Router says &quot;this looks like a spreadsheet, probably,&quot; the workflow cannot safely
+branch. Production agents ask for structured output and validate it.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Typed model outputs</span></div><div class="box-body"><p>SwarmPipe defines model output schemas in <code>swarmpipe/llm/types.py</code>. The Router must return <code>RouterOut</code>, not prose:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>class RouterOut(BaseModel):
+    kind: Literal[&quot;tabular&quot;, &quot;document&quot;, &quot;unsupported&quot;]
+    confidence: float = Field(ge=0, le=1)
+    reason: str = &quot;&quot;</code></pre></div>
+<p>The model gateway renders the schema into the prompt, extracts JSON from the response, validates it with Pydantic and
+repairs or falls back when validation fails.</p>
+</div></div>
+<p>Structured output does not make the model correct. It makes the model's answer checkable. SwarmPipe still applies
+deterministic guards. For example, a binary file is unsupported even if the model guesses &quot;tabular&quot;; an <code>.xlsx</code> file is
+tabular even if the model is uncertain.</p>
+<h2 id="tools-and-function-calling">Tools and function calling</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Tool / function call</span></div><div class="box-body"><p>A tool is a typed operation outside the model: read check results, fetch volume history, search a runbook, send a
+notification. The model chooses <strong>which</strong> tool to call and with <strong>which JSON arguments</strong>; deterministic code validates
+and executes the call.</p>
+</div></div>
+<p>Tools are how an agent observes the world. The model does not directly query SQLite or send mail. It emits a request
+such as <code>{&quot;action&quot;:&quot;call_tool&quot;,&quot;tool&quot;:&quot;get_volume_history&quot;,&quot;args&quot;:{&quot;dataset&quot;:&quot;sales_daily&quot;}}</code>. The tool gateway checks
+allowlists, scopes, schemas, rate limits and output size before returning an observation with an evidence id. Chapter 4
+teaches the tool gateway in detail.</p>
+<h2 id="the-agent-loop">The agent loop</h2>
+<p>An agent is a loop around a model. It observes the current state, thinks about the next step, acts through a tool or
+final answer, then observes again. ReAct is the common name for this &quot;reason + act&quot; pattern.</p>
+<figure class="diagram"><div class="flow loop"><div class="node"><div class="node-t">Observe</div><div class="node-s">messages, state, tool results and evidence</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Think</div><div class="node-s">choose the next small step</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Act</div><div class="node-s">call one tool or produce a final typed answer</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Observe again</div><div class="node-s">tool result becomes the next message</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Stop</div><div class="node-s">final answer, step budget or loop detector</div></div></div><div class="loop-back" aria-hidden="true">&#8634; repeat until the goal is met or a budget runs out</div><figcaption>The ReAct loop</figcaption></figure>
+<p>SwarmPipe implements this in <code>Agent.react</code> in <code>swarmpipe/agents/base.py</code>. Investigators in the triage swarm use it:
+they call read-only tools, collect evidence ids, then return a typed <code>Finding</code>. The loop has a step budget, remembers
+tool+argument pairs and stops when the same call repeats too often.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Deterministic skeleton, probabilistic steps</span></div><div class="box-body"><p>The docstring in <code>swarmpipe/agents/base.py</code> states SwarmPipe's design rule:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Design rule used throughout the swarm: a deterministic skeleton with probabilistic
+steps. Every LLM-backed method has a deterministic fallback, so a model outage,
+a quota or a budget degrades quality instead of breaking the pipeline.</code></pre></div>
+<p>The workflow decides <strong>when</strong> the Router runs. The model only helps decide <strong>how</strong> to route this file, and even that
+answer is guarded.</p>
+</div></div>
+<h2 id="how-much-autonomy-do-you-need">How much autonomy do you need?</h2>
+<p>Not every problem needs an agent. Use the least autonomy that solves the problem.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>What decides</th>
+<th>Use when</th>
+<th>SwarmPipe example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fixed workflow</td>
+<td>Code</td>
+<td>The steps are known and should not vary</td>
+<td><code>ingest_dataset</code>: load -&gt; privacy -&gt; profile -&gt; checks -&gt; publish</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>Model or rules choose a branch</td>
+<td>Inputs vary but branches are predefined</td>
+<td>Router sends files to tabular, document or unsupported flow</td>
+</tr>
+<tr>
+<td>Single agent</td>
+<td>One loop chooses tools</td>
+<td>A bounded task needs iterative evidence gathering</td>
+<td>Analyst answers one governed data question</td>
+</tr>
+<tr>
+<td>Multi-agent</td>
+<td>Several specialized agents cooperate</td>
+<td>Skills, privileges or verification must be separated</td>
+<td>Triage supervisor + investigators + planner + verifier</td>
+</tr>
+</tbody>
+</table>
+<p>Industry practice beyond SwarmPipe is the same: start with deterministic code, add a router when branching is fuzzy,
+add one agent when tool selection is genuinely dynamic, and add multiple agents only when separation of concerns earns
+its cost.</p>
+<h2 id="agent-kinds-in-swarmpipe">Agent kinds in SwarmPipe</h2>
+<p>SwarmPipe registers 27 agents. They are not all equally &quot;AI.&quot; The <code>kind</code> field in the registry is deliberate:</p>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Deterministic</div><div class="card-s">no model call; examples: <code>privacy_guard</code>, <code>data_assurance</code>, <code>publisher</code>, <code>executor</code>, <code>verifier</code></div></div><div class="card"><div class="card-t">Hybrid</div><div class="card-s">deterministic logic plus one or more model calls; examples: <code>router</code>, <code>profiler</code>, <code>steward</code>, <code>transformer</code></div></div><div class="card"><div class="card-t">LLM</div><div class="card-s">model-first reasoning, still typed and constrained; examples: <code>supervisor</code>, <code>investigator_volume</code>, <code>planner</code>, <code>learner</code></div></div></div><figcaption>Agent kinds</figcaption></figure>
+<p>The Router is a good hybrid example. It asks the <code>router</code> role for <code>RouterOut</code>, then applies guards from the file
+sniffer. If the model is unavailable, it falls back to the sniffer's deterministic <code>kind_hint</code>.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Router fallback</span></div><div class="box-body"><p>In <code>swarmpipe/agents/pipeline_agents.py</code>, <code>RouterAgent.run</code> catches gateway degradation errors and returns:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>{&quot;kind&quot;: det, &quot;confidence&quot;: 0.7,
+ &quot;source&quot;: &quot;deterministic_fallback&quot;,
+ &quot;model&quot;: None, &quot;degraded&quot;: True}</code></pre></div>
+<p>That is the production posture: the answer may be less rich, but the pipeline does not collapse.</p>
+</div></div>
+<h2 id="hands-on-follow-one-file-and-find-the-model-call">Hands-on: follow one file and find the model call</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Trace the Router and fan-out</span></div><div class="box-body"><p>Run these steps from your SwarmPipe folder with the virtual environment active and
+the <code>sp</code> shortcut defined. Ids, dates, timings and costs vary.</p>
+<ol>
+<li>
+<p>List recent file-level runs:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs list --workflow ingest_file --limit 8</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id                 | workflow    | status    | current_step |
+|--------------------+-------------+-----------+--------------|
+| run_...            | ingest_file | succeeded | finalize     |
+| run_...            | ingest_file | succeeded | finalize     |
+...</code></pre></div>
+</li>
+<li>
+<p>Pick the <code>customers.xlsx</code> <code>ingest_file</code> run and show it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs show run_mumhlx9730df29</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>&quot;workflow&quot;: &quot;ingest_file&quot;,
+&quot;status&quot;: &quot;succeeded&quot;,
+&quot;context&quot;: {
+  &quot;children&quot;: [
+    &quot;run_mumhlxev0c4a1e&quot;,
+    &quot;run_mumhlxeva40ea8&quot;
+  ],
+  &quot;result_status&quot;: &quot;succeeded&quot;
+}
+Steps (checkpoints)
+| stage | succeeded | deterministic |
+| route | succeeded | agent         |
+| read  | succeeded | deterministic |
+| fanout| succeeded | deterministic |</code></pre></div>
+<p>The model participates in <code>route</code>; the two child runs are the Excel sheets <code>customers</code> and <code>regions</code>.</p>
+</li>
+<li>
+<p>Open the dashboard <strong>Runs</strong> tab, click the same run and find <strong>Model calls</strong>. The Router call shows the role,
+model, prompt and cost. The <strong>Overview</strong> tab should still show no incident for the clean baseline.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Send one direct model call</span></div><div class="box-body"><ol>
+<li>
+<p>Ask the gateway to test the Router role:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp llm test --role router</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>served by sim-small (mock) in 0.02s, tokens 425/22, repairs 0, chain [&#x27;sim-small&#x27;]
+{
+  &quot;kind&quot;: &quot;tabular&quot;,
+  &quot;confidence&quot;: 0.96,
+  &quot;reason&quot;: &quot;sniffer: consistent comma delimiter&quot;
+}</code></pre></div>
+</li>
+<li>
+<p>Read the simulated model at a conceptual level in <code>swarmpipe/llm/mock.py</code>: it dispatches by prompt id, reads the
+rendered <code>context</code> block and can be forced to time out, return malformed JSON, cite fake evidence or loop. Do not
+treat it as intelligence; it is a flight simulator for failure modes.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Take a model away</span></div><div class="box-body"><ol>
+<li>
+<p>Drop the outage scenario:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop llm_outage --process
+sp incidents list --limit 3</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id       | status    | severity | dataset     | root_cause        |
+|----------+-----------+----------+-------------+-------------------|
+| inc_...  | mitigated | critical | sales_daily | truncated_extract |</code></pre></div>
+</li>
+<li>
+<p>Inspect the trace of that incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp trace inc_mumhpl3ff96a11</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>chat diagnoser ... 
+  +-- llm.call sim-large ...
+  +-- llm.call sim-large ...
+  +-- llm.call sim-large ...
+  `-- llm.call sim-small ... cost_usd=...</code></pre></div>
+</li>
+</ol>
+<p>The scenario takes <code>sim-large</code> away. The gateway retries, opens the breaker when needed and falls back to <code>sim-small</code>;
+agent-level fallbacks are the next line of defense if every routed model is unavailable. Clear lab faults afterward:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos clear</code></pre></div>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Non-determinism is not a bug you can wish away</span></div><div class="box-body"><p>Even temperature <code>0.0</code> does not turn a model into a deterministic function across providers, versions or hardware.
+Production systems constrain the model with typed outputs, tests, evals, fallbacks and policy; they do not assume the
+same prompt will always behave the same way.</p>
+</div></div>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>What is the safest way to use an LLM result inside a workflow?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Parse whatever text the model emits and hope the wording stays stable</button></li><li><button type="button" class="opt" data-correct="true">Ask for a typed JSON object, validate it and apply deterministic guards</button></li><li><button type="button" class="opt" data-correct="false">Increase temperature so the model explores more answers</button></li></ul><div class="q-explain" hidden>Typed output makes the response checkable; deterministic guards keep unsafe or impossible answers from controlling the workflow.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why is the Router a hybrid agent?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It calls two real hosted models</button></li><li><button type="button" class="opt" data-correct="true">It combines a model classification with deterministic sniffer facts and fallback logic</button></li><li><button type="button" class="opt" data-correct="false">It can send notifications</button></li></ul><div class="q-explain" hidden>The Router uses the model for classification, but hard file facts can override or replace that answer.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>In the ReAct loop, what happens after a tool returns data?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The tool result is automatically trusted as an action</button></li><li><button type="button" class="opt" data-correct="true">The result becomes the next observation message, usually with an evidence id</button></li><li><button type="button" class="opt" data-correct="false">The workflow restarts</button></li></ul><div class="q-explain" hidden>Tool output is an observation. The agent may call another tool or finish with a typed answer.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>When should you use multiple agents?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Whenever a single prompt is long</button></li><li><button type="button" class="opt" data-correct="false">Whenever a model is available</button></li><li><button type="button" class="opt" data-correct="true">When specialization, privilege separation or independent verification earns the extra cost</button></li></ul><div class="q-explain" hidden>Multi-agent systems multiply cost and failure modes. SwarmPipe uses them where separation is valuable.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>An LLM predicts tokens; an agent is a controlled loop that uses model outputs to choose bounded steps.</li>
+<li>System and user roles organize instructions and data, but validation and authorization must live outside the model.</li>
+<li>SwarmPipe validates every model response against typed schemas in <code>swarmpipe/llm/types.py</code>.</li>
+<li>The durable workflow is deterministic; model calls are probabilistic steps inside it.</li>
+<li>Hybrid agents such as the Router use models for fuzzy decisions and deterministic fallbacks for resilience.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="01-llm-to-agent"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="00-welcome.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 0 &middot; Welcome: how this tutorial works</span></a><a class="next" href="02-architecture-tour.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 2 &middot; A guided tour of SwarmPipe's architecture</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#what-an-llm-call-really-is">What an LLM call really is</a></li><li class="h2"><a href="#from-free-text-to-typed-output">From free text to typed output</a></li><li class="h2"><a href="#tools-and-function-calling">Tools and function calling</a></li><li class="h2"><a href="#the-agent-loop">The agent loop</a></li><li class="h2"><a href="#how-much-autonomy-do-you-need">How much autonomy do you need?</a></li><li class="h2"><a href="#agent-kinds-in-swarmpipe">Agent kinds in SwarmPipe</a></li><li class="h2"><a href="#hands-on-follow-one-file-and-find-the-model-call">Hands-on: follow one file and find the model call</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

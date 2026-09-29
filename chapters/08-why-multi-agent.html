@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 8: Why (and when) to use multiple agents · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="08-why-multi-agent" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent" class="current" aria-current="page"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="08-why-multi-agent">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part III &middot; Multi-agent systems: the swarm</div>
+<h1><span class="num">Chapter 8</span>Why (and when) to use multiple agents</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">The core multi-agent patterns (chaining, routing, fan-out, orchestrator-workers, evaluator-optimizer, blackboard), their costs, and when a single agent or plain code is the better answer.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Choose plain code, one agent or many agents for a production workflow</li><li>Explain the core multi-agent patterns: chaining, routing, fan-out/fan-in, supervisor-workers, critic loops and blackboards</li><li>Map each pattern to the SwarmPipe files and dashboard views that implement it</li><li>Measure the token and cost multiplier of a swarm, then decide whether the extra agents earned their keep</li><li>Use a critic ablation to see why independent review and a single decision owner matter</li></ul></div>
+<p>A multi-agent system is not automatically more advanced than a single agent. It is just more moving parts. You use it
+when the work naturally has different jobs, different privileges, different evidence sources or different reviewers.
+You avoid it when one deterministic function or one bounded agent can do the work with less cost and fewer failure
+modes.</p>
+<p>SwarmPipe gives you a concrete decision point. Ingesting a normal sales file needs a little model help for routing,
+profiling and contract interpretation. Diagnosing a bad file is different: the system must correlate signals, inspect
+evidence, reason about root cause, plan actions, critique the plan, apply policy, execute, verify and learn. That is
+where a swarm starts to pay for itself.</p>
+<h2 id="start-with-the-smallest-thing-that-works">Start with the smallest thing that works</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Plain code</span></div><div class="box-body"><p>Deterministic software whose next step is defined by code, not by model reasoning. Use it for stable rules, arithmetic,
+authorization, policy evaluation, signatures, idempotency and verification.</p>
+</div></div>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Agent</span></div><div class="box-body"><p>A component that uses a model to make a bounded decision: classify, choose a tool, summarize evidence, diagnose,
+propose an action or critique someone else's proposal. Deterministic agents count too: the Correlator, Impact Analyzer,
+Executor and Verifier are agents because they own a production responsibility, even though they do not call an LLM.</p>
+</div></div>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Multi-agent system</span></div><div class="box-body"><p>Several agents cooperate on one outcome. The point is not &quot;more brains&quot;; it is separation of duties: specialists see
+scoped evidence, an orchestrator owns the decision, reviewers check proposals, and write privileges stay with a narrow
+executor.</p>
+</div></div>
+<p>Use this rule of thumb:</p>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Use it when</th>
+<th>SwarmPipe example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plain code</td>
+<td>The rule is stable and must be exact</td>
+<td><code>DataAssuranceAgent</code>, policy evaluation, HMAC verification</td>
+</tr>
+<tr>
+<td>One agent</td>
+<td>One bounded judgment is enough</td>
+<td><code>RouterAgent</code> classifies a file as tabular, document or unsupported</td>
+</tr>
+<tr>
+<td>Many agents</td>
+<td>The task needs independent specialists, reviewers, least privilege or durable human waits</td>
+<td>the <code>triage</code> workflow</td>
+</tr>
+</tbody>
+</table>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Extra agents are a cost multiplier</span></div><div class="box-body"><p>Every agent adds prompt tokens, tool results, traces, retries and coordination. Anthropic publicly reported that its
+multi-agent research system used about <strong>15x</strong> the tokens of a comparable chat interaction. That does not mean &quot;never
+use swarms&quot;; it means the swarm must buy you accuracy, safety, auditability or speed that a simpler design cannot.</p>
+</div></div>
+<h2 id="the-core-patterns">The core patterns</h2>
+<figure class="diagram"><div class="flow vertical"><div class="node"><div class="node-t">Route</div><div class="node-s">pick the right workflow or specialist</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Chain</div><div class="node-s">pass work step by step with typed outputs</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Fan out</div><div class="node-s">split independent evidence gathering</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Fan in</div><div class="node-s">merge findings under one owner</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Critique</div><div class="node-s">independently review a proposal</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Blackboard</div><div class="node-s">share a durable case file</div></div></div><figcaption>Multi-agent patterns in SwarmPipe</figcaption></figure>
+<h3 id="prompt-chaining-sequential-handoff">Prompt chaining / sequential handoff</h3>
+<p>Sequential handoff means one step produces typed output that the next step consumes. The pipeline does not ask one
+large prompt to &quot;do ingestion&quot;. It runs durable steps: privacy scan, profile, contract check, transform, quality and
+publish.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Sequential handoff</span></div><div class="box-body"><p>Look at <code>swarmpipe/runtime/workflows.py</code>. The <code>ingest_dataset</code> workflow is
+<code>load -&gt; privacy -&gt; profile -&gt; onboard -&gt; contract_check -&gt; transform -&gt; quality -&gt; publish -&gt; lineage</code>. Each step
+records output in the run context before the next step starts, so a crash can resume from the last checkpoint. Durable
+execution itself is covered in <a href="12-durable-execution.html">Chapter 12</a>.</p>
+</div></div>
+<h3 id="routing">Routing</h3>
+<p>Routing sends work to the right path. The Router picks tabular, document or unsupported. The Triage Supervisor maps
+signal types to specialists.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/agents/triage_agents.py</span>
+SPECIALISTS_BY_SIGNAL = {
+    &quot;schema_drift&quot;: [&quot;schema&quot;],
+    &quot;volume_anomaly&quot;: [&quot;volume&quot;, &quot;quality&quot;],
+    &quot;pii_undeclared&quot;: [&quot;privacy&quot;],
+    &quot;injection_attempt&quot;: [&quot;security&quot;],
+    &quot;out_of_band_change&quot;: [&quot;integrity&quot;],
+}</code></pre></div>
+<p>Routing is useful only when the router has a narrow decision and a safe fallback. If a signal is unknown, SwarmPipe
+routes to <code>quality</code> rather than granting the model every tool.</p>
+<h3 id="parallelization-fan-out-and-fan-in">Parallelization: fan-out and fan-in</h3>
+<p>Fan-out runs independent work concurrently. Fan-in joins it back into one decision. SwarmPipe uses this twice. A
+spreadsheet file fans out into one child run per sheet. During incident triage, the Supervisor fans out to up to five
+specialist investigators, then fans their findings back into one diagnosis.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Fan-out/fan-in</span></div><div class="box-body"><p><code>TriageSupervisorAgent.investigate</code> sends signed tasks to specialists, runs them in a <code>ThreadPoolExecutor</code>, receives
+their findings and writes each finding to the blackboard. The Supervisor, not the specialists, owns the diagnosis.</p>
+</div></div>
+<h3 id="orchestrator-workers">Orchestrator-workers</h3>
+<p>The orchestrator-worker pattern gives one agent the plan and many agents the subtasks. In SwarmPipe the Supervisor
+decides which specialists are needed. The specialist agents are deliberately narrow: the Volume Investigator has volume
+history and checks; the Security Investigator has signal details and runbooks; none of them can execute actions.</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Hospital triage</span></div><div class="box-body"><p>A triage doctor does not personally run every lab test. They order blood work, imaging and specialist consults, then
+make the diagnosis. The lab does not prescribe treatment. SwarmPipe follows the same boundary.</p>
+</div></div>
+<h3 id="evaluator-optimizer">Evaluator-optimizer</h3>
+<p>An evaluator-optimizer loop asks one agent to propose and another to review. The Contract Steward proposes mappings
+for schema drift. The Critic checks the evidence. The Planner proposes remediation actions. The Critic checks that the
+actions exist in the catalog, cite evidence and do not publish bad data.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/agents/pipeline_agents.py</span>
+if self.svc.flags.get(&quot;feature.critic_review&quot;, True) is False:
+    return {
+        &quot;verdict&quot;: &quot;skipped&quot;,
+        &quot;reason&quot;: &quot;critic disabled (ablation)&quot;,
+    }</code></pre></div>
+<p>This is not bureaucracy for its own sake. It catches plausible model output before it reaches policy and execution.</p>
+<h3 id="blackboard-shared-case-file">Blackboard / shared case file</h3>
+<p>A blackboard is shared state for a case. Instead of passing a giant chat transcript between agents, each agent posts a
+typed entry with author, version and evidence ids.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Blackboard</span></div><div class="box-body"><p><code>swarmpipe/agents/messaging.py</code> defines <code>Blackboard</code>. The <strong>Incidents</strong> tab shows the case file: <code>case_opened</code>, the
+Supervisor's <code>plan</code>, investigator <code>finding</code> entries, the final <code>diagnosis</code> and the Planner's <code>plan</code>.</p>
+</div></div>
+<h2 id="why-specialization-and-least-privilege-matter">Why specialization and least privilege matter</h2>
+<p>Specialists make better prompts because the task is smaller. More importantly, specialists make safer systems because
+their tools are smaller. SwarmPipe's investigators have read-only tools such as <code>get_volume_history</code>,
+<code>get_schema_diff</code>, <code>search_knowledge</code> and <code>recall_similar_incidents</code>. Only the Executor has <code>act_*</code> tools, and even
+then it can run them only after policy or approval.</p>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Supervisor</div><div class="card-s">chooses specialists and owns the diagnosis; no write tools</div></div><div class="card"><div class="card-t">Investigators</div><div class="card-s">read-only evidence gathering with scoped tools</div></div><div class="card"><div class="card-t">Planner</div><div class="card-s">proposes catalog actions; cannot execute</div></div><div class="card"><div class="card-t">Critic</div><div class="card-s">reviews proposals; cannot execute</div></div><div class="card"><div class="card-t">Policy engine</div><div class="card-s">deterministic decision, not a model opinion</div></div><div class="card"><div class="card-t">Executor</div><div class="card-s">only holder of write tools, with idempotency keys</div></div><div class="card"><div class="card-t">Verifier</div><div class="card-s">checks ground truth after execution</div></div></div><figcaption>Agent privilege in the triage swarm</figcaption></figure>
+<p>The other design rule is a <strong>single decision owner</strong>. Specialists can disagree. The Supervisor records alternatives,
+calibrates confidence, removes bad citations and may abstain. Without one owner, the system can average conflicting
+opinions into a confident mush.</p>
+<h2 id="when-not-to-use-multiple-agents">When not to use multiple agents</h2>
+<p>Do not use a swarm for a deterministic check, a single schema conversion, a short classification or a workflow where
+one model call plus validation is enough. Do not use it when you cannot afford the token multiplier. Do not use it to
+hide vague ownership: if nobody owns the final answer, adding agents makes accountability worse.</p>
+<p>SwarmPipe is intentionally mixed. The Correlator clusters signals before any model reasons. The Impact Analyzer walks
+lineage deterministically. The Policy Engine decides autonomy levels with rules. The Verifier checks ground truth. The
+LLM agents are reserved for interpretation, diagnosis, planning and explanation.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Compare ingest cost with incident cost</span></div><div class="box-body"><ol>
+<li>
+<p>Start clean and load the baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: C:\...\SwarmPipe\data\inbox</code></pre></div>
+</li>
+<li>
+<p>Open the <strong>Cost &amp; Metrics</strong> tab and look at <strong>By agent</strong>. Baseline ingest spends mostly on <code>router</code>,
+<code>profiler</code>, <code>steward</code> and <code>critic</code>.</p>
+</li>
+<li>
+<p>Now create an incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp incidents list --limit 5</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id                 | status    | severity | dataset     | signal_count | root_cause       | cost_usd |
+| inc_...            | mitigated | critical | sales_daily | 1            | truncated_extract| 0.011965 |</code></pre></div>
+</li>
+<li>
+<p>Return to <strong>Cost &amp; Metrics</strong>. In a verification run, the incident added <code>planner</code>, <code>supervisor</code>,
+the quality investigator, the volume investigator, <code>learner</code> and <code>critic</code> calls:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&#x27;agent&#x27;: &#x27;agent:planner&#x27;, &#x27;calls&#x27;: 1, &#x27;usd&#x27;: 0.00694}
+{&#x27;agent&#x27;: &#x27;agent:supervisor&#x27;, &#x27;calls&#x27;: 1, &#x27;usd&#x27;: 0.002875}
+{&#x27;agent&#x27;: &#x27;agent:investigator_quality&#x27;, &#x27;calls&#x27;: 4, &#x27;usd&#x27;: 0.001095}
+{&#x27;agent&#x27;: &#x27;agent:investigator_volume&#x27;, &#x27;calls&#x27;: 3, &#x27;usd&#x27;: 0.000732}</code></pre></div>
+<p>Your ids, dates and costs vary. The point is the shape: incident triage costs several times a clean ingest because
+the system buys grounded diagnosis, safe action planning and verification.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Trace the fan-out tree</span></div><div class="box-body"><ol>
+<li>
+<p>Use the incident id from the previous lab:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp trace inc_...</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>trace ...
+`-- workflow triage
+    +-- step investigate
+    |   `-- invoke_agent supervisor.fan_out
+    |       +-- invoke_agent investigator_volume.investigate
+    |       |   +-- execute_tool get_volume_history evidence_id=ev_...
+    |       |   `-- execute_tool search_knowledge evidence_id=ev_...
+    |       `-- invoke_agent investigator_quality.investigate
+    |           +-- execute_tool get_check_results evidence_id=ev_...
+    |           `-- execute_tool get_profile_comparison evidence_id=ev_...
+    +-- step diagnose
+    +-- step plan
+    |   `-- invoke_agent critic.review
+    +-- step execute
+    `-- step verify</code></pre></div>
+</li>
+<li>
+<p>Open the <strong>Incidents</strong> tab, select the same incident and compare the trace with the blackboard entries. The trace
+explains <em>when</em> agents ran. The blackboard explains <em>what</em> they contributed.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Disable the critic</span></div><div class="box-body"><ol>
+<li>
+<p>Turn the critic off and rerun an incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp chaos set feature.critic_review false
+sp scenarios drop volume_drop --process
+sp chaos clear</code></pre></div>
+</li>
+<li>
+<p>Open the incident blackboard. The Planner entry still appears, but the critique says it was skipped:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&quot;proposals&quot;:[&quot;request_resend&quot;,&quot;hold_downstream&quot;,&quot;notify_owner&quot;],
+ &quot;invalid&quot;:[],
+ &quot;critique&quot;:{&quot;verdict&quot;:&quot;skipped&quot;,&quot;reason&quot;:&quot;critic disabled (ablation)&quot;},
+ &quot;rounds&quot;:1}</code></pre></div>
+</li>
+<li>
+<p>In this scenario the plan is still safe because catalog validation, policy and verification remain active. That is
+the lesson: one missing reviewer should not be catastrophic. In harder cases, especially prompt-injection and
+poisoned-memory cases, the critic is one of the layers that prevents a bad proposal from moving forward.</p>
+</li>
+</ol>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">What changes at larger scale</span></div><div class="box-body"><p>At scale, the hard part is not spawning agents; it is bounding them. Set a per-run budget across the whole swarm,
+cluster before reasoning, cap specialist count, keep write tools out of investigators, and record the single decision
+owner for every business outcome.</p>
+</div></div>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>When should you prefer plain code over an agent?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">When the decision is stable, exact and must be reproducible</button></li><li><button type="button" class="opt" data-correct="false">When the task has many possible interpretations</button></li><li><button type="button" class="opt" data-correct="false">When you need natural-language explanation</button></li></ul><div class="q-explain" hidden>Exact checks, policy evaluation, signatures and idempotency should be deterministic.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why does SwarmPipe fan out to specialists?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">To give every agent write access</button></li><li><button type="button" class="opt" data-correct="true">To gather independent scoped evidence before one Supervisor diagnoses</button></li><li><button type="button" class="opt" data-correct="false">To avoid recording a final owner</button></li></ul><div class="q-explain" hidden>Specialists gather evidence; the Supervisor owns the final diagnosis.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What is the main cost risk of multi-agent design?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Agents cannot use tools</button></li><li><button type="button" class="opt" data-correct="true">Token, latency and coordination costs multiply</button></li><li><button type="button" class="opt" data-correct="false">Deterministic code becomes impossible</button></li></ul><div class="q-explain" hidden>More agents mean more prompts, tool results, retries and traces.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What did the critic-off ablation show?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Disabling the critic disables all policy checks</button></li><li><button type="button" class="opt" data-correct="true">The plan records <code>critic disabled (ablation)</code>, while other safety layers still apply</button></li><li><button type="button" class="opt" data-correct="false">SwarmPipe stops routing files</button></li></ul><div class="q-explain" hidden>Defense in depth means one disabled reviewer should not remove catalog validation, policy or verification.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Multi-agent is a design trade-off, not a maturity badge.</li>
+<li>SwarmPipe uses plain code for exact controls and agents for bounded judgment.</li>
+<li>The main patterns are routing, chaining, fan-out/fan-in, supervisor-workers, evaluator-optimizer and blackboard.</li>
+<li>Least privilege matters more than agent count: investigators read, the Planner proposes and only the Executor writes.</li>
+<li>A single decision owner keeps disagreement accountable.</li>
+<li>Measure cost by agent before deciding that a swarm earned its token multiplier.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="08-why-multi-agent"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="07-publishing-lineage.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 7 &middot; Publishing, versioning, lineage and trusted context</span></a><a class="next" href="09-triage-swarm.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 9 &middot; The triage swarm, step by step</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#start-with-the-smallest-thing-that-works">Start with the smallest thing that works</a></li><li class="h2"><a href="#the-core-patterns">The core patterns</a></li><li class="h3"><a href="#prompt-chaining-sequential-handoff">Prompt chaining / sequential handoff</a></li><li class="h3"><a href="#routing">Routing</a></li><li class="h3"><a href="#parallelization-fan-out-and-fan-in">Parallelization: fan-out and fan-in</a></li><li class="h3"><a href="#orchestrator-workers">Orchestrator-workers</a></li><li class="h3"><a href="#evaluator-optimizer">Evaluator-optimizer</a></li><li class="h3"><a href="#blackboard-shared-case-file">Blackboard / shared case file</a></li><li class="h2"><a href="#why-specialization-and-least-privilege-matter">Why specialization and least privilege matter</a></li><li class="h2"><a href="#when-not-to-use-multiple-agents">When not to use multiple agents</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

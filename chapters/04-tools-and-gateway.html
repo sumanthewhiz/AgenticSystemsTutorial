@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 4: Tools, tool contracts and the tool gateway · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="04-tools-and-gateway" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway" class="current" aria-current="page"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="04-tools-and-gateway">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part I &middot; Foundations of agentic systems</div>
+<h1><span class="num">Chapter 4</span>Tools, tool contracts and the tool gateway</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">How agents touch the world safely: typed tool contracts, scopes and allowlists, read vs write tools, untrusted outputs, evidence ids, stable error codes and rogue-agent suspension.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Define a tool contract and explain why annotations are hints, not security</li><li>Show how scopes, per-agent allowlists and read/write separation limit agents</li><li>Follow a tool call through validation, rate limiting, evidence capture and stable errors</li><li>Inspect evidence ids in incidents and traces</li><li>Reproduce tool failures and observe how the swarm degrades</li></ul></div>
+<p>Models can talk; tools let them touch the world. That is where agentic systems become useful and dangerous. A model
+that can only classify text may be wrong; a model that can send mail, publish data or update contracts can create an
+incident. Production systems put every tool behind a deterministic gateway.</p>
+<p>SwarmPipe's rule is simple: agents never call Python functions directly. They call named, typed tools through
+<code>ToolGateway.call</code>, and the gateway decides whether the call is allowed.</p>
+<h2 id="what-a-tool-contract-contains">What a tool contract contains</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Tool contract</span></div><div class="box-body"><p>A tool contract is a stable interface: name, version, description, argument schema, required scope, side-effect
+metadata, trust label, output limit and rate limit. It lets a model choose a tool without letting the model define the
+tool.</p>
+</div></div>
+<p>In <code>swarmpipe/tools/gateway.py</code>, <code>ToolSpec</code> contains:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>name: str
+version: str
+description: str
+args_model: type[BaseModel]
+scope: str
+read_only: bool = True
+destructive: bool = False
+idempotent: bool = True
+open_world: bool = False
+trust: str = &quot;trusted&quot;
+max_output_chars: int = 4000
+rate_limit_per_min: int = 120</code></pre></div>
+<p>The argument model becomes JSON Schema for prompts, MCP clients and validation. If an agent supplies invalid JSON or
+wrong fields, the gateway returns <code>INVALID_ARGUMENTS</code>; the handler never runs.</p>
+<p>That contract is also documentation for the model. The investigator prompt includes only the tools the current agent
+may use, and each tool includes its JSON schema. This keeps the tool menu small. A volume specialist does not need to
+see every action in the remediation catalog; it needs the few read tools that can prove or disprove a volume problem.</p>
+<h2 id="annotations-are-not-security">Annotations are not security</h2>
+<p>Tool annotations such as <code>readOnlyHint</code>, <code>destructiveHint</code>, <code>idempotentHint</code> and <code>openWorldHint</code> help user interfaces
+present risk. They are not authorization. A malicious or confused client can ignore them.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Annotations plus enforcement</span></div><div class="box-body"><p><code>ToolSpec.annotations</code> exposes hints. <code>ToolGateway.call</code> enforces the real controls: kill switch, approved
+fingerprint, agent allowlist, identity scope, tenant access, rate limit, argument validation, output bound, evidence id
+and audit for side effects.</p>
+</div></div>
+<p>That distinction is also why MCP tools in SwarmPipe are safe to expose: the server enforces identity and policy even
+when a client only displays hints.</p>
+<p>For example, an MCP client may label <code>decide_approval</code> as destructive, but the server still checks the acting user,
+typed confirmation and approval status. Conversely, a read-only annotation does not grant data access; <code>query_warehouse</code>
+still runs through identity and the warehouse authorizer.</p>
+<h2 id="allowlists-scopes-and-privilege-separation">Allowlists, scopes and privilege separation</h2>
+<p>Each agent has <code>Agent.tools</code> and <code>Agent.scopes</code>. Investigators can call only read tools relevant to their specialty.
+The Analyst can call <code>query_warehouse</code>. The Executor is the only agent with write tools.</p>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Read tools</div><div class="card-s"><code>get_check_results</code>, <code>get_volume_history</code>, <code>get_signal_details</code>, <code>search_knowledge</code>, <code>query_warehouse</code></div></div><div class="card"><div class="card-t">Action tools</div><div class="card-s">executor-only <code>act_*</code> tools such as notify owner, request resend, hold downstream, reprocess with mapping and force publish</div></div><div class="card"><div class="card-t">Executor-only writes</div><div class="card-s">only <code>executor</code> has the <code>act_*</code> tools and <code>action</code> scopes</div></div><div class="card"><div class="card-t">Policy before action</div><div class="card-s">planner proposes; policy and approvals decide; executor acts</div></div></div><figcaption>Tool privilege model</figcaption></figure>
+<p>This is defense in depth. Even if the Planner is tricked into proposing <code>force_publish</code>, it cannot execute it. The
+proposal must pass catalog validation, policy and possibly human approval; then the Executor calls the action tool.</p>
+<p>Read tools also differ in trust. <code>get_contract</code> and <code>get_volume_history</code> return system-owned metadata and are trusted.
+<code>get_signal_details</code> and <code>get_sample_rows</code> may contain attacker-controlled file content, so their tool specs or returned
+payloads mark them untrusted. The prompt builder preserves that label when the result is fed back to an agent.</p>
+<h2 id="the-tool-gateway-pipeline">The tool gateway pipeline</h2>
+<figure class="diagram"><div class="flow vertical"><div class="node"><div class="node-t">Kill switch check</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Tool exists and fingerprint matches approval</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Agent allowlist check</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Identity scope and tenant check</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Per-agent rate limit</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Pydantic argument validation</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Handler execution</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Output truncation and trust label</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Evidence id inserted</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Tool call logged and metrics updated</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Audit side effects</div></div></div><figcaption><code>ToolGateway.call</code></figcaption></figure>
+<p>Stable error codes come from <code>swarmpipe/core/errors.py</code> and gateway errors: <code>TOOL_NOT_FOUND</code>, <code>TOOL_NOT_APPROVED</code>,
+<code>TOOL_FORBIDDEN</code>, <code>FORBIDDEN</code>, <code>RATE_LIMITED</code>, <code>INVALID_ARGUMENTS</code>, <code>NOT_FOUND</code>, <code>TOOL_ERROR_TRANSIENT</code>,
+<code>TOOL_ERROR</code> and <code>KILL_SWITCH</code>. Stable codes are important because agents and operators can react to categories
+instead of parsing prose.</p>
+<p>The gateway also bounds success. A successful handler can produce too much data, so <code>max_output_chars</code> truncates the
+serialized result and records that truncation. Truncation is not silent: the <code>ToolResult</code> carries <code>truncated=True</code>, the
+tool-call row records output size and the trace span includes tool metadata. Large output should push you toward a
+more specific tool, not a larger prompt.</p>
+<h2 id="untrusted-output-and-evidence-ids">Untrusted output and evidence ids</h2>
+<p>Some read tools intentionally surface content that came from files or users. <code>get_signal_details</code> may include
+injection snippets. <code>get_sample_rows</code> returns quarantined row samples. These tools mark output as untrusted so prompt
+building can spotlight it. Chapter 11 teaches grounding and citations; here you only need the mechanism: every
+successful tool result becomes an evidence row with an <code>ev_...</code> id.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Evidence as the citation substrate</span></div><div class="box-body"><p>The gateway inserts into <code>evidence</code> with <code>incident_id</code>, <code>run_id</code>, tool name, arguments, bounded content, trust label
+and creator. Investigators cite those ids; the Supervisor's groundedness gate removes citations that do not exist.</p>
+</div></div>
+<p>Tool fingerprints provide a supply-chain check. If a tool's name, version, description, schema or scope changes after
+approval, the gateway returns <code>TOOL_NOT_APPROVED</code>. Repeated forbidden or unknown tool calls trigger
+<code>ToolGateway._suspicion</code>; after the threshold, SwarmPipe engages an agent-scoped kill switch and raises a
+<code>rogue_agent</code> signal.</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Tools are power tools in a shared workshop</span></div><div class="box-body"><p>Labels matter, but they do not stop the saw. A real workshop uses locked cabinets, guards, training and logs. SwarmPipe
+does the same for agent tools: descriptions help the model choose, while allowlists, scopes, policy and audit enforce
+what is actually allowed.</p>
+</div></div>
+<h2 id="read-tools-versus-action-tools">Read tools versus action tools</h2>
+<p>Read tools are designed to return evidence, not change state. <code>get_check_results</code> summarizes failed checks for one
+run. <code>get_profile_comparison</code> compares the quarantined batch to the previous baseline. <code>search_knowledge</code> returns
+runbook snippets with trust labels. <code>query_warehouse</code> is read-only SQL over published datasets and uses an authorizer
+to reject writes even if a model produces one.</p>
+<p>Action tools are catalog actions with compensations and verifiers. The request-resend action writes a notification; its
+verifier checks the notification row and outbox file. The hold-downstream action sets holds; its compensation releases
+them. The reprocess-with-mapping action starts a child run and waits for it. The force-publish action exists to teach
+why &quot;set it to OK&quot; is high risk; policy keeps it tightly constrained.</p>
+<p>The Planner may propose action names and parameters, but it still does not call tools. Policy converts each proposal
+into deny, recommend, require approval or auto-execute. Only after that decision does the Executor call <code>act_*</code>.</p>
+<p>At larger scale, teams usually add another boundary: a tool registry owned by the platform team. New tools go through
+review, get risk-classified, receive owners and SLOs, and are certified against regression tests before agents can see
+them. SwarmPipe's approved fingerprints are the local version of that process. They do not prove a handler is perfect,
+but they make silent drift visible: a changed schema or scope is refused until somebody intentionally approves it.</p>
+<p>Tool design should also stay narrow. A tempting shortcut is a generic &quot;run SQL&quot; or &quot;call HTTP&quot; tool with broad
+permissions. SwarmPipe uses <code>query_warehouse</code> only for read-only published data, and notifications resolve recipient
+handles through deterministic code. Narrow tools make prompts shorter, errors clearer and policies enforceable.</p>
+<h2 id="hands-on-inspect-tool-contracts-and-evidence">Hands-on: inspect tool contracts and evidence</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Use the dashboard and an incident evidence table</span></div><div class="box-body"><ol>
+<li>
+<p>Open the dashboard and go to <strong>Agents &amp; Tools</strong>. Inspect the Volume Investigator. Its tool
+list is short: <code>get_volume_history</code>, <code>get_check_results</code>, <code>search_knowledge</code>, <code>recall_similar_incidents</code>.</p>
+</li>
+<li>
+<p>Drop a volume incident if you do not already have one:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp incidents list --limit 3</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id      | status    | severity | dataset     | root_cause        |
+|---------+-----------+----------+-------------+-------------------|
+| inc_... | mitigated | critical | sales_daily | truncated_extract |</code></pre></div>
+</li>
+<li>
+<p>Open <strong>Incidents</strong>, click the incident and find the <strong>Evidence</strong> table. Each investigator tool result has an
+evidence id such as <code>ev_...</code>, a tool name, a trust label and bounded content.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Trace tool calls</span></div><div class="box-body"><ol>
+<li>
+<p>Trace the same incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp trace inc_mumhq18z99025a</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>invoke_agent investigator_intake.investigate
+  chat investigator
+  execute_tool get_run_failure name=get_run_failure evidence_id=ev_mumhq18z99025a
+  chat investigator
+  execute_tool search_knowledge name=search_knowledge evidence_id=ev_mumhq19d26e8d3
+...
+invoke_agent executor.execute
+  execute_tool act_request_resend name=act_request_resend evidence_id=ev_...</code></pre></div>
+</li>
+<li>
+<p>Notice the separation: investigators gather read-only evidence; later, if policy allows it, the Executor performs
+<code>act_*</code> tools. The trace shows both as spans, but the identities and allowlists differ.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Force tool failures</span></div><div class="box-body"><ol>
+<li>
+<p>Start from a clean baseline, then force every tool handler to fail transiently:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set tool_error_rate 1
+sp scenarios drop volume_drop --process
+sp incidents list --limit 3
+sp trace inc_mumhtb4faaf1b2
+sp chaos clear</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>chaos.tool_error_rate = 1
+| id      | status    | severity | dataset     | root_cause |
+|---------+-----------+----------+-------------+------------|
+| inc_... | escalated | critical | sales_daily | unknown    |
+
+execute_tool get_volume_history name=get_volume_history
+execute_tool get_check_results name=get_check_results
+execute_tool get_profile_comparison name=get_profile_comparison</code></pre></div>
+</li>
+</ol>
+<p>With tool results unavailable, investigators have weak evidence and the Supervisor may abstain or escalate instead of
+pretending. That is the correct failure mode: no evidence, no confident action.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Open-world tools need extra suspicion</span></div><div class="box-body"><p>Tools with <code>open_world=True</code>, such as notifications, can reach outside the system if not constrained. SwarmPipe keeps
+recipients as handles (<code>owner</code>, <code>source_owner</code>, <code>security</code>, <code>oncall</code>) and resolves them in the Executor; URL egress is
+allowlisted. Tool annotations alone would not be enough.</p>
+</div></div>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>What actually prevents an investigator from calling <code>act_force_publish</code>?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The model probably knows not to</button></li><li><button type="button" class="opt" data-correct="true">The gateway checks the agent's tool allowlist and identity scope</button></li><li><button type="button" class="opt" data-correct="false">The dashboard hides the button</button></li></ul><div class="q-explain" hidden>Security is enforced server-side in <code>ToolGateway.call</code>, not by model intent or UI hints.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why does every successful tool result get an evidence id?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">To make ids longer</button></li><li><button type="button" class="opt" data-correct="true">To give agents and auditors a stable citation target</button></li><li><button type="button" class="opt" data-correct="false">To bypass schema validation</button></li></ul><div class="q-explain" hidden>Evidence ids are the basis for grounded findings, diagnoses and evidence packs.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What are <code>readOnlyHint</code> and <code>destructiveHint</code>?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Security controls</button></li><li><button type="button" class="opt" data-correct="true">UI/client annotations that describe expected behavior</button></li><li><button type="button" class="opt" data-correct="false">Database permissions</button></li></ul><div class="q-explain" hidden>Annotations help clients, but authorization is enforced separately.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What should happen when tool failures remove the evidence needed for a diagnosis?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The model should guess</button></li><li><button type="button" class="opt" data-correct="true">The system should degrade, abstain or escalate</button></li><li><button type="button" class="opt" data-correct="false">The batch should be force-published</button></li></ul><div class="q-explain" hidden>Production systems must prefer uncertainty over unsupported action.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What does a tool fingerprint protect against?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Slow model calls</button></li><li><button type="button" class="opt" data-correct="true">Silent drift in a tool contract after approval</button></li><li><button type="button" class="opt" data-correct="false">Duplicate files</button></li></ul><div class="q-explain" hidden>If the approved schema or scope changes, the gateway returns <code>TOOL_NOT_APPROVED</code>.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Tools are typed contracts, not arbitrary functions exposed to a model.</li>
+<li>Tool annotations are helpful hints; allowlists, scopes, policy and gateway checks are security.</li>
+<li>Read tools and action tools are separated, and only the Executor holds <code>act_*</code> tools.</li>
+<li>Untrusted tool output stays labeled untrusted and receives evidence ids for grounding.</li>
+<li>Stable error codes, tool fingerprints and rogue-agent suspension make tool failure and drift operable.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="04-tools-and-gateway"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="03-prompts-models-gateway.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 3 &middot; Prompts, models and the model gateway</span></a><a class="next" href="05-ingestion.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 5 &middot; Ingestion: watched folders, readers and admission control</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#what-a-tool-contract-contains">What a tool contract contains</a></li><li class="h2"><a href="#annotations-are-not-security">Annotations are not security</a></li><li class="h2"><a href="#allowlists-scopes-and-privilege-separation">Allowlists, scopes and privilege separation</a></li><li class="h2"><a href="#the-tool-gateway-pipeline">The tool gateway pipeline</a></li><li class="h2"><a href="#untrusted-output-and-evidence-ids">Untrusted output and evidence ids</a></li><li class="h2"><a href="#read-tools-versus-action-tools">Read tools versus action tools</a></li><li class="h2"><a href="#hands-on-inspect-tool-contracts-and-evidence">Hands-on: inspect tool contracts and evidence</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

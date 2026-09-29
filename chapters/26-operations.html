@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 26: Operating an agent platform day to day · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="26-operations" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations" class="current" aria-current="page"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="26-operations">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VII &middot; Observability, cost and operations</div>
+<h1><span class="num">Chapter 26</span>Operating an agent platform day to day</h1>
+<div class="meta"><span class="chip">&#9201; 50 min</span><span class="chip">Level: Intermediate → Advanced</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Runbooks, health and readiness, SLO breaches, dead letters, retention and backups, safe model and prompt upgrades, freeze windows, and what changes at real scale.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Run daily health and readiness checks for SwarmPipe without confusing liveness with readiness</li><li>Use SLO breaches, traces, metrics and scheduler monitors as operational signals</li><li>Handle dead letters, redrive, retention and online backup safely</li><li>Roll out prompt and model changes through eval, shadow, canary and GA gates</li><li>Respond to incidents caused by an AI action, including freeze windows and rollback</li></ul></div>
+<p>The hard part of an agent platform is not starting it. The hard part is trusting it on a boring Tuesday after a model provider slows down, a malformed file lands, a prompt was edited, and an approval is waiting while the on-call engineer is in another tab. Operations is the discipline that turns all of the architecture you have built into daily habits: check health, watch error budgets, contain bad work, keep audit evidence, and change the system only through gates.</p>
+<p>SwarmPipe's operations runbook in <code>docs/OPERATIONS_RUNBOOK.md</code> is short on purpose. It names the signals operators actually use, the commands that act on them, and the places where an agentic system differs from a normal data pipeline. This chapter turns that runbook into procedures you can practice.</p>
+<h2 id="the-daily-operating-loop">The daily operating loop</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Operations runbook</span></div><div class="box-body"><p>A runbook is the practiced answer to &quot;what do I do now?&quot; It should name the signal, the likely meaning, the first checks, the safe containment action, and the handoff or rollback path.</p>
+</div></div>
+<p>A useful daily loop starts with the platform, not the model. You want to know whether the system is alive, whether it can do work, whether work is stuck, and whether automatic actions are still inside policy.</p>
+<figure class="diagram"><div class="flow vertical"><div class="node"><div class="node-t">Liveness</div><div class="node-s"><code>GET /healthz</code>: is the API process answering?</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Readiness</div><div class="node-s"><code>GET /readyz</code>: are runtime threads present, and is the schema readable?</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Queue and runs</div><div class="node-s"><code>sp status</code>, <code>sp runs list --status running</code>, <code>sp runs list --status waiting</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">SLOs</div><div class="node-s"><code>sp slo</code>, plus <code>slo_breach</code> signals from the scheduler</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Approvals and actions</div><div class="node-s"><code>sp approvals list</code>, dashboard <strong>Approvals</strong>, MCP <code>list_pending_approvals</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">DLQ and audit</div><div class="node-s"><code>sp dlq list</code>, <code>sp audit verify</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Models and cost</div><div class="node-s"><code>sp llm status</code>, dashboard <strong>Cost &amp; Metrics</strong></div></div></div><figcaption>Daily SwarmPipe checks</figcaption></figure>
+<p>Health and readiness are deliberately different. <code>/healthz</code> returns <code>{&quot;ok&quot;: true}</code> when the API can answer. It does not prove that watchers, workers, the dispatcher or the scheduler are running. <code>/readyz</code> returns a readiness shape with <code>ready</code>, <code>threads</code> and <code>schema_version</code>; with a real runtime it reports the live thread names, and in a TestClient-only check it is ready because there is no separate runtime to inspect.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Health and readiness</span></div><div class="box-body"><p><code>/healthz</code> and <code>/readyz</code> live in <code>swarmpipe/web/api.py</code>. The scheduler monitors live in <code>swarmpipe/runtime/scheduler.py</code>: <code>reaper</code>, <code>freshness</code>, <code>out_of_band</code>, <code>approvals_expiry</code>, <code>autonomy_review</code>, <code>slo</code>, <code>memory_expiry</code> and <code>retention</code>.</p>
+</div></div>
+<p><code>Scheduler.slo</code> is the bridge to <a href="23-observability.html">Chapter 23</a>: SLOs are not dashboard decorations. When enough runs exist and an SLI falls below its objective, the scheduler raises a <code>slo_breach</code> signal. Treat that as a symptom, not a root cause. Inspect <code>sp trace &lt;ident&gt;</code>, model latency, queue depth, breaker state and recent dead letters before changing policy.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/runtime/scheduler.py</span>
+class Scheduler:
+    def __init__(self, svc):
+        self.svc = svc
+        self.tasks = [(&quot;reaper&quot;, 5, self.reaper), (&quot;freshness&quot;, 20, self.freshness),
+                      (&quot;out_of_band&quot;, 30, self.out_of_band),
+                      (&quot;approvals_expiry&quot;, 30, self.approvals_expiry),
+                      (&quot;autonomy_review&quot;, 60, self.autonomy_review),
+                      (&quot;slo&quot;, 30, self.slo), (&quot;memory_expiry&quot;, 3600, self.memory_expiry),
+                      (&quot;retention&quot;, 3600, self.retention)]</code></pre></div>
+<h2 id="dead-letters-and-redrive">Dead letters and redrive</h2>
+<p>A dead letter is a file or event that cannot be processed safely after the normal retries. It should stop moving forward, preserve evidence, and become an operational item.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Dead-letter queue</span></div><div class="box-body"><p>A dead-letter queue (DLQ) is where SwarmPipe parks work that failed permanently. Redrive means moving that work back to the inbox or queue after the cause has been understood and fixed.</p>
+</div></div>
+<p>SwarmPipe exposes two redrive paths. <code>sp dlq redrive &lt;dlq_id&gt;</code> moves a dead-lettered file from <code>data/dlq/&lt;tenant&gt;/</code> back into the watched inbox. <code>sp runs redrive &lt;run_id&gt;</code> requeues a failed or dead-lettered durable run. Redrive is not &quot;try random things until it passes&quot;. For malformed files, fix the source or ask for a resend first; otherwise you simply re-create the same DLQ entry.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">DLQ implementation</span></div><div class="box-body"><p>The file workflow's failure path is in <code>swarmpipe/runtime/workflows.py</code>; CLI listing and redrive are in <code>swarmpipe/cli.py</code> <code>dlq_list</code> and <code>dlq_redrive</code>. Durable run redrive is in <code>swarmpipe/runtime/engine.py</code> <code>redrive</code>.</p>
+</div></div>
+<h2 id="retention-backup-and-audit">Retention, backup and audit</h2>
+<p>Telemetry is disposable; audit is not. SwarmPipe's retention task deletes old spans, metric points, tool-call rows, stale cache entries, old events and leftover processing directories. It does not purge the hash-chained audit log. That split matters: traces answer &quot;why was this slow?&quot;; audit answers &quot;who or what acted, for whom, under which policy, with what evidence?&quot;</p>
+<p><code>sp maintenance backup</code> uses SQLite's online backup API for the state and warehouse databases, so it is safe while the system is running. <code>sp maintenance retention</code> runs the same cleanup that the scheduler runs hourly.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Do not back up only the warehouse</span></div><div class="box-body"><p>For incident response, the state database is as important as the data tables. It contains runs, steps, evidence ids, approvals, proposals, audit rows and prompt/model versions. A warehouse-only backup cannot prove why an agent acted.</p>
+</div></div>
+<h2 id="safe-prompt-and-model-upgrades">Safe prompt and model upgrades</h2>
+<p>A prompt or model change is a production change. It can alter diagnosis, action selection, citations, safety behavior and cost. The safe sequence is:</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Eval</div><div class="node-s"><code>sp evals gate</code> must pass for the working tree</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Lock</div><div class="node-s">prompts require <code>sp evals gate --update-lock</code> before runtime accepts new hashes</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Shadow</div><div class="node-s">candidate prompt/model runs next to production and records agreement</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Canary</div><div class="node-s">limited role, tenant or action class; watch feedback and verification</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">GA</div><div class="node-s">broaden only after evidence, with rollback and kill switch ready</div></div></div><figcaption>Rollout path for model and prompt changes</figcaption></figure>
+<p>The prompt lock is the most concrete control from <a href="18-ci-gates-certification.html">Chapter 18</a>. A running server refuses unapproved prompt hashes; approved prompts hot-reload within seconds. A new model should be certified per role with <code>sp evals certify --model &lt;id&gt; --roles &lt;roles&gt;</code> before routing real work to it. Industry practice at larger scale is to add automated canary cohorts, model cards, release tickets and post-deploy monitors. SwarmPipe shows the mechanics locally.</p>
+<h2 id="runtime-flags-feature-flags-and-freeze-windows">Runtime flags, feature flags and freeze windows</h2>
+<p><code>sp chaos show</code> lists runtime flags recorded in the state database. Many are chaos knobs such as <code>chaos.llm_timeout_rate</code>; some are feature or policy toggles such as <code>feature.critic_review</code>, <code>guardrails.spotlighting</code>, <code>llm.active_profile</code> and <code>policy.freeze_window</code>.</p>
+<p>Freeze windows are policy, not scheduling. When <code>policy.freeze_window</code> is true, medium, high and critical actions are escalated to approval by the <code>freeze-window</code> rule in <code>config/policies.yaml</code>. Detection and quarantine still run. Low-risk notifications can still proceed. That is exactly what you want during month-end close or an active incident: collect facts and contain damage, but do not let agents mutate important state without a human.</p>
+<p>One subtlety: <code>sp chaos clear</code> clears <code>chaos.</code>, <code>feature.</code> and <code>guardrails.</code> flags and resets the business clock. It does not clear <code>policy.freeze_window</code>. Turn the freeze flag off explicitly with <code>sp chaos set policy.freeze_window false</code>.</p>
+<h2 id="if-an-ai-action-caused-the-incident">If an AI action caused the incident</h2>
+<p>Agentic operations needs one extra page in the runbook: what if the agent caused the problem? Do not argue with the model. Contain the action path first.</p>
+<ol>
+<li>Engage the narrowest kill switch that stops more damage: <code>sp killswitch on --scope action:&lt;class&gt; --reason &quot;...&quot; --as oncall</code>, or global if the class is unclear.</li>
+<li>Roll back the proposal with <code>sp actions rollback &lt;proposal_id&gt; --as oncall</code> when a compensation exists.</li>
+<li>Verify ground truth: dataset view target, hold flags, notifications, checksums and incident status.</li>
+<li>Export evidence with <code>sp evidence &lt;incident_id&gt;</code> and keep the audit chain intact.</li>
+<li>Feed the case into the eval flywheel with <code>sp evals harvest</code>, then tighten <code>config/policies.yaml</code> or the prompt/model gate.</li>
+</ol>
+<p>This is where <a href="22-audit-evidence.html">Chapter 22</a> and <a href="21-policy-autonomy.html">Chapter 21</a> pay off. The rollback and verification are deterministic; the autonomy ladder can demote an action class after a rollback or verification failure.</p>
+<h2 id="on-call-ergonomics">On-call ergonomics</h2>
+<p>A good on-call surface lets a tired human make the right decision quickly. SwarmPipe has three equivalent approval surfaces: dashboard <strong>Approvals</strong>, CLI <code>sp approvals list</code> / <code>sp approvals approve</code>, and MCP <code>list_pending_approvals</code> / <code>decide_approval</code>. High-risk approvals still require typed confirmation even through MCP, because MCP annotations are hints, not authorization.</p>
+<p>Approvals should show the diagnosis, confidence, citations, action parameters, policy reasons and blast radius. They should not require the approver to read raw logs. If the evidence is insufficient, reject or leave the approval pending and let expiry resume the run through the escalation path.</p>
+<h2 id="what-changes-at-real-scale">What changes at real scale</h2>
+<p>SwarmPipe is intentionally local. At real scale the shape stays the same, but the substrates change.</p>
+<table>
+<thead>
+<tr>
+<th>Local SwarmPipe</th>
+<th>Real-scale replacement</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite state DB</td>
+<td>Postgres or another transactional state store</td>
+<td>multi-node concurrency, backups, access control</td>
+</tr>
+<tr>
+<td>SQLite event outbox</td>
+<td>Kafka, Service Bus or another broker</td>
+<td>durable fan-out and independent consumers</td>
+</tr>
+<tr>
+<td>Visible Python engine</td>
+<td>Temporal, Durable Functions or a similar durable-execution engine</td>
+<td>proven retries, timers, history and workers</td>
+</tr>
+<tr>
+<td>JSONL spans and in-process metrics</td>
+<td>OpenTelemetry collector plus metrics backend</td>
+<td>fleet-wide sampling, retention and alerting</td>
+</tr>
+<tr>
+<td>Local HMAC key</td>
+<td>KMS or vault, OIDC workload identity</td>
+<td>key rotation, identity federation, audit</td>
+</tr>
+<tr>
+<td>Demo <code>X-User</code> header</td>
+<td>real OIDC user authentication</td>
+<td>trustworthy delegation and tenant access</td>
+</tr>
+</tbody>
+</table>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Health and readiness checks</span></div><div class="box-body"><ol>
+<li>
+<p>Start from a clean slate if needed, then load the baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+</li>
+<li>
+<p>With a server already running from your SwarmPipe folder, check the routes from a second PowerShell window:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Invoke-RestMethod http://127.0.0.1:8765/healthz | ConvertTo-Json -Compress
+Invoke-RestMethod http://127.0.0.1:8765/readyz | ConvertTo-Json -Compress</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&quot;ok&quot;:true}
+{&quot;ready&quot;:true,&quot;threads&quot;:[&quot;dispatcher&quot;,&quot;scheduler&quot;,&quot;watcher&quot;,&quot;worker-1&quot;,&quot;worker-2&quot;,&quot;worker-3&quot;,&quot;worker-4&quot;],&quot;schema_version&quot;:1}</code></pre></div>
+<p><code>threads</code> lists the runtime threads that are alive. If <code>/healthz</code> answers but <code>/readyz</code> is false or missing threads, the API is alive but the platform is not ready to process work.</p>
+</li>
+<li>
+<p>Open the dashboard <strong>Overview</strong> and <strong>Cost &amp; Metrics</strong> tabs. Look for queue depth, SLO cards, breaker state and recent signals.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Backup, retention and the DLQ drill</span></div><div class="box-body"><ol>
+<li>
+<p>After the baseline, run an online backup and retention task:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp maintenance backup
+sp maintenance retention</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>online backup written to C:\...\data\exports\backup-20260929-151547
+{
+  &quot;spans&quot;: 0,
+  &quot;metric_points&quot;: 0,
+  &quot;tool_calls&quot;: 0,
+  &quot;llm_cache&quot;: 0,
+  &quot;events&quot;: 0,
+  &quot;processing_dirs&quot;: 0
+}</code></pre></div>
+</li>
+<li>
+<p>Drop malformed inputs:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop malformed --process
+sp dlq list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into C:\...\data\inbox
+admitted 2 file(s); processed in 3.8s
+... ingest_file | dead_lettered | 2 ...
+| dlq_mum... | default | UNSUPPORTED | unsupported content: not a valid xlsx (zip) file | ... |
+| dlq_mum... | default | UNSUPPORTED | unsupported content: NUL bytes in a text file      | ... |</code></pre></div>
+</li>
+<li>
+<p>Redrive one entry only after deciding the cause is fixed or after asking for a clean resend:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp dlq redrive &lt;dlq_id&gt;
+sp dlq list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>moved back to C:\...\data\inbox\customers_broken.xlsx
+| dlq_mum... | default | UNSUPPORTED | unsupported content: not a valid xlsx (zip) file | ... | 2026-09-29T09:46:02.694+00:00 |</code></pre></div>
+<p>Dashboard check: <strong>Runs</strong> shows dead-lettered runs; <strong>Incidents</strong> shows the malformed-input incident; <strong>Governance</strong> and <strong>Cost &amp; Metrics</strong> show the audit and model cost of the triage.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Simulate a prompt-upgrade rollout</span></div><div class="box-body"><ol>
+<li>
+<p>Read the current prompt lock status:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp prompts list
+sp evals gate --k 2</code></pre></div>
+</li>
+<li>
+<p>For a real prompt change, work on a branch. The intended rollout is: edit the prompt, run <code>sp evals gate</code>, approve the hash with <code>sp evals gate --update-lock</code>, then run a shadow or canary period before GA.</p>
+</li>
+<li>
+<p>For a model change, certify the role before routing it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals certify --model llama3.2 --roles router</code></pre></div>
+<p>Use Chapter 25's warning here: a model that passes <code>router</code> can still be unsafe for <code>diagnoser</code>.</p>
+</li>
+<li>
+<p>Watch <strong>Evals</strong>, <strong>Cost &amp; Metrics</strong> and <strong>Incidents</strong> during the rollout. The signals you care about are agreement, false positives, citation validity, safety containment, latency and cost.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Freeze window during an incident</span></div><div class="box-body"><ol>
+<li>
+<p>Turn on a freeze window and drop a failure that would normally produce medium-risk remediation:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set policy.freeze_window true
+sp scenarios drop schema_drift --process
+sp approvals list</code></pre></div>
+</li>
+<li>
+<p>Observe that policy escalates medium, high and critical actions to approval. Detection, diagnosis, quarantine and evidence still happen.</p>
+</li>
+<li>
+<p>Clear it explicitly:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set policy.freeze_window false
+sp chaos show</code></pre></div>
+<p>Do not rely on <code>sp chaos clear</code> for this flag; <code>policy.freeze_window</code> remains <code>True</code> after <code>sp chaos clear</code>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>What does <code>/healthz</code> prove?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">The API process can answer a liveness request</button></li><li><button type="button" class="opt" data-correct="false">All workers are running and processing files</button></li><li><button type="button" class="opt" data-correct="false">The model provider is healthy</button></li></ul><div class="q-explain" hidden>Liveness is intentionally narrow. Use <code>/readyz</code>, <code>sp status</code>, <code>sp runs list</code> and SLO checks for readiness and work health.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why is a <code>slo_breach</code> signal useful but not enough by itself?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It always names the root cause</button></li><li><button type="button" class="opt" data-correct="true">It tells you a user-facing objective is burning, then traces and metrics help find why</button></li><li><button type="button" class="opt" data-correct="false">It automatically rolls back every dataset</button></li></ul><div class="q-explain" hidden>SLOs are symptom signals. The cause might be model latency, queue depth, dead letters, approvals or a bug.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Which command uses SQLite's online backup API?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false"><code>sp reset --yes</code></button></li><li><button type="button" class="opt" data-correct="true"><code>sp maintenance backup</code></button></li><li><button type="button" class="opt" data-correct="false"><code>sp audit export</code></button></li></ul><div class="q-explain" hidden>Online backup copies the state and warehouse databases safely while the system is running.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What should you do first if an AI action is causing damage?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Edit the prompt and hope the next run is better</button></li><li><button type="button" class="opt" data-correct="true">Contain the action path with the narrowest kill switch, then roll back and verify</button></li><li><button type="button" class="opt" data-correct="false">Delete audit rows that contain the bad decision</button></li></ul><div class="q-explain" hidden>Containment and evidence come before root-cause debate. Audit must stay intact.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What is the safe order for a prompt upgrade?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Eval, lock, shadow, canary, GA</button></li><li><button type="button" class="opt" data-correct="false">GA, observe, then write evals if something breaks</button></li><li><button type="button" class="opt" data-correct="false">Edit the prompt and restart the server</button></li></ul><div class="q-explain" hidden>Prompt changes are code changes. The lock ensures unapproved hashes are refused at runtime.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li><code>/healthz</code> is liveness; <code>/readyz</code>, SLOs, queues, approvals and DLQs tell you operational readiness.</li>
+<li>SLO breaches are signals from <a href="23-observability.html">Chapter 23</a>, not diagnoses. Follow traces, metrics and run state.</li>
+<li>Dead letters preserve unsafe work until a human understands the cause; redrive only after the cause is fixed.</li>
+<li>Telemetry can expire; audit and evidence packs must not.</li>
+<li>Prompt and model upgrades go through eval, lock or certification, shadow, canary and GA.</li>
+<li>Freeze windows escalate risky actions without disabling detection or quarantine.</li>
+<li>At real scale, keep the semantics but replace local substrates with Postgres, a broker, durable execution, an OTel collector, KMS/vault and OIDC.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="26-operations"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="25-model-strategy.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 25 &middot; Model strategy: simulated, local and hosted models</span></a><a class="next" href="27-capstone.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 27 &middot; Capstone: specify, build and ship an agent feature</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#the-daily-operating-loop">The daily operating loop</a></li><li class="h2"><a href="#dead-letters-and-redrive">Dead letters and redrive</a></li><li class="h2"><a href="#retention-backup-and-audit">Retention, backup and audit</a></li><li class="h2"><a href="#safe-prompt-and-model-upgrades">Safe prompt and model upgrades</a></li><li class="h2"><a href="#runtime-flags-feature-flags-and-freeze-windows">Runtime flags, feature flags and freeze windows</a></li><li class="h2"><a href="#if-an-ai-action-caused-the-incident">If an AI action caused the incident</a></li><li class="h2"><a href="#on-call-ergonomics">On-call ergonomics</a></li><li class="h2"><a href="#what-changes-at-real-scale">What changes at real scale</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

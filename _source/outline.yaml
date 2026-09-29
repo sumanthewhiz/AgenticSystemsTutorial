@@ -1,0 +1,247 @@
+title: "Production Agentic Systems, Hands-on"
+subtitle: "Every concept you need to build, run, evaluate and govern a production-grade multi-agent application, learned by running, breaking and fixing a real one: **SwarmPipe**."
+parts:
+  - id: start
+    label: "Part 0"
+    name: "Start here"
+    description: "Set up SwarmPipe, learn how the chapters work, and take a first tour."
+    chapters:
+      - slug: 00-welcome
+        title: "Welcome: how this tutorial works"
+        time: "25 min"
+        level: "Beginner"
+        summary: "What 'production-grade agentic' means, how every chapter is structured, and getting SwarmPipe running with your first file."
+        covers: ["what production-grade means", "chapter anatomy", "setup and the sp shortcut", "first run", "dashboard tour", "resetting safely"]
+
+  - id: foundations
+    label: "Part I"
+    name: "Foundations of agentic systems"
+    description: "What an agent actually is, the architecture of a real agentic application, and the two gateways every model and tool call goes through."
+    chapters:
+      - slug: 01-llm-to-agent
+        title: "From an LLM call to an agent"
+        time: "40 min"
+        level: "Beginner"
+        summary: "Build the mental model: prompts, structured outputs, tools and the agent loop, and why production systems put a deterministic skeleton around probabilistic steps."
+        covers: ["LLMs and prompts", "structured outputs", "tools and function calling", "the agent loop (ReAct)", "workflows vs agents", "deterministic skeleton, probabilistic steps", "deterministic fallbacks"]
+      - slug: 02-architecture-tour
+        title: "A guided tour of SwarmPipe's architecture"
+        time: "40 min"
+        level: "Beginner"
+        summary: "Follow one file end to end through durable workflows, 27 agents, two gateways, a warehouse and an incident, and learn the control-plane / data-plane split."
+        covers: ["end-to-end flow", "the five workflows", "the 27 agents by team", "control plane vs data plane", "composition root", "state DB vs warehouse", "event bus", "interfaces: CLI, dashboard, REST, MCP, A2A"]
+      - slug: 03-prompts-models-gateway
+        title: "Prompts, models and the model gateway"
+        time: "45 min"
+        level: "Beginner → Intermediate"
+        summary: "Treat prompts as versioned code, understand tokens and cost, and follow a model call through the gateway: quotas, budgets, guardrails, cache, breakers, retries, validation, repair and fallback."
+        covers: ["prompts as code (versions, lockfile)", "instructions vs data", "tokens and context windows", "typed outputs and validation", "repair loop", "model gateway pipeline", "routing per role", "LLM profiles and simulated models"]
+      - slug: 04-tools-and-gateway
+        title: "Tools, tool contracts and the tool gateway"
+        time: "40 min"
+        level: "Intermediate"
+        summary: "How agents touch the world safely: typed tool contracts, scopes and allowlists, read vs write tools, untrusted outputs, evidence ids, stable error codes and rogue-agent suspension."
+        covers: ["tool contracts and annotations", "scopes and per-agent allowlists", "read tools vs act tools", "privilege separation", "untrusted tool output", "evidence ids for citations", "stable error codes", "tool fingerprints", "rogue-agent suspension"]
+
+  - id: pipeline
+    label: "Part II"
+    name: "The data pipeline backbone"
+    description: "Agents are only as good as the data and plumbing underneath. Ingestion, contracts, quality checks, publishing and lineage."
+    chapters:
+      - slug: 05-ingestion
+        title: "Ingestion: watched folders, readers and admission control"
+        time: "40 min"
+        level: "Beginner → Intermediate"
+        summary: "Turn files dropped in a folder into durable work safely: stability detection, idempotent admission, backpressure, format and encoding sniffing, sheet fan-out, dead-letter queues and tenants."
+        covers: ["polling vs notifications", "file stability", "idempotent admission (content hashes)", "backpressure", "readers and sniffing", "multi-sheet fan-out", "quarantine and DLQ", "tenant sub-folders"]
+      - slug: 06-contracts-and-quality
+        title: "Data contracts, quality checks and the circuit breaker"
+        time: "50 min"
+        level: "Intermediate"
+        summary: "'Ended OK' is not 'correct'. Contracts as code, schema drift, typed transforms, the five data-health signals, the check catalogue, the circuit breaker, freshness SLAs and AI-assisted onboarding."
+        covers: ["data contracts as code", "schema drift", "typed transforms and row rejects", "five data-health signals", "quality checks and PSI drift", "circuit breaker and quarantine", "precision over coverage", "freshness SLAs and the business clock", "AI-authored contract proposals"]
+      - slug: 07-publishing-lineage
+        title: "Publishing, versioning, lineage and trusted context"
+        time: "45 min"
+        level: "Intermediate"
+        summary: "Immutable versions, blue/green publishing, snapshots and rollback, derived datasets and holds, OpenLineage, impact analysis, the context graph and out-of-band change detection."
+        covers: ["immutable versions", "blue/green publish", "snapshots and rollback", "derived datasets and holds", "OpenLineage events", "impact analysis and blast radius", "context graph", "out-of-band change detection"]
+
+  - id: swarm
+    label: "Part III"
+    name: "Multi-agent systems: the swarm"
+    description: "Why and how many agents cooperate: patterns, the full triage swarm, how agents communicate, and what goes into their context and memory."
+    chapters:
+      - slug: 08-why-multi-agent
+        title: "Why (and when) to use multiple agents"
+        time: "40 min"
+        level: "Intermediate"
+        summary: "The core multi-agent patterns (chaining, routing, fan-out, orchestrator-workers, evaluator-optimizer, blackboard), their costs, and when a single agent or plain code is the better answer."
+        covers: ["single vs multi-agent", "sequential handoff", "routing", "fan-out / fan-in", "orchestrator-workers", "evaluator-optimizer", "blackboard", "cost multiplier", "when not to use multi-agent"]
+      - slug: 09-triage-swarm
+        title: "The triage swarm, step by step"
+        time: "55 min"
+        level: "Intermediate"
+        summary: "Walk an incident from first signal to postmortem: correlation, specialist investigation, grounded diagnosis, impact, planning with a critic, governance, execution, verification and learning."
+        covers: ["signals and correlation", "supervisor and specialists", "grounded diagnosis", "abstention and escalation", "impact analysis", "planner + critic", "governed execution", "verification and compensation", "learning loop"]
+      - slug: 10-communication-protocols
+        title: "How agents talk: shared state, messages, A2A and MCP"
+        time: "45 min"
+        level: "Intermediate"
+        summary: "Blackboards vs messages, typed and signed inter-agent messages, agent cards and registries, the A2A protocol for agent-to-agent tasks and MCP for tools, and when to use which."
+        covers: ["shared state vs messages", "signed messages and route allowlists", "agent registry and agent cards", "A2A discovery and tasks", "MCP tools, resources and annotations", "MCP vs A2A"]
+      - slug: 11-context-memory
+        title: "Context engineering, grounding and memory"
+        time: "50 min"
+        level: "Intermediate"
+        summary: "Spend the context window deliberately, ground answers in cited evidence, retrieve with trust labels, and manage short-term, episodic and procedural memory without letting it be poisoned."
+        covers: ["context as a budget", "retrieval with trust labels", "citations and groundedness", "hallucinated citations", "memory types", "human-curated memory", "memory and knowledge poisoning"]
+
+  - id: reliability
+    label: "Part IV"
+    name: "Reliability engineering for agents"
+    description: "Agents run long, call flaky models and crash at the worst moment. Durable execution, model-layer resilience and a field guide to failure modes."
+    chapters:
+      - slug: 12-durable-execution
+        title: "Durable execution: checkpoints, leases, retries and sagas"
+        time: "50 min"
+        level: "Intermediate → Advanced"
+        summary: "Make multi-step agent workflows survive crashes and retries without double side effects: checkpoints, leases and heartbeats, backoff with jitter, idempotency keys, sagas and human waits."
+        covers: ["runs and steps", "checkpoints and recorded outputs", "leases, heartbeats and fencing", "retries with backoff and jitter", "timeouts and deferrals", "idempotency keys", "sagas and compensation", "waiting for humans"]
+      - slug: 13-model-resilience
+        title: "Resilience at the model layer"
+        time: "45 min"
+        level: "Intermediate"
+        summary: "Timeouts, rate limits, outages and malformed output: retries vs repairs, circuit breakers, bulkheads, fallback chains, caching, budgets and graceful degradation."
+        covers: ["model failure types", "retries vs repairs", "circuit breakers", "bulkheads", "fallback chains", "caching", "graceful degradation", "LLM kill switch"]
+      - slug: 14-failure-modes
+        title: "A field guide to agent failure modes"
+        time: "50 min"
+        level: "Intermediate → Advanced"
+        summary: "A taxonomy of how agentic systems fail (single-agent, multi-agent, systemic, data and infrastructure), with the signal that reveals each, the control that contains it, and a way to reproduce it in SwarmPipe."
+        covers: ["single-agent failures", "multi-agent failure families", "cascading failures", "runaway cost", "silent data failures", "infrastructure failures", "detection signals and controls"]
+
+  - id: evaluation
+    label: "Part V"
+    name: "Evaluation"
+    description: "You cannot ship what you cannot measure. Eval datasets and layers, reliability metrics, judges, red teaming and the CI gate."
+    chapters:
+      - slug: 15-eval-fundamentals
+        title: "Evaluation fundamentals"
+        time: "50 min"
+        level: "Intermediate"
+        summary: "Why evals are the main quality lever, how to build versioned eval datasets, which layers to measure (component, trajectory, outcome, safety, efficiency), and pass@k vs pass^k under non-determinism."
+        covers: ["offline vs online evals", "eval datasets", "component, trajectory, outcome, safety, efficiency", "isolated trials", "pass@k vs pass^k", "noise and non-determinism", "reading an eval report"]
+      - slug: 16-llm-judge
+        title: "LLM-as-judge and why it must be calibrated"
+        time: "40 min"
+        level: "Intermediate"
+        summary: "Use models to grade open-ended output, then prove the grader is trustworthy: rubrics, verbosity and position bias, agreement with humans (kappa, Spearman) and pairwise comparisons."
+        covers: ["when to use a judge", "rubric design", "verbosity and position bias", "agreement metrics (kappa, Spearman)", "pairwise judging", "judge versioning"]
+      - slug: 17-red-teaming
+        title: "Red teaming and safety evaluations"
+        time: "45 min"
+        level: "Intermediate → Advanced"
+        summary: "Attack your own system on purpose: adversarial datasets, containment vs model-fooled rates, defense ablation, multi-phase attacks and safety thresholds in the gate."
+        covers: ["adversarial datasets", "attack surfaces", "containment vs model-fooled", "defense ablation", "multi-phase attacks", "safety gates"]
+      - slug: 18-ci-gates-certification
+        title: "CI gates, change control and the eval flywheel"
+        time: "45 min"
+        level: "Intermediate → Advanced"
+        summary: "Gate every model, prompt, tool and policy change: thresholds, prompt locks, per-role model certification, shadow comparisons, human feedback and harvesting production incidents into regression cases."
+        covers: ["the CI gate", "prompt lock and approval", "per-role certification", "shadow comparisons", "human feedback", "harvesting incidents into evals", "change control"]
+
+  - id: governance
+    label: "Part VI"
+    name: "Security, identity and governance"
+    description: "Assume the model will be fooled and design so it does not matter: threat modeling, identity and data access, policy and autonomy, audit and kill switches."
+    chapters:
+      - slug: 19-threat-model
+        title: "Threat modeling agents: prompt injection and defense in depth"
+        time: "55 min"
+        level: "Intermediate → Advanced"
+        summary: "Direct and indirect prompt injection, the lethal trifecta, the OWASP LLM and Agentic Top 10, and a layered defense that contains an attack even when the model obeys it."
+        covers: ["direct vs indirect injection", "the lethal trifecta", "OWASP LLM Top 10 and Agentic Top 10", "spotlighting", "injection detection", "egress allowlists", "secret and PII protection", "sandboxed expressions"]
+      - slug: 20-identity-access
+        title: "Identity, delegation and governed data access"
+        time: "45 min"
+        level: "Intermediate → Advanced"
+        summary: "Agent, user and tool identities; acting on behalf of someone; scope intersection; short-lived credentials and secrets; tenant isolation; PII tokenization; and safe natural-language-to-SQL."
+        covers: ["workload vs user identity", "delegation (on behalf of)", "scope intersection", "secrets broker", "tenant isolation", "PII tokenization vault", "safe NL-to-SQL"]
+      - slug: 21-policy-autonomy
+        title: "Policy-as-code, approvals and the autonomy ladder"
+        time: "50 min"
+        level: "Intermediate → Advanced"
+        summary: "Let agents act only through a catalog, decided by policy-as-code: risk tiers, escalations, durable human approvals, and an autonomy ladder that is earned with evidence and withdrawn automatically."
+        covers: ["action catalog", "risk tiers", "policy decisions and escalations", "durable approvals", "typed confirmation", "autonomy ladder L0-L4", "promotion and demotion", "one-click rollback"]
+      - slug: 22-audit-evidence
+        title: "Audit, evidence packs and kill switches"
+        time: "40 min"
+        level: "Intermediate"
+        summary: "Telemetry is not audit. A tamper-evident audit chain, evidence packs an auditor can trust, versions pinned for every decision, and kill switches for when it all goes wrong."
+        covers: ["telemetry vs audit", "hash-chained audit log", "evidence packs", "version pinning", "kill switch scopes", "AI-caused incident response"]
+
+  - id: operations
+    label: "Part VII"
+    name: "Observability, cost and operations"
+    description: "Run it for real: traces and SLOs, cost and capacity, model strategy, and the day-to-day operations of an agent platform."
+    chapters:
+      - slug: 23-observability
+        title: "Observability: traces, metrics, logs and SLOs"
+        time: "45 min"
+        level: "Intermediate"
+        summary: "One trace across every agent, GenAI semantic conventions, sampling, Prometheus metrics, correlated structured logs, and SLOs with error budgets for the pipeline itself."
+        covers: ["traces and spans", "OpenTelemetry GenAI conventions", "sampling", "metrics", "structured logs with correlation ids", "SLOs and error budgets", "what to alert on"]
+      - slug: 24-cost-capacity
+        title: "Cost, latency and capacity"
+        time: "40 min"
+        level: "Intermediate"
+        summary: "Token economics, cost per incident, agent and tenant, routing small vs large models, caching, per-run budgets, tenant quotas, latency budgets and concurrency limits."
+        covers: ["token economics", "cost attribution", "model routing", "caching", "per-run budgets", "tenant quotas", "latency and concurrency"]
+      - slug: 25-model-strategy
+        title: "Model strategy: simulated, local and hosted models"
+        time: "40 min"
+        level: "Intermediate"
+        summary: "SaaS vs self-hosted vs bring-your-own-model, choosing a model per role, certifying a model before trusting it, and what real models do that simulated ones do not."
+        covers: ["SaaS vs self-hosted vs BYOM", "per-role model selection", "certification before trust", "real-model behavior", "fallback and degradation"]
+      - slug: 26-operations
+        title: "Operating an agent platform day to day"
+        time: "50 min"
+        level: "Intermediate → Advanced"
+        summary: "Runbooks, health and readiness, SLO breaches, dead letters, retention and backups, safe model and prompt upgrades, freeze windows, and what changes at real scale."
+        covers: ["operations runbook", "health vs readiness", "DLQ handling", "retention and backup", "safe upgrades (shadow, canary)", "runtime flags and freeze windows", "what changes at scale"]
+
+  - id: capstone
+    label: "Part VIII"
+    name: "Putting it all together"
+    description: "Specify, build, evaluate and ship a new agent capability end to end."
+    chapters:
+      - slug: 27-capstone
+        title: "Capstone: specify, build and ship an agent feature"
+        time: "90 min"
+        level: "Advanced"
+        summary: "Write an AI feature PRD with an eval spec, walk a production-readiness checklist, then extend SwarmPipe with a new scenario, check, specialist and governed action, and ship it through the gate."
+        covers: ["AI feature PRD", "eval spec", "production-readiness checklist", "extending SwarmPipe", "shipping through the gate"]
+
+  - id: appendix
+    label: "Appendices"
+    name: "Reference"
+    appendix: true
+    description: "Look things up quickly."
+    chapters:
+      - slug: glossary
+        title: "Glossary"
+        summary: "Plain-language definitions of every term used in the tutorial, each linked to the chapter that teaches it."
+        covers: ["definitions", "links to chapters"]
+      - slug: cheatsheet
+        title: "Command cheat sheet"
+        summary: "Every SwarmPipe command, scenario, runtime flag and dashboard tab on one page."
+        covers: ["all commands", "scenarios", "runtime flags", "dashboard tabs"]
+      - slug: concept-map
+        title: "Concept → code map"
+        summary: "Where each concept lives in SwarmPipe's code, how to see it, and which chapter teaches it."
+        covers: ["concept to file", "concept to chapter"]
+      - slug: further-reading
+        title: "Further reading"
+        summary: "The public specifications, papers and guides behind the ideas in this tutorial."
+        covers: ["specifications", "papers", "guides"]

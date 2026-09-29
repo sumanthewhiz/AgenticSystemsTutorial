@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 13: Resilience at the model layer · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="13-model-resilience" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience" class="current" aria-current="page"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="13-model-resilience">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part IV &middot; Reliability engineering for agents</div>
+<h1><span class="num">Chapter 13</span>Resilience at the model layer</h1>
+<div class="meta"><span class="chip">&#9201; 45 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Timeouts, rate limits, outages and malformed output: retries vs repairs, circuit breakers, bulkheads, fallback chains, caching, budgets and graceful degradation.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Classify model-layer failures: timeouts, rate limits, outages, malformed output and wrong answers</li><li>Explain retries, structured-output repairs, circuit breakers, bulkheads, fallback chains and caching</li><li>Use <code>sp llm status</code>, <code>sp metrics</code>, chaos scenarios and the LLM kill switch to observe resilience controls</li><li>Describe how SwarmPipe degrades to deterministic fallbacks and marks outputs as degraded</li><li>Explain why model resilience is separate from data correctness and policy safety</li></ul></div>
+<p>Models fail differently from databases in production. A database usually returns rows or an error. A model can time out, return a
+429, return half a JSON object, confidently cite evidence that does not exist, or be wrong in fluent prose. A
+production agentic system must treat the model as a useful but unreliable dependency.</p>
+<p>SwarmPipe puts every model call through one gateway. That gateway retries transports, repairs malformed structured
+output, opens circuit breakers, falls back across a per-role model chain, caches deterministic calls, enforces budgets
+and raises <code>LLMUnavailable</code> when no route can answer. Agents then degrade to deterministic fallbacks instead of
+breaking the pipeline.</p>
+<h2 id="model-failures-are-not-one-thing">Model failures are not one thing</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Model-layer resilience</span></div><div class="box-body"><p>The controls around model calls that keep an agentic application safe and useful when a model is slow, overloaded,
+unavailable, malformed or confidently wrong.</p>
+</div></div>
+<p>The main failure classes are:</p>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Symptom</th>
+<th>Correct response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timeout</td>
+<td>no answer before the deadline</td>
+<td>retry with backoff; eventually open the breaker</td>
+</tr>
+<tr>
+<td>429 rate limit</td>
+<td>provider says slow down</td>
+<td>honor <code>retry_after</code> when present; otherwise back off</td>
+</tr>
+<tr>
+<td>5xx or outage</td>
+<td>provider unavailable</td>
+<td>retry briefly, open breaker, try fallback model</td>
+</tr>
+<tr>
+<td>Malformed output</td>
+<td>invalid JSON or schema mismatch</td>
+<td>structured-output repair, then fallback</td>
+</tr>
+<tr>
+<td>Confidently wrong answer</td>
+<td>valid shape, wrong facts</td>
+<td>grounding, verification, evals and deterministic circuit breakers</td>
+</tr>
+</tbody>
+</table>
+<p>Retries and repairs are separate. A retry asks the same or next model again after a transport failure. A repair gives
+the model its invalid output and asks it to return one JSON object matching the schema. SwarmPipe counts them
+separately: <code>llm_calls_total</code> for calls, <code>llm_repairs_total</code> for schema repairs, <code>llm_fallbacks_total</code> for route
+fallbacks and <code>llm_unavailable_total</code> when every route fails.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Agent request</div><div class="node-s">role, prompt, schema, tenant and run id</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Limits and guards</div><div class="node-s">kill switch, quotas, run budget, PII and secret checks</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Cache and compaction</div><div class="node-s">deterministic cache, context window trimming</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Route chain</div><div class="node-s">model A, then model B, per role</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Per-model controls</div><div class="node-s">breaker, bulkhead, retries, repair loop</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Agent fallback</div><div class="node-s"><code>LLMUnavailable</code> becomes deterministic degraded output</div></div></div><figcaption>Model gateway path</figcaption></figure>
+<h2 id="circuit-breakers-bulkheads-and-fallback-chains">Circuit breakers, bulkheads and fallback chains</h2>
+<p>A circuit breaker stops hammering a dependency that is already failing. SwarmPipe's <code>CircuitBreaker</code> has the standard
+states: <code>closed</code>, <code>open</code> and <code>half_open</code>. In <code>closed</code>, calls flow. After enough failures, the breaker moves to <code>open</code>
+and calls are skipped. After a cooldown, one half-open probe is allowed; success closes the breaker, failure opens it
+again. Breaker openings increment <code>llm_breaker_open_total</code>, and <code>sp llm status</code> shows the breaker snapshot.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Bulkhead</span></div><div class="box-body"><p>A concurrency boundary that keeps one slow dependency from consuming all worker capacity. SwarmPipe uses
+<code>ModelGateway.bulkhead</code>, a bounded semaphore sized by <code>engine.llm_concurrency</code>.</p>
+</div></div>
+<p>Fallback chains are per role. In the offline profile, <code>diagnoser</code>, <code>planner</code>, <code>steward</code> and <code>analyst</code> route through
+<code>sim-large</code> then <code>sim-small</code>, while the <code>default</code> role uses <code>sim-small</code>. If <code>sim-large</code> is down, the gateway can serve
+the call from <code>sim-small</code> and increment <code>llm_fallbacks_total</code>.</p>
+<p>Caching is another resilience lever. Deterministic, cacheable, temperature-zero calls are keyed by normalized
+messages, the first model in the route and the schema. Hits increment <code>llm_cache_hits_total</code>. The runtime flag
+<code>llm.cache_disabled</code> disables that cache when you need to study raw model behavior.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Where it lives</span></div><div class="box-body"><p>The gateway is <code>swarmpipe/llm/gateway.py</code>. The simulated model and chaos knobs are in <code>swarmpipe/llm/mock.py</code>.
+Agents catch <code>DEGRADE_ERRORS</code> from <code>swarmpipe/agents/base.py</code>. The LLM kill switch is implemented by
+<code>swarmpipe/governance/killswitch.py</code> and checked in <code>ModelGateway._check_limits</code>.</p>
+</div></div>
+<p>From <code>swarmpipe/llm/gateway.py</code>:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>if not self.breaker.allow(model_id):
+    errors.append(f&quot;{model_id}: circuit open&quot;)
+    span.event(&quot;circuit_open_skip&quot;, model=model_id)
+    continue
+...
+if repairs &gt;= s.max_repairs:
+    errors.append(f&quot;{model_id}: invalid output after {repairs} repairs&quot;)
+    self.breaker.failure(model_id)
+    return None</code></pre></div>
+<p>From <code>swarmpipe/agents/base.py</code>:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>DEGRADE_ERRORS = (LLMUnavailable, BudgetExceeded, QuotaExceeded, KillSwitchEngaged, GuardrailViolation)</code></pre></div>
+<p>Each LLM-backed agent catches those errors and returns a deterministic fallback with <code>degraded: true</code> where the output
+shape supports it.</p>
+<h2 id="graceful-degradation-is-not-pretending-nothing-happened">Graceful degradation is not pretending nothing happened</h2>
+<p>Graceful degradation means the system keeps the deterministic safety properties even when advice quality drops.
+SwarmPipe's Router falls back to sniffing, the Profiler falls back to deterministic profiling and glossary matching,
+the Triage Supervisor can vote over specialist findings, and the Planner can fall back to safe owner notification.
+Those outputs carry <code>degraded</code> so operators and downstream code know the answer came from a fallback.</p>
+<p>The most important boundary is this: model resilience does not replace data quality checks. When all models are down,
+the <code>volume_drop</code> file is still quarantined because <code>Data Assurance</code> is deterministic. The incident diagnosis may
+have lower confidence and abstain, but the bad data still does not publish.</p>
+<p>Per-run budgets and tenant quotas are covered in <a href="24-cost-capacity.html">Chapter 24</a>. This chapter only needs the
+operational consequence: quota and budget failures are part of <code>DEGRADE_ERRORS</code>, so agents degrade instead of
+spending past the budget.</p>
+<h2 id="hands-on-read-the-route-and-use-the-llm-kill-switch">Hands-on: read the route and use the LLM kill switch</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 1 - Inspect routes, breakers and the LLM kill switch</span></div><div class="box-body"><ol>
+<li>
+<p>Start from a baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp llm status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;active_profile&quot;: &quot;offline&quot;,
+  &quot;routes&quot;: {
+    &quot;diagnoser&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;],
+    &quot;planner&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;],
+    &quot;default&quot;: [&quot;sim-small&quot;],
+    ...
+  },
+  &quot;breakers&quot;: {},
+  &quot;models&quot;: {
+    &quot;sim-small&quot;: {&quot;provider&quot;: &quot;mock&quot;, &quot;tier&quot;: &quot;small&quot;, ...},
+    &quot;sim-large&quot;: {&quot;provider&quot;: &quot;mock&quot;, &quot;tier&quot;: &quot;large&quot;, ...}
+  }
+}</code></pre></div>
+</li>
+<li>
+<p>Engage and release only the model layer:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp killswitch on --scope llm --reason &quot;lab test&quot; --as oncall
+sp status
+sp killswitch off --scope llm --reason &quot;lab done&quot; --as oncall</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>kill switch llm -&gt; on
+LLM: 15 calls, $0.00339, 16716 tokens | profile offline | kill switches: [&#x27;llm&#x27;] | inbox: ...\data\inbox
+kill switch llm -&gt; off</code></pre></div>
+<p>The accepted states are <code>on</code> and <code>off</code>. The exact scope for model calls is <code>llm</code>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 2 - Flaky model: retries, repairs and fallback counters</span></div><div class="box-body"><ol>
+<li>
+<p>Use the verified chaos scenario:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop flaky_llm --process
+sp llm status
+sp incidents list --limit 3
+sp metrics</code></pre></div>
+</li>
+<li>
+<p>Expected shape:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 12.3s
+| workflow       | status      | n |
+| ingest_dataset | quarantined | 1 |
+| triage         | succeeded   | 2 |
+...
+| id                 | status    | severity | dataset     | root_cause            |
+| inc_mum...         | mitigated | high     | sales_daily | unit_or_scale_change  |
+...
+| llm_fallbacks_total | 1 | 1.0 | ... |
+| llm_repairs_total   | 1 | 1.0 | ... |</code></pre></div>
+<p><code>flaky_llm</code> combines timeouts, malformed output and a <code>unit_change</code> file. In the verified run, the repair loop and
+a fallback both fired, yet the failed batch stayed quarantined and the incident was mitigated.</p>
+</li>
+<li>
+<p>Clear chaos before the next experiment:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos clear</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>cleared 1 flags and reset the clock offset</code></pre></div>
+</li>
+</ol>
+</div></div>
+<h2 id="hands-on-outage-and-deterministic-degradation">Hands-on: outage and deterministic degradation</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 3 - All models down, bad data still quarantined</span></div><div class="box-body"><ol>
+<li>
+<p>Reset, create the baseline, then take both simulated models down:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp chaos set llm_outage_models &#x27;[&quot;sim-large&quot;,&quot;sim-small&quot;]&#x27;
+sp chaos show
+sp scenarios drop volume_drop --process</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>chaos.llm_outage_models = [&quot;sim-large&quot;,&quot;sim-small&quot;]
+| chaos.llm_outage_models | [&#x27;sim-large&#x27;, &#x27;sim-small&#x27;] | [] |
+dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 11.5s
+| workflow       | status      | n |
+| ingest_dataset | quarantined | 1 |
+| triage         | succeeded   | 2 |</code></pre></div>
+</li>
+<li>
+<p>Open the <strong>Runs</strong> tab and the latest <code>triage</code> run, or use <code>sp runs show &lt;triage-run-id&gt;</code>. In the verified run the
+<code>diagnose</code> output contained:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>&quot;root_cause_category&quot;: &quot;truncated_extract&quot;,
+&quot;summary&quot;: &quot;(deterministic fallback: LLMUnavailable) majority of specialist findings&quot;,
+&quot;confidence&quot;: 0.45,
+&quot;model&quot;: null,
+&quot;degraded&quot;: true,
+&quot;grounded&quot;: false</code></pre></div>
+</li>
+<li>
+<p>Check the incident and datasets. The diagnosis is lower confidence and escalated, but <code>sales_daily</code> did not
+publish the 18-row batch:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id          | status    | severity | dataset     | root_cause        |
+| inc_mum...  | escalated | critical | sales_daily | truncated_extract |</code></pre></div>
+<p>This is the key production lesson: model outage degraded explanation quality, not the data circuit breaker.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Combine faults: all models down plus volume drop</span></div><div class="box-body"><p>The previous lab is the break-it experiment. With both <code>sim-large</code> and <code>sim-small</code> down, model-backed specialists
+produce deterministic degraded findings such as:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>&quot;stop_reason&quot;: &quot;degraded: LLMUnavailable&quot;,
+&quot;degraded&quot;: true,
+&quot;summary&quot;: &quot;(deterministic fallback, model unavailable) signal volume_anomaly usually means truncated_extract&quot;</code></pre></div>
+<p>Reason about the interaction: the triage swarm has weaker evidence, so it escalates; the data plane still quarantines
+because <code>row_count_min</code> and <code>volume_vs_baseline</code> are deterministic checks. If your production design cannot make that
+separation, a model outage can become a data outage.</p>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">A valid JSON answer can still be wrong</span></div><div class="box-body"><p>The repair loop proves shape, not truth. A wrong but schema-valid diagnosis is handled by grounding, citations,
+verification, evals and policy, not by JSON validation. Chapter <a href="15-eval-fundamentals.html">15</a> covers systematic
+measurement of those outcome failures.</p>
+</div></div>
+<p>At larger scale, use provider-specific retry policies, regional failover and hard cost controls. Keep breakers per
+model or deployment, not just per provider. Use bulkheads for model calls so slow hosted models do not starve local
+deterministic work. Keep fallback quality visible in the product: a degraded answer must look different from a
+normal answer.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>What is the difference between an LLM retry and an LLM repair?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">A retry handles transport/provider failure; a repair handles invalid structured output</button></li><li><button type="button" class="opt" data-correct="false">A repair is only for 429 errors</button></li><li><button type="button" class="opt" data-correct="false">A retry validates citations</button></li></ul><div class="q-explain" hidden>SwarmPipe counts repairs with <code>llm_repairs_total</code> and fallbacks/retries separately because they indicate different problems.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does an open circuit breaker do?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It makes the model more deterministic</button></li><li><button type="button" class="opt" data-correct="true">It skips calls to a failing model until the cooldown allows a half-open probe</button></li><li><button type="button" class="opt" data-correct="false">It disables all workflows</button></li></ul><div class="q-explain" hidden>The breaker protects both the provider and your workers from repeated calls to a dependency that is already failing.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Why did the all-models-down <code>volume_drop</code> still quarantine the file?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The model guessed correctly</button></li><li><button type="button" class="opt" data-correct="true">Data quality checks and the publish circuit breaker are deterministic</button></li><li><button type="button" class="opt" data-correct="false">The dashboard blocked the publish manually</button></li></ul><div class="q-explain" hidden>Model unavailability reduced diagnosis quality, but deterministic checks still protected consumers.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Which command engages only the model-layer kill switch?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false"><code>sp killswitch on --scope agent:llm</code></button></li><li><button type="button" class="opt" data-correct="true"><code>sp killswitch on --scope llm</code></button></li><li><button type="button" class="opt" data-correct="false"><code>sp llm use off</code></button></li></ul><div class="q-explain" hidden>The kill switch accepts <code>on|off</code> states and <code>llm</code> is the model gateway scope.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What does <code>llm.cache_disabled</code> affect?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Durable step checkpoints</button></li><li><button type="button" class="opt" data-correct="false">The event dispatcher</button></li><li><button type="button" class="opt" data-correct="true">The model gateway's deterministic response cache</button></li></ul><div class="q-explain" hidden>Disabling the LLM cache is useful when you want to observe raw model behavior during chaos tests.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Model failures include transport failures, malformed output and confidently wrong answers; each needs a different control.</li>
+<li>SwarmPipe's model gateway centralizes kill switches, quotas, budgets, guardrails, cache, breakers, bulkheads, retries, repairs and fallback chains.</li>
+<li>Circuit breakers are <code>closed -&gt; open -&gt; half_open -&gt; closed/open</code>; breaker openings increment <code>llm_breaker_open_total</code>.</li>
+<li>Agents catch <code>LLMUnavailable</code> and related errors and return deterministic degraded outputs instead of crashing workflows.</li>
+<li>Graceful degradation must be visible. <code>degraded: true</code> is part of the operational contract.</li>
+<li>Deterministic data checks and policy controls must still work when every model is down.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="13-model-resilience"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="12-durable-execution.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 12 &middot; Durable execution: checkpoints, leases, retries and sagas</span></a><a class="next" href="14-failure-modes.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 14 &middot; A field guide to agent failure modes</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#model-failures-are-not-one-thing">Model failures are not one thing</a></li><li class="h2"><a href="#circuit-breakers-bulkheads-and-fallback-chains">Circuit breakers, bulkheads and fallback chains</a></li><li class="h2"><a href="#graceful-degradation-is-not-pretending-nothing-happened">Graceful degradation is not pretending nothing happened</a></li><li class="h2"><a href="#hands-on-read-the-route-and-use-the-llm-kill-switch">Hands-on: read the route and use the LLM kill switch</a></li><li class="h2"><a href="#hands-on-outage-and-deterministic-degradation">Hands-on: outage and deterministic degradation</a></li><li class="h2"><a href="#production-notes">Production notes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

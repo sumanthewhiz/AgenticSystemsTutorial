@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appendix C: Concept → code map · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="concept-map" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map" class="current" aria-current="page"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="concept-map">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Appendices &middot; Reference</div>
+<h1><span class="num">Appendix C</span>Concept → code map</h1>
+<div class="meta"></div>
+<p class="lede">Where each concept lives in SwarmPipe's code, how to see it, and which chapter teaches it.</p>
+
+<p>Use this appendix when you want to jump from an idea to the exact SwarmPipe implementation. Paths and identifiers were checked against the project source.</p>
+<h2 id="part-0-start-here">Part 0 - Start here</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First run and scenarios</td>
+<td><code>swarmpipe/scenarios.py</code> <code>SCENARIOS</code></td>
+<td><code>sp scenarios list</code></td>
+<td><a href="00-welcome.html">Chapter 0</a></td>
+</tr>
+<tr>
+<td>Dashboard tabs</td>
+<td><code>swarmpipe/web/static/app.js</code></td>
+<td>open <code>http://127.0.0.1:8765</code></td>
+<td><a href="00-welcome.html">Chapter 0</a></td>
+</tr>
+<tr>
+<td>Reset and clean slate</td>
+<td><code>swarmpipe/cli.py</code> <code>reset</code></td>
+<td><code>sp reset --yes</code></td>
+<td><a href="00-welcome.html">Chapter 0</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-i-foundations">Part I - Foundations</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent base class</td>
+<td><code>swarmpipe/agents/base.py</code> <code>Agent</code></td>
+<td>dashboard <strong>Agents &amp; Tools</strong></td>
+<td><a href="01-llm-to-agent.html">Chapter 1</a></td>
+</tr>
+<tr>
+<td>ReAct loop</td>
+<td><code>swarmpipe/agents/base.py</code> <code>react</code></td>
+<td><code>sp trace &lt;ident&gt;</code> after an incident</td>
+<td><a href="01-llm-to-agent.html">Chapter 1</a></td>
+</tr>
+<tr>
+<td>Deterministic fallbacks</td>
+<td><code>swarmpipe/agents/base.py</code> <code>DEGRADE_ERRORS</code></td>
+<td><code>sp scenarios drop llm_outage --process</code></td>
+<td><a href="01-llm-to-agent.html">Chapter 1</a></td>
+</tr>
+<tr>
+<td>Composition root</td>
+<td><code>swarmpipe/app.py</code> <code>build_services</code></td>
+<td><code>sp init</code></td>
+<td><a href="02-architecture-tour.html">Chapter 2</a></td>
+</tr>
+<tr>
+<td>Workflows</td>
+<td><code>swarmpipe/runtime/workflows.py</code> <code>build_workflows</code></td>
+<td><code>sp runs list</code></td>
+<td><a href="02-architecture-tour.html">Chapter 2</a></td>
+</tr>
+<tr>
+<td>Agent registry</td>
+<td><code>swarmpipe/agents/registry.py</code> <code>AgentRegistry</code></td>
+<td>dashboard <strong>Agents &amp; Tools</strong></td>
+<td><a href="02-architecture-tour.html">Chapter 2</a></td>
+</tr>
+<tr>
+<td>Model gateway</td>
+<td><code>swarmpipe/llm/gateway.py</code> <code>ModelGateway</code></td>
+<td><code>sp llm status</code></td>
+<td><a href="03-prompts-models-gateway.html">Chapter 3</a></td>
+</tr>
+<tr>
+<td>Prompt registry</td>
+<td><code>swarmpipe/llm/prompts.py</code> <code>PromptRegistry</code></td>
+<td><code>sp prompts list</code></td>
+<td><a href="03-prompts-models-gateway.html">Chapter 3</a></td>
+</tr>
+<tr>
+<td>Prompt lock</td>
+<td><code>prompts/prompts.lock.json</code></td>
+<td><code>sp evals gate --update-lock</code></td>
+<td><a href="03-prompts-models-gateway.html">Chapter 3</a></td>
+</tr>
+<tr>
+<td>Tool gateway</td>
+<td><code>swarmpipe/tools/gateway.py</code> <code>ToolGateway</code></td>
+<td>dashboard <strong>Agents &amp; Tools</strong></td>
+<td><a href="04-tools-and-gateway.html">Chapter 4</a></td>
+</tr>
+<tr>
+<td>Tool catalog</td>
+<td><code>swarmpipe/tools/catalog.py</code> <code>READ_TOOLS</code></td>
+<td><code>sp trace &lt;ident&gt;</code></td>
+<td><a href="04-tools-and-gateway.html">Chapter 4</a></td>
+</tr>
+<tr>
+<td>Rogue-agent suspension</td>
+<td><code>swarmpipe/tools/gateway.py</code> <code>call</code></td>
+<td><code>sp killswitch on --scope agent:&lt;id&gt;</code></td>
+<td><a href="04-tools-and-gateway.html">Chapter 4</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-ii-data-pipeline-backbone">Part II - Data pipeline backbone</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Watched folder polling</td>
+<td><code>swarmpipe/runtime/watcher.py</code> <code>FolderWatcher</code></td>
+<td><code>sp scenarios drop clean_day --process</code></td>
+<td><a href="05-ingestion.html">Chapter 5</a></td>
+</tr>
+<tr>
+<td>File admission</td>
+<td><code>swarmpipe/runtime/workflows.py</code> <code>f_stage</code></td>
+<td><code>sp runs show &lt;run_id&gt;</code></td>
+<td><a href="05-ingestion.html">Chapter 5</a></td>
+</tr>
+<tr>
+<td>Readers and sniffing</td>
+<td><code>swarmpipe/data/readers.py</code> <code>sniff</code></td>
+<td><code>sp scenarios drop pipe_txt --process</code></td>
+<td><a href="05-ingestion.html">Chapter 5</a></td>
+</tr>
+<tr>
+<td>DLQ</td>
+<td><code>swarmpipe/cli.py</code> <code>dlq_list</code></td>
+<td><code>sp dlq list</code></td>
+<td><a href="05-ingestion.html">Chapter 5</a></td>
+</tr>
+<tr>
+<td>Contract store</td>
+<td><code>swarmpipe/data/contracts.py</code> <code>ContractStore</code></td>
+<td>dashboard <strong>Datasets &amp; Lineage</strong></td>
+<td><a href="06-contracts-and-quality.html">Chapter 6</a></td>
+</tr>
+<tr>
+<td>Sales contract</td>
+<td><code>config/contracts/sales_daily.yaml</code></td>
+<td><code>sp scenarios drop volume_drop --process</code></td>
+<td><a href="06-contracts-and-quality.html">Chapter 6</a></td>
+</tr>
+<tr>
+<td>Data-quality checks</td>
+<td><code>swarmpipe/data/quality.py</code> <code>run_checks</code></td>
+<td><code>sp runs show &lt;run_id&gt;</code></td>
+<td><a href="06-contracts-and-quality.html">Chapter 6</a></td>
+</tr>
+<tr>
+<td>Circuit breaker</td>
+<td><code>swarmpipe/runtime/workflows.py</code> <code>d_quality</code></td>
+<td><code>sp scenarios drop quality_failure --process</code></td>
+<td><a href="06-contracts-and-quality.html">Chapter 6</a></td>
+</tr>
+<tr>
+<td>Publishing</td>
+<td><code>swarmpipe/data/publishing.py</code> <code>PublishingService</code></td>
+<td>dashboard <strong>Datasets &amp; Lineage</strong></td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td>Warehouse versions</td>
+<td><code>swarmpipe/data/warehouse.py</code> <code>Warehouse</code></td>
+<td><code>sp scenarios drop clean_day --process</code></td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td>Lineage graph</td>
+<td><code>swarmpipe/data/lineage.py</code> <code>LineageService</code></td>
+<td>dashboard <strong>Datasets &amp; Lineage</strong></td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td>Context graph</td>
+<td><code>swarmpipe/data/lineage.py</code> <code>ContextGraph</code></td>
+<td>MCP <code>get_lineage_impact</code></td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-iii-the-swarm">Part III - The swarm</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router pattern</td>
+<td><code>swarmpipe/agents/pipeline_agents.py</code> <code>RouterAgent</code></td>
+<td><code>sp scenarios drop encoding --process</code></td>
+<td><a href="08-why-multi-agent.html">Chapter 8</a></td>
+</tr>
+<tr>
+<td>Fan-out and fan-in</td>
+<td><code>swarmpipe/runtime/workflows.py</code> <code>f_fanout</code></td>
+<td><code>sp scenarios drop reference --process</code></td>
+<td><a href="08-why-multi-agent.html">Chapter 8</a></td>
+</tr>
+<tr>
+<td>Evaluator-optimizer</td>
+<td><code>swarmpipe/agents/pipeline_agents.py</code> <code>CriticAgent</code></td>
+<td><code>sp scenarios drop schema_drift --process</code></td>
+<td><a href="08-why-multi-agent.html">Chapter 8</a></td>
+</tr>
+<tr>
+<td>Correlation</td>
+<td><code>swarmpipe/agents/triage_agents.py</code> <code>CorrelatorAgent</code></td>
+<td><code>sp scenarios drop mass_failure --process</code></td>
+<td><a href="09-triage-swarm.html">Chapter 9</a></td>
+</tr>
+<tr>
+<td>Supervisor</td>
+<td><code>swarmpipe/agents/triage_agents.py</code> <code>TriageSupervisorAgent</code></td>
+<td>dashboard <strong>Incidents</strong></td>
+<td><a href="09-triage-swarm.html">Chapter 9</a></td>
+</tr>
+<tr>
+<td>Planner</td>
+<td><code>swarmpipe/agents/triage_agents.py</code> <code>RemediationPlannerAgent</code></td>
+<td>incident proposal list</td>
+<td><a href="09-triage-swarm.html">Chapter 9</a></td>
+</tr>
+<tr>
+<td>Verifier</td>
+<td><code>swarmpipe/agents/triage_agents.py</code> <code>VerifierAgent</code></td>
+<td>proposal verification status</td>
+<td><a href="09-triage-swarm.html">Chapter 9</a></td>
+</tr>
+<tr>
+<td>Message bus</td>
+<td><code>swarmpipe/agents/messaging.py</code> <code>MessageBus</code></td>
+<td><code>sp trace &lt;ident&gt;</code></td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+<tr>
+<td>MCP server</td>
+<td><code>swarmpipe/mcp_server.py</code> <code>McpServer</code></td>
+<td><code>sp mcp --as oncall</code></td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+<tr>
+<td>A2A endpoints</td>
+<td><code>swarmpipe/web/api.py</code> <code>create_app</code></td>
+<td><code>/a2a/agents</code></td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+<tr>
+<td>Knowledge search</td>
+<td><code>swarmpipe/data/knowledge.py</code> <code>KnowledgeBase</code></td>
+<td><code>sp knowledge search &quot;volume drop&quot;</code></td>
+<td><a href="11-context-memory.html">Chapter 11</a></td>
+</tr>
+<tr>
+<td>Memory store</td>
+<td><code>swarmpipe/memory.py</code> <code>MemoryStore</code></td>
+<td>dashboard <strong>Knowledge &amp; Memory</strong></td>
+<td><a href="11-context-memory.html">Chapter 11</a></td>
+</tr>
+<tr>
+<td>Spotlighting</td>
+<td><code>swarmpipe/llm/prompts.py</code> <code>build_messages</code></td>
+<td><code>sp scenarios drop injection --process</code></td>
+<td><a href="11-context-memory.html">Chapter 11</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-iv-reliability">Part IV - Reliability</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Checkpoints</td>
+<td><code>swarmpipe/runtime/engine.py</code> <code>_run_step</code></td>
+<td><code>sp runs show &lt;run_id&gt;</code></td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td>Leases and reaper</td>
+<td><code>swarmpipe/runtime/engine.py</code> <code>reap_expired_leases</code></td>
+<td><code>sp chaos crash-after --step transform</code></td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td>Idempotency</td>
+<td><code>swarmpipe/runtime/engine.py</code> <code>StepContext</code></td>
+<td><code>sp scenarios drop duplicate --process</code></td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td>Saga compensation</td>
+<td><code>swarmpipe/runtime/workflows.py</code> <code>rollback_proposal</code></td>
+<td><code>sp actions rollback &lt;proposal_id&gt; --as oncall</code></td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td>Model breaker</td>
+<td><code>swarmpipe/llm/gateway.py</code> <code>CircuitBreaker</code></td>
+<td><code>sp scenarios drop llm_outage --process</code></td>
+<td><a href="13-model-resilience.html">Chapter 13</a></td>
+</tr>
+<tr>
+<td>Repair loop</td>
+<td><code>swarmpipe/llm/gateway.py</code> <code>extract_json</code></td>
+<td><code>sp chaos set llm_malformed_rate 0.5</code></td>
+<td><a href="13-model-resilience.html">Chapter 13</a></td>
+</tr>
+<tr>
+<td>Cost and budget fallback</td>
+<td><code>swarmpipe/llm/gateway.py</code> <code>_check_limits</code></td>
+<td>dashboard <strong>Cost &amp; Metrics</strong></td>
+<td><a href="13-model-resilience.html">Chapter 13</a></td>
+</tr>
+<tr>
+<td>Failure scenarios</td>
+<td><code>swarmpipe/scenarios.py</code> <code>s_flaky_llm</code></td>
+<td><code>sp scenarios drop flaky_llm --process</code></td>
+<td><a href="14-failure-modes.html">Chapter 14</a></td>
+</tr>
+<tr>
+<td>Loop detection</td>
+<td><code>swarmpipe/agents/base.py</code> <code>react</code></td>
+<td><code>sp chaos set llm_loop_rate 0.7</code></td>
+<td><a href="14-failure-modes.html">Chapter 14</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-v-evaluation">Part V - Evaluation</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eval harness</td>
+<td><code>swarmpipe/evals/harness.py</code> <code>run_suites</code></td>
+<td><code>sp evals run --suite triage --k 1</code></td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td>Triage dataset</td>
+<td><code>evals/datasets/triage.v1.jsonl</code></td>
+<td><code>sp evals run --suite triage --cases tri-010-clean-day</code></td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td>Gate thresholds</td>
+<td><code>evals/gate.yaml</code></td>
+<td><code>sp evals gate --k 2</code></td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td>Judge calibration</td>
+<td><code>swarmpipe/evals/judge.py</code> <code>calibrate</code></td>
+<td><code>sp evals calibrate-judge --version v2</code></td>
+<td><a href="16-llm-judge.html">Chapter 16</a></td>
+</tr>
+<tr>
+<td>Red-team suite</td>
+<td><code>evals/datasets/redteam.v1.jsonl</code></td>
+<td><code>sp evals run --suite redteam</code></td>
+<td><a href="17-red-teaming.html">Chapter 17</a></td>
+</tr>
+<tr>
+<td>Prompt approval</td>
+<td><code>swarmpipe/llm/prompts.py</code> <code>PromptRegistry</code></td>
+<td><code>sp prompts list</code></td>
+<td><a href="18-ci-gates-certification.html">Chapter 18</a></td>
+</tr>
+<tr>
+<td>Model certification</td>
+<td><code>swarmpipe/evals/harness.py</code> <code>certify</code></td>
+<td><code>sp evals certify --model llama3.2 --roles router</code></td>
+<td><a href="18-ci-gates-certification.html">Chapter 18</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-vi-governance">Part VI - Governance</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt injection scan</td>
+<td><code>swarmpipe/governance/guardrails.py</code> <code>scan_text</code></td>
+<td><code>sp scenarios drop injection --process</code></td>
+<td><a href="19-threat-model.html">Chapter 19</a></td>
+</tr>
+<tr>
+<td>PII vault</td>
+<td><code>swarmpipe/data/pii.py</code> <code>PiiVault</code></td>
+<td><code>sp ask &quot;emails of customers&quot; --as admin</code></td>
+<td><a href="20-identity-access.html">Chapter 20</a></td>
+</tr>
+<tr>
+<td>Identity service</td>
+<td><code>swarmpipe/governance/identity.py</code> <code>IdentityService</code></td>
+<td>dashboard <strong>Ask the data</strong></td>
+<td><a href="20-identity-access.html">Chapter 20</a></td>
+</tr>
+<tr>
+<td>Policy engine</td>
+<td><code>swarmpipe/governance/policy.py</code> <code>PolicyEngine</code></td>
+<td><code>sp policy force_publish --dataset sales_daily</code></td>
+<td><a href="21-policy-autonomy.html">Chapter 21</a></td>
+</tr>
+<tr>
+<td>Autonomy ladder</td>
+<td><code>swarmpipe/governance/autonomy.py</code> <code>AutonomyManager</code></td>
+<td><code>sp autonomy list</code></td>
+<td><a href="21-policy-autonomy.html">Chapter 21</a></td>
+</tr>
+<tr>
+<td>Approvals</td>
+<td><code>swarmpipe/governance/approvals.py</code> <code>ApprovalService</code></td>
+<td>dashboard <strong>Approvals</strong></td>
+<td><a href="21-policy-autonomy.html">Chapter 21</a></td>
+</tr>
+<tr>
+<td>Audit chain</td>
+<td><code>swarmpipe/governance/audit.py</code> <code>AuditLog</code></td>
+<td><code>sp audit verify</code></td>
+<td><a href="22-audit-evidence.html">Chapter 22</a></td>
+</tr>
+<tr>
+<td>Evidence packs</td>
+<td><code>swarmpipe/governance/evidence.py</code> <code>EvidenceService</code></td>
+<td><code>sp evidence &lt;incident_id&gt;</code></td>
+<td><a href="22-audit-evidence.html">Chapter 22</a></td>
+</tr>
+<tr>
+<td>Kill switch</td>
+<td><code>swarmpipe/governance/killswitch.py</code> <code>KillSwitch</code></td>
+<td><code>sp killswitch on --reason &quot;drill&quot; --as oncall</code></td>
+<td><a href="22-audit-evidence.html">Chapter 22</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-vii-operations">Part VII - Operations</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tracing</td>
+<td><code>swarmpipe/observability/tracing.py</code> <code>Tracer</code></td>
+<td><code>sp trace &lt;ident&gt;</code></td>
+<td><a href="23-observability.html">Chapter 23</a></td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td><code>swarmpipe/observability/metrics.py</code> <code>Metrics</code></td>
+<td><code>sp metrics --prom</code></td>
+<td><a href="23-observability.html">Chapter 23</a></td>
+</tr>
+<tr>
+<td>SLO service</td>
+<td><code>swarmpipe/signals.py</code> <code>SLOService</code></td>
+<td><code>sp slo</code></td>
+<td><a href="23-observability.html">Chapter 23</a></td>
+</tr>
+<tr>
+<td>Cost attribution</td>
+<td><code>swarmpipe/llm/gateway.py</code> <code>chat</code></td>
+<td>dashboard <strong>Cost &amp; Metrics</strong></td>
+<td><a href="24-cost-capacity.html">Chapter 24</a></td>
+</tr>
+<tr>
+<td>Tenant quotas</td>
+<td><code>config/swarmpipe.yaml</code></td>
+<td>dashboard <strong>Cost &amp; Metrics</strong></td>
+<td><a href="24-cost-capacity.html">Chapter 24</a></td>
+</tr>
+<tr>
+<td>LLM profiles</td>
+<td><code>config/swarmpipe.yaml</code></td>
+<td><code>sp llm use offline</code></td>
+<td><a href="25-model-strategy.html">Chapter 25</a></td>
+</tr>
+<tr>
+<td>Health routes</td>
+<td><code>swarmpipe/web/api.py</code> <code>healthz</code></td>
+<td><code>/healthz</code></td>
+<td><a href="26-operations.html">Chapter 26</a></td>
+</tr>
+<tr>
+<td>Readiness route</td>
+<td><code>swarmpipe/web/api.py</code> <code>readyz</code></td>
+<td><code>/readyz</code></td>
+<td><a href="26-operations.html">Chapter 26</a></td>
+</tr>
+<tr>
+<td>Scheduler monitors</td>
+<td><code>swarmpipe/runtime/scheduler.py</code> <code>Scheduler</code></td>
+<td><code>sp tick --scheduler</code></td>
+<td><a href="26-operations.html">Chapter 26</a></td>
+</tr>
+<tr>
+<td>Retention</td>
+<td><code>swarmpipe/runtime/scheduler.py</code> <code>retention</code></td>
+<td><code>sp maintenance retention</code></td>
+<td><a href="26-operations.html">Chapter 26</a></td>
+</tr>
+<tr>
+<td>Online backup</td>
+<td><code>swarmpipe/cli.py</code> <code>maintenance</code></td>
+<td><code>sp maintenance backup</code></td>
+<td><a href="26-operations.html">Chapter 26</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-viii-capstone">Part VIII - Capstone</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Where in SwarmPipe</th>
+<th>How to see it</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI feature PRD</td>
+<td><code>docs/PRD_AND_EVAL_SPEC.md</code></td>
+<td>read the PRD before coding</td>
+<td><a href="27-capstone.html">Chapter 27</a></td>
+</tr>
+<tr>
+<td>Scenario extension</td>
+<td><code>swarmpipe/scenarios.py</code> <code>Scenario</code></td>
+<td><code>sp scenarios list</code></td>
+<td><a href="27-capstone.html">Chapter 27</a></td>
+</tr>
+<tr>
+<td>Catalog action extension</td>
+<td><code>swarmpipe/tools/actions.py</code> <code>ACTIONS</code></td>
+<td>dashboard <strong>Agents &amp; Tools</strong></td>
+<td><a href="27-capstone.html">Chapter 27</a></td>
+</tr>
+<tr>
+<td>Policy entry</td>
+<td><code>config/policies.yaml</code></td>
+<td><code>sp policy request_resend --dataset sales_daily</code></td>
+<td><a href="27-capstone.html">Chapter 27</a></td>
+</tr>
+<tr>
+<td>Final verification</td>
+<td><code>tests/test_e2e.py</code></td>
+<td><code>python -m pytest</code></td>
+<td><a href="27-capstone.html">Chapter 27</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="cheatsheet.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Appendix B &middot; Command cheat sheet</span></a><a class="next" href="further-reading.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Appendix D &middot; Further reading</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#part-0-start-here">Part 0 - Start here</a></li><li class="h2"><a href="#part-i-foundations">Part I - Foundations</a></li><li class="h2"><a href="#part-ii-data-pipeline-backbone">Part II - Data pipeline backbone</a></li><li class="h2"><a href="#part-iii-the-swarm">Part III - The swarm</a></li><li class="h2"><a href="#part-iv-reliability">Part IV - Reliability</a></li><li class="h2"><a href="#part-v-evaluation">Part V - Evaluation</a></li><li class="h2"><a href="#part-vi-governance">Part VI - Governance</a></li><li class="h2"><a href="#part-vii-operations">Part VII - Operations</a></li><li class="h2"><a href="#part-viii-capstone">Part VIII - Capstone</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

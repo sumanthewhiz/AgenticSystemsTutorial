@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 14: A field guide to agent failure modes · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="14-failure-modes" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes" class="current" aria-current="page"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="14-failure-modes">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part IV &middot; Reliability engineering for agents</div>
+<h1><span class="num">Chapter 14</span>A field guide to agent failure modes</h1>
+<div class="meta"><span class="chip">&#9201; 50 min</span><span class="chip">Level: Intermediate → Advanced</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">A taxonomy of how agentic systems fail (single-agent, multi-agent, systemic, data and infrastructure), with the signal that reveals each, the control that contains it, and a way to reproduce it in SwarmPipe.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Recognize common single-agent, multi-agent, data, cost and infrastructure failure modes</li><li>Map each failure mode to a SwarmPipe signal, metric, trace, incident view or chaos scenario</li><li>Explain why valid model output can still be unsafe, ungrounded or operationally wrong</li><li>Run a failure safari that reproduces loops, hallucinated citations, wrong answers, tool errors, outages and crashes</li><li>Reason about combined faults instead of treating failures as isolated incidents</li></ul></div>
+<p>Reliability work gets easier when failures have names. &quot;The agent was bad&quot; is not actionable. &quot;The investigator looped
+on the same tool call, the diagnoser cited an evidence id that did not exist, and the planner proposed an invalid
+action&quot; gives you a place to look and a control to test.</p>
+<p>This chapter is a field guide. It does not re-teach durable execution from <a href="12-durable-execution.html">Chapter 12</a>,
+model resilience from <a href="13-model-resilience.html">Chapter 13</a>, or security containment from
+<a href="19-threat-model.html">Chapter 19</a>. Instead it names the ways agentic systems fail and shows where SwarmPipe exposes
+each one.</p>
+<h2 id="a-taxonomy-you-can-operate">A taxonomy you can operate</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Failure mode</span></div><div class="box-body"><p>A repeatable way a system can produce an incorrect, unsafe, too expensive or unavailable outcome. A useful failure
+mode names the symptom, the detection signal and the control that contains it.</p>
+</div></div>
+<p>For SwarmPipe, the practical taxonomy has five groups:</p>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Single-agent failures</div><div class="card-s">one model-backed component loops, cites fake evidence, picks the wrong tool, returns bad format or overstates confidence</div></div><div class="card"><div class="card-t">Multi-agent failures</div><div class="card-s">agents disagree, miss handoffs, terminate early or fail to verify another agent's work</div></div><div class="card"><div class="card-t">Systemic failures</div><div class="card-s">cost runs away, context becomes stale, or one compromised specialist cascades through the swarm</div></div><div class="card"><div class="card-t">Data failures</div><div class="card-s">a file loads but is wrong, incomplete, stale, private or silently tampered with</div></div><div class="card"><div class="card-t">Infrastructure failures</div><div class="card-s">crashes, expired leases, poison files, poison events, provider outages and stuck waits</div></div></div><figcaption>Agent failure families</figcaption></figure>
+<p>The paper by Cemri et al. describes multi-agent failures in families such as specification and system design,
+inter-agent misalignment, weak task verification and bad termination. SwarmPipe's controls line up with that framing:
+typed outputs and tool schemas reduce specification drift; signed messages and one decision owner reduce
+misalignment; the Critic, Verifier and policy engine address verification; step budgets and loop detection address
+termination.</p>
+<h2 id="field-guide-table">Field guide table</h2>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Symptom or signal</th>
+<th>Control</th>
+<th>Where in SwarmPipe</th>
+<th>Reproduce</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hallucination or ungrounded claim</td>
+<td>diagnosis cites facts not in evidence</td>
+<td>evidence ids, groundedness gate, abstention</td>
+<td><code>TriageSupervisorAgent.diagnose</code>, <code>ungrounded_citations_total</code></td>
+<td><code>sp chaos set llm_hallucinated_citation_rate 1</code></td>
+</tr>
+<tr>
+<td>Hallucinated citations</td>
+<td>fake <code>ev_...</code> ids removed, confidence drops</td>
+<td>citation allowlist from tool evidence</td>
+<td><strong>Incidents</strong> evidence, <strong>Runs</strong> <code>diagnose</code> output</td>
+<td>same as above</td>
+</tr>
+<tr>
+<td>Wrong tool or bad arguments</td>
+<td><code>TOOL_ERROR</code>, invalid proposal, low-quality finding</td>
+<td>typed tool contracts, allowlists, stable errors</td>
+<td><code>swarmpipe/tools/gateway.py</code></td>
+<td><code>sp chaos set tool_error_rate 0.5</code></td>
+</tr>
+<tr>
+<td>Loops and ping-pong</td>
+<td>repeated same tool+args, <code>loop_detected</code> stop reason</td>
+<td>ReAct step budget, loop detector</td>
+<td><code>Agent.react</code>, <code>agent_loops_detected_total</code></td>
+<td><code>sp chaos set llm_loop_rate 0.7</code></td>
+</tr>
+<tr>
+<td>Premature termination</td>
+<td>incomplete finding or <code>unknown</code> with low evidence</td>
+<td>required schemas, Supervisor merge, abstention</td>
+<td>triage blackboard and <code>diagnose</code> output</td>
+<td>raise model outage or tool errors</td>
+</tr>
+<tr>
+<td>Overconfidence or poor abstention</td>
+<td>high confidence with weak evidence</td>
+<td>calibrated prompts, evals, abstain path</td>
+<td>eval suites and incident diagnosis</td>
+<td><code>sp chaos set llm_wrong_answer_rate 0.7</code></td>
+</tr>
+<tr>
+<td>Format errors</td>
+<td>invalid JSON, schema mismatch</td>
+<td>repair loop, schema validation</td>
+<td><code>llm_repairs_total</code>, <code>llm_calls</code> status</td>
+<td><code>sp chaos set llm_malformed_rate 0.5</code></td>
+</tr>
+<tr>
+<td>Inter-agent misalignment</td>
+<td>specialist findings conflict</td>
+<td>Supervisor owns final diagnosis, alternatives retained</td>
+<td>triage blackboard</td>
+<td><code>sp scenarios drop mass_failure --process</code></td>
+</tr>
+<tr>
+<td>Cascading failure</td>
+<td>one hijacked specialist biases diagnosis or plan</td>
+<td>catalog, policy, approval, egress allowlist</td>
+<td><a href="19-threat-model.html">Chapter 19</a></td>
+<td><code>sp scenarios drop injection --process</code></td>
+</tr>
+<tr>
+<td>Runaway cost</td>
+<td>many calls, retries, expensive route</td>
+<td>budgets, quotas, cache, clustering</td>
+<td><strong>Cost &amp; Metrics</strong>, <code>llm_cost_usd_total</code></td>
+<td><code>sp chaos set llm_timeout_rate 0.3</code></td>
+</tr>
+<tr>
+<td>Silent data failure</td>
+<td>file &quot;succeeds&quot; but data is wrong</td>
+<td>contracts, quality checks, circuit breaker</td>
+<td><code>Data Assurance</code>, <strong>Datasets &amp; Lineage</strong></td>
+<td><code>sp scenarios drop volume_drop --process</code></td>
+</tr>
+<tr>
+<td>Crash or expired lease</td>
+<td>run stuck <code>running</code>, then recovered</td>
+<td>leases, heartbeat, reaper</td>
+<td><code>runs_recovered_total</code></td>
+<td><code>sp chaos crash-after --step transform</code></td>
+</tr>
+<tr>
+<td>Poison input or event</td>
+<td>DLQ entry or skipped poison event</td>
+<td>dead letters, event poison skip after 3</td>
+<td><code>sp dlq list</code>, <code>core/events.py</code></td>
+<td><code>sp scenarios drop malformed --process</code></td>
+</tr>
+<tr>
+<td>Stale context</td>
+<td>old runbook or stale delivery</td>
+<td>trust labels, freshness checks, memory review</td>
+<td><strong>Knowledge &amp; Memory</strong>, <code>stale_resend</code></td>
+<td><code>sp scenarios drop stale_resend --process</code></td>
+</tr>
+</tbody>
+</table>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Where the controls live</span></div><div class="box-body"><p>Agent loop and loop detection: <code>swarmpipe/agents/base.py</code>. Triage grounding and degraded fallbacks:
+<code>swarmpipe/agents/triage_agents.py</code>. Model chaos: <code>swarmpipe/llm/mock.py</code>. Tool errors:
+<code>swarmpipe/tools/gateway.py</code>. Durable crash recovery: <code>swarmpipe/runtime/engine.py</code>.</p>
+</div></div>
+<p>From <code>swarmpipe/agents/base.py</code>:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>if seen[sig] &gt; 1:
+    loops += 1
+    self.svc.metrics.inc(&quot;agent_loops_detected_total&quot;, agent=self.id)
+    ...
+    if loops &gt;= 2:
+        return {&quot;finding&quot;: None, &quot;steps&quot;: step, &quot;tools_used&quot;: tools_used, &quot;evidence_ids&quot;: evidence,
+                &quot;stop_reason&quot;: &quot;loop_detected&quot;}</code></pre></div>
+<p>From <code>swarmpipe/agents/triage_agents.py</code>, the Supervisor removes fake citations before accepting a diagnosis:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>bad = [c for c in d.get(&quot;citations&quot;, []) if c not in valid]
+if bad:
+    d[&quot;citations&quot;] = [c for c in d.get(&quot;citations&quot;, []) if c in valid]
+    d[&quot;confidence&quot;] = max(0.1, float(d.get(&quot;confidence&quot;, 0.5)) - 0.2)
+    d[&quot;ungrounded_citations&quot;] = bad</code></pre></div>
+<h2 id="single-agent-failures">Single-agent failures</h2>
+<p>Single-agent failures happen inside one agent's loop or one model response. They are often easy to reproduce and hard
+to notice without traces. A planner can return a JSON object that validates but proposes a useless action. An
+investigator can keep calling the same tool. A diagnoser can cite a fake evidence id because it looks like the evidence ids in
+the prompt. A router can classify the file correctly but with unjustified confidence.</p>
+<p>SwarmPipe's single-agent controls are layered. The prompt requires a JSON protocol; pydantic validates the shape; the
+agent loop has a step budget; repeated tool calls trigger <code>LOOP_DETECTED</code>; every tool result receives a real evidence
+id; the Supervisor filters citations against the incident's valid evidence ids; and deterministic fallbacks mark
+outputs <code>degraded</code> when the model layer is unavailable.</p>
+<figure class="diagram"><div class="flow vertical"><div class="node"><div class="node-t">Model proposes</div><div class="node-s">JSON action or final answer</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Schema validates</div><div class="node-s">invalid shape enters repair or fails</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Tool gateway checks</div><div class="node-s">allowlist, typed args, stable errors</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Loop detector checks</div><div class="node-s">repeated tool+args increments loop metric</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Grounding checks</div><div class="node-s">fake citations removed before diagnosis is trusted</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Verifier checks</div><div class="node-s">actions are checked against ground truth after execution</div></div></div><figcaption>Single-agent containment</figcaption></figure>
+<h2 id="multi-agent-failures">Multi-agent failures</h2>
+<p>Multi-agent systems add failure modes that do not exist in a single prompt. Two agents can hold inconsistent
+assumptions. A specialist can omit a key caveat, and the Supervisor can over-weight it. A team can terminate because
+everyone individually did &quot;enough&quot;, even though no one verified the shared outcome.</p>
+<p>SwarmPipe reduces those risks by assigning one owner for each decision. Specialists investigate; the Supervisor owns
+the final diagnosis. The Planner proposes; policy decides; the Executor acts; the Verifier checks. That separation is
+also a security boundary. A hijacked specialist can bias a diagnosis, but it cannot write data or send mail. The
+cascade risk is real and is covered in <a href="19-threat-model.html">Chapter 19</a>, where prompt injection can fool the model
+while the catalog, policy and egress allowlist still contain the outcome.</p>
+<h2 id="data-cost-and-infrastructure-failures">Data, cost and infrastructure failures</h2>
+<p>The most dangerous data failure is silent success: the file loaded, the job ended OK, and the data is wrong. SwarmPipe
+turns those into explicit signals with contracts and quality checks. <code>volume_drop</code>, <code>unit_change</code>, <code>stale_resend</code>,
+<code>referential_break</code> and <code>pii_leak</code> all load as files but should not be published as good data.</p>
+<p>Runaway cost is a reliability failure because it changes behavior under load. A loop, repeated repair, slow provider
+or multi-agent fan-out can multiply calls. SwarmPipe exposes <code>llm_calls_total</code>, <code>llm_cost_usd_total</code>,
+<code>llm_tokens_total</code>, <code>agent_loops_detected_total</code> and cost by agent in <strong>Cost &amp; Metrics</strong>. Budgets and tenant quotas
+are covered in <a href="24-cost-capacity.html">Chapter 24</a>.</p>
+<p>Infrastructure failures include crashes and poison messages. Chapter 12 showed <code>sp chaos crash-after --step transform</code>
+exiting with code 137 and a later <code>sp tick</code> recovering the run with <code>recovered_count: 1</code>. Poison files go to the DLQ.
+Poison events are skipped after three handler failures so one bad event cannot block the event stream forever.</p>
+<h2 id="hands-on-failure-safari">Hands-on: failure safari</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 1 - Reproduce five agent failures</span></div><div class="box-body"><p>For each mini-experiment, start from a clean slate unless the step says otherwise:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+<ol>
+<li>
+<p><strong>Looping investigator</strong>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm_loop_rate 0.7
+sp scenarios drop volume_drop --process
+sp metrics
+sp chaos clear</code></pre></div>
+<p>Verified output shape:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>chaos.llm_loop_rate = 0.7
+| ingest_dataset | quarantined | 1 |
+| inc_mum...     | mitigated   | critical | sales_daily |
+...
+| agent_loops_detected_total | ... |</code></pre></div>
+<p>In the <strong>Runs</strong> tab, open the triage run. The <code>investigate</code> step may show <code>stop_reason: loop_detected</code>.</p>
+</li>
+<li>
+<p><strong>Hallucinated citation</strong>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm_hallucinated_citation_rate 1
+sp scenarios drop volume_drop --process
+sp chaos clear</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id          | status            | severity | dataset     | root_cause        |
+| inc_mum...  | awaiting_approval | critical | sales_daily | truncated_extract |</code></pre></div>
+<p>The verified <code>diagnose</code> output included <code>ungrounded_citations</code> and <code>grounded: false</code>; the fake ids were removed
+and confidence dropped.</p>
+</li>
+<li>
+<p><strong>Confidently wrong answer</strong>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm_wrong_answer_rate 0.7
+sp scenarios drop volume_drop --process
+sp chaos clear</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id          | status    | severity | dataset     | root_cause              |
+| inc_mum...  | mitigated | critical | sales_daily | data_quality_regression |</code></pre></div>
+<p>This is a validly shaped but wrong diagnosis. The file still stayed quarantined because data checks are not
+delegated to the diagnoser.</p>
+</li>
+<li>
+<p><strong>Tool/backend errors</strong>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set tool_error_rate 0.5
+sp scenarios drop volume_drop --process
+sp chaos clear</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| ingest_dataset | quarantined | 1 |
+| inc_mum...     | escalated   | critical | sales_daily |</code></pre></div>
+<p>Look in <strong>Runs</strong> for investigator tool results and in <strong>Incidents</strong> for lower-confidence findings or escalation.</p>
+</li>
+<li>
+<p><strong>Model outage</strong>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop llm_outage --process</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| ingest_dataset | quarantined | 1 |
+| inc_mum...     | mitigated   | critical | sales_daily |</code></pre></div>
+<p><code>llm_outage</code> takes <code>sim-large</code> down and drops a volume anomaly. <code>sim-small</code> can still serve fallback routes.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 2 - Infrastructure and poison failures</span></div><div class="box-body"><ol>
+<li>
+<p>Reproduce a crash and recovery:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos crash-after --step transform
+sp scenarios drop clean_day
+sp tick --timeout 120 --no-scheduler
+Start-Sleep -Seconds 35
+sp tick --timeout 180 --no-scheduler
+sp runs show &lt;recovered-run-id&gt;</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>first tick exit=137
+...
+&quot;status&quot;: &quot;succeeded&quot;,
+&quot;recovered_count&quot;: 1
+| transform | succeeded | 1 | agent |
+| quality   | succeeded | 1 | deterministic |</code></pre></div>
+</li>
+<li>
+<p>Reproduce poison input:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop malformed --process
+sp dlq list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id         | tenant  | reason      | error                    | run_id     |
+| dlq_mum... | default | UNSUPPORTED | unsupported content: ... | run_mum... |</code></pre></div>
+</li>
+<li>
+<p>Open the dashboard:</p>
+<ul>
+<li><strong>Runs</strong> shows the failed or dead-lettered workflow.</li>
+<li><strong>Incidents</strong> shows the operational incident if one was raised.</li>
+<li><strong>Cost &amp; Metrics</strong> shows retries, model calls and loop metrics.</li>
+<li><strong>Scenarios &amp; Chaos</strong> shows currently active chaos flags.</li>
+</ul>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Combine two faults and reason about the interaction</span></div><div class="box-body"><p>Run the all-models-down plus bad-data experiment:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp chaos set llm_outage_models &#x27;[&quot;sim-large&quot;,&quot;sim-small&quot;]&#x27;
+sp scenarios drop volume_drop --process</code></pre></div>
+<p>Verified output shape:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| ingest_dataset | quarantined | 1 |
+| inc_mum...     | escalated   | critical | sales_daily | truncated_extract |
+...
+&quot;summary&quot;: &quot;(deterministic fallback: LLMUnavailable) majority of specialist findings&quot;,
+&quot;confidence&quot;: 0.45,
+&quot;degraded&quot;: true</code></pre></div>
+<p>The interaction is subtle: model outage weakens diagnosis and lowers confidence, while the volume checks still
+quarantine the file. In a weaker design, the same outage might skip diagnosis and accidentally publish; in SwarmPipe,
+the data circuit breaker is independent.</p>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Do not alert on every chaos-visible metric</span></div><div class="box-body"><p>Some signals deserve pages; others deserve dashboards. A single repaired JSON output may be normal. Sustained
+<code>llm_breaker_open_total</code>, rising <code>agent_loops_detected_total</code>, repeated escalations, cost spikes or quarantined
+critical datasets are operational signals. Alert on user or data impact, not every internal correction.</p>
+</div></div>
+<p>At larger scale, maintain a failure-mode register. Each entry should have a reproduction command or eval case, a
+detection signal, an owner, a runbook and an exit criterion. When an incident happens, add it to the register before
+you add another generic retry.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why is &quot;valid JSON&quot; not enough to trust an agent answer?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">JSON validation proves the facts are true</button></li><li><button type="button" class="opt" data-correct="true">JSON validation proves shape, not grounding or correctness</button></li><li><button type="button" class="opt" data-correct="false">SwarmPipe does not use JSON</button></li></ul><div class="q-explain" hidden>A wrong diagnosis can match the schema perfectly. Grounding, verification and evals handle truth.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What metric reveals repeated ReAct tool loops?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false"><code>llm_cache_hits_total</code></button></li><li><button type="button" class="opt" data-correct="true"><code>agent_loops_detected_total</code></button></li><li><button type="button" class="opt" data-correct="false"><code>dataset_publish_total</code></button></li></ul><div class="q-explain" hidden><code>Agent.react</code> increments <code>agent_loops_detected_total</code> when the same tool and arguments repeat.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Which failure does <code>sp chaos set llm_hallucinated_citation_rate 1</code> exercise?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Fake evidence ids in a model answer</button></li><li><button type="button" class="opt" data-correct="false">Provider 429 rate limits</button></li><li><button type="button" class="opt" data-correct="false">File checksum tampering</button></li></ul><div class="q-explain" hidden>The diagnoser may cite ids that do not exist; the groundedness gate removes them and lowers confidence.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What contains a hijacked specialist before it can change the world?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Specialist tools can write data directly</button></li><li><button type="button" class="opt" data-correct="false">The model's confidence score</button></li><li><button type="button" class="opt" data-correct="true">Read/write separation, the action catalog, policy, approvals and egress controls</button></li></ul><div class="q-explain" hidden>A specialist can influence the case file, but only the Executor has write tools and every action is governed.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Why is a crash after <code>transform</code> not the same as starting over?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The file is ignored</button></li><li><button type="button" class="opt" data-correct="true">Completed step outputs are checkpoints, so recovery resumes after the recorded step</button></li><li><button type="button" class="opt" data-correct="false">The dashboard remembers the answer</button></li></ul><div class="q-explain" hidden>Durable execution uses persisted steps, not process memory, to decide where to continue.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Useful failure analysis names the symptom, the signal, the control and the reproduction path.</li>
+<li>Single-agent failures include loops, fake citations, wrong tools, format errors, premature stops and overconfidence.</li>
+<li>Multi-agent failures include misalignment, weak verification and bad termination; SwarmPipe uses clear ownership and verification boundaries.</li>
+<li>Silent data failures are contained by deterministic contracts, checks and the publish circuit breaker.</li>
+<li>Infrastructure failures are expected: crashes recover through leases and checkpoints; poison files go to the DLQ; poison events are skipped after repeated failures.</li>
+<li>Combined faults matter most. Test interactions such as model outage plus bad data, not only one knob at a time.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="14-failure-modes"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="13-model-resilience.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 13 &middot; Resilience at the model layer</span></a><a class="next" href="15-eval-fundamentals.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 15 &middot; Evaluation fundamentals</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#a-taxonomy-you-can-operate">A taxonomy you can operate</a></li><li class="h2"><a href="#field-guide-table">Field guide table</a></li><li class="h2"><a href="#single-agent-failures">Single-agent failures</a></li><li class="h2"><a href="#multi-agent-failures">Multi-agent failures</a></li><li class="h2"><a href="#data-cost-and-infrastructure-failures">Data, cost and infrastructure failures</a></li><li class="h2"><a href="#hands-on-failure-safari">Hands-on: failure safari</a></li><li class="h2"><a href="#production-notes">Production notes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

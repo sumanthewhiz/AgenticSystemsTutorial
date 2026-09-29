@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 7: Publishing, versioning, lineage and trusted context · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="07-publishing-lineage" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage" class="current" aria-current="page"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="07-publishing-lineage">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part II &middot; The data pipeline backbone</div>
+<h1><span class="num">Chapter 7</span>Publishing, versioning, lineage and trusted context</h1>
+<div class="meta"><span class="chip">&#9201; 45 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Immutable versions, blue/green publishing, snapshots and rollback, derived datasets and holds, OpenLineage, impact analysis, the context graph and out-of-band change detection.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain immutable dataset versions, blue/green publishing and append-mode partitions</li><li>Trace how SwarmPipe publishes, quarantines, rolls back and restores snapshots</li><li>Describe derived datasets, holds and event-driven rebuilds</li><li>Compare static lineage with runtime OpenLineage events and facets</li><li>Use lineage and trusted context for impact analysis and out-of-band change recovery</li></ul></div>
+<p>Publishing is the moment bad data becomes someone else's problem. A batch that stays in processing can be inspected and
+fixed; a batch exposed under a stable table name can feed dashboards, reports, models and other agents. Production
+systems therefore publish by switching references to immutable versions, not by editing a table in place.</p>
+<p>SwarmPipe's warehouse is small enough to run locally, but it uses the same patterns: immutable version tables,
+blue/green views, quarantined tables, append-mode partition replacement, snapshots for restore and lineage for impact.
+Chapter 6 decided whether a batch is safe. This chapter follows what happens after that decision.</p>
+<h2 id="immutable-versions-and-bluegreen-views">Immutable versions and blue/green views</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Immutable dataset version</span></div><div class="box-body"><p>An immutable version is a stored copy of a dataset state that is never updated in place. New data creates a new version;
+publishing changes which version consumers read.</p>
+</div></div>
+<p>In SwarmPipe, every live version is a table named like t__default__sales_daily__v8. The consumer-facing object is a
+view named default__sales_daily. Publishing is a view swap. Rollback is another view swap, or, if the current version
+was tampered with, a restore from its immutable snapshot.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Warehouse primitives</span></div><div class="box-body"><p><code>swarmpipe/data/warehouse.py</code> documents the design: version table, stable view, quarantine table and read-only analyst
+path. The important operation is <code>swap_view</code>.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>def swap_view(self, tenant: str, dataset: str, table: str) -&gt; None:
+    view = self.view_name(tenant, dataset)
+    c.execute(&quot;BEGIN IMMEDIATE&quot;)
+    c.execute(f&#x27;DROP VIEW IF EXISTS main.&quot;{view}&quot;&#x27;)
+    c.execute(f&#x27;CREATE VIEW main.&quot;{view}&quot; AS SELECT * FROM &quot;{table}&quot;&#x27;)
+    c.execute(&quot;COMMIT&quot;)</code></pre></div>
+</div></div>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Railway points</span></div><div class="box-body"><p>Publishing is like switching railway points. The train keeps asking for <code>sales_daily</code>; the operator changes which track
+that name points to. If the new track is bad, switch back.</p>
+</div></div>
+<p>Append-mode datasets add one more rule. <code>sales_daily</code> is append-mode and partitioned by <code>order_date</code>. A resent partition
+replaces the old rows for that partition before deduplication; it does not blindly append a second copy. That prevents
+routine re-deliveries from inflating metrics.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Publishing service</span></div><div class="box-body"><p><code>swarmpipe/data/publishing.py</code> stages, publishes, unpublishes, restores and force-publishes versions. Stage writes the
+version table and takes a snapshot before any view points at it.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>table = Warehouse.table_name(tenant, dataset, version, quarantined=quarantined)
+self.wh.write_table(table, full)
+self.wh.snapshot(table)
+...
+&quot;status&quot;: &quot;quarantined&quot; if quarantined else &quot;staged&quot;,
+&quot;checksum&quot;: self.wh.checksum(table)</code></pre></div>
+</div></div>
+<p>Quarantined batches use <code>q__...</code> tables. They are preserved for forensics, row samples and governed remediation, but
+consumer views do not point to them unless a high-risk <code>force_publish</code> action is explicitly approved. Most incidents
+should request resend, reprocess with a mapping or roll back, not force publish.</p>
+<h2 id="derived-datasets-and-holds">Derived datasets and holds</h2>
+<p>SwarmPipe has one derived dataset in <code>config/consumers.yaml</code>: <code>sales_enriched</code>, built by joining <code>sales_daily</code> to
+<code>customers</code>. When an input publishes, <code>on_dataset_published</code> submits a <code>derive</code> workflow. The workflow checks inputs,
+builds SQL from the declared derived spec and publishes a new immutable derived version.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Input publishes</div><div class="node-s"><code>dataset.published</code> event</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Derive check</div><div class="node-s">inputs published, not held, no high/critical incident</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Build SQL</div><div class="node-s">declared in <code>config/consumers.yaml</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Publish version</div><div class="node-s">same immutable version pattern</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">OpenLineage event</div><div class="node-s">input datasets -&gt; derived output</div></div></div><figcaption>Derived propagation</figcaption></figure>
+<p>A hold stops propagation. The hold-downstream action is a write action held by the Executor agent. It marks downstream
+datasets such as <code>sales_enriched</code> so <code>derive</code> stops with status <code>held</code>. The release-hold action reverses it, but release is
+approval-gated because releasing a hold can propagate data again.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Derive precondition</span></div><div class="box-body"><p><code>dv_check</code> in <code>swarmpipe/runtime/workflows.py</code> stops derived rebuilds when a derived dataset is held or an input has an
+open high/critical incident.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>if st.get(&quot;hold&quot;):
+    svc.signals.raise_signal(ctx.tenant, &quot;derive_blocked&quot;, name, &quot;info&quot;, ...)
+    ctx.stop(&quot;held&quot;, f&quot;{name} is on hold&quot;)
+...
+bad = [i for i in svc.incidents.open_for_dataset(ctx.tenant, inp)
+       if i[&quot;severity&quot;] in (&quot;high&quot;, &quot;critical&quot;)]
+if bad:
+    ctx.stop(&quot;blocked&quot;, f&quot;input {inp} has an open {bad[0][&#x27;severity&#x27;]} incident&quot;)</code></pre></div>
+</div></div>
+<h2 id="lineage-and-trusted-context">Lineage and trusted context</h2>
+<p>Lineage has two layers. <strong>Static lineage</strong> is declared intent: contracts reference other datasets, derived SQL names its
+inputs, and the consumer catalog declares which dashboards, reports, models and agents depend on which datasets.
+<strong>Runtime lineage</strong> is what actually happened: OpenLineage-style events emitted by workflow runs.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Trusted context</span></div><div class="box-body"><p>Trusted context is lineage plus business meaning: owners, source owners, classification, freshness SLAs, consumers,
+regulated status and open incidents. It lets agents reason about impact without trusting free-form prompt text.</p>
+</div></div>
+<p><code>swarmpipe/data/lineage.py</code> seeds static edges from contracts and <code>config/consumers.yaml</code>. It emits OpenLineage run
+events with <code>schema</code>, <code>dataQualityMetrics</code>, <code>dataQualityAssertions</code>, <code>columnLineage</code> and version facets. The <strong>Runs</strong>
+tab shows these events; the <strong>Datasets &amp; Lineage</strong> tab shows the graph.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Impact analysis</span></div><div class="box-body"><p><code>ContextGraph.impact</code> walks downstream from a dataset and returns downstream datasets, consumers, owners, regulated
+outputs, max criticality and blast radius. Policy uses this for approval escalation.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>return {&quot;dataset&quot;: dataset,
+        &quot;downstream_datasets&quot;: datasets,
+        &quot;consumers&quot;: consumers,
+        &quot;owners&quot;: owners,
+        &quot;regulated&quot;: any(c.get(&quot;regulated&quot;) for c in consumers),
+        &quot;max_criticality&quot;: crit,
+        &quot;blast_radius&quot;: len(consumers) + len(datasets)}</code></pre></div>
+</div></div>
+<p>Impact is not just a pretty graph. If <code>sales_daily</code> fails, the blast radius includes <code>sales_enriched</code>, the daily revenue
+dashboard, GST filing extract and any agent or model that depends on those datasets. The Planner can propose
+<code>hold_downstream</code>; policy can require approval when regulated outputs are affected.</p>
+<h2 id="hands-on">Hands-on</h2>
+<p>Start clean:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+<p>Ids, dates and timings vary.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Tour versions and runtime lineage</span></div><div class="box-body"><ol>
+<li>
+<p>Open the dashboard and go to <strong>Datasets &amp; Lineage</strong>. Select <code>sales_daily</code>. You should see published versions and
+downstream <code>sales_enriched</code> plus consumers from <code>config/consumers.yaml</code>.</p>
+</li>
+<li>
+<p>Drop a normal day:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
+sp runs list --workflow derive --limit 5</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+| workflow | status    | n |
+| derive   | succeeded | ... |</code></pre></div>
+</li>
+<li>
+<p>In <strong>Runs</strong>, open the <code>ingest_dataset</code> run for <code>sales_daily</code>. Expand <strong>OpenLineage events</strong>. Look for <code>COMPLETE</code>
+with schema, data-quality and column-lineage facets. Then open the <code>derive</code> run and notice its inputs are
+<code>sales_daily</code> and <code>customers</code>, while its output is <code>sales_enriched</code>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Hold downstream, then release</span></div><div class="box-body"><ol>
+<li>
+<p>Create a serious upstream problem:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| workflow       | status      | n |
+| ingest_dataset | quarantined | 1 |
+...
+| dataset        | hold |
+| sales_enriched | 1    |</code></pre></div>
+<p>The incident proposes and auto-executes <code>hold_downstream</code>, so the derived dataset does not rebuild from bad input.</p>
+</li>
+<li>
+<p>Deliver a good replacement:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
+sp approvals list --status pending</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| kind   | subject                         | risk   |
+| action | release_hold on [&#x27;sales_enriched&#x27;] | medium |</code></pre></div>
+</li>
+<li>
+<p>Approve the release:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp approvals approve &lt;approval_id&gt; --as oncall --comment &quot;Source recovered; release hold&quot;
+sp runs list --workflow derive --limit 5</code></pre></div>
+<p>The derive workflow can rebuild again. In <strong>Datasets &amp; Lineage</strong>, <code>sales_enriched</code> hold changes back to <code>0</code>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Detect and restore an out-of-band change</span></div><div class="box-body"><ol>
+<li>
+<p>Tamper with the published table through the lab-only command:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop oob_tamper --process
+sp incidents list --limit 8
+sp approvals list --status pending</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped (chaos/runtime change only) into ...\data\inbox
+admitted 0 file(s); processed in 3.6s
+| status            | severity | dataset     | root_cause               | title                         |
+| awaiting_approval | critical | sales_daily | out_of_band_modification | sales_daily v8 changed outside the pipeline ... |
+...
+| kind   | subject                         | risk   |
+| action | rollback_dataset on sales_daily | medium |</code></pre></div>
+<p>You can also trigger the same tamper directly:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos tamper-warehouse --dataset sales_daily --tenant default
+sp tick --timeout 30</code></pre></div>
+</li>
+<li>
+<p>Approve rollback:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp approvals approve &lt;approval_id&gt; --as oncall --comment &quot;Restore the published table from the immutable snapshot&quot;
+sp incidents list --limit 3</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>approved rollback_dataset on sales_daily by user:oncall
+| status   | severity | dataset     | root_cause                |
+| resolved | critical | sales_daily | out_of_band_modification  |</code></pre></div>
+</li>
+<li>
+<p>The rollback action uses <code>act_rollback_dataset</code>. For an older target version it repoints the view; for a tampered
+current version it restores the table from the snapshot and verifies the checksum.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="break-it-edit-a-published-table-outside-the-pipeline">Break it: edit a published table outside the pipeline</h2>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Out-of-band tamper</span></div><div class="box-body"><p>Run the tamper lab above and pause before approval. Predict the blast radius: <code>sales_daily</code> feeds
+<code>sales_enriched</code>, the regulated GST extract and multiple dashboards. The out-of-band detector compares the current
+warehouse table checksum with the checksum recorded at publish time. When they differ, it raises a critical incident
+and proposes <code>rollback_dataset</code>.</p>
+<p>What protects downstream is not a model. It is immutable snapshots, recorded checksums, impact analysis and a governed
+rollback action.</p>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Snapshots are only useful if you can prove what they contain</span></div><div class="box-body"><p>In SwarmPipe, snapshots live in a separate SQLite database and checksums are recorded with dataset versions. In a larger
+system, you would use object-lock or WORM storage, retention policies, backup validation and access controls so a
+compromised writer cannot alter both live data and its recovery point.</p>
+</div></div>
+<p>OpenLineage events are runtime evidence, not the whole truth. Static lineage captures intended dependencies before a
+run happens. Runtime lineage proves which job produced which output. Trusted context adds owners, SLAs and consumer
+criticality. You need all three for safe agentic remediation.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>What changes when SwarmPipe publishes a good version?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It updates rows inside the old version table</button></li><li><button type="button" class="opt" data-correct="true">It writes a new version table, snapshots it and repoints the consumer view</button></li><li><button type="button" class="opt" data-correct="false">It deletes previous versions immediately</button></li></ul><div class="q-explain" hidden>The stable view name is what consumers query; versions remain available for rollback and evidence.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why are quarantined tables kept?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">For forensics, samples and governed remediation without exposing them to consumers</button></li><li><button type="button" class="opt" data-correct="false">Because SQLite cannot delete tables</button></li><li><button type="button" class="opt" data-correct="false">So dashboards can read failed data by default</button></li></ul><div class="q-explain" hidden>Quarantine preserves evidence while the circuit breaker protects consumers.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What stops <code>sales_enriched</code> from rebuilding during a serious upstream incident?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The Router refuses derived datasets</button></li><li><button type="button" class="opt" data-correct="true">Holds and <code>derive</code> preconditions for held or incident-bound inputs</button></li><li><button type="button" class="opt" data-correct="false">The Analyst agent disables SQL</button></li></ul><div class="q-explain" hidden><code>dv_check</code> stops derived rebuilds when the derived dataset is held or an input has an open high/critical incident.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What is the difference between static and runtime lineage?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Static lineage is declared intent; runtime lineage is emitted by actual workflow runs</button></li><li><button type="button" class="opt" data-correct="false">Static lineage is always more accurate than runtime lineage</button></li><li><button type="button" class="opt" data-correct="false">Runtime lineage exists only in the dashboard</button></li></ul><div class="q-explain" hidden>SwarmPipe uses both: config and contracts seed the graph, while OpenLineage events record what happened.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>How is a tampered current version restored?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">By asking the model to rewrite the table</button></li><li><button type="button" class="opt" data-correct="true">By <code>rollback_dataset</code>, which can restore the current table from its immutable snapshot and verify checksums</button></li><li><button type="button" class="opt" data-correct="false">By deleting all dataset versions</button></li></ul><div class="q-explain" hidden>The Verifier checks the table checksum against the one recorded when the version was published.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Publishing is a controlled pointer switch to an immutable version, not an in-place table edit.</li>
+<li>Append-mode partitions replace resent partitions and deduplicate keys, preventing routine double counting.</li>
+<li>Quarantined tables preserve failed data for evidence without exposing it to consumers.</li>
+<li>Derived datasets rebuild from events, but holds and incident preconditions stop bad propagation.</li>
+<li>Static lineage, OpenLineage runtime events and trusted context together support impact analysis.</li>
+<li>Out-of-band tamper detection depends on recorded checksums, snapshots, rollback actions and verification.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="07-publishing-lineage"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="06-contracts-and-quality.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 6 &middot; Data contracts, quality checks and the circuit breaker</span></a><a class="next" href="08-why-multi-agent.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 8 &middot; Why (and when) to use multiple agents</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#immutable-versions-and-bluegreen-views">Immutable versions and blue/green views</a></li><li class="h2"><a href="#derived-datasets-and-holds">Derived datasets and holds</a></li><li class="h2"><a href="#lineage-and-trusted-context">Lineage and trusted context</a></li><li class="h2"><a href="#hands-on">Hands-on</a></li><li class="h2"><a href="#break-it-edit-a-published-table-outside-the-pipeline">Break it: edit a published table outside the pipeline</a></li><li class="h2"><a href="#production-notes">Production notes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

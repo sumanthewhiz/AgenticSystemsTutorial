@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 6: Data contracts, quality checks and the circuit breaker · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="06-contracts-and-quality" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality" class="current" aria-current="page"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="06-contracts-and-quality">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part II &middot; The data pipeline backbone</div>
+<h1><span class="num">Chapter 6</span>Data contracts, quality checks and the circuit breaker</h1>
+<div class="meta"><span class="chip">&#9201; 50 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">'Ended OK' is not 'correct'. Contracts as code, schema drift, typed transforms, the five data-health signals, the check catalogue, the circuit breaker, freshness SLAs and AI-assisted onboarding.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain why a completed job can still produce incorrect data</li><li>Read SwarmPipe data contracts as versioned code and describe proposed-versus-active lifecycle</li><li>Distinguish breaking schema drift, additive drift and rename mapping</li><li>Describe typed transforms, row-level rejects and the data-assurance check catalogue</li><li>Run quality, freshness and unknown-dataset onboarding labs safely</li></ul></div>
+<p>The most dangerous data failure is the one that looks green. A CSV can parse, a task can finish and a table can load
+while every dashboard downstream is wrong. &quot;Ended OK&quot; only proves the program reached the end; it does not prove the
+data is complete, current, typed correctly or fit for the business question.</p>
+<p>SwarmPipe puts correctness checks inside the workflow. Contracts define what a dataset means. Transforms type and
+reject rows. Data assurance checks decide whether to publish or quarantine. Agents help explain drift and propose
+changes, but deterministic code trips the circuit breaker.</p>
+<h2 id="contracts-as-code">Contracts as code</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Data contract</span></div><div class="box-body"><p>A data contract is an executable agreement between a producer and consumers: dataset name, columns, types, required
+fields, keys, freshness, quality checks, references, owners and classification. It is stronger than a schema because it
+states what must be true for the data to be trusted.</p>
+</div></div>
+<p>In SwarmPipe, reviewed contracts live in <code>config/contracts/*.yaml</code>. At <code>sp init</code>, <code>ContractStore.sync_from_files</code>
+imports newer YAML versions as active. Runtime proposals are different: agents can create <code>proposed</code> versions, but only
+a human approval activates them. That gives you GitOps for known datasets and a governed path for new or changed data.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Contract lifecycle</span></div><div class="box-body"><p><code>swarmpipe/data/contracts.py</code> says YAML files are the reviewed source of truth. Proposed versions are stored in the
+state DB and only become active through approval.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>def propose(self, dataset: str, contract: dict, by: str, note: str) -&gt; int:
+    latest = self.svc.db.scalar(&quot;SELECT MAX(version) FROM contract_versions WHERE dataset=?&quot;, ...)
+    version = latest + 1
+    self.svc.db.insert(&quot;contract_versions&quot;, {
+        &quot;dataset&quot;: dataset, &quot;version&quot;: version,
+        &quot;contract&quot;: dumps(body), &quot;status&quot;: &quot;proposed&quot;,
+        &quot;created_by&quot;: by, &quot;change_note&quot;: note})
+    return version</code></pre></div>
+</div></div>
+<p>Contracts also carry aliases from the business glossary. That matters when a producer renames <code>customer_id</code> to
+<code>client_code</code>: a name-only comparison is weak, but aliases, type compatibility and value patterns together can support
+a mapping. SwarmPipe's <code>schema_diff</code> reports missing required columns, optional columns, new columns, alias mappings
+and rename candidates. A breaking rename quarantines until approved remediation; an additive column warns and can still
+publish because existing consumers can ignore it.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Observed columns</div><div class="node-s">from profiling</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Schema diff</div><div class="node-s">required missing? new columns?</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Steward proposal</div><div class="node-s">mapping or contract update</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Critic review</div><div class="node-s">independent evidence</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Human approval</div><div class="node-s">for new active contract or high-impact action</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Transform and checks</div><div class="node-s">typed data or quarantine</div></div></div><figcaption>Contract decision path</figcaption></figure>
+<h2 id="typed-transforms-and-row-level-rejects">Typed transforms and row-level rejects</h2>
+<p>SwarmPipe reads files as strings first, then applies a contract. This separation is important. The reader should not
+guess that <code>&quot;0012&quot;</code> is an integer if the contract says it is a code; the transform should not silently coerce a bad
+date to null and publish it.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Transform layer</span></div><div class="box-body"><p><code>swarmpipe/data/transforms.py</code> maps columns, casts types, rejects rows with required nulls or cast failures, removes
+duplicate primary keys and evaluates derived columns with the safe expression engine.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>typed, failed = cast_column(df[name], spec, (date_hints or {}).get(name))
+out[name] = typed
+if spec.get(&quot;required&quot;):
+    reject_reason = reject_reason.mask(failed &amp; (reject_reason == &quot;&quot;), f&quot;cast_failed:{name}&quot;)
+...
+stats = {&quot;rows_in&quot;: rows_in, &quot;rows_out&quot;: len(typed_df),
+         &quot;rejected&quot;: int(rejected_mask.sum()),
+         &quot;duplicates_removed&quot;: dup_removed}</code></pre></div>
+</div></div>
+<p>Business rules and derived columns use <code>swarmpipe/data/safe_expr.py</code>, not Python <code>eval</code>. The expression language parses
+AST nodes, allows only known column names and a short list of vectorized functions, and rejects everything else. That is
+an agent security control as much as a data-quality feature: model- or user-authored checks must never become arbitrary
+code execution.</p>
+<h2 id="five-data-health-signals">Five data-health signals</h2>
+<p>SwarmPipe's profiler names the five data-health signals explicitly: <strong>freshness, volume, schema,
+distribution/quality and lineage</strong>. Quality checks turn those signals into decisions.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>What it catches</th>
+<th>SwarmPipe examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Freshness</td>
+<td>late arrival or stale business dates</td>
+<td><code>freshness_overdue</code>, <code>data_freshness</code></td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>row count too low or too high</td>
+<td><code>row_count_min</code>, <code>volume_vs_baseline</code></td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>required columns missing, aliases, new columns</td>
+<td><code>schema_required_columns</code>, <code>schema_new_columns</code></td>
+</tr>
+<tr>
+<td>Distribution/quality</td>
+<td>PSI drift, invalid values, reject/null rates, ranges, regex, rules</td>
+<td><code>distribution_psi:amount</code>, <code>accepted_values:channel</code>, <code>range:unit_price</code></td>
+</tr>
+<tr>
+<td>Lineage</td>
+<td>references and reconciliation across datasets</td>
+<td><code>referential:customer_id</code>, <code>control_total:amount</code></td>
+</tr>
+</tbody>
+</table>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Quality checks and circuit breaker</span></div><div class="box-body"><p><code>swarmpipe/data/quality.py</code> defines the semantics: <code>pass</code>, <code>warn</code> and <code>fail</code>. A fail quarantines the batch and prevents
+publish; a warn can publish but raises a signal.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Semantics:
+  pass  - fine
+  warn  - publish, but raise a signal
+  fail  - circuit breaker: the batch is quarantined and NOT published
+Row-level violations below a rule&#x27;s threshold are quarantined individually (&quot;mostly&quot; semantics);
+above the threshold the whole batch fails.</code></pre></div>
+</div></div>
+<p>&quot;Mostly&quot; semantics are the practical compromise. If 3 rows out of 10,000 have an invalid optional category, quarantine
+those rows and publish the rest with a warning. If 30% of rows are invalid, that is not noise; it is a producer or
+contract failure, so the whole batch fails. The circuit breaker means <code>d_publish</code> stages a quarantined version table
+instead of repointing the consumer view. Consumers keep the last good published version.</p>
+<p>Precision matters more than coverage. A check catalogue with hundreds of noisy warnings teaches operators to ignore
+agents. SwarmPipe uses severities, <code>incidents.min_severity</code>, row-level thresholds and evals with a clean-day false
+positive case to keep alerts useful.</p>
+<h2 id="hands-on">Hands-on</h2>
+<p>Start from a clean baseline unless told otherwise:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+<p>Ids, dates and timings vary. The examples below are trimmed from a real run.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Volume drop: green job, bad data</span></div><div class="box-body"><ol>
+<li>
+<p>Drop a truncated sales file:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp runs list --workflow ingest_dataset --limit 4</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 4.7s
+| workflow       | status      | n  |
+| ingest_dataset | quarantined | 1  |
+| ingest_dataset | succeeded   | 11 |</code></pre></div>
+</li>
+<li>
+<p>Find the quarantined <code>ingest_dataset</code> run and inspect it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs show &lt;run_id&gt;</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;workflow&quot;: &quot;ingest_dataset&quot;,
+  &quot;dataset&quot;: &quot;sales_daily&quot;,
+  &quot;status&quot;: &quot;quarantined&quot;,
+  &quot;context&quot;: {&quot;result_status&quot;: &quot;quarantined&quot;},
+  &quot;current_step&quot;: &quot;lineage&quot;
+}
+| step           | status    |
+| load           | succeeded |
+| transform      | succeeded |
+| quality        | succeeded |
+| publish        | succeeded |
+| lineage        | succeeded |</code></pre></div>
+<p>The workflow steps succeeded because they did their jobs. The result is still <code>quarantined</code> because <code>quality</code>
+found failed checks such as <code>row_count_min</code> and <code>volume_vs_baseline</code>.</p>
+</li>
+<li>
+<p>In <strong>Runs</strong>, open the run and expand <strong>Data assurance checks</strong>. In <strong>Incidents</strong>, the root cause is
+<code>truncated_extract</code>. In <strong>Datasets &amp; Lineage</strong>, <code>sales_daily</code> still points to the last good version.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Unit change, referential break and additive drift</span></div><div class="box-body"><ol>
+<li>
+<p>Try a distribution and range failure:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop unit_change --process
+sp incidents list --limit 5</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| status    | severity | dataset     | root_cause          | title              |
+| mitigated | high     | sales_daily | unit_or_scale_change | ... range:unit_price (fail: 418 rows ...) |</code></pre></div>
+</li>
+<li>
+<p>Try an additive schema change:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop additive_drift --process
+sp incidents list --limit 5
+sp approvals list --status pending</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| status            | severity | dataset     | title                                      |
+| awaiting_approval | warning  | sales_daily | sales_daily: schema drift - schema_new_columns (warn: [&#x27;promo_code&#x27;]) |
+...
+| kind   | subject                 | risk   |
+| action | notify_owner on sales_daily | low |</code></pre></div>
+<p>Additive drift warns because <code>promo_code</code> is unknown, but the existing contract columns can still publish. The
+agent recommends follow-up instead of blocking consumers.</p>
+</li>
+<li>
+<p>For a lineage check, run:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop referential_break --process
+sp incidents list --limit 5</code></pre></div>
+<p>In <strong>Runs -&gt; Data assurance checks</strong>, look for <code>referential:customer_id</code>. The incident root cause is
+<code>referential_integrity_break</code>.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Freshness and unknown-dataset onboarding</span></div><div class="box-body"><ol>
+<li>
+<p>Advance the business clock through the scenario:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop freshness --process
+sp incidents list --limit 8</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| status    | severity | dataset     | root_cause               | title                         |
+| mitigated | high     | sales_daily | late_or_missing_delivery | sales_daily is overdue ...    |
+| mitigated | high     | inventory   | late_or_missing_delivery | inventory is overdue ...      |</code></pre></div>
+<p><code>sales_daily</code> has a 24-hour SLA plus 2-hour grace (1560 minutes). <code>inventory</code> has 24 hours plus 1 hour.</p>
+</li>
+<li>
+<p>You can run the clock directly too:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos advance-clock 1560
+sp chaos clear</code></pre></div>
+</li>
+<li>
+<p>Onboard a new dataset:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop new_dataset --process
+sp approvals list --status pending</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;vendors_q3.csv&#x27;] into ...\data\inbox
+| workflow       | status  | n |
+| ingest_dataset | waiting | 1 |
+...
+| kind                | subject    | risk   |
+| contract_onboarding | vendors@v1 | medium |</code></pre></div>
+</li>
+<li>
+<p>Review the contract in <strong>Approvals</strong>. If it looks right, approve it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp approvals approve &lt;approval_id&gt; --as oncall --comment &quot;Contract proposal reviewed&quot;
+sp ask &quot;how many rows in vendors&quot;</code></pre></div>
+<p>The waiting run resumes, activates <code>vendors@v1</code>, transforms the batch and publishes it.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="break-it-make-a-threshold-too-strict">Break it: make a threshold too strict</h2>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Alert fatigue from a bad threshold</span></div><div class="box-body"><p>In your own SwarmPipe project, open <code>config\contracts\sales_daily.yaml</code> and make a harmless threshold too strict, for
+example lowering a row-level <code>max_violation_rate</code> or increasing <code>volume.min_rows</code> beyond normal daily volume. Then run:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop clean_day --process</code></pre></div>
+<p>You will get noisy incidents for data that should be normal. Restore the file afterward with your editor or, if you are
+using git in your own clone, with <code>git restore config\contracts\sales_daily.yaml</code>. The lesson is not &quot;never check&quot;; it
+is &quot;set thresholds where an alert means action.&quot;</p>
+</div></div>
+<p>For a governed thought experiment, use policy what-if instead of actually publishing bad data:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp policy force_publish --dataset sales_daily --tenant default --confidence 0.9 --blast 3 --no-injection --no-regulated</code></pre></div>
+<p><code>force_publish</code> exists, but it is deliberately high risk. Chapter 21 explains the policy and autonomy ladder.</p>
+<h2 id="production-notes">Production notes</h2>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Checks are product decisions</span></div><div class="box-body"><p>Industry practice goes beyond SwarmPipe here: every quality rule should have an owner, a remediation path and a known
+consumer impact. If nobody knows what to do when a rule fires, it is an expensive log line, not a control.</p>
+</div></div>
+<p>At larger scale, baseline windows, PSI buckets and freshness SLAs need calendar awareness: weekends, holidays, source
+maintenance windows and regional cutoffs. SwarmPipe's injectable business clock makes the idea testable locally; a
+production system would connect it to a real business calendar and source SLAs.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why can an <code>ingest_dataset</code> run show succeeded steps but an overall quarantined result?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The CLI printed the wrong status</button></li><li><button type="button" class="opt" data-correct="true">The workflow executed correctly, but data-assurance checks failed and the circuit breaker prevented publish</button></li><li><button type="button" class="opt" data-correct="false">The Router always quarantines CSV files first</button></li></ul><div class="q-explain" hidden>A successful program execution is not the same as correct data. The quality decision controls publication.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What is the difference between an active and proposed contract version?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Active contracts are used by ingestion; proposed versions wait for approval</button></li><li><button type="button" class="opt" data-correct="false">Proposed contracts are always used immediately for new files</button></li><li><button type="button" class="opt" data-correct="false">Active contracts exist only in YAML, not the database</button></li></ul><div class="q-explain" hidden>YAML imports create active reviewed versions. Agent-authored contracts remain proposed until a human approves them.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Why is additive drift usually less dangerous than a breaking rename?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">New columns are always useless</button></li><li><button type="button" class="opt" data-correct="true">Existing contract columns are still present, so existing consumers can continue while the new column is reviewed</button></li><li><button type="button" class="opt" data-correct="false">Additive drift bypasses quality checks</button></li></ul><div class="q-explain" hidden><code>schema_new_columns</code> warns. Missing required columns fail.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What does &quot;mostly&quot; semantics mean for row-level checks?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Ignore all bad rows if most rows are good</button></li><li><button type="button" class="opt" data-correct="true">Quarantine a small rate of bad rows, but fail the whole batch when the violation rate exceeds the threshold</button></li><li><button type="button" class="opt" data-correct="false">Publish everything and create a dashboard warning</button></li></ul><div class="q-explain" hidden>This balances availability with correctness.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Which component evaluates business-rule expressions safely?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Python <code>eval</code></button></li><li><button type="button" class="opt" data-correct="true"><code>swarmpipe/data/safe_expr.py</code></button></li><li><button type="button" class="opt" data-correct="false">The dashboard</button></li></ul><div class="q-explain" hidden>The safe expression interpreter validates AST nodes, names and functions before evaluating vectorized pandas expressions.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>&quot;Ended OK&quot; is not &quot;correct&quot;; checks must run inside the workflow before publish.</li>
+<li>Contracts are versioned code: YAML imports reviewed active versions, while agent proposals wait for approval.</li>
+<li>Breaking schema drift quarantines; additive drift can warn and publish when existing contract columns are intact.</li>
+<li>Typed transforms reject bad rows explicitly and feed reconciliation counts.</li>
+<li>The circuit breaker quarantines failed batches so consumers keep the last good version.</li>
+<li>Freshness is a business-clock promise, not just a file-arrival timestamp.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="06-contracts-and-quality"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="05-ingestion.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 5 &middot; Ingestion: watched folders, readers and admission control</span></a><a class="next" href="07-publishing-lineage.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 7 &middot; Publishing, versioning, lineage and trusted context</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#contracts-as-code">Contracts as code</a></li><li class="h2"><a href="#typed-transforms-and-row-level-rejects">Typed transforms and row-level rejects</a></li><li class="h2"><a href="#five-data-health-signals">Five data-health signals</a></li><li class="h2"><a href="#hands-on">Hands-on</a></li><li class="h2"><a href="#break-it-make-a-threshold-too-strict">Break it: make a threshold too strict</a></li><li class="h2"><a href="#production-notes">Production notes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

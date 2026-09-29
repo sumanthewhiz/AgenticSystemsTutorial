@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 12: Durable execution: checkpoints, leases, retries and sagas · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="12-durable-execution" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution" class="current" aria-current="page"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="12-durable-execution">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part IV &middot; Reliability engineering for agents</div>
+<h1><span class="num">Chapter 12</span>Durable execution: checkpoints, leases, retries and sagas</h1>
+<div class="meta"><span class="chip">&#9201; 50 min</span><span class="chip">Level: Intermediate → Advanced</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">Make multi-step agent workflows survive crashes and retries without double side effects: checkpoints, leases and heartbeats, backoff with jitter, idempotency keys, sagas and human waits.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain why long-running agent workflows need durable state, not just in-memory retries</li><li>Read a SwarmPipe run as persisted steps, recorded outputs, attempts, leases and recovery count</li><li>Use checkpoints, leases, heartbeats and fencing to prevent duplicate work after a crash</li><li>Distinguish retryable errors, permanent errors, deferrals, timeouts and durable waits</li><li>Explain how idempotency keys, sagas, compensation and dead letters make side effects safe</li></ul></div>
+<p>An agentic workflow rarely fits in one request. It reads files, calls models, fans out to specialists, waits for
+children, asks a human to approve an action, writes data, emits events and may run for minutes or hours. If that
+workflow lives only in process memory, a laptop sleep, deploy, crash or timeout turns &quot;almost done&quot; into &quot;start over
+and hope nothing double-sent&quot;.</p>
+<p>Durable execution is the engineering answer: every run, step output and wait is stored before the next risky action.
+After a crash, a new worker resumes from the last checkpoint. The promise is not &quot;nothing ever fails&quot;; it is &quot;failure
+does not erase the truth about what already happened.&quot;</p>
+<h2 id="the-first-principle-record-before-you-continue">The first principle: record before you continue</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Durable execution</span></div><div class="box-body"><p>A workflow style where progress is persisted outside the worker process. Each completed step becomes a checkpoint, so
+recovery can skip work that already succeeded and reuse its recorded output.</p>
+</div></div>
+<p>For agentic systems this is more important than for ordinary batch jobs. A model call may be nondeterministic, an
+outbound notification may be impossible to unsend, and a human approval may arrive while the worker is down. The
+runtime therefore treats a step boundary as a transaction boundary:</p>
+<figure class="diagram"><div class="flow vertical"><div class="node"><div class="node-t">Submit run</div><div class="node-s">insert a <code>runs</code> row with workflow, input, tenant and trace id</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Claim work</div><div class="node-s">worker takes a lease and starts a heartbeat</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Run step</div><div class="node-s">call deterministic code, an agent, a child run or a side effect</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Checkpoint</div><div class="node-s">insert or update the <code>steps</code> row with output and attempt</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Resume or finish</div><div class="node-s">skip recorded steps, wait durably, retry, compensate or complete</div></div></div><figcaption>Durable run lifecycle</figcaption></figure>
+<p>The important behavior is &quot;resume, do not replay.&quot; If SwarmPipe already ran <code>profile</code>, <code>contract_check</code> and
+<code>transform</code>, recovery does not ask those agents again. The next worker reconstructs the context from the <code>steps</code>
+table, then continues at <code>quality</code> or whatever step follows the checkpoint.</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Bank ledger, not sticky note</span></div><div class="box-body"><p>A sticky note that says &quot;paid invoice?&quot; is not enough. A ledger says who paid, when, with which idempotency key and
+what confirmation came back. Durable agent execution uses the same idea for every workflow step.</p>
+</div></div>
+<h2 id="leases-heartbeats-and-fencing">Leases, heartbeats and fencing</h2>
+<p>A durable queue must also prevent two workers from doing the same run at the same time. SwarmPipe solves that with
+leases. <code>Engine.claim</code> changes a pending run to <code>running</code>, writes <code>lease_owner</code> and <code>lease_expires_at</code>, and returns it
+to one worker. A heartbeat thread extends the lease while the worker is alive. If the process dies, the lease stops
+moving forward.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Fencing</span></div><div class="box-body"><p>A guard that prevents an old worker from continuing after it loses ownership. In SwarmPipe, if the heartbeat update
+fails, <code>LeaseLost</code> stops the run before the next step or discards a just-finished step result.</p>
+</div></div>
+<p>The reaper is the other half. <code>Engine.reap_expired_leases</code> finds <code>running</code> rows whose lease expired, sets them back to
+<code>pending</code>, increments <code>recovered_count</code>, records a <code>run.recovered</code> audit row and increments <code>runs_recovered_total</code>.
+That is why recovery can be automatic: the database, not the dead process, is the source of truth.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Where it lives</span></div><div class="box-body"><p>The durable runtime is <code>swarmpipe/runtime/engine.py</code>. Workflows are declared in
+<code>swarmpipe/runtime/workflows.py</code>. Error types are in <code>swarmpipe/core/errors.py</code>, and exponential backoff with full
+jitter is <code>backoff_delay</code> in <code>swarmpipe/core/util.py</code>.</p>
+</div></div>
+<p>From <code>swarmpipe/runtime/engine.py</code>:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>for s in self.svc.db.query(&quot;SELECT name, status, output FROM steps WHERE run_id=? AND status IN (&#x27;succeeded&#x27;,&#x27;skipped&#x27;)&quot;, (run[&quot;id&quot;],)):
+    ctx.outputs[s[&quot;name&quot;]] = loads(s[&quot;output&quot;], {}) or {}
+...
+for step in wf.steps:
+    if step.name in ctx.outputs:
+        continue</code></pre></div>
+<p>Those four lines are the resume contract. A succeeded step is not a suggestion; it is recorded history.</p>
+<h2 id="errors-retry-defer-wait-or-fail">Errors: retry, defer, wait or fail</h2>
+<p>Production systems should not treat all failures the same. SwarmPipe's <code>core/errors.py</code> makes the distinction
+explicit:</p>
+<table>
+<thead>
+<tr>
+<th>Error shape</th>
+<th>Runtime behavior</th>
+<th>Example in SwarmPipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RetryableError</code> or <code>StepTimeout</code></td>
+<td>retry with exponential backoff and full jitter until the policy is exhausted</td>
+<td>transient model or tool failures</td>
+</tr>
+<tr>
+<td><code>PermanentError</code></td>
+<td>fail the run, run compensations, call the workflow failure hook</td>
+<td>unsupported or missing file</td>
+</tr>
+<tr>
+<td><code>Deferred</code></td>
+<td>reschedule without consuming an attempt</td>
+<td>dataset publish lock is busy in <code>d_publish</code></td>
+</tr>
+<tr>
+<td><code>WaitingFor</code></td>
+<td>park the run durably</td>
+<td><code>approval:&lt;id&gt;</code>, <code>children</code>, or <code>run:&lt;id&gt;</code></td>
+</tr>
+<tr>
+<td><code>StopWorkflow</code></td>
+<td>finish early with a terminal status</td>
+<td>duplicate file skipped</td>
+</tr>
+</tbody>
+</table>
+<p>Retries use <code>backoff_delay(attempt, base, cap)</code>, which implements exponential backoff plus full jitter. Jitter matters
+because multiple workers failing at the same dependency should not wake up in lockstep and create a retry storm.</p>
+<p>Deferral is not a retry. When <code>d_publish</code> cannot acquire the dataset lock, it raises <code>Deferred(delay_s=0.5)</code>. The run
+moves to <code>retry_wait</code>, but the step attempt is not burned. That difference matters for ordinary contention: a busy
+lock is not evidence the step is broken.</p>
+<p>Agent steps can also time out. <code>run_with_timeout</code> runs agent-kind steps under a watchdog thread. If the timeout fires,
+the abandoned thread may still finish later, which is exactly why side effects use idempotency keys.</p>
+<h2 id="idempotency-sagas-and-side-effects">Idempotency, sagas and side effects</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Idempotency key</span></div><div class="box-body"><p>A stable key attached to an operation so repeated attempts return the first result instead of performing the side
+effect again. SwarmPipe stores these in the <code>idempotency</code> table and increments <code>idempotent_replays_total</code> on replay.</p>
+</div></div>
+<p>Publishing a dataset uses <code>publish:&lt;run_id&gt;</code>. Document indexing uses <code>doc:&lt;run_id&gt;</code>. The Executor uses
+<code>exec:&lt;proposal_id&gt;</code>. If a crash happens after the side effect but before the worker finishes the surrounding workflow,
+recovery calls the same logical operation with the same key and gets the stored result.</p>
+<p>Sagas handle the opposite problem: a later step fails after an earlier step changed state. A step can register a
+compensation with <code>ctx.add_compensation</code>. On permanent failure, <code>Engine._compensate</code> runs pending compensations in
+reverse order and records <code>saga.compensate</code> in audit. For action proposals, <code>VerifierAgent</code> uses each action's
+compensator when verification fails, and <code>sp actions rollback &lt;proposal_id&gt;</code> gives operators the same one-click
+rollback path.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Side effects with keys</span></div><div class="box-body"><p>In <code>swarmpipe/runtime/workflows.py</code>, <code>d_publish</code> wraps publish in <code>ctx.idempotent(f&quot;publish:{ctx.run_id}&quot;, do)</code>.
+In <code>swarmpipe/agents/triage_agents.py</code>, <code>ExecutorAgent.execute</code> uses <code>exec:&lt;proposal_id&gt;</code>.</p>
+</div></div>
+<h2 id="child-runs-fan-in-and-durable-waits">Child runs, fan-in and durable waits</h2>
+<p>SwarmPipe's <code>ingest_file</code> workflow reads a workbook and fans out one <code>ingest_dataset</code> child run per sheet. The parent
+does not poll in memory. <code>f_fanout</code> records the child run ids in context, then raises <code>WaitingFor(&quot;children&quot;)</code> until
+all children are terminal. The same wait mechanism handles approvals and &quot;wait for another run&quot;.</p>
+<p>That pattern is what makes human-in-the-loop automation safe. An approval can be created, the worker can exit, and
+the approval can be decided later from the dashboard, CLI or MCP. The <code>approval.decided</code> event resumes the waiting
+run.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Parent run</div><div class="node-s"><code>stage</code>, <code>route</code>, <code>read</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Child runs</div><div class="node-s">one <code>ingest_dataset</code> per sheet</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Durable wait</div><div class="node-s">parent status <code>waiting</code>, <code>waiting_on: children</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Fan-in</div><div class="node-s">parent resumes when every child is terminal</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Finalize</div><div class="node-s">archive, summarize and emit lineage</div></div></div><figcaption>Fan-out and fan-in in <code>ingest_file</code></figcaption></figure>
+<h2 id="events-are-at-least-once-so-handlers-must-be-idempotent">Events are at least once, so handlers must be idempotent</h2>
+<p>Durable runs are not enough; the event bus must also survive failures. <code>swarmpipe/core/events.py</code> stores events in an
+outbox table and tracks one offset per consumer. A consumer's offset advances only after its handler succeeds, which
+means delivery is at least once. A handler may see the same event again after a crash and must therefore be idempotent.</p>
+<p>Poison events are handled deliberately. If a handler fails the same event three times, the dispatcher logs a poison
+event and skips it for that consumer so the stream does not block forever. File-level poison input goes to the dead
+letter queue: <code>f_on_failure</code> moves the file under <code>data\dlq\&lt;tenant&gt;\</code>, writes a <code>.reason.json</code>, inserts a <code>dlq</code> row
+and raises a signal. Operators can inspect with <code>sp dlq list</code> and, after fixing the cause, redrive with
+<code>sp dlq redrive &lt;dlq_id&gt;</code>.</p>
+<h2 id="hands-on-crash-after-a-checkpoint-then-recover">Hands-on: crash after a checkpoint, then recover</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 1 - Crash and resume with <code>sp tick</code></span></div><div class="box-body"><p>Ids, dates and timings vary. Start from the SwarmPipe project folder with <code>sp</code> defined.</p>
+<ol>
+<li>
+<p>Reset to a known state and build the baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+</li>
+<li>
+<p>Tell the next run to crash immediately after the <code>transform</code> checkpoint. Drop a clean file without <code>--process</code>,
+then process it with <code>sp tick</code>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos crash-after --step transform
+sp scenarios drop clean_day
+sp tick --timeout 120 --no-scheduler</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>next run will crash after step &#x27;transform&#x27;
+dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+first tick exit=137</code></pre></div>
+<p>If you use the <code>crash</code> scenario instead, it sets up the same crash-after-transform behavior for the next file.</p>
+</li>
+<li>
+<p>Before the lease expires, the dataset run is still owned by the dead worker:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs list --status running --limit 5</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id              | workflow       | status  | dataset     | current_step | recovered_count |
+| run_mumhn6...   | ingest_dataset | running | sales_daily | transform    | 0               |</code></pre></div>
+</li>
+<li>
+<p>Wait about 35 seconds for the lease to expire, then tick again:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Start-Sleep -Seconds 35
+sp tick --timeout 180 --no-scheduler
+sp runs show &lt;recovered-run-id&gt;</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>admitted 0 file(s); processed in 77.8s
+...
+&quot;status&quot;: &quot;succeeded&quot;,
+&quot;recovered_count&quot;: 1,
+...
+Steps (checkpoints)
+| load           | succeeded | 1 | deterministic |
+| privacy        | succeeded | 1 | deterministic |
+| profile        | succeeded | 1 | agent         |
+| contract_check | succeeded | 1 | agent         |
+| transform      | succeeded | 1 | agent         |
+| quality        | succeeded | 1 | deterministic |
+| publish        | succeeded | 1 | deterministic |
+| lineage        | succeeded | 1 | deterministic |</code></pre></div>
+<p>The key observation is that <code>load</code> through <code>transform</code> stayed at attempt <code>1</code>. Recovery continued after the
+checkpoint; it did not re-call the model-backed steps.</p>
+</li>
+<li>
+<p>Confirm the recovery metric:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp metrics</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| runs_recovered_total | 1 | 1.0 | ... |</code></pre></div>
+<p>In a server-based variant, step 2 uses <code>sp run</code>, the process exits with code 137, and restarting <code>sp run</code> lets the
+reaper recover the run after the lease expires.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Lab 2 - Redrive, cancel and dead letters</span></div><div class="box-body"><ol>
+<li>
+<p>Produce unreadable files:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop malformed --process
+sp dlq list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id          | tenant  | reason      | error                         | run_id        |
+| dlq_mum...  | default | UNSUPPORTED | unsupported content: ...      | run_mum...    |</code></pre></div>
+</li>
+<li>
+<p>Try the run controls. Redrive only works for failed or dead-lettered runs; cancel only affects pending,
+retry-waiting or waiting runs:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs redrive &lt;run_id&gt;
+sp runs cancel &lt;run_id&gt;</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&quot;redriven&quot;: true}
+{&quot;cancelled&quot;: false}</code></pre></div>
+</li>
+<li>
+<p>After fixing the source file outside this lab, redrive the DLQ entry:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp dlq redrive &lt;dlq_id&gt;
+sp tick --timeout 120 --no-scheduler</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>moved back to ...\data\inbox\...
+admitted 1 file(s); processed in ...</code></pre></div>
+<p>The important concept is not that malformed data magically becomes valid. It is that poison input is isolated and
+visible instead of blocking the whole pipeline.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Duplicate execution is prevented by idempotency</span></div><div class="box-body"><p>After a baseline, run:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
+sp scenarios drop duplicate --process
+sp runs list --status skipped --limit 5
+sp metrics</code></pre></div>
+<p>Expected shape:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| workflow    | status  | n |
+| ingest_file | skipped | 1 |
+...
+| idempotent_replays_total | ... |</code></pre></div>
+<p><code>f_stage</code> detects the byte-identical delivery by content hash and stops the run as <code>skipped</code>. If a retry reaches a
+side-effect step instead, the idempotency table protects the side effect itself.</p>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Timeouts do not cancel all work</span></div><div class="box-body"><p>SwarmPipe's step watchdog raises <code>StepTimeout</code>, but Python cannot safely kill arbitrary work already running in the
+abandoned thread. The runtime assumes a timed-out side effect may still complete and requires idempotency keys around
+side effects. At larger scale, use a worker model that can cancel isolated tasks, but keep idempotency anyway.</p>
+</div></div>
+<p>At larger scale, SQLite becomes a durable teaching implementation, not the final queue. The same design usually moves
+to a transactional database plus a queue, or a workflow engine such as Temporal, Durable Functions or Cadence. The
+requirements do not change: persist step outputs, fence leases, make handlers idempotent, separate deferral from
+retry, and keep compensations explicit.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why should a recovered run skip a completed LLM-backed step?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">LLM calls are always free</button></li><li><button type="button" class="opt" data-correct="true">The previous answer is recorded state, and a replay could produce a different answer or duplicate a side effect</button></li><li><button type="button" class="opt" data-correct="false">The model gateway cannot be called twice</button></li></ul><div class="q-explain" hidden>Durable execution treats completed step output as history. Replaying a probabilistic or side-effecting step is not safe by default.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does <code>Deferred</code> mean in SwarmPipe?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Wait and reschedule without consuming a retry attempt</button></li><li><button type="button" class="opt" data-correct="false">Fail permanently and dead-letter the run</button></li><li><button type="button" class="opt" data-correct="false">Retry immediately with no delay</button></li></ul><div class="q-explain" hidden>Deferral is used for ordinary contention, such as a busy dataset publish lock. It is not counted as a failed attempt.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Which mechanism prevents a dead worker and a new worker from both progressing the same run?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The dashboard refresh interval</button></li><li><button type="button" class="opt" data-correct="false">The model cache</button></li><li><button type="button" class="opt" data-correct="true">Leases, heartbeats and <code>LeaseLost</code> fencing</button></li></ul><div class="q-explain" hidden>The database lease names the owner. The heartbeat renews it, and fencing stops a worker that loses it.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Why are event handlers required to be idempotent?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Events are delivered at most once</button></li><li><button type="button" class="opt" data-correct="true">Events are delivered at least once, because offsets advance only after handler success</button></li><li><button type="button" class="opt" data-correct="false">Events are never persisted</button></li></ul><div class="q-explain" hidden>At-least-once delivery is reliable but may repeat. Idempotent handlers turn repetition into safe recovery.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What runs when a permanent failure happens after compensations were registered?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">All steps are retried forever</button></li><li><button type="button" class="opt" data-correct="false">The run is silently deleted</button></li><li><button type="button" class="opt" data-correct="true">Pending compensations run in reverse order as a saga</button></li></ul><div class="q-explain" hidden>Compensations are the explicit undo path for side effects that already happened.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Durable execution records run and step state in SQLite so crashes do not erase progress.</li>
+<li>Recovery reuses recorded outputs; it does not blindly re-call models or redo side effects.</li>
+<li>Leases, heartbeats, the reaper and <code>LeaseLost</code> fencing provide crash recovery without double ownership.</li>
+<li>Retryable errors, permanent errors, deferrals and durable waits are different control-flow paths.</li>
+<li>Idempotency keys and saga compensations make publishing, document indexing and action execution safe under retries.</li>
+<li>The event bus is at least once; idempotent handlers and poison-event handling keep it reliable.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="12-durable-execution"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="11-context-memory.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 11 &middot; Context engineering, grounding and memory</span></a><a class="next" href="13-model-resilience.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 13 &middot; Resilience at the model layer</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#the-first-principle-record-before-you-continue">The first principle: record before you continue</a></li><li class="h2"><a href="#leases-heartbeats-and-fencing">Leases, heartbeats and fencing</a></li><li class="h2"><a href="#errors-retry-defer-wait-or-fail">Errors: retry, defer, wait or fail</a></li><li class="h2"><a href="#idempotency-sagas-and-side-effects">Idempotency, sagas and side effects</a></li><li class="h2"><a href="#child-runs-fan-in-and-durable-waits">Child runs, fan-in and durable waits</a></li><li class="h2"><a href="#events-are-at-least-once-so-handlers-must-be-idempotent">Events are at least once, so handlers must be idempotent</a></li><li class="h2"><a href="#hands-on-crash-after-a-checkpoint-then-recover">Hands-on: crash after a checkpoint, then recover</a></li><li class="h2"><a href="#production-notes">Production notes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

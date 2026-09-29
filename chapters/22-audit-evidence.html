@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 22: Audit, evidence packs and kill switches · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="22-audit-evidence" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence" class="current" aria-current="page"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="22-audit-evidence">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VI &middot; Security, identity and governance</div>
+<h1><span class="num">Chapter 22</span>Audit, evidence packs and kill switches</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Telemetry is not audit. A tamper-evident audit chain, evidence packs an auditor can trust, versions pinned for every decision, and kill switches for when it all goes wrong.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain the difference between telemetry and audit in an agentic system</li><li>Verify SwarmPipe's hash-chained audit log and detect deliberate tampering</li><li>Export and inspect an evidence pack for an incident</li><li>Describe version pinning for models, prompts, tools and agents</li><li>Run a kill-switch drill and observe that deterministic ingestion continues while agent actions stop</li></ul></div>
+<p>Telemetry helps operators debug. Audit helps an investigator, regulator or customer trust what happened. A trace can
+be sampled, compacted and deleted after a week. An audit record should be complete, tamper-evident and retained long
+enough to answer uncomfortable questions.</p>
+<p>Agentic systems need both. When a model proposes an action, you need the trace to understand latency and tool calls.
+You need audit and evidence to answer: who did what, on whose behalf, under which policy, with which prompt, model,
+tool version and approval?</p>
+<h2 id="telemetry-is-not-audit">Telemetry is not audit</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Telemetry</span></div><div class="box-body"><p>Operational signals such as traces, metrics and logs. They are optimized for debugging and alerting, often sampled
+and retained for a short time.</p>
+</div></div>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Audit</span></div><div class="box-body"><p>A complete, durable, tamper-evident record of security- and governance-relevant decisions and actions.</p>
+</div></div>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Telemetry</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>Debug and operate</td>
+<td>Prove and investigate</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>spans, metrics, JSON logs</td>
+<td>approvals, executions, policy decisions, kill switches</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>short-lived, sampled</td>
+<td>long-retained, complete</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td>useful but disposable</td>
+<td>hash-chained and verifiable</td>
+</tr>
+<tr>
+<td>Reader</td>
+<td>engineer on call</td>
+<td>auditor, incident commander, regulator</td>
+</tr>
+</tbody>
+</table>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Record 1</div><div class="node-s">hash = sha256(genesis + canonical record)</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Record 2</div><div class="node-s">hash = sha256(record 1 hash + canonical record)</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Record 3</div><div class="node-s">hash = sha256(record 2 hash + canonical record)</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Verify</div><div class="node-s">recompute links and find the first broken sequence</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Anchor</div><div class="node-s">evidence pack stores the chain head</div></div></div><figcaption>Audit chain</figcaption></figure>
+<p><code>swarmpipe\governance\audit.py</code> is small enough to understand. Every row includes <code>actor</code>, <code>actor_type</code>,
+<code>on_behalf_of</code>, <code>action</code>, <code>resource</code>, <code>decision</code>, details and trace id. The hash links to the previous hash:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>def _hash(prev: str, row: dict) -&gt; str:
+    body = canonical_json({k: row.get(k) for k in _FIELDS})
+    return hashlib.sha256((prev + body).encode(&quot;utf-8&quot;)).hexdigest()</code></pre></div>
+<p>If a row is edited, deleted or reordered, <code>verify()</code> pinpoints the first bad sequence. If you anchor the current head
+outside the database, you can also detect truncation after the anchor.</p>
+<p>The audit row also separates <code>actor</code> from <code>on_behalf_of</code>. For autonomous work, <code>actor</code> may be <code>agent:executor</code> and
+<code>on_behalf_of</code> may be empty. For delegated work, the same executor can act on behalf of <code>user:oncall</code> after an
+approval. That distinction is essential during incident response. &quot;The agent did it&quot; is not enough; you need to know
+whether the agent acted under autonomous policy, under a human approval, or under a user request routed through a
+tool or protocol server.</p>
+<h2 id="evidence-packs">Evidence packs</h2>
+<p>An evidence pack is not a pretty trace. It is the audit-grade bundle for an incident: triggering signals, data
+snapshots, hashes, tool evidence, diagnosis, alternatives, policy decisions, approvals, executions, verification,
+versions and cost.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Evidence code map</span></div><div class="box-body"><ul>
+<li><code>swarmpipe\governance\audit.py</code>: <code>record</code>, <code>verify</code>, <code>head</code> and JSONL export.</li>
+<li><code>swarmpipe\governance\evidence.py</code>: <code>EvidenceService.build</code> and HTML export.</li>
+<li><code>swarmpipe\governance\killswitch.py</code>: global, agent, tenant, action and LLM kill-switch scopes.</li>
+<li><code>docs\OPERATIONS_RUNBOOK.md</code>: incident response steps when an AI-proposed action caused the problem.</li>
+<li>Dashboard <strong>Governance</strong>: policies, autonomy history, kill switches and audit.</li>
+<li>Dashboard <strong>Incidents</strong>: evidence, proposals, approvals and the incident trace.</li>
+</ul>
+</div></div>
+<p><code>EvidenceService.build</code> intentionally pulls from records written during normal operation, not from the model's memory:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>return {
+    &quot;triggering_signals&quot;: signals,
+    &quot;data_snapshots&quot;: versions,
+    &quot;context_and_sources&quot;: {&quot;tool_evidence&quot;: evidence, &quot;case_file&quot;: blackboard},
+    &quot;proposed_actions&quot;: proposals,
+    &quot;approvals&quot;: approvals,
+    &quot;executed_actions&quot;: [p for p in proposals if p[&quot;status&quot;] in (&quot;executed&quot;, &quot;verified&quot;, &quot;verification_failed&quot;, &quot;rolled_back&quot;)],
+    &quot;versions&quot;: {&quot;models&quot;: models, &quot;prompts&quot;: prompts, &quot;tools&quot;: sorted({f&quot;{t[&#x27;tool&#x27;]}@{t[&#x27;tool_version&#x27;]}&quot; for t in tools})},
+    &quot;audit_anchor&quot;: self.svc.audit.head(),
+}</code></pre></div>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Signals</div><div class="layer-s">which detector fired and when</div></div><div class="layer"><div class="layer-t">Data snapshots</div><div class="layer-s">dataset versions, row counts and content hashes</div></div><div class="layer"><div class="layer-t">Evidence</div><div class="layer-s">tool outputs and blackboard entries with citations</div></div><div class="layer"><div class="layer-t">Policy</div><div class="layer-s">evaluated effect, reasons and matched rules</div></div><div class="layer"><div class="layer-t">Human oversight</div><div class="layer-s">approvals, rejections, comments and typed confirmation</div></div><div class="layer"><div class="layer-t">Execution</div><div class="layer-s">action results, <code>executed_by</code> and <code>on_behalf_of</code></div></div><div class="layer"><div class="layer-t">Verification</div><div class="layer-s">ground-truth checks and rollback status</div></div><div class="layer"><div class="layer-t">Version pins</div><div class="layer-s">model, prompt hash, tool version and agent card hash</div></div><div class="layer"><div class="layer-t">Cost and audit anchor</div><div class="layer-s">model spend and the audit-chain head</div></div></div><figcaption>What an evidence pack proves</figcaption></figure>
+<h2 id="version-pinning-matters">Version pinning matters</h2>
+<p>If an incident happened yesterday, today's prompt is not enough to explain it. SwarmPipe records prompt id, prompt
+version, prompt hash, model/provider, tool version and agent card hash. Prompt hashes are approved in
+<code>prompts\prompts.lock.json</code>; unapproved prompt changes are refused until an eval gate approves them. Tool
+fingerprints and agent-card hashes play the same supply-chain role for tools and agents.</p>
+<p>This matters because &quot;the agent decided&quot; is not a postmortem. Which agent version, with which prompt and which model,
+under which policy version, decided?</p>
+<h2 id="kill-switches">Kill switches</h2>
+<p>When the system is causing harm, you need a brake that does not require editing code. SwarmPipe kill switches have
+scopes:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>global</code></td>
+<td>stop all agent actions and model calls</td>
+</tr>
+<tr>
+<td><code>agent:&lt;id&gt;</code></td>
+<td>suspend one rogue agent</td>
+</tr>
+<tr>
+<td><code>tenant:&lt;t&gt;</code></td>
+<td>stop side effects for one tenant</td>
+</tr>
+<tr>
+<td><code>action:&lt;class&gt;</code></td>
+<td>block one action class such as <code>rollback_dataset</code></td>
+</tr>
+<tr>
+<td><code>llm</code></td>
+<td>stop model calls while deterministic work continues</td>
+</tr>
+</tbody>
+</table>
+<p><code>swarmpipe\governance\killswitch.py</code> is checked by the tool gateway, the model gateway and the policy engine.
+Deterministic ingestion and quality checks continue, so bad files can still be quarantined and signals can still open
+incidents.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">A kill switch is not recovery</span></div><div class="box-body"><p>Engaging a kill switch contains further harm. Recovery still needs rollback, communication, evidence review,
+postmortem, eval updates and policy changes. <code>docs\OPERATIONS_RUNBOOK.md</code> lists the response: contain, roll back,
+communicate, learn and adjust.</p>
+</div></div>
+<h2 id="lab-verify-and-tamper-with-audit">Lab: verify and tamper with audit</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Hash-chain verification</span></div><div class="box-body"><ol>
+<li>
+<p>Start from a clean baseline and create an incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop volume_drop --process</code></pre></div>
+</li>
+<li>
+<p>Verify the audit chain:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp audit verify</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>OK {&quot;ok&quot;: true, &quot;checked&quot;: 25, &quot;head&quot;: &quot;50a755e15c38b6d4a8339ddfd4f16a66ccfb53483537eaa0eb7b8f8b25866ed3&quot;}</code></pre></div>
+</li>
+<li>
+<p>Deliberately tamper with record 3:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp audit tamper --seq 3
+sp audit verify</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>edited audit record 3 - now run `swarmpipe audit verify`
+TAMPERED {&quot;ok&quot;: false, &quot;checked&quot;: 2, &quot;first_bad_seq&quot;: 3, &quot;reason&quot;: &quot;record content does not match its hash (modified)&quot;}</code></pre></div>
+<p>This is a lab-only command. In a real incident, recover by restoring from a trusted backup or resetting the lab
+workspace if this was only an exercise. Do not &quot;fix&quot; the row by hand; that destroys the point of tamper evidence.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="lab-export-an-evidence-pack">Lab: export an evidence pack</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Incident evidence pack</span></div><div class="box-body"><ol>
+<li>
+<p>Find an incident id:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp incidents list --limit 3</code></pre></div>
+</li>
+<li>
+<p>Export the pack:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evidence &lt;incident_id&gt;</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>evidence pack: ...\data\exports\evidence\inc_mumi99x6266f6e.html</code></pre></div>
+</li>
+<li>
+<p>Open the HTML file from the printed path. You should see the incident summary, diagnosis, actions, versions, cost
+and audit anchor. The JSON file with the same id sits next to it and is the machine-readable artifact.</p>
+</li>
+<li>
+<p>Compare it with:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp trace &lt;incident_id&gt;</code></pre></div>
+<p>The trace is for debugging the execution path. The evidence pack is for proving what decisions and records existed.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="lab-kill-switch-drill">Lab: kill-switch drill</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Engage global kill switch during an incident</span></div><div class="box-body"><ol>
+<li>
+<p>Reset after the tamper exercise, then load the baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+</li>
+<li>
+<p>Engage the global kill switch:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp killswitch on --scope global --reason &quot;drill&quot; --as admin</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>kill switch global -&gt; on</code></pre></div>
+</li>
+<li>
+<p>Drop a bad file:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp incidents list --limit 3</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>admitted 1 file(s); processed in 3.8s
+...
+| workflow       | status      | n |
+| ingest_dataset | quarantined | 1 |
+| triage         | succeeded   | 2 |
+...
+| id      | status    | severity | dataset     | root_cause        |
+| inc_... | escalated | critical | sales_daily | truncated_extract |</code></pre></div>
+</li>
+<li>
+<p>Inspect state:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>PROPOSALS
+VERSIONS
+{&#x27;dataset&#x27;: &#x27;sales_daily&#x27;, &#x27;status&#x27;: &#x27;quarantined&#x27;, &#x27;row_count&#x27;: 18}
+{&#x27;dataset&#x27;: &#x27;sales_daily&#x27;, &#x27;status&#x27;: &#x27;published&#x27;, &#x27;row_count&#x27;: 1949}</code></pre></div>
+<p>No proposals executed while the kill switch was active, but deterministic ingestion and quarantine still worked.
+The status line also shows <code>kill switches: ['global']</code>.</p>
+</li>
+<li>
+<p>Release the switch:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp killswitch off --scope global --reason &quot;drill complete&quot; --as admin
+sp status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>kill switch global -&gt; off
+...
+LLM: 13 calls, $0.0029, 14340 tokens | profile offline | kill switches: none | inbox: ...\data\inbox</code></pre></div>
+</li>
+</ol>
+</div></div>
+<h2 id="break-it-engage-the-brake-mid-incident">Break it: engage the brake mid-incident</h2>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Global kill switch as incident response</span></div><div class="box-body"><p>Repeat the kill-switch lab, but engage <code>global</code> after an incident opens and before approving any action. Watch the
+policy reasons change to denial and confirm no action rows reach <code>executed</code> or <code>verified</code>. For a narrower drill, use:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp killswitch on --scope action:force_publish --reason &quot;block risky override&quot; --as admin
+sp killswitch off --scope action:force_publish --reason &quot;drill complete&quot; --as admin</code></pre></div>
+<p>Use action-scoped switches when one class is unsafe, tenant-scoped switches when one customer's environment is affected
+and <code>llm</code> when model calls are the problem but deterministic ingestion should continue.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Audit anchors should leave the database</span></div><div class="box-body"><p>SwarmPipe stores the current audit head in evidence packs. In a larger system, also anchor heads outside the mutable
+state database: a ticket, WORM store, object-lock bucket or external ledger. A hash chain detects edits and gaps; an
+external anchor also helps detect truncation after the anchored sequence.</p>
+</div></div>
+<h2 id="when-the-ai-caused-the-incident">When the AI caused the incident</h2>
+<p>If an AI-proposed action caused harm, follow the operations runbook:</p>
+<ol>
+<li>Contain with <code>sp killswitch on --scope action:&lt;class&gt;</code> or <code>--scope global</code>.</li>
+<li>Roll back with <code>sp actions rollback &lt;proposal_id&gt; --as oncall</code> and verify data state.</li>
+<li>Export <code>sp evidence &lt;incident_id&gt;</code> and share the HTML/JSON with affected owners.</li>
+<li>Let the Learner draft a postmortem, but have humans review it.</li>
+<li>Harvest or add the case to evals, tighten policy if needed and run <code>sp evals gate</code>.</li>
+</ol>
+<p>The rollback itself is evidence for automatic demotion, as shown in <a href="21-policy-autonomy.html">Chapter 21</a>.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why is telemetry not enough for governance?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It is too colorful</button></li><li><button type="button" class="opt" data-correct="true">It may be sampled, short-lived and optimized for debugging rather than proof</button></li><li><button type="button" class="opt" data-correct="false">It cannot include model calls</button></li></ul><div class="q-explain" hidden>Audit needs complete, tamper-evident records of decisions and actions.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does <code>sp audit verify</code> recompute?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">The hash chain linking each audit row to the previous row</button></li><li><button type="button" class="opt" data-correct="false">Dataset row counts only</button></li><li><button type="button" class="opt" data-correct="false">Prompt token counts</button></li></ul><div class="q-explain" hidden>The verifier detects modified, deleted or reordered audit records.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What is inside an evidence pack?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Only the final diagnosis</button></li><li><button type="button" class="opt" data-correct="true">Signals, snapshots, evidence, policy, approvals, executions, verification, versions, cost and audit anchor</button></li><li><button type="button" class="opt" data-correct="false">Only screenshots from the dashboard</button></li></ul><div class="q-explain" hidden>Evidence packs are built from operational records written during the incident.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What continues under a global kill switch?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Deterministic ingestion and quarantine</button></li><li><button type="button" class="opt" data-correct="false">Arbitrary agent actions</button></li><li><button type="button" class="opt" data-correct="false">Non-allowlisted webhooks</button></li></ul><div class="q-explain" hidden>The switch blocks model calls and side effects, while deterministic controls can still contain bad data.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What should you do after a lab audit tamper?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Manually edit the hash until verification passes</button></li><li><button type="button" class="opt" data-correct="true">Treat it as a detected break; reset the lab or restore from trusted backup</button></li><li><button type="button" class="opt" data-correct="false">Ignore future audit failures</button></li></ul><div class="q-explain" hidden>Hand-editing a tampered audit chain defeats audit integrity.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Telemetry helps operators debug; audit proves who did what, for whom and under which policy.</li>
+<li>SwarmPipe audit rows are hash-chained, and <code>sp audit verify</code> pinpoints the first tampered sequence.</li>
+<li>Evidence packs combine signals, snapshots, tool evidence, policy decisions, approvals, execution, verification, versions, cost and the audit anchor.</li>
+<li>Version pinning for prompts, models, tools and agents is necessary for credible postmortems.</li>
+<li>Kill switches contain harm immediately, but recovery still requires rollback, communication, learning, eval updates and policy changes.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="22-audit-evidence"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="21-policy-autonomy.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 21 &middot; Policy-as-code, approvals and the autonomy ladder</span></a><a class="next" href="23-observability.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 23 &middot; Observability: traces, metrics, logs and SLOs</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#telemetry-is-not-audit">Telemetry is not audit</a></li><li class="h2"><a href="#evidence-packs">Evidence packs</a></li><li class="h2"><a href="#version-pinning-matters">Version pinning matters</a></li><li class="h2"><a href="#kill-switches">Kill switches</a></li><li class="h2"><a href="#lab-verify-and-tamper-with-audit">Lab: verify and tamper with audit</a></li><li class="h2"><a href="#lab-export-an-evidence-pack">Lab: export an evidence pack</a></li><li class="h2"><a href="#lab-kill-switch-drill">Lab: kill-switch drill</a></li><li class="h2"><a href="#break-it-engage-the-brake-mid-incident">Break it: engage the brake mid-incident</a></li><li class="h2"><a href="#when-the-ai-caused-the-incident">When the AI caused the incident</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

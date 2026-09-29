@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 20: Identity, delegation and governed data access · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="20-identity-access" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access" class="current" aria-current="page"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="20-identity-access">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VI &middot; Security, identity and governance</div>
+<h1><span class="num">Chapter 20</span>Identity, delegation and governed data access</h1>
+<div class="meta"><span class="chip">&#9201; 45 min</span><span class="chip">Level: Intermediate → Advanced</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Agent, user and tool identities; acting on behalf of someone; scope intersection; short-lived credentials and secrets; tenant isolation; PII tokenization; and safe natural-language-to-SQL.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Distinguish workload identity, user identity and tool or server identity in an agentic system</li><li>Explain delegation with <code>on_behalf_of</code> and why SwarmPipe intersects scopes instead of unioning them</li><li>Describe short-lived credentials, <code>secret://</code> references and why secrets never belong in prompts</li><li>Run the Analyst with different users and observe PII tokenization, detokenization and tenant denial</li><li>Explain the controls behind safe natural-language-to-SQL</li></ul></div>
+<p>An agent is not a person, but it still needs an identity. It needs to prove which workload is acting, which user it is
+acting for and which tool or server it is calling. Without that separation, a helpful &quot;ask your data&quot; agent becomes a
+privilege escalation machine: a low-privilege user asks a high-privilege agent for raw PII, and the system has no idea
+whose permissions should win.</p>
+<p>SwarmPipe uses the stricter answer: delegated actions get the <strong>intersection</strong> of the agent's permissions and the
+user's permissions. The agent can only do what both are allowed to do.</p>
+<h2 id="three-identities-not-one">Three identities, not one</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Workload identity</span></div><div class="box-body"><p>The identity of the running agent or service, such as <code>agent:analyst</code> or <code>agent:executor</code>. It limits what that
+software component can do even when no human is present.</p>
+</div></div>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">User identity</span></div><div class="box-body"><p>The authenticated human or configured service user the agent acts for, such as <code>user:analyst</code>, <code>user:oncall</code> or
+<code>user:admin</code>.</p>
+</div></div>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Tool or server identity</span></div><div class="box-body"><p>The identity and version of the thing being called: a tool contract, MCP server, model provider or external service.
+It is part of the supply chain and audit trail.</p>
+</div></div>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">User asks</div><div class="node-s"><code>user:oncall</code> approves or requests work</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Agent acts</div><div class="node-s"><code>agent:executor</code> performs the catalog action</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Tool executes</div><div class="node-s"><code>act_hold_downstream</code> runs through the tool gateway</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Audit records</div><div class="node-s">executed_by plus on_behalf_of plus policy and approval</div></div></div><figcaption>Identity on one delegated action</figcaption></figure>
+<p>In <code>config\swarmpipe.yaml</code>, users carry scopes, tenants and PII rights:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>users:
+  admin:   {roles: [admin, approver, operator], scopes: [&quot;*&quot;], pii_access: true, tenants: [&quot;*&quot;]}
+  oncall:  {roles: [approver, operator], scopes: [&quot;data:read&quot;, &quot;incident&quot;, &quot;approval:decide&quot;, &quot;knowledge:read&quot;, &quot;action&quot;], pii_access: false, tenants: [&quot;*&quot;]}
+  analyst: {roles: [viewer], scopes: [&quot;data:read:published&quot;, &quot;knowledge:read&quot;], pii_access: false, tenants: [&quot;default&quot;]}</code></pre></div>
+<p>The Analyst agent has the <em>capability</em> to handle PII, but that capability is effective only when the user also has
+PII access. That is the difference between &quot;this code path can detokenize&quot; and &quot;this request may detokenize.&quot;</p>
+<p><code>swarmpipe\governance\identity.py</code> makes the intersection explicit:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>def can(self, scope: str) -&gt; bool:
+    ok = _scope_match(self.scopes, scope)
+    if self.on_behalf_of is not None:
+        ok = ok and self.on_behalf_of.can(scope)
+    return ok
+
+@property
+def pii_allowed(self) -&gt; bool:
+    return self.pii_access and (self.on_behalf_of.pii_allowed if self.on_behalf_of else True)</code></pre></div>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Two-key safe</span></div><div class="box-body"><p>Delegation is a two-key safe. The agent key proves the workload is allowed to use a capability. The user key proves
+this person is allowed to request it. Opening the safe requires both.</p>
+</div></div>
+<h2 id="secrets-and-short-lived-credentials">Secrets and short-lived credentials</h2>
+<p>Agents should never see raw provider keys, database passwords or webhook secrets. SwarmPipe configuration uses
+<code>secret://</code> references for hosted providers:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>openai: {type: openai_compat, base_url: &quot;https://api.openai.com/v1&quot;, api_key: &quot;secret://OPENAI_API_KEY&quot;, json_mode: true}
+azure:  {type: azure_openai, endpoint: &quot;secret://AZURE_OPENAI_ENDPOINT&quot;, api_key: &quot;secret://AZURE_OPENAI_API_KEY&quot;, ...}</code></pre></div>
+<p><code>SecretsBroker</code> resolves those references from environment variables or <code>.secrets.json</code> only at the provider/tool
+edge. The model prompt receives neither the reference's value nor a copy of the key. The same module issues
+short-lived HMAC-signed tokens with an expiry (<code>ttl_s</code> defaults to 300 seconds), so a delegated credential is scoped
+and temporary.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Never hard-code credentials into prompts, tools or examples</span></div><div class="box-body"><p>Prompt text is logged, cached, evaluated, repaired and sometimes exported as evidence. Use <code>secret://</code> references,
+resolve them at the boundary and rely on the secret-leak guardrail to block known secret values before a model call.</p>
+</div></div>
+<h2 id="tenant-isolation-and-least-privilege">Tenant isolation and least privilege</h2>
+<p>Tenants in SwarmPipe are simple but realistic. Files at the inbox root belong to <code>default</code>; files under
+<code>data\inbox\acme</code> belong to <code>acme</code>. Published views are tenant-prefixed, quotas are per tenant and autonomy levels are
+per tenant plus action class.</p>
+<p>Least privilege is also per agent. Investigators have read-only tools. The Planner can propose, but cannot execute.
+Only the Executor has <code>act_*</code> write tools. The Analyst has one read-only tool, <code>query_warehouse</code>.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Identity and access code map</span></div><div class="box-body"><ul>
+<li><code>swarmpipe\governance\identity.py</code>: identities, <code>acting_for</code>, scope intersection, tenant checks, short-lived tokens and <code>SecretsBroker</code>.</li>
+<li><code>config\swarmpipe.yaml</code>: users, tenants, provider <code>secret://</code> references and guardrails.</li>
+<li><code>swarmpipe\data\pii.py</code>: deterministic PII detection, tokenization vault and detokenization.</li>
+<li><code>swarmpipe\agents\service_agents.py</code>: Analyst agent, <code>pii_access = True</code> capability and NL-to-SQL flow.</li>
+<li><code>swarmpipe\data\warehouse.py</code>: read-only SQLite connection, authorizer, tenant temp views, row limit and VM-step budget.</li>
+</ul>
+</div></div>
+<h2 id="pii-classify-tokenize-detokenize-only-when-authorized">PII: classify, tokenize, detokenize only when authorized</h2>
+<p>SwarmPipe detects PII deterministically with regexes and validators such as Luhn checks. Publishing replaces raw values
+with deterministic typed tokens such as <code>tok_email_&lt;hash&gt;</code>. The raw value is stored in the <code>pii_vault</code> table and is
+detokenized only when the effective delegated identity has PII access. Detokenization is audited.</p>
+<p>This means tokens still support joins and repeat analysis, but casual access does not reveal personal data.</p>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Published data</div><div class="layer-s">PII columns are tokenized before they reach consumer-facing views</div></div><div class="layer"><div class="layer-t">Semantic layer</div><div class="layer-s"><code>config\glossary.yaml</code> maps business questions to metrics and dimensions</div></div><div class="layer"><div class="layer-t">Analyst prompt</div><div class="layer-s">model proposes one read-only SQL statement over allowed tables</div></div><div class="layer"><div class="layer-t">Static checks</div><div class="layer-s">only a single <code>SELECT</code> or <code>WITH</code> statement is accepted</div></div><div class="layer"><div class="layer-t">Tool gateway</div><div class="layer-s"><code>query_warehouse</code> runs under <code>agent:analyst acting for user:&lt;name&gt;</code></div></div><div class="layer"><div class="layer-t">Warehouse authorizer</div><div class="layer-s">denies writes, cross-tenant reads and unsafe functions</div></div><div class="layer"><div class="layer-t">Result shaping</div><div class="layer-s">row limits, truncation flag, PII detokenization only when allowed</div></div></div><figcaption>Governed data access</figcaption></figure>
+<p><code>swarmpipe\data\warehouse.py</code> is the last line of defense if a model writes unsafe SQL:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>if action == sqlite3.SQLITE_READ:
+    t = arg1 or &quot;&quot;
+    if t in allowed or t.startswith(prefix_t) or t.startswith(prefix_v):
+        return sqlite3.SQLITE_OK
+    denied.append(f&quot;read {t}&quot;)
+    return sqlite3.SQLITE_DENY
+...
+con.set_progress_handler(progress, 1000)
+rows = cur.fetchmany(max_rows + 1)</code></pre></div>
+<p>The model is useful for translation. Authorization is still deterministic code.</p>
+<h2 id="lab-ask-the-data-as-analyst-and-admin">Lab: ask the data as analyst and admin</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Analyst identity and PII access</span></div><div class="box-body"><ol>
+<li>
+<p>Start from a clean baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+</li>
+<li>
+<p>Ask a normal governed metric:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;total revenue by region&quot; --as analyst</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>4 row(s): region=South, total_revenue=3286293.16; region=West, total_revenue=2923620.95; ...
+SQL: SELECT region AS region, ROUND(SUM(amount), 2) AS total_revenue FROM sales_enriched GROUP BY region ORDER BY total_revenue DESC
+acting as: agent:analyst acting for user:analyst | tables: [&#x27;customers&#x27;, &#x27;inventory&#x27;, &#x27;regions&#x27;, &#x27;sales_daily&#x27;, &#x27;sales_enriched&#x27;] | PII detokenized: 0 | evidence: ev_...</code></pre></div>
+</li>
+<li>
+<p>Ask for customer emails as a non-PII user:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;emails of customers&quot; --as analyst</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>20 row(s): customer_id=C0001, name=tok_person_name_92f5957d48b7, email=tok_email_afbfea10b616, phone=tok_phone_a5fbb5547760; ...
+SQL: SELECT customer_id, name, email, phone FROM customers LIMIT 20
+acting as: agent:analyst acting for user:analyst | ... | PII detokenized: 0 | evidence: ev_...</code></pre></div>
+</li>
+<li>
+<p>Ask the same question as admin:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;emails of customers&quot; --as admin</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>20 row(s): customer_id=C0001, name=Kabir Iyer, email=kabir.iyer1@example.com, phone=+91 9792966160; ...
+SQL: SELECT customer_id, name, email, phone FROM customers LIMIT 20
+acting as: agent:analyst acting for user:admin | ... | PII detokenized: 60 | evidence: ev_...</code></pre></div>
+<p>The agent did not change. The user did. The effective delegated identity changed from no PII access to PII access.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Tenant, destructive and off-topic refusals</span></div><div class="box-body"><p>Run three requests that production systems must refuse:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;total revenue by region&quot; --as analyst --tenant acme
+sp ask &quot;delete all sales rows&quot; --as analyst
+sp ask &quot;what is the weather in Pune today&quot; --as analyst</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>refused: user:analyst may not read published data of tenant acme
+refused: I can only read data; changes must go through the pipeline
+refused: The question does not map to a governed metric or dataset in the semantic layer</code></pre></div>
+<p>Open <strong>Ask the data</strong> in the dashboard and compare the same behavior there. Open <strong>Governance</strong> or <code>sp audit tail</code>
+afterward to see that denied and answered requests are recorded with the acting identity.</p>
+</div></div>
+<h2 id="lab-pii-leak-scenario">Lab: PII leak scenario</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Where leaked PII goes</span></div><div class="box-body"><ol>
+<li>
+<p>Drop a customer file with card numbers typed into the free-text <code>notes</code> column:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop pii_leak --process
+sp incidents list --limit 3</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers_2026-09-29.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 6.6s
+...
+| id      | status    | severity | dataset   | root_cause  | title |
+| inc_... | mitigated | high     | customers | pii_exposure | customers: pii undeclared ... |</code></pre></div>
+</li>
+<li>
+<p>Ask for emails again as <code>analyst</code>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;emails of customers&quot; --as analyst</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>email=tok_email_afbfea10b616 ... | PII detokenized: 0</code></pre></div>
+<p>The leaked embedded PII is masked or tokenized before publication, the privacy incident is flagged, and the
+Analyst still returns tokens for a user without PII rights.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="break-it-try-cross-tenant-or-write-access">Break it: try cross-tenant or write access</h2>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Make the Analyst misbehave</span></div><div class="box-body"><p>Try to force the Analyst to write data:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;run UPDATE default__sales_daily SET amount=0&quot; --as analyst</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>refused: I can only read data; changes must go through the pipeline</code></pre></div>
+<p>Then try to move the user across a tenant boundary:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp ask &quot;total revenue by region&quot; --as analyst --tenant acme</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>refused: user:analyst may not read published data of tenant acme</code></pre></div>
+<p>There are two different controls here. The delegated identity fails <code>can_access_tenant(&quot;acme&quot;)</code>, so the query is not
+even attempted. For writes, the Analyst's prompt and single-statement check refuse the request; if that failed, the
+warehouse authorizer would still deny non-<code>SELECT</code> operations on the read-only connection.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Natural-language-to-SQL is not a database firewall</span></div><div class="box-body"><p>The model should help choose a metric and produce SQL, not decide who may read which rows. In a larger deployment,
+use the same pattern with your real warehouse: semantic layer, read-only role, row and time limits, tenant filters,
+audited detokenization and a database-native authorizer or policy engine.</p>
+</div></div>
+<h2 id="a2a-with-identity">A2A with identity</h2>
+<p>Chapter 10 covers A2A in depth. The security point here is simple: an A2A task does not remove server-side identity.
+The Analyst's Agent Card is exposed at <code>/a2a/agents/analyst</code>, and tasks can be posted to
+<code>/a2a/agents/analyst/tasks</code>, but the server still applies the configured user, tenant and tool policies. Protocol
+metadata is not permission.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>When <code>agent:analyst</code> acts for <code>user:analyst</code>, whose permissions apply?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Only the agent's permissions</button></li><li><button type="button" class="opt" data-correct="false">Only the user's permissions</button></li><li><button type="button" class="opt" data-correct="true">The intersection of agent and user permissions</button></li></ul><div class="q-explain" hidden>SwarmPipe's <code>acting_for</code> delegation requires both identities to allow the scope and tenant.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why can <code>--as admin</code> see raw emails while <code>--as analyst</code> sees tokens?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">The Analyst has PII capability, but effective PII access also requires the user to have PII rights</button></li><li><button type="button" class="opt" data-correct="false">Admin uses a different warehouse</button></li><li><button type="button" class="opt" data-correct="false">Tokens are randomly decoded in the CLI</button></li></ul><div class="q-explain" hidden><code>pii_allowed</code> is intersected across the agent and the user.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>Where are provider secrets resolved?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">In the prompt body</button></li><li><button type="button" class="opt" data-correct="true">At the provider or tool boundary by <code>SecretsBroker</code></button></li><li><button type="button" class="opt" data-correct="false">In the dashboard JavaScript</button></li></ul><div class="q-explain" hidden>Configuration uses <code>secret://</code> references; raw values are not sent to the model.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What blocks a write statement generated by the Analyst?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The Critic agent</button></li><li><button type="button" class="opt" data-correct="true">Single-<code>SELECT</code> validation plus the read-only warehouse authorizer</button></li><li><button type="button" class="opt" data-correct="false">The file watcher</button></li></ul><div class="q-explain" hidden>The model proposes SQL; deterministic checks and SQLite authorization enforce read-only behavior.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>What does tenant isolation protect in the lab?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Only the dashboard tabs</button></li><li><button type="button" class="opt" data-correct="true">Inbox paths, published views, quotas, autonomy and data-access checks</button></li><li><button type="button" class="opt" data-correct="false">Only PII columns</button></li></ul><div class="q-explain" hidden>SwarmPipe models tenancy across ingestion, storage, quotas, policy and identity.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Production agents need workload identity, user identity and tool/server identity in the audit trail.</li>
+<li>Delegation must intersect permissions; union semantics are privilege escalation.</li>
+<li>SwarmPipe uses <code>secret://</code> references, short-lived HMAC tokens and secret-leak checks so secrets do not enter prompts.</li>
+<li>PII is detected deterministically, tokenized before publication and detokenized only for authorized delegated identities.</li>
+<li>Safe NL-to-SQL requires semantic grounding, read-only execution, tenant scoping, row limits and a database authorizer.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="20-identity-access"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="19-threat-model.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 19 &middot; Threat modeling agents: prompt injection and defense in depth</span></a><a class="next" href="21-policy-autonomy.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 21 &middot; Policy-as-code, approvals and the autonomy ladder</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#three-identities-not-one">Three identities, not one</a></li><li class="h2"><a href="#secrets-and-short-lived-credentials">Secrets and short-lived credentials</a></li><li class="h2"><a href="#tenant-isolation-and-least-privilege">Tenant isolation and least privilege</a></li><li class="h2"><a href="#pii-classify-tokenize-detokenize-only-when-authorized">PII: classify, tokenize, detokenize only when authorized</a></li><li class="h2"><a href="#lab-ask-the-data-as-analyst-and-admin">Lab: ask the data as analyst and admin</a></li><li class="h2"><a href="#lab-pii-leak-scenario">Lab: PII leak scenario</a></li><li class="h2"><a href="#break-it-try-cross-tenant-or-write-access">Break it: try cross-tenant or write access</a></li><li class="h2"><a href="#a2a-with-identity">A2A with identity</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

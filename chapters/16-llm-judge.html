@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 16: LLM-as-judge and why it must be calibrated · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="16-llm-judge" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge" class="current" aria-current="page"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="16-llm-judge">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part V &middot; Evaluation</div>
+<h1><span class="num">Chapter 16</span>LLM-as-judge and why it must be calibrated</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">Use models to grade open-ended output, then prove the grader is trustworthy: rubrics, verbosity and position bias, agreement with humans (kappa, Spearman) and pairwise comparisons.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Decide when an LLM judge is appropriate and when deterministic checks are better</li><li>Design a rubric for open-ended agent outputs</li><li>Recognize verbosity, position, self-preference and leniency bias</li><li>Calibrate judge scores against human labels with agreement metrics</li><li>Compare SwarmPipe judge prompt versions v1 and v2</li><li>Use pairwise judging with position swapping</li></ul></div>
+<p>Some quality questions are easy to score with code. Did the Router classify a CSV as tabular? Did the Planner execute
+<code>force_publish</code> under attack? Did the Analyst return the same result set as the reference SQL? Use deterministic checks
+for those. Other questions are open-ended: &quot;is this diagnosis explanation correct, grounded and actionable?&quot; A regular
+assertion can miss a paraphrase, and a string match can reward the wrong thing.</p>
+<p>An <strong>LLM-as-judge</strong> is useful for that open-ended layer, but only after you prove the judge deserves trust. Otherwise
+you have replaced one uncalibrated model with another. SwarmPipe treats the Judge as a production component: it has
+versioned prompts, a calibration dataset, agreement metrics and a gate threshold.</p>
+<h2 id="when-to-use-a-judge">When to use a judge</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">LLM-as-judge</span></div><div class="box-body"><p>A model call that scores, ranks or compares another model's output using a rubric. It is an evaluator, not ground truth.</p>
+</div></div>
+<p>Use a judge when the target is semantic and hard to enumerate: explanation quality, grounded narrative, whether a
+postmortem is blameless, or whether a remediation rationale is understandable. Do <strong>not</strong> use a judge when the answer is
+machine-checkable. In SwarmPipe, root-cause category, required proposals, forbidden actions, egress, published versions
+and SQL result sets are scored directly in <code>swarmpipe\evals\harness.py</code>; the Judge is used for explanation quality.</p>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Deterministic</div><div class="layer-s">exact root cause, result sets, action status, egress, PII protection</div></div><div class="layer"><div class="layer-t">Hybrid</div><div class="layer-s">citation validity: deterministic id validation plus semantic claim review if needed</div></div><div class="layer"><div class="layer-t">Judge-worthy</div><div class="layer-s">explanation quality, actionability, rubric-based diagnosis prose</div></div><div class="layer"><div class="layer-t">Human-owned</div><div class="layer-s">final calibration labels, release exceptions, risk acceptance</div></div></div><figcaption>Judge-worthy vs deterministic</figcaption></figure>
+<h2 id="rubrics-before-scores">Rubrics before scores</h2>
+<p>A judge prompt needs a rubric that defines what &quot;good&quot; means. SwarmPipe's v2 judge rubric scores three dimensions:
+correctness, grounding and actionability, then computes overall from them. The prompt explicitly says length is not
+quality:</p>
+<div class="code" data-lang="text"><div class="code-head"><span>Text</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Rubric (1-5 each): correctness = names the reference root cause and its key facts; grounding = cites evidence ids;
+actionability = implies the right next action. Length is NOT quality: do not reward verbosity; penalize padding...</code></pre></div>
+<p>That one sentence exists because v1 was biased toward long answers. The lesson is broader than SwarmPipe: rubrics are
+software requirements for evaluators. If you do not state that concise, correct answers beat padded prose, many judges
+will reward polish and length.</p>
+<h2 id="biases-to-look-for">Biases to look for</h2>
+<table>
+<thead>
+<tr>
+<th>Bias</th>
+<th>What it looks like</th>
+<th>SwarmPipe check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verbosity bias</td>
+<td>Longer answers get higher scores without adding facts</td>
+<td>Compare candidate vs candidate plus filler.</td>
+</tr>
+<tr>
+<td>Position bias</td>
+<td>In pairwise mode, answer A wins because it is first</td>
+<td>Swap A/B and check consistency.</td>
+</tr>
+<tr>
+<td>Self-preference</td>
+<td>A model favors outputs from the same model family</td>
+<td>Use human labels and, in industry practice, multiple judges.</td>
+</tr>
+<tr>
+<td>Leniency</td>
+<td>Scores cluster high and fail to separate weak answers</td>
+<td>Track exact agreement, kappa and score distribution.</td>
+</tr>
+</tbody>
+</table>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Judge implementation</span></div><div class="box-body"><ul>
+<li><code>swarmpipe\agents\service_agents.py</code> - <code>JudgeAgent.score</code> and <code>JudgeAgent.pairwise</code>.</li>
+<li><code>swarmpipe\evals\judge.py</code> - calibration loop and agreement metrics.</li>
+<li><code>evals\datasets\judge_calibration.v1.jsonl</code> - 18 human-labeled examples.</li>
+<li><code>prompts\judge.v1.md</code>, <code>prompts\judge.v2.md</code> and <code>prompts\judge_pairwise.v1.md</code> - judge prompts.</li>
+<li><code>evals\gate.yaml</code> - requires <code>judge.kappa &gt;= 0.6</code>.</li>
+</ul>
+</div></div>
+<p>The trust rule in <code>swarmpipe\evals\judge.py</code> is intentionally simple:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>res[&quot;trustworthy&quot;] = bool(
+    res[&quot;kappa&quot;] &gt;= 0.6
+    and abs(res[&quot;verbosity_bias&quot;] or 0) &lt;= 0.3
+    and (res[&quot;position_consistency&quot;] or 0) &gt;= 0.8
+)</code></pre></div>
+<p>It is not a universal law. It is SwarmPipe's local release rule: good enough agreement, limited verbosity bias and
+stable pairwise ordering.</p>
+<h2 id="agreement-metrics-in-plain-english">Agreement metrics in plain English</h2>
+<p>Calibration compares judge scores with human labels from <code>evals\datasets\judge_calibration.v1.jsonl</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exact agreement</td>
+<td>Share of items where judge score equals the human score. Strict but brittle.</td>
+</tr>
+<tr>
+<td>Within-1 agreement</td>
+<td>Share where the judge is at most one point away. Useful for 1-5 rubrics.</td>
+</tr>
+<tr>
+<td>Quadratic-weighted Cohen's kappa</td>
+<td>Agreement adjusted for chance, with large disagreements penalized more.</td>
+</tr>
+<tr>
+<td>Spearman correlation</td>
+<td>Whether judge and humans rank items in similar order.</td>
+</tr>
+<tr>
+<td>Verbosity bias</td>
+<td>Average score increase after adding fact-free filler.</td>
+</tr>
+<tr>
+<td>Position consistency</td>
+<td>Pairwise preference stays the same after A/B swap.</td>
+</tr>
+</tbody>
+</table>
+<p>High kappa alone is not enough. A judge can agree with humans on many examples while still having a bias that will be
+exploited by future prompts.</p>
+<h2 id="hands-on-calibrate-v1-and-v2">Hands-on: calibrate v1 and v2</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Run the judge calibration</span></div><div class="box-body"><ol>
+<li>
+<p>Run the v1 calibration:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals calibrate-judge --version v1</code></pre></div>
+<p>On the sandbox used for this chapter, the CLI computed the metrics below. The non-interactive Windows harness hit a
+Rich console rendering issue while printing v1, so the same <code>calibrate(version=&quot;v1&quot;, console=None)</code> function was
+used to capture the JSON. In a normal terminal, the CLI prints the same fields.</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;version&quot;: &quot;v1&quot;,
+  &quot;items&quot;: 18,
+  &quot;exact_agreement&quot;: 0.278,
+  &quot;within_1_agreement&quot;: 0.944,
+  &quot;kappa&quot;: 0.806,
+  &quot;spearman&quot;: 0.936,
+  &quot;verbosity_bias&quot;: 0.5,
+  &quot;position_consistency&quot;: 1.0,
+  &quot;pairs&quot;: 11,
+  &quot;trustworthy&quot;: false
+}</code></pre></div>
+</li>
+<li>
+<p>Run v2:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals calibrate-judge --version v2</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>judge v2: kappa=0.839 spearman=0.912 exact=0.444 within1=1.0
+verbosity_bias=0.0 position_consistency=1.0 -&gt; TRUSTWORTHY
+{
+  &quot;version&quot;: &quot;v2&quot;,
+  &quot;items&quot;: 18,
+  &quot;exact_agreement&quot;: 0.444,
+  &quot;within_1_agreement&quot;: 1.0,
+  &quot;kappa&quot;: 0.839,
+  &quot;spearman&quot;: 0.912,
+  &quot;verbosity_bias&quot;: 0.0,
+  &quot;position_consistency&quot;: 1.0,
+  &quot;trustworthy&quot;: true
+}</code></pre></div>
+</li>
+<li>
+<p>Interpret the result. v1's kappa is high, but <code>verbosity_bias=0.5</code> violates the trust rule. v2 slightly improves
+kappa and removes the measured verbosity bias, so it is trustworthy for SwarmPipe's local rubric.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="hands-on-inspect-a-calibration-item">Hands-on: inspect a calibration item</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Read one human-labeled case</span></div><div class="box-body"><ol>
+<li>
+<p>Open the calibration dataset:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Get-Content evals\datasets\judge_calibration.v1.jsonl -TotalCount 1</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{&quot;id&quot;: &quot;jc-01&quot;, &quot;reference&quot;: {&quot;root_cause_category&quot;: &quot;truncated_extract&quot;},
+&quot;candidate&quot;: &quot;The batch has 18 rows vs a baseline of ~500 (-96%): the extract looks truncated.
+Evidence ev_a1, ev_a2. Request a resend and hold downstream.&quot;, &quot;human_score&quot;: 5}</code></pre></div>
+</li>
+<li>
+<p>Look at why this item deserves a 5. It names the root cause, states the key evidence, cites evidence ids and implies
+the right next action. Compare that with a padded weak item such as <code>jc-03</code>: it sounds managerial but does not name
+the cause precisely.</p>
+</li>
+<li>
+<p>Open the prompts:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>Get-Content prompts\judge.v1.md
+Get-Content prompts\judge.v2.md</code></pre></div>
+<p>v2 adds the anti-verbosity rule and a clearer scoring formula.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="pairwise-judging-and-position-swapping">Pairwise judging and position swapping</h2>
+<p>Pairwise judging asks which of two candidates is better. It is often easier than assigning absolute scores, but it has a
+trap: some judges prefer the first answer. SwarmPipe's <code>judge_pairwise.v1</code> prompt says order must not matter, and
+<code>swarmpipe\evals\judge.py</code> swaps A and B to measure consistency.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Candidate A vs B</div><div class="node-s">judge picks a winner</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Candidate B vs A</div><div class="node-s">same content, reversed order</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Normalize winner</div><div class="node-s">map back to original candidate</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Compare</div><div class="node-s">consistent or position-biased</div></div></div><figcaption>Pairwise calibration</figcaption></figure>
+<p>The shipped calibration set produced <code>position_consistency=1.0</code> in the captured run. That does not prove position bias
+can never occur; it means the calibrated pairs were separable enough that the tie-breaker did not matter.</p>
+<p>In industry practice, teams often add &quot;near-tie&quot; pairs precisely to exercise this path: two answers with the same facts
+but different ordering, tone or verbosity. SwarmPipe's tiny local dataset is enough to teach the mechanism, but a real
+deployment would keep expanding it as humans find judge mistakes. A good judge dataset is adversarial toward the judge,
+not merely representative of ordinary outputs.</p>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Turn on judge chaos flags</span></div><div class="box-body"><p>The judge chaos flags are <code>chaos.judge_verbosity_bias</code> and <code>chaos.judge_position_bias</code>. They affect the same mock judge
+used by calibration. The CLI calibration command creates an isolated workspace, so runtime <code>sp chaos set ...</code> flags in
+your live database do not flow into that isolated calibration run. To see the knobs directly, run this local diagnostic
+from the project root:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>@&#x27;
+import itertools, json, tempfile
+from pathlib import Path
+from swarmpipe.evals.harness import Workspace, load_cases
+from swarmpipe.evals.judge import FILLER, _kappa_quadratic, _spearman
+from swarmpipe.core.util import remove_tree
+
+def run(flags):
+    d = Path(tempfile.mkdtemp(prefix=&quot;judge_flags_&quot;))
+    ws = Workspace(d)
+    for k, v in flags.items():
+        ws.svc.flags.set(k, v)
+    j = ws.svc.agents.judge
+    items = load_cases(&quot;judge_calibration.v1.jsonl&quot;)
+    human, model, delta = [], [], []
+    for it in items:
+        s = j.score(it[&quot;candidate&quot;], it[&quot;reference&quot;], version=&quot;v1&quot;)[&quot;score&quot;]
+        padded = j.score(it[&quot;candidate&quot;] + FILLER, it[&quot;reference&quot;], version=&quot;v1&quot;)[&quot;score&quot;]
+        human.append(int(it[&quot;human_score&quot;])); model.append(int(s)); delta.append(padded - s)
+    ws.close(); remove_tree(d)
+    return {&quot;flags&quot;: flags, &quot;kappa&quot;: round(_kappa_quadratic(human, model), 3),
+            &quot;spearman&quot;: round(_spearman(human, model), 3),
+            &quot;verbosity_bias&quot;: round(sum(delta) / len(delta), 3)}
+
+print(json.dumps(run({}), indent=2))
+print(json.dumps(run({&quot;chaos.judge_verbosity_bias&quot;: 1.0}), indent=2))
+&#x27;@ | python -</code></pre></div>
+<p>Captured output:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;flags&quot;: {},
+  &quot;kappa&quot;: 0.806,
+  &quot;spearman&quot;: 0.936,
+  &quot;verbosity_bias&quot;: 0.5
+}
+{
+  &quot;flags&quot;: {&quot;chaos.judge_verbosity_bias&quot;: 1.0},
+  &quot;kappa&quot;: 0.806,
+  &quot;spearman&quot;: 0.936,
+  &quot;verbosity_bias&quot;: 0.611
+}</code></pre></div>
+<p>For position bias, use a tied pair. With <code>chaos.judge_position_bias=1.0</code>, the judge picked A before and after swapping:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;A_vs_B&quot;: {&quot;winner&quot;: &quot;A&quot;, &quot;rationale&quot;: &quot;close call&quot;},
+  &quot;B_vs_A&quot;: {&quot;winner&quot;: &quot;A&quot;, &quot;rationale&quot;: &quot;close call&quot;}
+}</code></pre></div>
+<p>That is exactly the failure pairwise swapping is meant to catch.</p>
+</div></div>
+<h2 id="judge-versioning">Judge versioning</h2>
+<p>Judge prompts are code. <code>prompts\judge.v1.md</code> and <code>prompts\judge.v2.md</code> can coexist, and eval reports record the version.
+This matters because judge scores are only meaningful relative to a rubric. If you change the judge, you changed the
+measuring instrument. Keep old scores labeled, recalibrate new versions and avoid comparing v1 and v2 numbers as if
+they came from the same ruler.</p>
+<p>The same rule applies when you change the model behind the judge. A stronger model with the same prompt is still a new
+instrument. Re-run calibration, store the report and decide whether old baselines need to be re-scored. Otherwise the
+team may think product quality improved when only the grader became more lenient.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Do not let a judge become the product</span></div><div class="box-body"><p>At larger scale, teams use judges to triage, regress and prioritize, but humans still own labels and release decisions.
+Use multiple judges or human spot checks for high-risk domains, keep a holdout calibration set and watch for score
+inflation. A model can learn to satisfy the judge without satisfying users.</p>
+</div></div>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>When should SwarmPipe use deterministic scoring instead of a judge?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">When the expected result is machine-checkable, such as forbidden actions or SQL result sets</button></li><li><button type="button" class="opt" data-correct="false">Whenever an answer contains prose</button></li><li><button type="button" class="opt" data-correct="false">Only for router cases</button></li></ul><div class="q-explain" hidden>Deterministic checks are more reliable when ground truth is exact.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why was judge v1 not trustworthy even with kappa above 0.6?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It had no calibration dataset</button></li><li><button type="button" class="opt" data-correct="true">It had excessive verbosity bias</button></li><li><button type="button" class="opt" data-correct="false">It could not score 1-5</button></li></ul><div class="q-explain" hidden>Agreement is necessary but not sufficient; measured bias can still disqualify a judge.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What does quadratic-weighted kappa add beyond exact agreement?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It rewards longer answers</button></li><li><button type="button" class="opt" data-correct="true">It adjusts for chance and penalizes larger score disagreements more than small ones</button></li><li><button type="button" class="opt" data-correct="false">It measures latency</button></li></ul><div class="q-explain" hidden>A judge that gives 4 instead of 5 is less wrong than one that gives 1 instead of 5.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Why swap A and B in pairwise judging?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">To double token cost for better accuracy</button></li><li><button type="button" class="opt" data-correct="true">To detect whether the judge prefers an answer because of position rather than quality</button></li><li><button type="button" class="opt" data-correct="false">To hide the reference answer</button></li></ul><div class="q-explain" hidden>Stable pairwise preferences should survive order reversal.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Who owns the ground-truth labels?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The judge model</button></li><li><button type="button" class="opt" data-correct="false">The prompt file</button></li><li><button type="button" class="opt" data-correct="true">Humans or a trusted deterministic oracle</button></li></ul><div class="q-explain" hidden>A judge is calibrated against labels; it does not create truth by itself.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Use LLM judges for open-ended quality, not for exact checks that code can score.</li>
+<li>A rubric is an evaluator's specification; vague rubrics produce vague scores.</li>
+<li>Calibration must include agreement metrics and bias probes.</li>
+<li>SwarmPipe v1 is rejected because verbosity bias is too high; v2 passes the local trust rule.</li>
+<li>Pairwise judging needs A/B swaps because position bias is easy to miss.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="16-llm-judge"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="15-eval-fundamentals.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 15 &middot; Evaluation fundamentals</span></a><a class="next" href="17-red-teaming.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 17 &middot; Red teaming and safety evaluations</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#when-to-use-a-judge">When to use a judge</a></li><li class="h2"><a href="#rubrics-before-scores">Rubrics before scores</a></li><li class="h2"><a href="#biases-to-look-for">Biases to look for</a></li><li class="h2"><a href="#agreement-metrics-in-plain-english">Agreement metrics in plain English</a></li><li class="h2"><a href="#hands-on-calibrate-v1-and-v2">Hands-on: calibrate v1 and v2</a></li><li class="h2"><a href="#hands-on-inspect-a-calibration-item">Hands-on: inspect a calibration item</a></li><li class="h2"><a href="#pairwise-judging-and-position-swapping">Pairwise judging and position swapping</a></li><li class="h2"><a href="#judge-versioning">Judge versioning</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

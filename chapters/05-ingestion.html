@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 5: Ingestion: watched folders, readers and admission control · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="05-ingestion" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion" class="current" aria-current="page"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="05-ingestion">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part II &middot; The data pipeline backbone</div>
+<h1><span class="num">Chapter 5</span>Ingestion: watched folders, readers and admission control</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Beginner → Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Turn files dropped in a folder into durable work safely: stability detection, idempotent admission, backpressure, format and encoding sniffing, sheet fan-out, dead-letter queues and tenants.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain why production ingestion is an admission-control problem, not just a file-read problem</li><li>Compare polling with OS file notifications and describe SwarmPipe's file-stability guard</li><li>Trace one file through <code>ingest_file</code>, routing, readers and per-sheet fan-out</li><li>Use duplicate detection, the dead-letter queue and tenant inbox folders safely</li><li>Run ingestion labs for custom CSVs, malformed files, duplicate delivery and tenant drops</li></ul></div>
+<p>A file drop looks simple until it happens at 2:00 AM from a slow network share. The writer is still copying bytes,
+the scheduler sees a name in the folder, the reader opens a half-written workbook, and the rest of the pipeline gets a
+syntactically valid but incomplete batch. Production ingestion starts by deciding <strong>when a file is safe to admit</strong>.</p>
+<p>SwarmPipe treats the watched folder as an event source, but it does not trust the folder blindly. The watcher waits for
+stability, hashes content, applies backpressure, moves files into a processing area and only then starts durable work.
+The Router and readers decide whether the content is tabular, a document or unsupported; downstream quality checks are
+covered in <a href="06-contracts-and-quality.html">Chapter 6</a>.</p>
+<h2 id="the-event-source-is-a-contract">The event source is a contract</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Event source</span></div><div class="box-body"><p>An event source is anything that tells your system &quot;new work is available.&quot; In this chapter the source is a local
+folder, but the same pattern applies to object storage notifications, message queues, webhooks and CDC logs: detect,
+admit, deduplicate, route and record.</p>
+</div></div>
+<p>Folder-based ingestion is common because it fits old systems: ERP exports, SFTP drops, finance spreadsheets and
+vendor reports. The folder is convenient, but it is weakly specified. A file name may appear before the contents are
+complete, a sender may redeliver the same file, and a tenant may accidentally drop into the wrong folder.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Inbox file</div><div class="node-s">appears under <code>data\inbox</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Stability gate</div><div class="node-s">size and mtime stable for N polls</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Admission</div><div class="node-s">hash, tenant, extension and backpressure checks</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Durable run</div><div class="node-s">submit <code>ingest_file</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Route and read</div><div class="node-s">tabular, document or unsupported</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Fan-out</div><div class="node-s">one <code>ingest_dataset</code> child per table or sheet</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Archive, quarantine or DLQ</div><div class="node-s">final location records the outcome</div></div></div><figcaption>Ingestion admission path</figcaption></figure>
+<h3 id="polling-vs-os-notifications">Polling vs OS notifications</h3>
+<p>OS notifications feel elegant, but they are not universal. Network drives, USB media and some sync folders can coalesce,
+drop or reorder change events. SwarmPipe deliberately polls so the tutorial behaves the same on every laptop and on
+messy real-world shares.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Watched folder implementation</span></div><div class="box-body"><p>The watcher lives in <code>swarmpipe/runtime/watcher.py</code>. Its module docstring says polling is intentional because it works
+on local disks, USB drives and network shares where change notifications are unreliable. <code>FolderWatcher.poll_once</code>
+records candidate files and admits only those whose size and modification time stay unchanged for
+<code>watcher.stability_polls</code>.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>depth = self.svc.engine.queue_depth()
+self.svc.metrics.gauge(&quot;queue_depth&quot;, depth)
+if depth &gt;= w.backpressure_high_watermark:
+    self.svc.metrics.gauge(&quot;watcher_backpressure&quot;, 1)
+    return 0
+...
+stable = prev[2] + 1 if prev and prev[0] == st.st_size and prev[1] == st.st_mtime else 0
+if stable &gt;= w.stability_polls:
+    ready.append((st.st_mtime, p))</code></pre></div>
+</div></div>
+<p>File stability matters because &quot;I can see the file&quot; is not the same as &quot;the file is complete.&quot; Half-copied CSVs often
+parse as short but valid files. Half-copied Excel files often fail with a cryptic parser error. SwarmPipe also honors
+ignore globs for temporary names such as producer-side partial files. In industry practice, the strongest pattern is
+an atomic rename: write <code>orders.csv.partial</code>, then rename to <code>orders.csv</code> only after the copy is complete. SwarmPipe
+still uses stability polling because not every source follows that discipline.</p>
+<h3 id="admission-control-and-idempotency">Admission control and idempotency</h3>
+<p>Admission is where SwarmPipe decides whether work should enter the durable engine. The watcher checks the tenant from
+the inbox path, rejects unsupported extensions and over-large files, hashes the content with SHA-256 and moves accepted
+files into <code>data\processing\&lt;file_id&gt;</code>. The hash becomes the idempotency key for delivery: a byte-identical resend is
+archived under <code>archive\duplicates</code> and counted as <code>skipped_duplicate</code>, not processed again.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Idempotent admission</span></div><div class="box-body"><p>An operation is idempotent when repeating it has the same effect as doing it once. In ingestion, content hashes prevent
+a duplicate delivery from creating duplicate warehouse rows, duplicate incidents or duplicate notifications.</p>
+</div></div>
+<p>Backpressure is the other half of admission control. If the engine queue is deeper than
+<code>watcher.backpressure_high_watermark</code>, the watcher leaves files in the inbox and sets the <code>watcher_backpressure</code> metric.
+That is safer than admitting unlimited work and failing later under memory, database or model pressure. Chapter 24
+connects that metric to capacity and cost.</p>
+<h2 id="routing-and-readers">Routing and readers</h2>
+<p>Once a file is staged, the <code>ingest_file</code> workflow starts. It is intentionally small: <code>stage -&gt; route -&gt; read -&gt; fanout -&gt; finalize</code>. The stage step re-hashes the staged file and checks for duplicate content. The route step uses
+<code>swarmpipe/data/readers.py</code> <code>sniff</code> plus the Router agent to classify files as <code>tabular</code>, <code>document</code> or <code>unsupported</code>.
+The Router agent itself is introduced in <a href="01-llm-to-agent.html">Chapter 1</a>; the workflow wiring appears in
+<a href="02-architecture-tour.html">Chapter 2</a>.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Readers</span></div><div class="box-body"><p><code>swarmpipe/data/readers.py</code> handles <code>.csv</code>, <code>.tsv</code>, pipe-delimited <code>.txt</code>, <code>.xlsx</code> and legacy <code>.xls</code>. It sniffs BOMs,
+UTF-8, <code>cp1252</code>, delimiters, bad lines, workbook containers and multi-sheet spreadsheets. Everything is read as strings
+first; <code>swarmpipe/data/transforms.py</code> applies types later against a contract.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>_DELIMS = [&quot;,&quot;, &quot;\t&quot;, &quot;|&quot;, &quot;;&quot;]
+...
+for enc in (&quot;utf-8&quot;, &quot;cp1252&quot;):
+    try:
+        raw.decode(enc)
+        return enc
+...
+engine = &quot;openpyxl&quot; if sn.extension == &quot;.xlsx&quot; else &quot;xlrd&quot;
+sheets = pd.read_excel(path, sheet_name=None, dtype=str, engine=engine, ...)</code></pre></div>
+</div></div>
+<p>Multi-sheet workbooks are not one dataset. <code>customers.xlsx</code> has a <code>customers</code> sheet and a <code>regions</code> sheet, so
+<code>f_fanout</code> submits two child <code>ingest_dataset</code> runs and waits durably until they finish. Single-table CSV, pipe-delimited
+TXT and XLS files create one child. Unsupported content raises a permanent error, and the file goes to the dead-letter
+queue.</p>
+<p>Tenancy is encoded in the first inbox sub-folder. A file in <code>data\inbox\acme\sales_...csv</code> is tenant <code>acme</code>; a file
+directly under <code>data\inbox</code> uses <code>default</code>. Dataset views and incidents are then isolated by tenant.</p>
+<h2 id="hands-on">Hands-on</h2>
+<p>Before these labs, start from the baseline unless a lab says otherwise:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+<p>Ids, dates, timings and costs vary. The output below is trimmed from a real run.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Create your own CSV and watch onboarding</span></div><div class="box-body"><ol>
+<li>
+<p>Create a tiny CSV directly in the inbox:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>@(
+  &quot;widget_id,name,price&quot;
+  &quot;w-1,Blue widget,12.50&quot;
+  &quot;w-2,Red widget,9.99&quot;
+) | Set-Content -Encoding utf8 .\data\inbox\widgets.csv
+sp tick --timeout 20
+sp approvals list --status pending</code></pre></div>
+</li>
+<li>
+<p>Because widgets has no active contract, ingestion pauses at the <code>onboard</code> step. This is not an error; it is a
+safe stop before unknown data becomes trusted schema.</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>admitted 1 file(s); processed in 3.3s
+| workflow       | status  | n |
+| ingest_dataset | waiting | 1 |
+| ingest_file    | waiting | 1 |
+...
+| id               | kind                | subject    | risk   |
+| apr_...          | contract_onboarding | widgets@v1 | medium |</code></pre></div>
+</li>
+<li>
+<p>Open the <strong>Runs</strong> tab and click the waiting <code>ingest_dataset</code> run. The current step is <code>onboard</code>, and the wait reason
+points to the approval id. Chapter 6 shows how to review and approve the proposed contract.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Duplicate, malformed and reader scenarios</span></div><div class="box-body"><ol>
+<li>
+<p>Deliver a normal day, then redeliver the same bytes:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
+sp scenarios drop duplicate --process
+sp runs list --workflow ingest_file --limit 4</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_resent.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 0.0s
+| workflow    | status  |
+| ingest_file | skipped |
+| ingest_file | succeeded |</code></pre></div>
+</li>
+<li>
+<p>Drop malformed files and inspect the DLQ:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop malformed --process
+sp dlq list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29_corrupt.csv&#x27;, &#x27;customers_broken.xlsx&#x27;] into ...\data\inbox
+| workflow    | status        | n |
+| ingest_file | dead_lettered | 2 |
+...
+| reason      | error                                      |
+| UNSUPPORTED | unsupported content: not a valid xlsx ... |
+| UNSUPPORTED | unsupported content: NUL bytes in a text file |</code></pre></div>
+</li>
+<li>
+<p>Verify reader coverage:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop encoding --process
+sp scenarios drop pipe_txt --process</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers_2026-09-29_cp1252.csv&#x27;] into ...\data\inbox
+| ingest_dataset | succeeded | 9 |
+...
+dropped [&#x27;inventory_2026-09-29.txt&#x27;] into ...\data\inbox
+| default | inventory | dsv_... | 0 | ...</code></pre></div>
+</li>
+<li>
+<p>In the dashboard, use <strong>Runs</strong> to compare the skipped duplicate with the dead-lettered malformed files. Use
+<strong>Incidents</strong> to see how malformed input becomes a triage incident, and <strong>Datasets &amp; Lineage</strong> to confirm duplicate
+delivery did not create a new published dataset version.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Tenant drop</span></div><div class="box-body"><ol>
+<li>
+<p>Drop the same clean-day sales file for another tenant:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --tenant acme --process
+sp status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;sales_2026-09-29.csv&#x27;] into ...\data\inbox
+admitted 1 file(s); processed in 9.5s
+| tenant  | dataset     | published_version_id | hold |
+| acme    | sales_daily | dsv_...              | 0    |
+| default | sales_daily | dsv_...              | 0    |</code></pre></div>
+</li>
+<li>
+<p>The reader works the same, but the tenant, views, incidents and quotas are separate. Tenant quotas and cost are
+revisited in Chapter 24.</p>
+</li>
+</ol>
+</div></div>
+<h2 id="break-it-deliver-the-same-file-twice">Break it: deliver the same file twice</h2>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Duplicate delivery</span></div><div class="box-body"><p>Run <code>sp scenarios drop clean_day --process</code>, then <code>sp scenarios drop duplicate --process</code>. Predict what would happen
+without a content hash: the append-mode sales dataset would count the same order partition twice, downstream
+<code>sales_enriched</code> would rebuild from inflated data, and quality checks might diagnose a volume spike instead of a resend.</p>
+<p>What you observe instead is an <code>ingest_file</code> run with status <code>skipped</code>. The stage step raises an informational
+<code>duplicate_file</code> signal and archives the duplicate. The idempotency guard protects downstream consumers before quality
+checks even run.</p>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Inbox folders are not queues</span></div><div class="box-body"><p>A folder has no acknowledgement protocol, retry policy or ordering guarantee. SwarmPipe makes it queue-like by moving
+files into <code>processing</code>, recording a <code>files</code> row, using durable workflow checkpoints and preserving bad input in
+<code>data\dlq</code>. At larger scale you would often replace the folder with object storage plus an event stream, but the same
+admission rules still apply.</p>
+</div></div>
+<p>Use <code>sp dlq redrive &lt;dlq_id&gt;</code> only after fixing the cause. Redriving a fake <code>.xlsx</code> without replacing the file just
+creates another dead letter. The DLQ is for recoverable operator action, not for hiding bad data.</p>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why does SwarmPipe poll the inbox instead of relying only on OS file notifications?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Polling is faster than notifications in all cases</button></li><li><button type="button" class="opt" data-correct="true">Polling behaves consistently on local disks, USB drives and network shares where notifications can be unreliable</button></li><li><button type="button" class="opt" data-correct="false">Notifications cannot detect Excel files</button></li></ul><div class="q-explain" hidden>The watcher docstring calls this out directly. Polling plus stability checks is slower but more predictable for messy sources.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What protects downstream data when the same file is delivered twice?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The Router agent's confidence score</button></li><li><button type="button" class="opt" data-correct="true">The SHA-256 content hash checked in the stage step</button></li><li><button type="button" class="opt" data-correct="false">The dashboard hides duplicate runs</button></li></ul><div class="q-explain" hidden>The duplicate is detected before fan-out. It is archived and the workflow stops as <code>skipped</code>.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What does <code>sp dlq list</code> show?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Dead-lettered files with reason, error, path, run id and redrive status</button></li><li><button type="button" class="opt" data-correct="false">Only failed model calls</button></li><li><button type="button" class="opt" data-correct="false">All quarantined dataset rows</button></li></ul><div class="q-explain" hidden>The DLQ is about failed file admission or file workflow failure. Row-level quarantine is shown through checks and dataset versions.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>A <code>.txt</code> file with consistent <code>|</code> separators is routed as what?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">A document</button></li><li><button type="button" class="opt" data-correct="true">Tabular data</button></li><li><button type="button" class="opt" data-correct="false">Unsupported binary</button></li></ul><div class="q-explain" hidden><code>readers.py</code> sniffs <code>|</code> as one of the supported delimiters, and the <code>pipe_txt</code> scenario publishes <code>inventory</code>.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Ingestion is admission control: wait for stable files, hash them, move them and only then start durable work.</li>
+<li>Polling is deliberate in SwarmPipe because it is predictable across ordinary and unreliable storage.</li>
+<li>Readers sniff encoding, delimiter and workbook structure, but typing is deferred to contracts in Chapter 6.</li>
+<li><code>ingest_file</code> fans out multi-sheet workbooks into child <code>ingest_dataset</code> runs and waits durably.</li>
+<li>Duplicate delivery is skipped by content hash; malformed files go to the DLQ; tenant sub-folders isolate work.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="05-ingestion"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="04-tools-and-gateway.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 4 &middot; Tools, tool contracts and the tool gateway</span></a><a class="next" href="06-contracts-and-quality.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 6 &middot; Data contracts, quality checks and the circuit breaker</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#the-event-source-is-a-contract">The event source is a contract</a></li><li class="h3"><a href="#polling-vs-os-notifications">Polling vs OS notifications</a></li><li class="h3"><a href="#admission-control-and-idempotency">Admission control and idempotency</a></li><li class="h2"><a href="#routing-and-readers">Routing and readers</a></li><li class="h2"><a href="#hands-on">Hands-on</a></li><li class="h2"><a href="#break-it-deliver-the-same-file-twice">Break it: deliver the same file twice</a></li><li class="h2"><a href="#production-notes">Production notes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

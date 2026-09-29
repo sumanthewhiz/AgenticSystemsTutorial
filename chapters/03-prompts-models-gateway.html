@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 3: Prompts, models and the model gateway · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="03-prompts-models-gateway" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway" class="current" aria-current="page"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="03-prompts-models-gateway">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part I &middot; Foundations of agentic systems</div>
+<h1><span class="num">Chapter 3</span>Prompts, models and the model gateway</h1>
+<div class="meta"><span class="chip">&#9201; 45 min</span><span class="chip">Level: Beginner → Intermediate</span><span class="chip">&#129514; 2 hands-on labs</span></div>
+<p class="lede">Treat prompts as versioned code, understand tokens and cost, and follow a model call through the gateway: quotas, budgets, guardrails, cache, breakers, retries, validation, repair and fallback.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Treat prompts as versioned, approved code rather than ad hoc strings</li><li>Explain message construction, untrusted data blocks, token estimates and cost</li><li>Follow a model call through routing, guardrails, cache, retries, repair and fallback</li><li>Use LLM profiles and simulated models safely in local labs</li><li>Observe malformed-output repair and model-gateway metrics</li></ul></div>
+<p>Prompts are executable instructions for a probabilistic dependency. If they change silently, your agent changed
+silently. If they mix trusted instructions with untrusted data, your agent can be steered by a spreadsheet cell. If
+their outputs are not validated, your workflow is parsing wishes.</p>
+<p>SwarmPipe treats prompt and model access as a controlled gateway problem: prompts are versioned and hash-locked, model
+calls are routed by role, and every response is validated before it can affect a workflow.</p>
+<h2 id="prompts-are-code">Prompts are code</h2>
+<p>SwarmPipe prompt templates live in <code>prompts\&lt;id&gt;.&lt;version&gt;.md</code> with front matter. The approved hashes live in
+<code>prompts\prompts.lock.json</code>. <code>PromptRegistry</code> loads templates, hot-reloads changed files and refuses an edited prompt
+unless its hash is approved.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Prompt change control</span></div><div class="box-body"><p><code>swarmpipe/llm/prompts.py</code> implements <code>PromptRegistry.get</code>. When <code>prompts.enforce_lock</code> is true, an unapproved prompt
+raises <code>PROMPT_NOT_APPROVED</code>. The full eval-and-lock workflow belongs to <a href="18-ci-gates-certification.html">Chapter 18</a>;
+for now, remember that prompt edits are code changes.</p>
+</div></div>
+<p>Prompt versioning matters because many agents share a role. <code>diagnoser.v1</code> and <code>diagnoser.v2</code> can both exist; one can
+run in shadow while the approved version serves production traffic.</p>
+<p>Think of this as the prompt equivalent of a dependency lock. The source file is human-readable, the lock records the
+exact approved body hash, and the runtime checks that the file on disk still matches. If someone edits the prompt in a
+running workspace, hot reload notices within a few seconds. The new text is visible to the registry, but it is not
+usable until the lock approves it. That is intentionally inconvenient: prompt changes can alter tool choices,
+citations, refusal behavior and cost, so they need the same discipline as code changes.</p>
+<h2 id="building-messages-safely">Building messages safely</h2>
+<p>Model messages have two jobs: durable instructions and task data. SwarmPipe puts the prompt body in the system message
+and data blocks in the user message. Each data block has a trust label.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Untrusted data block</span></div><div class="box-body"><p>Any content that came from a file, user, document or untrusted tool result is data to inspect, not instructions to
+obey. SwarmPipe can wrap it in randomized <code>&lt;&lt;&lt;DATA ...&gt;&gt;&gt;</code> boundaries, a preview of spotlighting. Chapter 19 explains
+the threat model and defense in depth.</p>
+</div></div>
+<p>The prompt builder also bounds untrusted text with <code>guardrails.max_untrusted_chars</code>, redacts PII before model calls and
+checks prompts for known secret values. These are gateway controls, not model behavior.</p>
+<p>The separation of instructions and data also improves debugging. When you inspect a model-call row in <strong>Runs</strong>, you can
+ask: did the system instructions say the right thing, did the task include the right facts, and which data blocks were
+untrusted? Without that separation, teams end up with giant string-concatenated prompts where a cell value, a runbook
+quote and a developer instruction are indistinguishable.</p>
+<h2 id="tokens-context-windows-and-cost">Tokens, context windows and cost</h2>
+<p>Models bill and fail around tokens, not characters. SwarmPipe's simulated models use <code>swarmpipe/llm/tokens.py</code>, a
+simple <code>chars / 4</code> heuristic unless <code>SWARMPIPE_TOKENIZER=tiktoken</code> is set. Real providers report usage directly.</p>
+<p>Model prices and context windows live in <code>config/swarmpipe.yaml</code>:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sim-small:
+  usd_per_1k_in: 0.00015
+  usd_per_1k_out: 0.0006
+  context_window: 16000
+sim-large:
+  usd_per_1k_in: 0.0025
+  usd_per_1k_out: 0.01
+  context_window: 128000</code></pre></div>
+<p>The numbers for simulated models are illustrative, but the accounting is real: <code>llm_calls</code>, <code>llm_tokens_total</code> and
+<code>llm_cost_usd_total</code> are recorded per call, role, agent, tenant and run.</p>
+<p>Context windows are a second budget. A model with a 16,000-token context cannot safely accept an unlimited incident
+history, row sample and runbook corpus. <code>ModelGateway._compact</code> trims the longest message when estimated context would
+overflow. That is a last-resort safety valve, not a context strategy; better agent design retrieves bounded evidence
+with tools instead of stuffing whole datasets into prompts.</p>
+<h2 id="typed-outputs-and-repair">Typed outputs and repair</h2>
+<p>Every operational model call has a schema. The gateway first tries tolerant JSON extraction: raw JSON, fenced JSON or
+the first <code>{...}</code> span. Then it validates against the requested Pydantic model. If parsing or validation fails, the
+gateway appends a repair instruction and asks again. If repairs fail, it tries the next model in the route chain. If
+all models fail, the calling agent degrades.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Gateway pipeline</span></div><div class="box-body"><p>The docstring in <code>swarmpipe/llm/gateway.py</code> lists the per-call order:</p>
+<div class="code" data-lang="text"><div class="code-head"><span>Text</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>kill switch -&gt; tenant quota -&gt; run budget -&gt; guardrails -&gt; context-window
+compaction -&gt; cache -&gt; route chain -&gt; circuit breaker -&gt; bulkhead -&gt;
+transport retries -&gt; JSON extraction + schema validation -&gt; repair loop</code></pre></div>
+</div></div>
+<p>This order is important. For example, a kill switch and quota are checked before spending tokens; schema validation
+happens before the response can control a workflow.</p>
+<p>Every attempt is recorded, including failed validation. That history lets you answer questions operators actually ask:
+which model served this role, did it use a fallback, how many repairs happened, what did it cost, and which prompt hash
+was active? When the answer is bad, you can separate model behavior from system behavior. A wrong diagnosis is different
+from a schema-validation failure, which is different from a quota refusal.</p>
+<h2 id="routing-profiles-and-simulated-models">Routing, profiles and simulated models</h2>
+<p>Model routes are per role. In the default <code>offline</code> profile, most roles use <code>sim-small</code>, while expensive reasoning
+roles such as <code>diagnoser</code>, <code>planner</code>, <code>steward</code>, <code>analyst</code> and <code>judge</code> route to <code>sim-large</code> first, with fallbacks where
+configured.</p>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t"><code>offline</code></div><div class="card-s">simulated <code>sim-small</code> and <code>sim-large</code>; default, local and deterministic</div></div><div class="card"><div class="card-t"><code>ollama</code></div><div class="card-s">local <code>llama3.2:latest</code> with simulated fallback</div></div><div class="card"><div class="card-t"><code>azure</code></div><div class="card-s">Azure OpenAI-compatible hosted route, configured with secrets</div></div><div class="card"><div class="card-t"><code>openai</code></div><div class="card-s">OpenAI-compatible hosted route, configured with secrets</div></div></div><figcaption>LLM profiles</figcaption></figure>
+<p>Switch profiles with <code>sp llm use &lt;profile&gt;</code>. The README is explicit: hosted profiles can send data off-machine, so the
+tutorial stays offline by default. Simulated models exist so failures are reproducible: latency, timeout, outage,
+malformed JSON, wrong answer, hallucinated citation and loop behavior are all chaos knobs.</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Model gateway as an electrical panel</span></div><div class="box-body"><p>You do not wire every room directly to the power plant. You route circuits through a panel with breakers, labels and
+limits. The model gateway is that panel for agents: one place to switch profiles, trip breakers, meter usage and shut
+off unsafe traffic.</p>
+</div></div>
+<h2 id="what-the-gateway-does-not-solve">What the gateway does not solve</h2>
+<p>The gateway makes a call safer and observable; it does not make a model omniscient. It cannot infer missing evidence,
+certify a new model by itself or decide that a risky action is acceptable. Those responsibilities live in other layers:
+tool retrieval and grounding in <a href="11-context-memory.html">Chapter 11</a>, eval gates in <a href="18-ci-gates-certification.html">Chapter 18</a>,
+policy in <a href="21-policy-autonomy.html">Chapter 21</a> and operations/cost management in <a href="24-cost-capacity.html">Chapter 24</a>.</p>
+<p>This separation keeps the architecture understandable. The prompt registry controls prompt integrity. The gateway
+controls model access. Agents own task-specific fallback behavior. Workflows own durable progress. Policy owns action
+risk. If you put all of those decisions inside one prompt, you get a demo; if you split them, you get an operable
+system.</p>
+<h2 id="hands-on-inspect-prompts-and-routes">Hands-on: inspect prompts and routes</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Prompt registry and model status</span></div><div class="box-body"><ol>
+<li>
+<p>List prompts:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp prompts list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| key             | role         | approved | hash         | description                  |
+|-----------------+--------------+----------+--------------+------------------------------|
+| analyst_sql.v1  | analyst      | True     | ae60f1eacd56 | Natural language to...       |
+| critic.v1       | critic       | True     | 41b24ed99c1d | Evaluator in an...           |
+| diagnoser.v1    | diagnoser    | True     | 49cc44b8836c | Supervisor that merges...    |
+| router.v1       | router       | True     | cba7d3cdeca4 | Classify an arriving file... |
+...</code></pre></div>
+</li>
+<li>
+<p>Open <code>prompts\router.v1.md</code> in your editor. Notice the prompt asks for a JSON object matching the schema and uses
+deterministic sniffer results as strong evidence.</p>
+</li>
+<li>
+<p>Show active routing:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp llm status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>{
+  &quot;active_profile&quot;: &quot;offline&quot;,
+  &quot;routes&quot;: {
+    &quot;default&quot;: [&quot;sim-small&quot;],
+    &quot;diagnoser&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;],
+    &quot;planner&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;],
+    &quot;steward&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;]
+  },
+  &quot;breakers&quot;: {}
+}</code></pre></div>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Test a role and observe repair</span></div><div class="box-body"><ol>
+<li>
+<p>Send one Router call:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp llm test --role router</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>served by sim-small (mock) in 0.02s, tokens 425/22, repairs 0, chain [&#x27;sim-small&#x27;]
+{
+  &quot;kind&quot;: &quot;tabular&quot;,
+  &quot;confidence&quot;: 0.96,
+  &quot;reason&quot;: &quot;sniffer: consistent comma delimiter&quot;
+}</code></pre></div>
+</li>
+<li>
+<p>Force malformed model output and repeat:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm_malformed_rate 1
+sp llm test --role router</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>chaos.llm_malformed_rate = 1
+served by sim-small (mock) in 0.02s, tokens 490/22, repairs 1, chain [&#x27;sim-small&#x27;]
+{
+  &quot;kind&quot;: &quot;tabular&quot;,
+  &quot;confidence&quot;: 0.96,
+  &quot;reason&quot;: &quot;sniffer: consistent comma delimiter&quot;
+}</code></pre></div>
+</li>
+<li>
+<p>Drop a scenario while the flag is on, then inspect <strong>Runs</strong> -&gt; <strong>Model calls</strong> or <strong>Cost &amp; Metrics</strong>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp metrics
+sp chaos clear</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| metric            | count | sum  |
+|-------------------+-------+------|
+| llm_calls_total   | ...   | ...  |
+| llm_repairs_total | ...   | ...  |</code></pre></div>
+<p>The metric may be absent until at least one repair occurs. In the dashboard, model-call rows with
+<code>status=invalid_output</code> are followed by repair attempts.</p>
+</li>
+<li>
+<p>Open the <strong>Runs</strong> tab for the scenario run. In <strong>Model calls</strong>, compare the original invalid-output attempt with
+the repair attempt. The important field is not the exact token count; it is the fact that repair is explicit,
+counted and visible instead of hidden inside agent code.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Disable the cache and compare</span></div><div class="box-body"><p>The cache is useful only for deterministic, cacheable calls. Disable it with a runtime flag, run a repeated scenario
+or role test that normally reuses stable prompts, then compare <strong>Cost &amp; Metrics</strong> before and after:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm.cache_disabled true
+sp scenarios drop clean_day --process
+sp metrics
+sp chaos clear</code></pre></div>
+<p>With the cache disabled, <code>llm_cache_hits_total</code> stops increasing and repeated model calls cost tokens again. This is a
+safe break-it experiment: it changes efficiency, not data correctness.</p>
+<p>If you are using a fresh workspace, you may need to run the same deterministic workload twice before cache behavior is
+visible. Cache keys normalize spotlight boundary ids, so randomized data markers do not defeat caching for otherwise
+identical deterministic prompts.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Prompt quality is not the same as system safety</span></div><div class="box-body"><p>A better prompt may reduce mistakes, but the gateway still needs quotas, budgets, circuit breakers, schema validation,
+fallbacks and policy checks. Prompt changes should improve eval scores; they should not be trusted to replace
+deterministic controls.</p>
+</div></div>
+<h2 id="quiz">Quiz</h2>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why does SwarmPipe keep <code>prompts.lock.json</code>?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">To make prompts shorter</button></li><li><button type="button" class="opt" data-correct="true">To approve exact prompt hashes and refuse unapproved prompt edits</button></li><li><button type="button" class="opt" data-correct="false">To store model outputs</button></li></ul><div class="q-explain" hidden>Prompt text is code. A lockfile prevents silent behavior changes.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What happens when a model returns fenced JSON or prose plus JSON?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The gateway always fails immediately</button></li><li><button type="button" class="opt" data-correct="true">The gateway attempts tolerant JSON extraction, then schema validation</button></li><li><button type="button" class="opt" data-correct="false">The workflow accepts the prose</button></li></ul><div class="q-explain" hidden>SwarmPipe can extract JSON from common wrappers, but the extracted object still must validate.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What is the purpose of an LLM profile?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">It stores user passwords</button></li><li><button type="button" class="opt" data-correct="true">It maps roles to ordered model fallback chains</button></li><li><button type="button" class="opt" data-correct="false">It changes the dashboard theme</button></li></ul><div class="q-explain" hidden><code>offline</code>, <code>ollama</code>, <code>azure</code> and <code>openai</code> profiles define which model serves each role.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Why use simulated models in this tutorial?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">They are more capable than hosted models</button></li><li><button type="button" class="opt" data-correct="true">They are local, deterministic by default and can reproduce failure modes on demand</button></li><li><button type="button" class="opt" data-correct="false">They bypass validation</button></li></ul><div class="q-explain" hidden>The simulator is a training and CI tool, not a claim of intelligence.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Which chapter owns the full prompt change-control workflow?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Chapter 4</button></li><li><button type="button" class="opt" data-correct="true">Chapter 18</button></li><li><button type="button" class="opt" data-correct="false">Chapter 24</button></li></ul><div class="q-explain" hidden>This chapter introduces prompt locks; Chapter 18 teaches the eval gate and approval workflow.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Prompts are versioned code with approved hashes, not casual strings.</li>
+<li>Message construction separates durable instructions from trusted and untrusted data blocks.</li>
+<li>Token estimates, context windows and per-model prices feed cost and budget controls.</li>
+<li>The model gateway applies kill switches, quotas, budgets, guardrails, cache, retries, repair, fallback and metering.</li>
+<li>Simulated models keep labs offline while making real failure modes reproducible.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="03-prompts-models-gateway"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="02-architecture-tour.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 2 &middot; A guided tour of SwarmPipe's architecture</span></a><a class="next" href="04-tools-and-gateway.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 4 &middot; Tools, tool contracts and the tool gateway</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#prompts-are-code">Prompts are code</a></li><li class="h2"><a href="#building-messages-safely">Building messages safely</a></li><li class="h2"><a href="#tokens-context-windows-and-cost">Tokens, context windows and cost</a></li><li class="h2"><a href="#typed-outputs-and-repair">Typed outputs and repair</a></li><li class="h2"><a href="#routing-profiles-and-simulated-models">Routing, profiles and simulated models</a></li><li class="h2"><a href="#what-the-gateway-does-not-solve">What the gateway does not solve</a></li><li class="h2"><a href="#hands-on-inspect-prompts-and-routes">Hands-on: inspect prompts and routes</a></li><li class="h2"><a href="#quiz">Quiz</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

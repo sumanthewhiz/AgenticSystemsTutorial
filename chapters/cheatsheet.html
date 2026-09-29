@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appendix B: Command cheat sheet · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="cheatsheet" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet" class="current" aria-current="page"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="cheatsheet">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Appendices &middot; Reference</div>
+<h1><span class="num">Appendix B</span>Command cheat sheet</h1>
+<div class="meta"></div>
+<p class="lede">Every SwarmPipe command, scenario, runtime flag and dashboard tab on one page.</p>
+
+<h2 id="complete-command-reference">Complete command reference</h2>
+<p>Generated from SwarmPipe's CLI itself, so it is always accurate. <code>sp</code> means <code>python -m swarmpipe</code> (see <a href="00-welcome.html#make-sp-a-shortcut">Chapter 0</a>). Add <code>--help</code> to any command for details.</p>
+<h3 id="top-level">(top level)</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp ask</code></td>
+<td><code>&lt;question&gt;</code> <code>--as &lt;v&gt;</code> <code>--tenant &lt;v&gt;</code></td>
+<td>Ask the Analyst agent a natural-language question over published data.</td>
+</tr>
+<tr>
+<td><code>sp evidence</code></td>
+<td><code>&lt;incident_id&gt;</code> <code>--html/--no-html</code></td>
+<td>Export the evidence pack of an incident (JSON + HTML).</td>
+</tr>
+<tr>
+<td><code>sp init</code></td>
+<td> </td>
+<td>Create data folders, the state DB, import contracts, seed knowledge, register agents, lock prompts.</td>
+</tr>
+<tr>
+<td><code>sp killswitch</code></td>
+<td><code>&lt;state&gt;</code> <code>--scope &lt;v&gt;</code> <code>--reason &lt;v&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td>Engage/release a kill switch. Scopes: global, agent:<id>, tenant:<t>, action:<class>, llm.</td>
+</tr>
+<tr>
+<td><code>sp maintenance</code></td>
+<td><code>&lt;task&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp mcp</code></td>
+<td><code>--as &lt;v&gt;</code></td>
+<td>Run the MCP server over stdio (for GitHub Copilot CLI, Claude Desktop, VS Code, ...).</td>
+</tr>
+<tr>
+<td><code>sp metrics</code></td>
+<td><code>--prom/--no-prom</code></td>
+<td>Metric summaries (or Prometheus exposition with --prom).</td>
+</tr>
+<tr>
+<td><code>sp policy</code></td>
+<td><code>&lt;action&gt;</code> <code>--dataset &lt;v&gt;</code> <code>--tenant &lt;v&gt;</code> <code>--confidence &lt;v&gt;</code> <code>--blast &lt;v&gt;</code> <code>--injection/--no-injection</code> <code>--regulated/--no-regulated</code></td>
+<td>Simulate the policy engine for a hypothetical action (what-if).</td>
+</tr>
+<tr>
+<td><code>sp reset</code></td>
+<td><code>--yes</code></td>
+<td>Move the data folder to data/../.trash-<timestamp> (recoverable) and start fresh.</td>
+</tr>
+<tr>
+<td><code>sp run</code></td>
+<td><code>--port &lt;v&gt;</code> <code>--no-web/--no-no-web</code> <code>--workers &lt;v&gt;</code> <code>--profile &lt;v&gt;</code></td>
+<td>Start the watcher, workers, event dispatcher, scheduler and the web dashboard.</td>
+</tr>
+<tr>
+<td><code>sp slo</code></td>
+<td> </td>
+<td>SLOs of the pipeline itself: SLI, error-budget burn.</td>
+</tr>
+<tr>
+<td><code>sp status</code></td>
+<td> </td>
+<td>Overview: runs, incidents, approvals, datasets, cost, kill switches.</td>
+</tr>
+<tr>
+<td><code>sp tick</code></td>
+<td><code>--timeout &lt;v&gt;</code> <code>--scheduler/--no-scheduler</code></td>
+<td>Process everything synchronously (no server): watcher poll -&gt; runs -&gt; events -&gt; monitors, until quiet.</td>
+</tr>
+<tr>
+<td><code>sp trace</code></td>
+<td><code>&lt;ident&gt;</code></td>
+<td>Show a trace waterfall for a run id, incident id or trace id.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="actions">actions</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp actions execute</code></td>
+<td><code>&lt;proposal_id&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td>Execute an L1 recommendation yourself (attributed to you; counts as agreement evidence).</td>
+</tr>
+<tr>
+<td><code>sp actions rollback</code></td>
+<td><code>&lt;proposal_id&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td>Compensate an executed action (the L3 'act and notify' one-click rollback).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="approvals">approvals</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp approvals approve</code></td>
+<td><code>&lt;approval_id&gt;</code> <code>--as &lt;v&gt;</code> <code>--comment &lt;v&gt;</code> <code>--confirm &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp approvals list</code></td>
+<td><code>--status &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp approvals reject</code></td>
+<td><code>&lt;approval_id&gt;</code> <code>--as &lt;v&gt;</code> <code>--comment &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="audit">audit</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp audit export</code></td>
+<td><code>--path &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp audit tail</code></td>
+<td><code>--n &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp audit tamper</code></td>
+<td><code>--seq &lt;v&gt;</code></td>
+<td>LAB ONLY: silently edit one audit record so you can watch <code>audit verify</code> catch it.</td>
+</tr>
+<tr>
+<td><code>sp audit verify</code></td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="autonomy">autonomy</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp autonomy list</code></td>
+<td><code>--tenant &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp autonomy review</code></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp autonomy set</code></td>
+<td><code>&lt;action&gt;</code> <code>&lt;level&gt;</code> <code>--tenant &lt;v&gt;</code> <code>--reason &lt;v&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="chaos">chaos</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp chaos advance-clock</code></td>
+<td><code>&lt;minutes&gt;</code></td>
+<td>Fast-forward the business clock (freshness SLAs).</td>
+</tr>
+<tr>
+<td><code>sp chaos clear</code></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp chaos crash-after</code></td>
+<td><code>--step &lt;v&gt;</code></td>
+<td>The worker process exits right after checkpointing STEP of the next run (restart <code>swarmpipe run</code> to see recovery).</td>
+</tr>
+<tr>
+<td><code>sp chaos set</code></td>
+<td><code>&lt;key&gt;</code> <code>&lt;value&gt;</code></td>
+<td>e.g. <code>chaos set llm_timeout_rate 0.3</code>, <code>chaos set guardrails.spotlighting false</code>, <code>chaos set feature.critic_review false</code>.</td>
+</tr>
+<tr>
+<td><code>sp chaos show</code></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp chaos tamper-warehouse</code></td>
+<td><code>--dataset &lt;v&gt;</code> <code>--tenant &lt;v&gt;</code></td>
+<td>Modify a published table directly (the out-of-band detector should catch it).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dlq">dlq</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp dlq list</code></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp dlq redrive</code></td>
+<td><code>&lt;dlq_id&gt;</code></td>
+<td>Move a dead-lettered file back into the inbox (after fixing the cause).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evals">evals</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp evals calibrate-judge</code></td>
+<td><code>--version &lt;v&gt;</code></td>
+<td>Measure LLM-as-judge agreement with human labels (kappa) plus position and verbosity bias.</td>
+</tr>
+<tr>
+<td><code>sp evals certify</code></td>
+<td><code>--model &lt;v&gt;</code> <code>--roles &lt;v&gt;</code></td>
+<td>Run the eval suites with MODEL for each role and record whether it is certified for that role.</td>
+</tr>
+<tr>
+<td><code>sp evals gate</code></td>
+<td><code>--update-lock/--no-update-lock</code> <code>--k &lt;v&gt;</code></td>
+<td>CI gate: run the suites and fail (exit 1) if any threshold is missed.</td>
+</tr>
+<tr>
+<td><code>sp evals harvest</code></td>
+<td> </td>
+<td>Turn reviewed production incidents into candidate regression cases (feedback -&gt; eval flywheel).</td>
+</tr>
+<tr>
+<td><code>sp evals run</code></td>
+<td><code>--suite &lt;v&gt;</code> <code>--k &lt;v&gt;</code> <code>--noise &lt;v&gt;</code> <code>--profile &lt;v&gt;</code> <code>--cases &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="incidents">incidents</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp incidents feedback</code></td>
+<td><code>&lt;incident_id&gt;</code> <code>--rating &lt;v&gt;</code> <code>--category &lt;v&gt;</code> <code>--comment &lt;v&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td>Human feedback on a diagnosis (online evaluation + future eval cases).</td>
+</tr>
+<tr>
+<td><code>sp incidents list</code></td>
+<td><code>--status &lt;v&gt;</code> <code>--limit &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp incidents resolve</code></td>
+<td><code>&lt;incident_id&gt;</code> <code>--note &lt;v&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp incidents show</code></td>
+<td><code>&lt;incident_id&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="knowledge">knowledge</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp knowledge list</code></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp knowledge search</code></td>
+<td><code>&lt;query&gt;</code> <code>--tenant &lt;v&gt;</code> <code>--k &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="llm">llm</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp llm status</code></td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp llm test</code></td>
+<td><code>--role &lt;v&gt;</code> <code>--profile &lt;v&gt;</code></td>
+<td>Send one real request through the gateway for ROLE and show which model answered.</td>
+</tr>
+<tr>
+<td><code>sp llm use</code></td>
+<td><code>&lt;profile&gt;</code></td>
+<td>Switch the active LLM profile at runtime (offline | ollama | azure | openai).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="memory">memory</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp memory list</code></td>
+<td><code>--status &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp memory promote</code></td>
+<td><code>&lt;memory_id&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp memory reject</code></td>
+<td><code>&lt;memory_id&gt;</code> <code>--as &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="prompts">prompts</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp prompts list</code></td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="runs">runs</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp runs cancel</code></td>
+<td><code>&lt;run_id&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp runs list</code></td>
+<td><code>--status &lt;v&gt;</code> <code>--workflow &lt;v&gt;</code> <code>--limit &lt;v&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp runs redrive</code></td>
+<td><code>&lt;run_id&gt;</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp runs show</code></td>
+<td><code>&lt;run_id&gt;</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="scenarios">scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments and options</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sp scenarios drop</code></td>
+<td><code>&lt;name&gt;</code> <code>--tenant &lt;v&gt;</code> <code>--process/--no-process</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>sp scenarios list</code></td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h2 id="scenarios-2">Scenarios</h2>
+<p>Use with <code>sp scenarios drop &lt;name&gt;</code> (add <code>--process</code> to run it synchronously without a server).</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>What it simulates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reference</code></td>
+<td>customers.xlsx (2 sheets -&gt; customers + regions) and inventory .xls</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>4 clean days of sales (builds volume and distribution baselines)</td>
+</tr>
+<tr>
+<td><code>baseline</code></td>
+<td>reference + history (run this first)</td>
+</tr>
+<tr>
+<td><code>clean_day</code></td>
+<td>today's normal sales file</td>
+</tr>
+<tr>
+<td><code>duplicate</code></td>
+<td>byte-identical re-delivery of today's file</td>
+</tr>
+<tr>
+<td><code>schema_drift</code></td>
+<td>upstream renamed customer_id-&gt;client_code, amount-&gt;net_amount</td>
+</tr>
+<tr>
+<td><code>additive_drift</code></td>
+<td>a new promo_code column appears</td>
+</tr>
+<tr>
+<td><code>volume_drop</code></td>
+<td>truncated extract (18 rows instead of ~500)</td>
+</tr>
+<tr>
+<td><code>volume_spike</code></td>
+<td>5x rows (cumulative / duplicate delivery)</td>
+</tr>
+<tr>
+<td><code>unit_change</code></td>
+<td>amounts sent in paise (x100)</td>
+</tr>
+<tr>
+<td><code>stale_resend</code></td>
+<td>today's file contains 30-day-old orders</td>
+</tr>
+<tr>
+<td><code>quality_failure</code></td>
+<td>30% invalid channel / missing quantity</td>
+</tr>
+<tr>
+<td><code>referential_break</code></td>
+<td>40% of customer_ids do not exist</td>
+</tr>
+<tr>
+<td><code>pii_leak</code></td>
+<td>card numbers typed into customers.notes</td>
+</tr>
+<tr>
+<td><code>injection</code></td>
+<td>truncated file + a cell with a prompt injection</td>
+</tr>
+<tr>
+<td><code>injection_filename</code></td>
+<td>instructions hidden in the file name</td>
+</tr>
+<tr>
+<td><code>malformed</code></td>
+<td>binary garbage .csv and a fake .xlsx</td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td>cp1252-encoded customers CSV</td>
+</tr>
+<tr>
+<td><code>pipe_txt</code></td>
+<td>pipe-delimited inventory .txt</td>
+</tr>
+<tr>
+<td><code>new_dataset</code></td>
+<td>unknown vendors_q3.csv</td>
+</tr>
+<tr>
+<td><code>runbook_doc</code></td>
+<td>a free-text runbook</td>
+</tr>
+<tr>
+<td><code>poisoned_doc</code></td>
+<td>a document with injected instructions</td>
+</tr>
+<tr>
+<td><code>mass_failure</code></td>
+<td>6 files with the same schema drift</td>
+</tr>
+<tr>
+<td><code>freshness</code></td>
+<td>fast-forward the business clock 26h</td>
+</tr>
+<tr>
+<td><code>oob_tamper</code></td>
+<td>modify the published sales table directly</td>
+</tr>
+<tr>
+<td><code>crash</code></td>
+<td>crash the worker after 'transform' on the next file</td>
+</tr>
+<tr>
+<td><code>llm_outage</code></td>
+<td>sim-large down + a volume drop</td>
+</tr>
+<tr>
+<td><code>flaky_llm</code></td>
+<td>25% timeouts + 30% malformed JSON + a unit change</td>
+</tr>
+</tbody>
+</table>
+<h2 id="runtime-flags">Runtime flags</h2>
+<p>Change them with <code>sp chaos set &lt;key&gt; &lt;value&gt;</code>; <code>chaos.</code> keys may be written without the prefix. Inspect with <code>sp chaos show</code>, reset with <code>sp chaos clear</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chaos.crash_after_step</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>chaos.crash_enabled</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>chaos.injection_susceptibility</code></td>
+<td>0.9</td>
+</tr>
+<tr>
+<td><code>chaos.injection_susceptibility_spotlighted</code></td>
+<td>0.03</td>
+</tr>
+<tr>
+<td><code>chaos.injection_susceptibility_trusted</code></td>
+<td>0.9</td>
+</tr>
+<tr>
+<td><code>chaos.judge_position_bias</code></td>
+<td>0.7</td>
+</tr>
+<tr>
+<td><code>chaos.judge_verbosity_bias</code></td>
+<td>0.6</td>
+</tr>
+<tr>
+<td><code>chaos.llm_error_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.llm_hallucinated_citation_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.llm_latency_ms</code></td>
+<td>[2, 12]</td>
+</tr>
+<tr>
+<td><code>chaos.llm_loop_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.llm_malformed_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.llm_outage_models</code></td>
+<td>[]</td>
+</tr>
+<tr>
+<td><code>chaos.llm_rate_limit_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.llm_timeout_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.llm_wrong_answer_rate</code></td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><code>chaos.seed</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>chaos.tool_error_rate</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>clock_offset_min</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>feature.critic_review</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>guardrails.spotlighting</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>llm.active_profile</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>llm.cache_disabled</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>llm.require_certification</code></td>
+<td> </td>
+</tr>
+<tr>
+<td><code>policy.freeze_window</code></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h2 id="dashboard-tabs">Dashboard tabs</h2>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Overview</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Scenarios &amp; Chaos</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Runs</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Incidents</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Approvals</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Datasets &amp; Lineage</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Agents &amp; Tools</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Governance</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Cost &amp; Metrics</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Evals</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Ask the data</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+<tr>
+<td><strong>Knowledge &amp; Memory</strong></td>
+<td>see the chapter where it is introduced</td>
+</tr>
+</tbody>
+</table>
+
+
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="glossary.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Appendix A &middot; Glossary</span></a><a class="next" href="concept-map.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Appendix C &middot; Concept → code map</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#complete-command-reference">Complete command reference</a></li><li class="h3"><a href="#top-level">(top level)</a></li><li class="h3"><a href="#actions">actions</a></li><li class="h3"><a href="#approvals">approvals</a></li><li class="h3"><a href="#audit">audit</a></li><li class="h3"><a href="#autonomy">autonomy</a></li><li class="h3"><a href="#chaos">chaos</a></li><li class="h3"><a href="#dlq">dlq</a></li><li class="h3"><a href="#evals">evals</a></li><li class="h3"><a href="#incidents">incidents</a></li><li class="h3"><a href="#knowledge">knowledge</a></li><li class="h3"><a href="#llm">llm</a></li><li class="h3"><a href="#memory">memory</a></li><li class="h3"><a href="#prompts">prompts</a></li><li class="h3"><a href="#runs">runs</a></li><li class="h3"><a href="#scenarios">scenarios</a></li><li class="h2"><a href="#scenarios-2">Scenarios</a></li><li class="h2"><a href="#runtime-flags">Runtime flags</a></li><li class="h2"><a href="#dashboard-tabs">Dashboard tabs</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

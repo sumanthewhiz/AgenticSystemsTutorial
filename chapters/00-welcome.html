@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 0: Welcome: how this tutorial works · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="00-welcome" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part" open><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome" class="current" aria-current="page"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="00-welcome">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part 0 &middot; Start here</div>
+<h1><span class="num">Chapter 0</span>Welcome: how this tutorial works</h1>
+<div class="meta"><span class="chip">&#9201; 25 min</span><span class="chip">Level: Beginner</span><span class="chip">&#129514; 4 hands-on labs</span></div>
+<p class="lede">What 'production-grade agentic' means, how every chapter is structured, and getting SwarmPipe running with your first file.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Say precisely what makes an agentic application <strong>production-grade</strong>, not just a clever demo</li><li>Recognise the building blocks every chapter uses: concepts, labs, <em>break it</em> experiments and quizzes</li><li>Get SwarmPipe running, push your first files through it and watch the swarm open an incident</li><li>Find your way around the 12 dashboard tabs and reset the system safely whenever you want a clean slate</li></ul></div>
+<p>Most agent tutorials stop at &quot;call a model in a loop with some tools&quot;. This one starts there and keeps going:
+evaluations, failure modes, durable execution, security, governance, cost, observability, operations. That's everything
+you need to trust an agent with real work. You won't just read about these ideas. Each one is implemented in a working
+application sitting on your machine, and every chapter asks you to <strong>run it, watch it, break it and fix it</strong>.</p>
+<h2 id="what-production-grade-agentic-actually-means">What &quot;production-grade agentic&quot; actually means</h2>
+<p>A demo agent has to be impressive once. A production agent has to be right, safe and affordable thousands of times,
+while models misbehave, files arrive corrupted, dependencies time out and someone tries to trick it.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Agentic application</span></div><div class="box-body"><p>Software in which one or more <strong>language-model-driven components (agents)</strong> decide some of the steps: which tool to call,
+what the data means, what went wrong, what to do next. The rest is ordinary deterministic code, which <strong>constrains</strong>,
+<strong>checks</strong> and <strong>records</strong> every one of those decisions.</p>
+</div></div>
+<p>&quot;Production-grade&quot; is the collection of properties that let you trust that software. Each part of this tutorial
+builds one layer of this stack:</p>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Agents and patterns</div><div class="layer-s">what agents are, how many to use, how they cooperate (Parts I and III)</div></div><div class="layer"><div class="layer-t">Data and tools</div><div class="layer-s">clean inputs, contracts, tool contracts, grounded context (Parts I–III)</div></div><div class="layer"><div class="layer-t">Reliability</div><div class="layer-s">surviving crashes, retries, flaky models, known failure modes (Part IV)</div></div><div class="layer"><div class="layer-t">Evaluation</div><div class="layer-s">proving quality before and after every change (Part V)</div></div><div class="layer"><div class="layer-t">Security and governance</div><div class="layer-s">assume the model will be fooled, then contain it (Part VI)</div></div><div class="layer"><div class="layer-t">Observability, cost and operations</div><div class="layer-s">seeing, paying for and running it day to day (Part VII)</div></div></div><figcaption>The layers of a production agentic system (and the part that teaches each)</figcaption></figure>
+<h2 id="meet-swarmpipe-your-living-lab">Meet SwarmPipe, your living lab</h2>
+<p><strong>SwarmPipe</strong> is a data pipeline run by a swarm of 27 agents. You drop <code>.csv</code>, <code>.txt</code>, <code>.xls</code> or <code>.xlsx</code> files into
+a watched folder, and the system takes it from there:</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">File lands</div><div class="node-s">in the watched folder</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Router agent</div><div class="node-s">what kind of file is this?</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Ingest workflow</div><div class="node-s">read, profile, check the contract</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Quality checks</div><div class="node-s">is the data <em>correct</em>, not just present?</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Publish or quarantine</div><div class="node-s">a circuit breaker protects consumers</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Triage swarm</div><div class="node-s">investigate, diagnose, plan</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Policy and approval</div><div class="node-s">may the agent act?</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Act, verify, learn</div><div class="node-s">and record everything</div></div></div><figcaption>What happens to one file</figcaption></figure>
+<p>It runs <strong>offline by default</strong>. Two <em>simulated</em> models (<code>sim-small</code> and <code>sim-large</code>) stand in for real LLMs. They're
+free, fast and deterministic, and on request they misbehave in exactly the ways real models do: time out, return
+broken JSON, hallucinate citations or fall for prompt injection. That makes every failure mode in this tutorial
+reproducible on demand. When you want the real thing, one command switches to a local Ollama model or a hosted one
+(<a href="25-model-strategy.html">Chapter 25</a>).</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">A flight simulator for agent engineering</span></div><div class="box-body"><p>Pilots don't learn engine failures by waiting for one. They train in a simulator that can fail any system at any
+moment. SwarmPipe's simulated models and chaos flags do the same for agent failures.</p>
+</div></div>
+<h2 id="how-every-chapter-works">How every chapter works</h2>
+<p>Chapters follow the same rhythm: a concept explained from first principles, then where it lives in SwarmPipe, then
+your hands on the keyboard. These are the building blocks you'll meet (each one below is a live example):</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Where to look</span></div><div class="box-body"><p>Boxes like this point at the exact files, functions, dashboard tabs and commands that implement the concept, for
+example <code>swarmpipe/runtime/engine.py</code> for durable execution.</p>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Example lab</span></div><div class="box-body"><p>Numbered steps with commands you can copy (hover a code block and press <strong>Copy</strong>):</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp status</code></pre></div>
+<p>...followed by what you should see:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>LLM: 26 calls, $0.01536, 32232 tokens | profile offline | kill switches: none | inbox: ...\SwarmPipe\data\inbox</code></pre></div>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Example experiment</span></div><div class="box-body"><p>Each concept is easiest to understand when it's missing. These boxes switch a defense off or inject a fault, then ask
+you to predict, observe and explain what happens.</p>
+</div></div>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Example gotcha</span></div><div class="box-body"><p>Mistakes real teams make in production, and how to avoid them.</p>
+</div></div>
+<details class="box deepdive"><summary><span class="ico">🔍</span><span class="kind">Deep dive</span><span class="title">Optional deeper material</span></summary><div class="box-body"><p>Click to expand. Skip these on a first pass. They hold the &quot;why exactly&quot; details and the edge cases.</p>
+</div></details>
+<p>Each chapter ends with a short <strong>quiz</strong> (click an answer to check it) and <strong>key takeaways</strong>, and each has a
+<strong>Mark this chapter as complete</strong> button. Your progress is stored in your browser and shown in the top bar and
+on the home page.</p>
+<h2 id="set-up-swarmpipe">Set up SwarmPipe</h2>
+<p>You need a local copy of the SwarmPipe project. All commands in this tutorial are PowerShell and are run from your
+SwarmPipe folder.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Get a working environment</span></div><div class="box-body"><ol>
+<li>
+<p>Open <strong>PowerShell</strong>, get the project (skip the clone if you already have a copy) and activate its virtual environment:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>git clone https://github.com/sumanthewhiz/SwarmPipe.git
+cd SwarmPipe
+.\.venv\Scripts\Activate.ps1</code></pre></div>
+<p>On a fresh clone the environment doesn't exist yet. Create it once with <code>python -m venv .venv</code>, activate it and run
+<code>pip install -r requirements.txt</code> (Python 3.11 or newer).</p>
+</li>
+<li>
+<p>Initialise the state database, data contracts, knowledge base, agent registry and prompt lock:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>python -m swarmpipe init</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>SwarmPipe initialised - state C:\...\SwarmPipe\data\state\swarmpipe.db
+Watched folder (drop files here): C:\...\SwarmPipe\data\inbox
+{
+  &quot;contracts_imported&quot;: [&quot;customers@v1&quot;, &quot;inventory@v1&quot;, &quot;regions@v1&quot;, &quot;sales_daily@v1&quot;],
+  &quot;static_lineage_edges&quot;: 12,
+  &quot;knowledge_docs_added&quot;: 10,
+  &quot;agents_registered&quot;: 27,
+  &quot;unapproved_prompts&quot;: []
+}</code></pre></div>
+<p>Running <code>init</code> again is harmless. On an already-initialised system the lists are simply empty or zero, because
+nothing new needed importing.</p>
+</li>
+</ol>
+</div></div>
+<h3 id="make-sp-a-shortcut">Make <code>sp</code> a shortcut</h3>
+<p>You'll type <code>python -m swarmpipe</code> hundreds of times, so this tutorial writes it as <strong><code>sp</code></strong>. Define the shortcut in
+every new PowerShell window after activating the environment (or add the line to your PowerShell <code>$PROFILE</code>):</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>function sp { python -m swarmpipe @args }
+sp --help</code></pre></div>
+<p><code>sp --help</code> lists every command group: <code>scenarios</code>, <code>runs</code>, <code>incidents</code>, <code>approvals</code>, <code>evals</code>, <code>chaos</code> and more. The
+<a href="cheatsheet.html">command cheat sheet</a> has all of them on one page.</p>
+<h2 id="your-first-files-and-your-first-incident">Your first files, and your first incident</h2>
+<p>SwarmPipe ships with 28 <strong>scenarios</strong>: synthetic deliveries and faults you can drop into the watched folder with one
+command. With <code>--process</code> they're handled synchronously, without a server, which is ideal for a first look.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Push data through the pipeline</span></div><div class="box-body"><ol>
+<li>
+<p>Load the reference data (a customer master <code>.xlsx</code> with two sheets and a legacy inventory <code>.xls</code>) and four days
+of sales history, which the checks use as their baseline:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop baseline --process</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>dropped [&#x27;customers.xlsx&#x27;, &#x27;inventory_2026-09-28.xls&#x27;] into ...\data\inbox
+admitted 2 file(s); processed in 0.8s
+dropped [&#x27;sales_2026-09-24.csv&#x27;, &#x27;sales_2026-09-25.csv&#x27;, &#x27;sales_2026-09-26.csv&#x27;, &#x27;sales_2026-09-27.csv&#x27;] into ...\data\inbox
+admitted 4 file(s); processed in 5.6s</code></pre></div>
+<p>File names carry dates relative to <em>today</em>, so yours will differ. A status summary follows, with tables of runs,
+incidents, approvals and datasets.</p>
+</li>
+<li>
+<p>Now deliver a broken file: a truncated extract with 18 rows where about 500 are normal.</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop volume_drop --process
+sp incidents list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| id                 | status    | severity | tenant  | dataset     | signal_count | root_cause        | cost_usd | title                                   |
+| inc_mul9cfnmead9cf | mitigated | critical | default | sales_daily | 1            | truncated_extract | 0.011965 | sales_daily: volume anomaly - row_count_min ... |</code></pre></div>
+</li>
+<li>
+<p>Look at what just happened. The file &quot;loaded successfully&quot; as far as any job scheduler could tell. But a quality
+check tripped the <strong>circuit breaker</strong>, so the bad batch was quarantined instead of published. A <strong>swarm</strong> of agents
+then investigated, diagnosed a truncated extract, took low-risk containment actions <em>within policy</em> and verified
+them. It cost about one cent of (simulated) model usage. Every chapter from here on unpacks a piece of what you
+just saw.</p>
+</li>
+</ol>
+</div></div>
+<div class="box tip"><div class="box-head"><span class="ico">💡</span><span class="kind">Tip</span><span class="title">Ids and numbers differ on every run</span></div><div class="box-body"><p>Incident ids, run ids, timings and costs are generated fresh each time. Compare the <em>shape</em> of your output with the
+examples, not the exact values. Where a command contains a placeholder such as <code>inc_...</code>, <code>run_...</code> or <code>apr_...</code>,
+paste the matching id from your own output (for example from <code>sp incidents list</code> or <code>sp approvals list</code>).</p>
+</div></div>
+<h2 id="tour-the-dashboard">Tour the dashboard</h2>
+<p>The same system has a web dashboard. Start the full runtime (watcher, workers, event bus, monitors and web server),
+then open <a href="http://127.0.0.1:8765">http://127.0.0.1:8765</a>:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp run</code></pre></div>
+<p>Leave that window running and use a <strong>second</strong> PowerShell window for commands (activate the environment and define
+<code>sp</code> there too). If a server is already running, just open the URL. Starting a second one would fail because the
+port is taken.</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>What it shows</th>
+<th>Taught in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Overview</strong></td>
+<td>health, recent runs and incidents, cost at a glance</td>
+<td><a href="02-architecture-tour.html">Chapter 2</a></td>
+</tr>
+<tr>
+<td><strong>Scenarios &amp; Chaos</strong></td>
+<td>one-click scenarios and runtime chaos toggles</td>
+<td><a href="14-failure-modes.html">Chapter 14</a></td>
+</tr>
+<tr>
+<td><strong>Runs</strong></td>
+<td>durable workflow runs, step attempts, checks, model calls, the trace</td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td><strong>Incidents</strong></td>
+<td>signals, diagnosis, proposals → policy → execution → verification, evidence</td>
+<td><a href="09-triage-swarm.html">Chapter 9</a></td>
+</tr>
+<tr>
+<td><strong>Approvals</strong></td>
+<td>human-in-the-loop decisions waiting for you</td>
+<td><a href="21-policy-autonomy.html">Chapter 21</a></td>
+</tr>
+<tr>
+<td><strong>Datasets &amp; Lineage</strong></td>
+<td>versions, latest checks, contracts, the lineage graph</td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td><strong>Agents &amp; Tools</strong></td>
+<td>the agent registry (agent cards) and tool contracts</td>
+<td><a href="04-tools-and-gateway.html">Chapter 4</a></td>
+</tr>
+<tr>
+<td><strong>Governance</strong></td>
+<td>policies, autonomy levels and history, kill switches, audit</td>
+<td><a href="22-audit-evidence.html">Chapter 22</a></td>
+</tr>
+<tr>
+<td><strong>Cost &amp; Metrics</strong></td>
+<td>model usage and cost by agent and model, metrics, SLOs</td>
+<td><a href="24-cost-capacity.html">Chapter 24</a></td>
+</tr>
+<tr>
+<td><strong>Evals</strong></td>
+<td>eval runs, gate thresholds, shadow and human feedback</td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td><strong>Ask the data</strong></td>
+<td>the Analyst agent: questions in English, governed SQL out</td>
+<td><a href="20-identity-access.html">Chapter 20</a></td>
+</tr>
+<tr>
+<td><strong>Knowledge &amp; Memory</strong></td>
+<td>runbooks, ingested documents, human-curated lessons</td>
+<td><a href="11-context-memory.html">Chapter 11</a></td>
+</tr>
+</tbody>
+</table>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Watch it live</span></div><div class="box-body"><ol>
+<li>Open the <strong>Scenarios &amp; Chaos</strong> tab and drop <strong>clean_day</strong>. Switch to <strong>Runs</strong> and watch the new runs appear and
+finish.</li>
+<li>Open <strong>Incidents</strong> and click the incident from the previous lab. Scroll through its signals, proposals, evidence
+and the trace at the bottom: one timeline covering every agent that worked on it.</li>
+</ol>
+</div></div>
+<h2 id="reset-whenever-you-like">Reset whenever you like</h2>
+<p>Many labs ask for a clean slate. Resetting is safe because it <em>moves</em> the data aside rather than deleting it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+<p>Stop the server first (Ctrl+C in its window), because a running server holds its database open. <code>reset</code> moves the
+whole <code>data</code> folder to a recoverable <code>.trash-data-&lt;timestamp&gt;</code> folder next to it. Runtime chaos settings live in that
+database too, so a reset also clears them. Without a reset, <code>sp chaos clear</code> returns all chaos flags to their defaults.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Two terminals, one database</span></div><div class="box-body"><p>The server and your CLI commands share one state database. That's deliberate: a <code>sp chaos set ...</code> in the second
+window changes the behavior of the running server immediately. It also means that <code>--process</code> commands and a running
+server both do work. That's fine, but don't be surprised when the dashboard shows runs you started from the CLI.</p>
+</div></div>
+<h2 id="your-learning-path">Your learning path</h2>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Start here</div><div class="node-s">set up, first run</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Foundations</div><div class="node-s">agents, architecture, gateways</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Data backbone</div><div class="node-s">ingestion, contracts, lineage</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">The swarm</div><div class="node-s">patterns, triage, protocols, memory</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Reliability</div><div class="node-s">durability, resilience, failure modes</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Evaluation</div><div class="node-s">datasets, judges, red team, gates</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Governance</div><div class="node-s">threats, identity, policy, audit</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Operations</div><div class="node-s">observability, cost, models, ops</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Capstone</div><div class="node-s">build and ship a feature</div></div></div><figcaption>The nine parts</figcaption></figure>
+<p>Reading in order works best, since each part builds on the previous one. If you're short on time, this <strong>core path</strong>
+covers the essentials in about seven hours: chapters <a href="01-llm-to-agent.html">1</a>, <a href="02-architecture-tour.html">2</a>,
+<a href="06-contracts-and-quality.html">6</a>, <a href="08-why-multi-agent.html">8</a>, <a href="09-triage-swarm.html">9</a>,
+<a href="12-durable-execution.html">12</a>, <a href="15-eval-fundamentals.html">15</a>, <a href="19-threat-model.html">19</a> and
+<a href="21-policy-autonomy.html">21</a>.</p>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why does SwarmPipe use simulated models by default?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Real models cannot run inside a data pipeline</button></li><li><button type="button" class="opt" data-correct="true">Simulated models are free, deterministic and can fail on demand, so every failure mode is reproducible</button></li><li><button type="button" class="opt" data-correct="false">Simulated models give better answers than real ones</button></li></ul><div class="q-explain" hidden>The simulators exist for learning: you can make them time out, return malformed JSON or obey a prompt injection whenever you choose. You can switch to a real model at any time.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does <code>sp scenarios drop volume_drop --process</code> do?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Deletes the sales dataset</button></li><li><button type="button" class="opt" data-correct="false">Only copies a file; nothing is processed until you start the server</button></li><li><button type="button" class="opt" data-correct="true">Copies a synthetic file into the watched folder and processes everything synchronously, without a server</button></li></ul><div class="q-explain" hidden><code>--process</code> runs the watcher, workflows, events and monitors in the foreground until the system is quiet, which is ideal for labs.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>The truncated file &quot;loaded successfully&quot;, yet it was not published. Why?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The Router agent rejected the file type</button></li><li><button type="button" class="opt" data-correct="true">A data-quality check tripped the circuit breaker, so the batch was quarantined</button></li><li><button type="button" class="opt" data-correct="false">The file was a duplicate</button></li></ul><div class="q-explain" hidden>A job ending OK is not the same as the data being correct. You will study the checks and the circuit breaker in Chapter 6.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What does <code>sp reset --yes</code> do to your data?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Permanently deletes it</button></li><li><button type="button" class="opt" data-correct="true">Moves the data folder to a recoverable <code>.trash-data-&lt;timestamp&gt;</code> folder</button></li><li><button type="button" class="opt" data-correct="false">Empties only the inbox</button></li></ul><div class="q-explain" hidden>Nothing is destroyed: you can move the folder back if you need it. Stop the server before resetting.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Production-grade means <strong>correct, safe, affordable and accountable</strong> under failure and attack, not just clever once.</li>
+<li>SwarmPipe is a data pipeline run by 27 agents. It's <strong>offline and deterministic by default</strong>, with realistic failures on demand.</li>
+<li>Every chapter follows the same pattern: concept, then where it lives in SwarmPipe, a hands-on lab, a <em>break it</em> experiment, a quiz and takeaways.</li>
+<li><code>sp</code> is short for <code>python -m swarmpipe</code>. <code>--process</code> runs a scenario synchronously, and <code>sp run</code> starts the server and dashboard on port 8765.</li>
+<li><code>sp reset --yes</code> gives you a clean slate by moving your data aside, never deleting it.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="00-welcome"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><span class="prev empty"></span><a class="next" href="01-llm-to-agent.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 1 &middot; From an LLM call to an agent</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#what-production-grade-agentic-actually-means">What &quot;production-grade agentic&quot; actually means</a></li><li class="h2"><a href="#meet-swarmpipe-your-living-lab">Meet SwarmPipe, your living lab</a></li><li class="h2"><a href="#how-every-chapter-works">How every chapter works</a></li><li class="h2"><a href="#set-up-swarmpipe">Set up SwarmPipe</a></li><li class="h3"><a href="#make-sp-a-shortcut">Make <code>sp</code> a shortcut</a></li><li class="h2"><a href="#your-first-files-and-your-first-incident">Your first files, and your first incident</a></li><li class="h2"><a href="#tour-the-dashboard">Tour the dashboard</a></li><li class="h2"><a href="#reset-whenever-you-like">Reset whenever you like</a></li><li class="h2"><a href="#your-learning-path">Your learning path</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

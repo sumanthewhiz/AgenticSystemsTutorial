@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appendix D: Further reading · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="further-reading" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading" class="current" aria-current="page"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="further-reading">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Appendices &middot; Reference</div>
+<h1><span class="num">Appendix D</span>Further reading</h1>
+<div class="meta"></div>
+<p class="lede">The public specifications, papers and guides behind the ideas in this tutorial.</p>
+
+<p>Every URL in this appendix was fetched successfully before inclusion. The notes say why the reference matters and which chapter it supports.</p>
+<h2 id="agents-and-multi-agent-patterns">Agents and multi-agent patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic, &quot;Building effective agents&quot;</a></td>
+<td>Practical patterns for agents, workflows and when not to over-agenticize.</td>
+<td><a href="01-llm-to-agent.html">Chapter 1</a>, <a href="08-why-multi-agent.html">Chapter 8</a></td>
+</tr>
+<tr>
+<td><a href="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic, &quot;How we built our multi-agent research system&quot;</a></td>
+<td>Production lessons from a real multi-agent system, including context and token trade-offs.</td>
+<td><a href="08-why-multi-agent.html">Chapter 8</a>, <a href="24-cost-capacity.html">Chapter 24</a></td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2503.13657">Why Do Multi-Agent LLM Systems Fail?</a></td>
+<td>A failure taxonomy for multi-agent coordination and verification.</td>
+<td><a href="14-failure-modes.html">Chapter 14</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protocols-mcp-and-a2a">Protocols: MCP and A2A</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://modelcontextprotocol.io/specification/2025-06-18">Model Context Protocol specification</a></td>
+<td>The protocol behind portable tool and data-source integration for model clients.</td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+<tr>
+<td><a href="https://a2a-protocol.org/latest/">A2A Protocol documentation</a></td>
+<td>The agent-to-agent protocol used for discovery and task exchange.</td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="context-retrieval-and-prompt-injection-defense">Context, retrieval and prompt-injection defense</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://arxiv.org/abs/2403.14720">Defending Against Indirect Prompt Injection Attacks With Spotlighting</a></td>
+<td>The paper behind spotlighting untrusted data in prompts.</td>
+<td><a href="11-context-memory.html">Chapter 11</a>, <a href="19-threat-model.html">Chapter 19</a></td>
+</tr>
+<tr>
+<td><a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/">Simon Willison, &quot;The lethal trifecta for AI agents&quot;</a></td>
+<td>A crisp way to reason about private data, untrusted content and external communication.</td>
+<td><a href="19-threat-model.html">Chapter 19</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="durable-execution">Durable execution</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.temporal.io/temporal">Temporal, &quot;What is Temporal?&quot;</a></td>
+<td>Production-grade durable execution concepts beyond SwarmPipe's local teaching engine.</td>
+<td><a href="12-durable-execution.html">Chapter 12</a>, <a href="26-operations.html">Chapter 26</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="evaluation-and-judges">Evaluation and judges</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://arxiv.org/abs/2406.12045">tau-bench: A Benchmark for Tool-Agent-User Interaction</a></td>
+<td>The benchmark that popularized pass^k reliability framing for tool agents.</td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2306.05685">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a></td>
+<td>Background on model judges and why calibration matters.</td>
+<td><a href="16-llm-judge.html">Chapter 16</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="security-owasp-agentic-ai-and-the-lethal-trifecta">Security: OWASP, Agentic AI and the lethal trifecta</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://genai.owasp.org/">OWASP GenAI Security Project</a></td>
+<td>The umbrella project for LLM and agentic application security guidance.</td>
+<td><a href="19-threat-model.html">Chapter 19</a></td>
+</tr>
+<tr>
+<td><a href="https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/">OWASP Agentic AI Threats and Mitigations</a></td>
+<td>A threat-model-based guide to emerging agentic risks.</td>
+<td><a href="19-threat-model.html">Chapter 19</a>, <a href="21-policy-autonomy.html">Chapter 21</a></td>
+</tr>
+<tr>
+<td><a href="https://owasp.org/projects/top-10-for-large-language-model-applications">OWASP Top 10 for Large Language Model Applications</a></td>
+<td>The LLM application risk list that underpins many SwarmPipe controls.</td>
+<td><a href="19-threat-model.html">Chapter 19</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="observability-lineage-and-sre">Observability, lineage and SRE</h2>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Why read it</th>
+<th>Supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/">OpenTelemetry GenAI semantic conventions</a></td>
+<td>Attribute conventions for GenAI spans, metrics and events.</td>
+<td><a href="23-observability.html">Chapter 23</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-telemetry/semantic-conventions-genai">OpenTelemetry GenAI semantic conventions repository</a></td>
+<td>The moved, actively maintained GenAI semantic-convention source.</td>
+<td><a href="23-observability.html">Chapter 23</a></td>
+</tr>
+<tr>
+<td><a href="https://openlineage.io/docs/">OpenLineage documentation</a></td>
+<td>The open model for job, run and dataset lineage metadata.</td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td><a href="https://sre.google/workbook/implementing-slos/">Google SRE Workbook, &quot;Implementing SLOs&quot;</a></td>
+<td>A practical SLO process for reliability targets and error budgets.</td>
+<td><a href="23-observability.html">Chapter 23</a>, <a href="26-operations.html">Chapter 26</a></td>
+</tr>
+<tr>
+<td><a href="https://sre.google/sre-book/monitoring-distributed-systems/">Google SRE Book, &quot;Monitoring Distributed Systems&quot;</a></td>
+<td>Guidance on what should page a human and what should not.</td>
+<td><a href="23-observability.html">Chapter 23</a>, <a href="26-operations.html">Chapter 26</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="concept-map.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Appendix C &middot; Concept → code map</span></a><span class="next empty"></span></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#agents-and-multi-agent-patterns">Agents and multi-agent patterns</a></li><li class="h2"><a href="#protocols-mcp-and-a2a">Protocols: MCP and A2A</a></li><li class="h2"><a href="#context-retrieval-and-prompt-injection-defense">Context, retrieval and prompt-injection defense</a></li><li class="h2"><a href="#durable-execution">Durable execution</a></li><li class="h2"><a href="#evaluation-and-judges">Evaluation and judges</a></li><li class="h2"><a href="#security-owasp-agentic-ai-and-the-lethal-trifecta">Security: OWASP, Agentic AI and the lethal trifecta</a></li><li class="h2"><a href="#observability-lineage-and-sre">Observability, lineage and SRE</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

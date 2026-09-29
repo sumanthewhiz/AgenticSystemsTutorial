@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 25: Model strategy: simulated, local and hosted models · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="25-model-strategy" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy" class="current" aria-current="page"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="25-model-strategy">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VII &middot; Observability, cost and operations</div>
+<h1><span class="num">Chapter 25</span>Model strategy: simulated, local and hosted models</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">SaaS vs self-hosted vs bring-your-own-model, choosing a model per role, certifying a model before trusting it, and what real models do that simulated ones do not.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Compare simulated, local self-hosted, hosted SaaS and bring-your-own model strategies</li><li>Read SwarmPipe LLM profiles and explain per-role routing choices</li><li>Run one local Ollama request and switch safely back to the offline profile</li><li>Explain per-role model certification and the <code>llm.require_certification</code> gate</li><li>Describe how real models fail differently from simulated test doubles</li></ul></div>
+<p>A model strategy is not &quot;which model is best?&quot; It is &quot;which model is trustworthy enough for this role, at this cost and latency, under these data-residency and operational constraints?&quot; A router, a diagnoser and a judge do different jobs. Treating them as one generic &quot;LLM&quot; is how teams overspend on easy calls and under-test risky ones.</p>
+<p>SwarmPipe starts offline with simulated models because every lab must be reproducible and private. It can also route to a local Ollama model or to hosted OpenAI-compatible providers. The architecture lesson is the same in all profiles: one gateway, per-role routes, certification before trust, and graceful degradation when a model is not available.</p>
+<h2 id="model-options-and-trade-offs">Model options and trade-offs</h2>
+<figure class="diagram"><div class="cards"><div class="card"><div class="card-t">Simulated models</div><div class="card-s">deterministic local test doubles; free and failure-injectable; not intelligent</div></div><div class="card"><div class="card-t">Self-hosted open models</div><div class="card-s">local control and data residency; you operate latency, memory, upgrades and quality</div></div><div class="card"><div class="card-t">Hosted SaaS APIs</div><div class="card-s">strong capability and managed operations; data leaves the machine and provider limits apply</div></div><div class="card"><div class="card-t">Bring your own model</div><div class="card-s">enterprise-selected endpoint behind the same gateway; quality and ops vary by owner</div></div></div><figcaption>Model strategies</figcaption></figure>
+<p>The trade-offs are practical:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Quality</th>
+<th>Cost</th>
+<th>Latency</th>
+<th>Data residency</th>
+<th>Operations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>offline</code> simulated</td>
+<td>deterministic heuristics</td>
+<td>illustrative only</td>
+<td>milliseconds</td>
+<td>local</td>
+<td>easiest</td>
+</tr>
+<tr>
+<td><code>ollama</code> local</td>
+<td>real but model-dependent</td>
+<td>no per-token API fee</td>
+<td>15-45s on this CPU</td>
+<td>local</td>
+<td>you run it</td>
+</tr>
+<tr>
+<td><code>azure</code> / <code>openai</code></td>
+<td>hosted model quality</td>
+<td>metered provider cost</td>
+<td>network + provider</td>
+<td>off-machine</td>
+<td>provider + secrets</td>
+</tr>
+<tr>
+<td>BYOM</td>
+<td>endpoint-specific</td>
+<td>contract-specific</td>
+<td>endpoint-specific</td>
+<td>policy-specific</td>
+<td>shared ownership</td>
+</tr>
+</tbody>
+</table>
+<p>SwarmPipe's README is explicit: hosted profiles can send data off-machine. That is why the tutorial uses <code>offline</code> unless a lab intentionally asks for one local real call.</p>
+<div class="box analogy"><div class="box-head"><span class="ico">💭</span><span class="kind">Analogy</span><span class="title">Model strategy as a fleet</span></div><div class="box-body"><p>You do not use a cargo truck for a letter or a bicycle for a refrigerator. A production agent platform needs a fleet: cheap vehicles for simple trips, stronger ones for risky work, maintenance records for each, and rules for when a vehicle is not allowed on the road.</p>
+</div></div>
+<h2 id="profiles-and-per-role-routing">Profiles and per-role routing</h2>
+<p>Profiles live in <code>config\swarmpipe.yaml</code>. They map roles to ordered fallback chains:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>profiles:
+  offline:
+    default:   [sim-small]
+    steward:   [sim-large, sim-small]
+    diagnoser: [sim-large, sim-small]
+    planner:   [sim-large, sim-small]
+    analyst:   [sim-large, sim-small]
+    judge:     [sim-large]
+  ollama:
+    default:   [llama3.2, sim-small]
+    diagnoser: [llama3.2, sim-large]</code></pre></div>
+<p><code>secret://</code> values configure hosted providers without putting keys in source. <code>openai</code> uses <code>secret://OPENAI_API_KEY</code>; <code>azure</code> uses <code>secret://AZURE_OPENAI_ENDPOINT</code> and <code>secret://AZURE_OPENAI_API_KEY</code>. Chapter 20 owns identity and secret handling; here the key point is that hosted providers go through the same gateway controls as local ones.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Routing implementation</span></div><div class="box-body"><p><code>ModelGateway.active_profile</code> reads <code>llm.active_profile</code>; <code>ModelGateway.route(role)</code> returns the chain for that role. If <code>llm.require_certification</code> is true, it filters the chain to models with a <code>model_certifications</code> row where <code>status='certified'</code>.</p>
+</div></div>
+<p>Choosing a model per role starts with task shape:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>What it needs</th>
+<th>Why route differently</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>router</code></td>
+<td>classify file type from sniffer evidence</td>
+<td>cheap, low-risk, easy to evaluate</td>
+</tr>
+<tr>
+<td><code>profiler</code> / <code>steward</code></td>
+<td>semantic typing and mappings</td>
+<td>needs more reasoning but still checked by deterministic evidence</td>
+</tr>
+<tr>
+<td><code>diagnoser</code></td>
+<td>merge specialist findings and cite evidence</td>
+<td>high consequence; certify carefully</td>
+</tr>
+<tr>
+<td><code>planner</code></td>
+<td>propose allowed actions</td>
+<td>high safety impact; critic and policy still constrain it</td>
+</tr>
+<tr>
+<td><code>analyst</code></td>
+<td>NL to governed SQL</td>
+<td>needs refusal and PII behavior, not just SQL fluency</td>
+</tr>
+<tr>
+<td><code>judge</code></td>
+<td>evaluate explanations</td>
+<td>must be calibrated before being trusted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="certification-before-trust">Certification before trust</h2>
+<p>Certification is not a vibe check. <code>sp evals certify --model llama3.2 --roles router</code> runs the same eval suite with that model serving the role and no fallback, then records the result in <code>model_certifications</code>. For <code>router</code>, the metric is accuracy against <code>evals\datasets\router.v1.jsonl</code>. The model must meet the threshold in <code>evals\gate.yaml</code>.</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/core/db.py</span>
+CREATE TABLE IF NOT EXISTS model_certifications (
+  model TEXT, role TEXT, status TEXT, scores TEXT, eval_run_id TEXT,
+  certified_at TEXT, PRIMARY KEY (model, role));</code></pre></div>
+<p>When <code>llm.require_certification</code> is false, profiles route normally. When it is true, uncertified models are removed from the route. If no certified model remains for a role, the gateway raises <code>LLMUnavailable</code> with <code>no routable (certified) model for role ...</code>. That is exactly what you want: fail closed instead of silently using an uncertified model.</p>
+<h2 id="what-real-models-do-that-simulators-do-not">What real models do that simulators do not</h2>
+<p>The simulated models are test doubles. They are fast, deterministic and chaos-controllable. Real models add operational texture:</p>
+<ul>
+<li>CPU latency can be 15-30 seconds per call, and in one verification run a single Ollama router call took 45.93 seconds.</li>
+<li>Real models can drift in output format, requiring JSON extraction and repair.</li>
+<li>Real models can be confidently wrong. SwarmPipe's <code>docs\LABS.md</code> Lab 12 documents a development observation where <code>llama3.2</code> misdiagnosed the <code>unit_change</code> scenario as <code>referential_integrity_break</code>.</li>
+<li>Provider errors, timeouts and rate limits become real transport failures rather than simulated knobs.</li>
+</ul>
+<p>Do not conclude that a model is &quot;good&quot; because it answered one prompt. Certify the role, keep fallbacks, and monitor production feedback.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Passing one role says nothing about another</span></div><div class="box-body"><p>A verification run certified <code>llama3.2</code> for <code>router</code>. That does not certify it for <code>diagnoser</code>, <code>planner</code>, <code>analyst</code> or <code>judge</code>. Role-specific certification is the point.</p>
+</div></div>
+<h2 id="fallbacks-and-graceful-degradation">Fallbacks and graceful degradation</h2>
+<p>Fallbacks are taught in <a href="13-model-resilience.html">Chapter 13</a>, but model strategy depends on them. A route can fall from a hosted or local model to a simulated model; if every model fails, agents catch <code>LLMUnavailable</code>, <code>BudgetExceeded</code>, <code>QuotaExceeded</code>, <code>KillSwitchEngaged</code> and <code>GuardrailViolation</code> and use deterministic fallback where safe.</p>
+<p>The fallback is not pretending everything is fine. A degraded diagnosis may lower confidence or abstain. A deterministic router may use sniffer output. An analyst may refuse because the model layer is unavailable. This is better than partial hidden success.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">role request</div><div class="node-s"><code>router</code>, <code>diagnoser</code>, <code>planner</code>, ...</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">active profile</div><div class="node-s"><code>offline</code>, <code>ollama</code>, <code>azure</code>, <code>openai</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">certification filter</div><div class="node-s">optional <code>llm.require_certification</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">route chain</div><div class="node-s">first model, then fallback models</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">gateway controls</div><div class="node-s">quotas, budgets, guardrails, cache, breaker, repair</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">agent fallback</div><div class="node-s">deterministic safe behavior or abstention</div></div></div><figcaption>Model decision path</figcaption></figure>
+<h2 id="hands-on-one-real-local-request">Hands-on: one real local request</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Try Ollama, then switch back</span></div><div class="box-body"><ol>
+<li>
+<p>From a baseline workspace, send one router request through the local Ollama profile:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp llm test --profile ollama</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>served by llama3.2 (ollama) in 45.93s, tokens 443/28, repairs 0, chain [&#x27;llama3.2&#x27;]
+{
+  &quot;kind&quot;: &quot;tabular&quot;,
+  &quot;confidence&quot;: 0.99,
+  &quot;reason&quot;: &quot;consistent comma delimiter and a header row&quot;
+}</code></pre></div>
+<p>Your time may be lower or higher. Local CPU inference is slow.</p>
+</li>
+<li>
+<p>Switch back immediately:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp llm use offline
+sp llm status</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>active LLM profile -&gt; offline
+{
+  &quot;active_profile&quot;: &quot;offline&quot;,
+  &quot;routes&quot;: {
+    &quot;default&quot;: [&quot;sim-small&quot;],
+    &quot;diagnoser&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;],
+    &quot;planner&quot;: [&quot;sim-large&quot;, &quot;sim-small&quot;]
+  },
+  &quot;breakers&quot;: {}
+}</code></pre></div>
+</li>
+<li>
+<p>Dashboard check: <strong>Cost &amp; Metrics</strong> shows the model call row; <strong>Evals</strong> is where certification results appear.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Certify a model for one role</span></div><div class="box-body"><ol>
+<li>
+<p>Run the router certification:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals certify --model llama3.2 --roles router</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>router suite
+  rt-001 sales_2026-09-29.csv: expected tabular got tabular (llm) PASS
+  rt-002 inventory_2026-09-29.txt: expected tabular got tabular (llm) PASS
+  ...
+router: cases=9, accuracy=1.0
+llama3.2 for role router: accuracy=1.0 (bar 0.9) -&gt; certified
+{
+  &quot;router&quot;: {
+    &quot;suite&quot;: &quot;router&quot;,
+    &quot;metric&quot;: &quot;accuracy&quot;,
+    &quot;value&quot;: 1.0,
+    &quot;bar&quot;: 0.9,
+    &quot;status&quot;: &quot;certified&quot;
+  }
+}</code></pre></div>
+</li>
+<li>
+<p>Inspect <strong>Evals</strong> -&gt; certifications. The row is persisted in <code>model_certifications</code>.</p>
+</li>
+<li>
+<p>Do not run <code>--roles diagnoser</code> casually in a short lab. <code>docs\LABS.md</code> says it is slow, around 20 minutes, and expected to be rejected for this machine/model combination.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Require certification</span></div><div class="box-body"><ol>
+<li>
+<p>Before certifying a planner model, turn on the certification gate:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm.require_certification true
+sp llm test --role planner</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>llm.require_certification = true
+LLMUnavailable: no routable (certified) model for role planner</code></pre></div>
+</li>
+<li>
+<p>Turn it off for the rest of the tutorial:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm.require_certification false
+sp llm use offline</code></pre></div>
+</li>
+<li>
+<p>What happened? The <code>offline</code> profile normally routes <code>planner</code> to <code>sim-large, sim-small</code>, but with <code>llm.require_certification</code> enabled, the gateway filtered out models that were not certified for <code>planner</code>. The route became empty and failed closed.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Uncertified role fails closed</span></div><div class="box-body"><p>Repeat the certification gate with any role you have not certified:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm.require_certification true
+sp llm test --role analyst
+sp chaos set llm.require_certification false</code></pre></div>
+<p>You should see the same <code>no routable (certified) model for role analyst</code> shape unless you previously certified that model/role pair. This is a safe break: it changes routing, not data. In a production deployment, keep this flag on only after your required roles have certifications recorded.</p>
+</div></div>
+<h2 id="simulated-models-as-test-doubles">Simulated models as test doubles</h2>
+<p>The <code>offline</code> profile is not a toy; it is a test strategy. Simulated models let SwarmPipe reproduce timeouts, rate limits, malformed JSON, hallucinated citations, loops and wrong answers with runtime flags. That makes Chapter 14 failure modes, Chapter 15 evals and Chapter 17 red teams repeatable on a laptop.</p>
+<p>The trick is to remember what a test double can and cannot prove. It can prove that the gateway retries, repairs, meters, falls back and records evidence. It cannot prove that a real model will choose the right root cause, obey formatting under pressure or handle unfamiliar language. For that, run role certification and controlled canaries.</p>
+<h2 id="production-notes">Production notes</h2>
+<p>At scale, model strategy becomes a portfolio. Maintain a model inventory, role certifications, owner contacts, data-residency classification, cost rates, latency SLOs and rollback plans. Version hosted deployments and local weights explicitly. Re-run certification when a provider changes a model alias, when prompts change, when tools change or when production feedback reveals a new failure mode.</p>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why does SwarmPipe default to <code>offline</code>?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Hosted models are impossible to use</button></li><li><button type="button" class="opt" data-correct="true">Labs stay local, deterministic and reproducible by default</button></li><li><button type="button" class="opt" data-correct="false">Simulated models are always more accurate</button></li></ul><div class="q-explain" hidden>Offline is a privacy and learning default, not a quality claim.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>What does an LLM profile define?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Dashboard colors</button></li><li><button type="button" class="opt" data-correct="true">Role-to-model fallback chains</button></li><li><button type="button" class="opt" data-correct="false">Data contracts</button></li></ul><div class="q-explain" hidden>Profiles map roles such as <code>router</code> and <code>diagnoser</code> to ordered model lists.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What does <code>sp evals certify --model llama3.2 --roles router</code> prove?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true"><code>llama3.2</code> met the router certification bar on the router eval suite</button></li><li><button type="button" class="opt" data-correct="false"><code>llama3.2</code> is certified for every role</button></li><li><button type="button" class="opt" data-correct="false">Hosted providers are disabled</button></li></ul><div class="q-explain" hidden>Certification is per model and per role.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What happens when <code>llm.require_certification</code> leaves no certified model in a route?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The gateway silently uses the first model anyway</button></li><li><button type="button" class="opt" data-correct="true">The gateway raises <code>LLMUnavailable</code></button></li><li><button type="button" class="opt" data-correct="false">The audit log is deleted</button></li></ul><div class="q-explain" hidden>The route fails closed with <code>no routable (certified) model for role ...</code>.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Why keep simulated models after adding real models?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">To hide production failures</button></li><li><button type="button" class="opt" data-correct="true">To provide fast deterministic tests and reproducible chaos cases</button></li><li><button type="button" class="opt" data-correct="false">To bypass schema validation</button></li></ul><div class="q-explain" hidden>Simulators are test doubles for system behavior; real models still need certification.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Model strategy is per role, not one global &quot;best model&quot; choice.</li>
+<li><code>offline</code>, <code>ollama</code>, <code>azure</code> and <code>openai</code> profiles all go through the same SwarmPipe gateway.</li>
+<li>Hosted profiles require <code>secret://</code> keys and can send data off-machine; the tutorial stays offline by default.</li>
+<li>Real local models add latency, format drift and wrong-answer risk that simulators cannot fully predict.</li>
+<li>Certification records model/role trust in <code>model_certifications</code>; <code>llm.require_certification</code> fails closed when a role has no certified route.</li>
+<li>Simulated models remain valuable as deterministic test doubles for failure modes and CI.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="25-model-strategy"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="24-cost-capacity.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 24 &middot; Cost, latency and capacity</span></a><a class="next" href="26-operations.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 26 &middot; Operating an agent platform day to day</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#model-options-and-trade-offs">Model options and trade-offs</a></li><li class="h2"><a href="#profiles-and-per-role-routing">Profiles and per-role routing</a></li><li class="h2"><a href="#certification-before-trust">Certification before trust</a></li><li class="h2"><a href="#what-real-models-do-that-simulators-do-not">What real models do that simulators do not</a></li><li class="h2"><a href="#fallbacks-and-graceful-degradation">Fallbacks and graceful degradation</a></li><li class="h2"><a href="#hands-on-one-real-local-request">Hands-on: one real local request</a></li><li class="h2"><a href="#simulated-models-as-test-doubles">Simulated models as test doubles</a></li><li class="h2"><a href="#production-notes">Production notes</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

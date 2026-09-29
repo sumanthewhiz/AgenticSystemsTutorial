@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 27: Capstone: specify, build and ship an agent feature · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="27-capstone" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone" class="current" aria-current="page"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="27-capstone">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VIII &middot; Putting it all together</div>
+<h1><span class="num">Chapter 27</span>Capstone: specify, build and ship an agent feature</h1>
+<div class="meta"><span class="chip">&#9201; 90 min</span><span class="chip">Level: Advanced</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Write an AI feature PRD with an eval spec, walk a production-readiness checklist, then extend SwarmPipe with a new scenario, check, specialist and governed action, and ship it through the gate.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Read an AI feature PRD and identify the linked evaluation spec</li><li>Use a production-readiness checklist before shipping an agent feature</li><li>Extend SwarmPipe with a scenario, triage eval case, data-quality rule and governed catalog action</li><li>Verify changes with <code>sp evals gate</code> and <code>python -m pytest</code></li><li>Undo capstone work safely by switching back to the main branch</li></ul></div>
+<p>You now have the pieces: agents, tools, workflows, data contracts, lineage, durable execution, evals, policy, audit, cost, models and operations. The capstone is where you stop treating them as separate topics and ship one small agentic feature end to end. The feature itself matters less than the discipline: write the PRD, define the eval, touch the deterministic skeleton, add the agent-facing affordance, gate it, and leave a rollback path.</p>
+<p>Work in your own SwarmPipe project, on a branch. The tutorial gives hints and pointers, not full solutions, because production engineering is the act of connecting requirements to code with evidence.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">Specify</div><div class="node-s">PRD + eval spec</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Branch</div><div class="node-s"><code>git switch -c capstone</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Build</div><div class="node-s">scenario, rule, action, policy</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Evaluate</div><div class="node-s">eval cases, then <code>sp evals gate</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Test</div><div class="node-s"><code>python -m pytest</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Ship or roll back</div><div class="node-s">merge, or <code>git switch main</code></div></div></div><figcaption>The capstone path</figcaption></figure>
+<h2 id="the-prd-is-part-of-the-system">The PRD is part of the system</h2>
+<p><code>docs/PRD_AND_EVAL_SPEC.md</code> is the model. It describes the data-aware failure triage feature that SwarmPipe already implements, and it pairs product intent with measurable gates.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">AI feature PRD</span></div><div class="box-body"><p>An AI feature PRD is a product requirements document that treats model behavior, tool use, safety boundaries and evaluation thresholds as first-class requirements, not implementation details.</p>
+</div></div>
+<p>A useful AI PRD answers five questions:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Where the SwarmPipe PRD answers it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What user pain exists?</td>
+<td>pipelines end OK while delivering bad data</td>
+</tr>
+<tr>
+<td>Who needs what job done?</td>
+<td>on-call, source owner, approver, analyst, platform admin</td>
+</tr>
+<tr>
+<td>What is in and out of scope?</td>
+<td>five file formats, nine action classes, no arbitrary SQL writes</td>
+</tr>
+<tr>
+<td>What can the system do autonomously?</td>
+<td>autonomy table tied to <code>config/policies.yaml</code></td>
+</tr>
+<tr>
+<td>How do we prove it works?</td>
+<td>eval datasets, metrics, thresholds and rollout gates</td>
+</tr>
+</tbody>
+</table>
+<p>The eval spec is not an appendix you write after launch. It is the acceptance test for the PRD. The triage feature's primary metrics include root-cause accuracy, pass^k, citation validity, safety violations, false-positive incidents and average cost. The component metrics cover router, analyst and judge calibration. The safety suite covers prompt injection and poisoned knowledge. The rollout plan says offline replay, shadow, propose-and-approve, autonomy promotion, and kill-switch drills.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">PRD and eval surfaces</span></div><div class="box-body"><p>The PRD is <code>docs/PRD_AND_EVAL_SPEC.md</code>. Gate thresholds are in <code>evals/gate.yaml</code>. Cases live in <code>evals/datasets/triage.v1.jsonl</code>, <code>evals/datasets/redteam.v1.jsonl</code>, <code>evals/datasets/router.v1.jsonl</code>, <code>evals/datasets/analyst.v1.jsonl</code> and <code>evals/datasets/judge_calibration.v1.jsonl</code>. The harness is <code>swarmpipe/evals/harness.py</code>.</p>
+</div></div>
+<h2 id="a-production-readiness-checklist">A production-readiness checklist</h2>
+<p>Before you ship an agent feature, walk this list. Each item links back to the chapter that taught the idea.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. The user job and non-goals are explicit.</td>
+<td><a href="27-capstone.html">Chapter 27</a></td>
+</tr>
+<tr>
+<td>2. Probabilistic steps sit inside a deterministic workflow skeleton.</td>
+<td><a href="01-llm-to-agent.html">Chapter 1</a></td>
+</tr>
+<tr>
+<td>3. Control plane and data plane ownership are clear.</td>
+<td><a href="02-architecture-tour.html">Chapter 2</a></td>
+</tr>
+<tr>
+<td>4. Prompt templates are versioned and locked.</td>
+<td><a href="03-prompts-models-gateway.html">Chapter 3</a></td>
+</tr>
+<tr>
+<td>5. Model output has a typed schema and repair/fallback behavior.</td>
+<td><a href="03-prompts-models-gateway.html">Chapter 3</a></td>
+</tr>
+<tr>
+<td>6. Tool contracts have typed args, scopes, bounded output and stable errors.</td>
+<td><a href="04-tools-and-gateway.html">Chapter 4</a></td>
+</tr>
+<tr>
+<td>7. File admission is idempotent and rejects unsupported inputs safely.</td>
+<td><a href="05-ingestion.html">Chapter 5</a></td>
+</tr>
+<tr>
+<td>8. Data contracts express schema, freshness, quality and business rules.</td>
+<td><a href="06-contracts-and-quality.html">Chapter 6</a></td>
+</tr>
+<tr>
+<td>9. Bad data trips a circuit breaker before publish.</td>
+<td><a href="06-contracts-and-quality.html">Chapter 6</a></td>
+</tr>
+<tr>
+<td>10. Versions, snapshots and rollback are defined.</td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td>11. Lineage and downstream impact are available before action.</td>
+<td><a href="07-publishing-lineage.html">Chapter 7</a></td>
+</tr>
+<tr>
+<td>12. Multi-agent decomposition earns its cost.</td>
+<td><a href="08-why-multi-agent.html">Chapter 8</a></td>
+</tr>
+<tr>
+<td>13. There is one final decision owner for diagnosis or action.</td>
+<td><a href="09-triage-swarm.html">Chapter 9</a></td>
+</tr>
+<tr>
+<td>14. Agent messages are typed, signed or otherwise authenticated.</td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+<tr>
+<td>15. MCP or A2A surfaces enforce authorization server-side.</td>
+<td><a href="10-communication-protocols.html">Chapter 10</a></td>
+</tr>
+<tr>
+<td>16. Retrieved context carries trust and citations.</td>
+<td><a href="11-context-memory.html">Chapter 11</a></td>
+</tr>
+<tr>
+<td>17. Memory and runbook promotion require human curation.</td>
+<td><a href="11-context-memory.html">Chapter 11</a></td>
+</tr>
+<tr>
+<td>18. Steps checkpoint, retry with backoff and resume after crash.</td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td>19. Side effects are idempotent and compensatable.</td>
+<td><a href="12-durable-execution.html">Chapter 12</a></td>
+</tr>
+<tr>
+<td>20. Model timeouts, breakers, bulkheads, cache and budgets exist.</td>
+<td><a href="13-model-resilience.html">Chapter 13</a></td>
+</tr>
+<tr>
+<td>21. Known failure modes have reproduction drills.</td>
+<td><a href="14-failure-modes.html">Chapter 14</a></td>
+</tr>
+<tr>
+<td>22. Offline eval datasets cover normal, edge and false-positive cases.</td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td>23. Non-determinism is measured with pass@k and pass^k.</td>
+<td><a href="15-eval-fundamentals.html">Chapter 15</a></td>
+</tr>
+<tr>
+<td>24. LLM judges are calibrated before their scores are trusted.</td>
+<td><a href="16-llm-judge.html">Chapter 16</a></td>
+</tr>
+<tr>
+<td>25. Red-team cases prove containment even when the model is fooled.</td>
+<td><a href="17-red-teaming.html">Chapter 17</a></td>
+</tr>
+<tr>
+<td>26. CI gates block unsafe prompt, policy, tool and model changes.</td>
+<td><a href="18-ci-gates-certification.html">Chapter 18</a></td>
+</tr>
+<tr>
+<td>27. Prompt injection, lethal-trifecta and egress risks are contained.</td>
+<td><a href="19-threat-model.html">Chapter 19</a></td>
+</tr>
+<tr>
+<td>28. User, agent and tool identities are separated.</td>
+<td><a href="20-identity-access.html">Chapter 20</a></td>
+</tr>
+<tr>
+<td>29. Policy-as-code decides every action outside the model.</td>
+<td><a href="21-policy-autonomy.html">Chapter 21</a></td>
+</tr>
+<tr>
+<td>30. Audit, evidence packs and kill switches are present.</td>
+<td><a href="22-audit-evidence.html">Chapter 22</a></td>
+</tr>
+<tr>
+<td>31. Traces, metrics, logs and SLOs are wired from day one.</td>
+<td><a href="23-observability.html">Chapter 23</a></td>
+</tr>
+<tr>
+<td>32. Cost is attributed by run, agent, tenant and model.</td>
+<td><a href="24-cost-capacity.html">Chapter 24</a></td>
+</tr>
+<tr>
+<td>33. Models are certified per role before trust.</td>
+<td><a href="25-model-strategy.html">Chapter 25</a></td>
+</tr>
+<tr>
+<td>34. Operations procedures cover DLQ, backup, retention and AI-caused incidents.</td>
+<td><a href="26-operations.html">Chapter 26</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="capstone-setup">Capstone setup</h2>
+<p>Create a branch in your SwarmPipe project. Do not do this in the tutorial source. Run these from your SwarmPipe folder:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>git switch -c capstone
+.\.venv\Scripts\Activate.ps1
+function sp { python -m swarmpipe @args }
+sp reset --yes
+sp init
+sp scenarios drop baseline --process</code></pre></div>
+<p>To abandon your work and return to the starting point:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>git switch main</code></pre></div>
+<p>If your branch has uncommitted changes, Git may ask you to commit, stash or discard them. Choose deliberately.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Keep the capstone small</span></div><div class="box-body"><p>A capstone feature should touch several surfaces, but it should not rewrite the system. One new scenario, one eval case, one rule and one governed action is enough to prove you understand the lifecycle.</p>
+</div></div>
+<h2 id="exercise-1-add-a-scenario-and-matching-triage-eval-case">Exercise 1: add a scenario and matching triage eval case</h2>
+<p>Your goal is to add a reproducible failure. Pick a data issue that is not already identical to <code>volume_drop</code>, <code>schema_drift</code>, <code>unit_change</code>, <code>quality_failure</code>, <code>referential_break</code>, <code>stale_resend</code>, <code>pii_leak</code>, <code>malformed</code>, <code>freshness</code> or <code>oob_tamper</code>. A good example is &quot;sales file with a small but systematic negative quantity pattern&quot; or &quot;inventory report with impossible stock for one warehouse&quot;.</p>
+<p>Touch these places:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What to add</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>swarmpipe/scenarios.py</code></td>
+<td>a <code>s_&lt;name&gt;</code> function plus a <code>Scenario(...)</code> entry in <code>SCENARIOS</code></td>
+</tr>
+<tr>
+<td><code>evals/datasets/triage.v1.jsonl</code></td>
+<td>one disabled or active case with <code>id</code>, <code>drops</code>, <code>approver</code>, <code>expect</code> and <code>lineage</code></td>
+</tr>
+<tr>
+<td><code>docs/PRD_AND_EVAL_SPEC.md</code></td>
+<td>if this were a real product change, update scope or the eval table</td>
+</tr>
+</tbody>
+</table>
+<p>Acceptance criteria:</p>
+<ul>
+<li><code>sp scenarios list</code> shows the new scenario.</li>
+<li><code>sp scenarios drop &lt;name&gt; --process</code> creates either a clean publish or an intended incident.</li>
+<li>The eval case names the expected signal, root cause and forbidden actions.</li>
+<li><code>sp evals run --suite triage --cases &lt;case_id&gt; --k 1</code> reports <code>PASS</code> after you finish the rest of the feature.</li>
+</ul>
+<p>Hints: search <code>s_quality_failure</code> and <code>s_unit_change</code> in <code>swarmpipe/scenarios.py</code> for patterns. Keep filenames compatible with the existing contract match rules.</p>
+<h2 id="exercise-2-add-a-quality-rule-and-see-it-trip">Exercise 2: add a quality rule and see it trip</h2>
+<p>Data contracts are executable product requirements. Add or extend one rule in <code>config/contracts/sales_daily.yaml</code>, then create data that violates it.</p>
+<p>Touch these places:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What to inspect or change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config/contracts/sales_daily.yaml</code></td>
+<td><code>rules</code>, <code>columns</code>, <code>accepted_values</code>, <code>min</code>, <code>max</code>, <code>references</code>, <code>drift</code></td>
+</tr>
+<tr>
+<td><code>swarmpipe/data/quality.py</code></td>
+<td><code>run_checks</code> to understand how rules become <code>CheckResult</code> rows</td>
+</tr>
+<tr>
+<td><code>swarmpipe/runtime/workflows.py</code></td>
+<td><code>CHECK_SIGNAL</code> to see how check types become incident signals</td>
+</tr>
+</tbody>
+</table>
+<p>Acceptance criteria:</p>
+<ul>
+<li>A clean baseline still publishes.</li>
+<li>Your scenario trips the intended rule.</li>
+<li>The failed batch is quarantined, not published.</li>
+<li><code>sp runs show &lt;run_id&gt;</code> shows the failed check.</li>
+<li><code>sp incidents list</code> shows an incident only when the violation exceeds the contract threshold.</li>
+</ul>
+<p>Hints: the existing <code>amount_equals_qty_x_price</code> rule is evaluated by <code>data/safe_expr.py</code>. Prefer changing thresholds or adding a simple expression over adding new Python code first.</p>
+<h2 id="exercise-3-add-or-extend-a-governed-catalog-action">Exercise 3: add or extend a governed catalog action</h2>
+<p>This is the highest-risk exercise. Agents must never invent side effects; they choose from the action catalog, and deterministic code executes, compensates and verifies.</p>
+<p>Feasible extension points, verified in code:</p>
+<table>
+<thead>
+<tr>
+<th>File or function</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>swarmpipe/tools/actions.py</code> <code>ActionSpec</code></td>
+<td>declares the action name, description, params, execute, compensate and verify functions</td>
+</tr>
+<tr>
+<td><code>swarmpipe/tools/actions.py</code> <code>ACTIONS</code></td>
+<td>catalog entries exposed as <code>act_*</code> tools</td>
+</tr>
+<tr>
+<td><code>config/policies.yaml</code></td>
+<td>risk, reversibility, default and max autonomy level</td>
+</tr>
+<tr>
+<td><code>swarmpipe/agents/triage_agents.py</code></td>
+<td>planner simulation and validation behavior if the offline model needs to propose it</td>
+</tr>
+<tr>
+<td><code>evals/datasets/triage.v1.jsonl</code></td>
+<td>case expectations such as <code>must_propose</code>, <code>must_execute_any</code>, <code>forbidden_executed</code></td>
+</tr>
+</tbody>
+</table>
+<p>A low-risk capstone action could be a more specific notification or a reversible hold-style action. Avoid external network calls. Do not add an action that writes arbitrary SQL, disables checks or bypasses policy.</p>
+<p>Acceptance criteria:</p>
+<ul>
+<li>The new action has a typed Pydantic params model.</li>
+<li><code>ACTIONS</code> includes execute, compensation if reversible, and verification.</li>
+<li><code>config/policies.yaml</code> includes the action class with a conservative starting level.</li>
+<li>The Executor is the only agent that can execute the write tool.</li>
+<li>The eval case proves the action is proposed or forbidden as intended.</li>
+</ul>
+<p>Hints: copy the shape of <code>request_resend</code>, <code>hold_downstream</code> or <code>release_hold</code>. Read <code>v_hold</code>, <code>v_release</code> and <code>v_notify</code> before writing your verifier. If verification cannot observe ground truth, the action is not ready for autonomy.</p>
+<h2 id="exercise-4-ship-through-the-gate">Exercise 4: ship through the gate</h2>
+<p>When the feature works locally, ship it like a production change.</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals run --suite triage --cases &lt;case_id&gt; --k 1
+sp evals gate --k 2
+python -m pytest</code></pre></div>
+<p>The clean triage eval path was verified with:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>triage suite: 1 cases x 1 trial(s)
+  tri-010-clean-day trial 1/1: PASS
+triage: cases=1, trials=1, pass_at_k=1.0, pass_hat_k=1.0, pass_rate=1.0,
+false_positive_incidents=0, avg_cost_usd=0.0034, avg_llm_calls=15.0,
+p95_latency_s=60.26</code></pre></div>
+<p>Your numbers will vary. What matters is that your new case passes, the full gate passes, and tests do not fail because of your changes.</p>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Capstone lab 1: scenario plus eval</span></div><div class="box-body"><ol>
+<li>
+<p>Create the branch and clean slate from the setup section.</p>
+</li>
+<li>
+<p>Add a scenario in <code>swarmpipe/scenarios.py</code>.</p>
+</li>
+<li>
+<p>Run it:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop &lt;name&gt; --process
+sp incidents list</code></pre></div>
+</li>
+<li>
+<p>Add one case to <code>evals/datasets/triage.v1.jsonl</code>.</p>
+</li>
+<li>
+<p>Run just that case:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals run --suite triage --cases &lt;case_id&gt; --k 1</code></pre></div>
+</li>
+</ol>
+<p>Acceptance: the case fails before the feature is complete for a meaningful reason, then passes after the rule/action work is done.</p>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Capstone lab 2: contract rule and catalog action</span></div><div class="box-body"><ol>
+<li>
+<p>Add or modify a rule in <code>config/contracts/sales_daily.yaml</code>.</p>
+</li>
+<li>
+<p>Re-run the baseline to prove clean data still passes.</p>
+</li>
+<li>
+<p>Drop your scenario and inspect the run:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp runs list --workflow ingest_dataset --limit 5
+sp runs show &lt;run_id&gt;</code></pre></div>
+</li>
+<li>
+<p>Add or extend the action in <code>swarmpipe/tools/actions.py</code> and policy in <code>config/policies.yaml</code>.</p>
+</li>
+<li>
+<p>Run the scenario again and inspect <strong>Incidents</strong>, <strong>Approvals</strong> and <strong>Governance</strong>.</p>
+</li>
+</ol>
+<p>Acceptance: policy decides the action outside the model, and verification records either success or a clear failure.</p>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Capstone lab 3: final gate</span></div><div class="box-body"><ol>
+<li>
+<p>Run the targeted eval.</p>
+</li>
+<li>
+<p>Run the full gate and tests:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals gate --k 2
+python -m pytest</code></pre></div>
+</li>
+<li>
+<p>If you changed a prompt, approve it only through:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp evals gate --update-lock</code></pre></div>
+</li>
+</ol>
+<p>Acceptance: targeted eval, full gate and tests pass. If they do not, fix the code or lower the feature scope; do not weaken the gate to make the report green.</p>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Poison your own capstone</span></div><div class="box-body"><p>Turn off one defense and prove containment still holds.</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set feature.critic_review false
+sp scenarios drop &lt;name&gt; --process
+sp chaos clear</code></pre></div>
+<p>Watch whether the planner proposes a riskier action. If it does, the action catalog, policy, approvals and verifier should still prevent unsafe state changes. If turning off one defense makes bad data publish, add a red-team case before you fix it.</p>
+</div></div>
+<h2 id="what-a-good-capstone-pr-says">What a good capstone PR says</h2>
+<p>A good capstone pull request is small but complete. It says:</p>
+<ul>
+<li>Problem: what production failure or operator pain it covers.</li>
+<li>Design: which workflow step, contract rule, scenario and action changed.</li>
+<li>Eval: which case was added and what metric it protects.</li>
+<li>Safety: what the forbidden action is, what policy level applies, and how rollback works.</li>
+<li>Verification: targeted eval, full gate and tests.</li>
+<li>Operations: which dashboard tab or command an on-call should use when it fires.</li>
+</ul>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Why does the capstone start with <code>docs/PRD_AND_EVAL_SPEC.md</code> instead of code?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Documentation is more important than working software</button></li><li><button type="button" class="opt" data-correct="true">It ties user value, autonomy, safety and measurable acceptance criteria together before implementation</button></li><li><button type="button" class="opt" data-correct="false">The eval harness cannot run without a PRD file</button></li></ul><div class="q-explain" hidden>Agent features fail when product intent and evaluation are separated. The PRD makes the gate meaningful.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Where should a new synthetic failure scenario be registered?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false"><code>swarmpipe/runtime/scheduler.py</code></button></li><li><button type="button" class="opt" data-correct="true"><code>swarmpipe/scenarios.py</code> in <code>SCENARIOS</code></button></li><li><button type="button" class="opt" data-correct="false"><code>prompts/router.v1.md</code></button></li></ul><div class="q-explain" hidden>Scenarios are generated in <code>swarmpipe/scenarios.py</code>; eval cases then refer to them by name.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What makes a catalog action production-ready?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The planner can describe it in natural language</button></li><li><button type="button" class="opt" data-correct="true">Typed params, policy entry, deterministic execution, compensation where possible and ground-truth verification</button></li><li><button type="button" class="opt" data-correct="false">It auto-executes at L4 immediately</button></li></ul><div class="q-explain" hidden>Agents propose from a catalog; deterministic code authorizes, executes and verifies.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>Which command ships the whole change through the CI-style eval gate?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true"><code>sp evals gate --k 2</code></button></li><li><button type="button" class="opt" data-correct="false"><code>sp scenarios drop baseline --process</code></button></li><li><button type="button" class="opt" data-correct="false"><code>sp chaos show</code></button></li></ul><div class="q-explain" hidden>Baseline and chaos are useful checks, but the gate runs the versioned suites and thresholds.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>If a new feature passes its targeted case but fails red-team containment, what should you do?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Mark the red-team case flaky and remove it</button></li><li><button type="button" class="opt" data-correct="true">Treat the failure as a blocker and fix the design or policy</button></li><li><button type="button" class="opt" data-correct="false">Ship behind a comment in the PR</button></li></ul><div class="q-explain" hidden>Safety containment is a release gate, not a nice-to-have metric.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>An AI PRD must include an eval spec, autonomy boundaries, rollout gates and non-goals.</li>
+<li>Production readiness is a checklist across workflow, tools, data, security, evals, policy, audit, cost and operations.</li>
+<li>Extend SwarmPipe through scenarios, contracts, catalog actions and eval cases together, not as isolated edits.</li>
+<li>A catalog action is not safe until it has typed parameters, policy, verification and rollback thinking.</li>
+<li>Ship through targeted evals, the full gate and tests; never weaken the gate to fit the feature.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="27-capstone"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="26-operations.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 26 &middot; Operating an agent platform day to day</span></a><a class="next" href="glossary.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Appendix A &middot; Glossary</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#the-prd-is-part-of-the-system">The PRD is part of the system</a></li><li class="h2"><a href="#a-production-readiness-checklist">A production-readiness checklist</a></li><li class="h2"><a href="#capstone-setup">Capstone setup</a></li><li class="h2"><a href="#exercise-1-add-a-scenario-and-matching-triage-eval-case">Exercise 1: add a scenario and matching triage eval case</a></li><li class="h2"><a href="#exercise-2-add-a-quality-rule-and-see-it-trip">Exercise 2: add a quality rule and see it trip</a></li><li class="h2"><a href="#exercise-3-add-or-extend-a-governed-catalog-action">Exercise 3: add or extend a governed catalog action</a></li><li class="h2"><a href="#exercise-4-ship-through-the-gate">Exercise 4: ship through the gate</a></li><li class="h2"><a href="#what-a-good-capstone-pr-says">What a good capstone PR says</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 24: Cost, latency and capacity · Agentic Systems, Hands-on</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body data-page="24-cost-capacity" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  <a class="brand" href="../index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
+  <div class="search" role="search">
+    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
+    <div class="search-results" id="search-results" hidden></div>
+  </div>
+  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
+  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Chapters"><details class="part"><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="24-cost-capacity.html" data-slug="24-cost-capacity" class="current" aria-current="page"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part"><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
+  <main id="main" class="content">
+<article class="chapter" data-slug="24-cost-capacity">
+<div class="crumbs"><a href="../index.html">Home</a> &rsaquo; Part VII &middot; Observability, cost and operations</div>
+<h1><span class="num">Chapter 24</span>Cost, latency and capacity</h1>
+<div class="meta"><span class="chip">&#9201; 40 min</span><span class="chip">Level: Intermediate</span><span class="chip">&#129514; 3 hands-on labs</span></div>
+<p class="lede">Token economics, cost per incident, agent and tenant, routing small vs large models, caching, per-run budgets, tenant quotas, latency budgets and concurrency limits.</p>
+<div class="objectives"><div class="obj-head">What you will learn</div><ul><li>Explain token economics and where SwarmPipe records cost per model call</li><li>Attribute model spend by run, incident, agent, model and tenant</li><li>Use routing, caching, budgets and quotas to control the multi-agent cost multiplier</li><li>Interpret latency and concurrency controls such as p95, bulkheads and backpressure</li><li>Run quota, cache and cost-comparison labs safely</li></ul></div>
+<p>Multi-agent systems make cost feel nonlinear. A single bad file can call a router, profiler, supervisor, investigators, diagnoser, planner, critic and learner. Add retries, repairs and fallbacks, and one incident can cost ten times more than a clean ingest. That does not make multi-agent designs wrong; it means cost and capacity are first-class production signals.</p>
+<p>SwarmPipe makes that visible. Every model call writes input tokens, output tokens, model, role, tenant, run, incident, latency and cost to <code>llm_calls</code>. The <strong>Cost &amp; Metrics</strong> tab, <code>sp status</code>, <code>sp metrics</code>, quotas and SLOs all read from that same ground truth.</p>
+<h2 id="token-economics">Token economics</h2>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">Token economics</span></div><div class="box-body"><p>The practice of treating model context and output as metered resources: input tokens cost money and latency, output tokens usually cost more, and every retry multiplies both.</p>
+</div></div>
+<p>Prices live in <code>config\swarmpipe.yaml</code>. The offline simulated prices are illustrative, but the accounting path is the same as a hosted provider:</p>
+<div class="code" data-lang="yaml"><div class="code-head"><span>YAML</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sim-small:
+  usd_per_1k_in: 0.00015
+  usd_per_1k_out: 0.0006
+sim-large:
+  usd_per_1k_in: 0.0025
+  usd_per_1k_out: 0.01</code></pre></div>
+<p><code>ModelGateway._record</code> writes the call row and increments the metrics:</p>
+<div class="code" data-lang="python"><div class="code-head"><span>Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code><span class="c"># swarmpipe/llm/gateway.py</span>
+self.svc.metrics.inc(&quot;llm_calls_total&quot;, model=model_id, status=status, role=req.role)
+self.svc.metrics.observe(&quot;llm_latency_ms&quot;, latency, model=model_id)
+self.svc.metrics.inc(&quot;llm_tokens_total&quot;, tin, model=model_id, direction=&quot;input&quot;)
+self.svc.metrics.inc(&quot;llm_tokens_total&quot;, tout, model=model_id, direction=&quot;output&quot;)
+self.svc.metrics.inc(&quot;llm_cost_usd_total&quot;, cost, tenant=req.tenant, agent=req.agent)</code></pre></div>
+<p>The useful unit is not just cost per call. For an agent platform, ask for cost per clean ingest, cost per incident, cost per resolved incident, cost by tenant and cost by role. Chapter 8 explains when multiple agents are worth the multiplier; this chapter shows how to measure it.</p>
+<figure class="diagram"><div class="flow"><div class="node"><div class="node-t">llm.call</div><div class="node-s">tokens, latency and cost</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">llm_calls table</div><div class="node-s">run_id, incident_id, agent, role, model, tenant</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">metrics</div><div class="node-s"><code>llm_cost_usd_total</code>, <code>llm_latency_ms</code>, <code>llm_cache_hits_total</code></div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">Cost &amp; Metrics</div><div class="node-s">by agent, model, tenant, incident</div></div><div class="arrow" aria-hidden="true"></div><div class="node"><div class="node-t">SLOs and budgets</div><div class="node-s">control spend and latency before runaway</div></div></div><figcaption>Cost attribution path</figcaption></figure>
+<h2 id="routing-caching-and-budgets">Routing, caching and budgets</h2>
+<p>Not every role deserves the same model. In the default <code>offline</code> profile, <code>router</code> uses <code>sim-small</code>, while reasoning-heavy roles such as <code>diagnoser</code>, <code>planner</code>, <code>steward</code>, <code>analyst</code> and <code>judge</code> use <code>sim-large</code> first. The <code>ollama</code>, <code>azure</code> and <code>openai</code> profiles keep the same idea: cheap/small models for classification and formatting; stronger models where the quality delta justifies the spend.</p>
+<p>Caching is the second lever. <code>llm.cache_enabled: true</code> caches deterministic, cacheable, temperature-zero calls. The runtime flag <code>llm.cache_disabled</code> disables it for experiments. Cache hits increment <code>llm_cache_hits_total</code> and are recorded in <code>llm_calls</code> with provider <code>cache</code>, zero tokens and zero cost. Cache keys normalize random spotlighting boundaries so otherwise-identical prompts still hit.</p>
+<p>Per-run budgets are the hard stop. <code>budgets.per_run_usd: 0.25</code> and <code>budgets.per_run_tokens: 150000</code> apply across every agent in a run. When exceeded, the gateway raises <code>BudgetExceeded</code>; agents that catch gateway degradation errors use deterministic fallback behavior where possible. That is the right failure mode: finish safely with lower confidence, or abstain, rather than quietly overspending.</p>
+<div class="box swarmpipe"><div class="box-head"><span class="ico">🐝</span><span class="kind">In SwarmPipe</span><span class="title">Cost controls</span></div><div class="box-body"><p>Routing and budgets are in <code>swarmpipe/llm/gateway.py</code>; prices, profiles, <code>llm.cache_enabled</code>, <code>budgets.per_run_usd</code>, tenant quotas and <code>engine.llm_concurrency</code> are in <code>config\swarmpipe.yaml</code>.</p>
+</div></div>
+<h2 id="tenant-quotas-and-graceful-degradation">Tenant quotas and graceful degradation</h2>
+<p>SwarmPipe tenants are inbox subfolders and separate published views. The default tenant has a daily LLM request limit of 2000; <code>acme</code> has 40. You can override the request quota at runtime with:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>$quotaFlag = &quot;quota.acme.daily_llm_requests&quot;
+sp chaos set $quotaFlag 1</code></pre></div>
+<p>The gateway checks quota before a model call. When the tenant has reached its daily limit, it raises <code>QuotaExceeded</code>. Pipeline agents and triage agents catch that as a degradation signal. Some work can continue deterministically: files can still be staged, checks can still run, circuit breakers can still quarantine bad data, and the system can abstain or use lower-confidence fallback diagnosis. The default tenant is unaffected.</p>
+<p>In a verification run, setting <code>acme</code> to one request after baseline caused the volume-drop incident to escalate with zero incident model spend; the quota table still showed the earlier baseline calls. The diagnosis included an abstention shape rather than a confident model answer:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>quotas
+{&#x27;tenant&#x27;: &#x27;acme&#x27;, &#x27;day&#x27;: &#x27;2026-09-29&#x27;, &#x27;llm_requests&#x27;: 13, &#x27;cost_usd&#x27;: 0.00290295}
+diagnosis {&quot;root_cause_category&quot;: &quot;unknown&quot;, &quot;summary&quot;: &quot;Evidence is insufficient to name a root cause&quot;, ...}</code></pre></div>
+<h2 id="latency-concurrency-and-capacity">Latency, concurrency and capacity</h2>
+<p>Capacity is not just dollars. A model call can be cheap and slow. SwarmPipe tracks <code>llm_latency_ms</code>, <code>agent_invocation_ms</code>, <code>step_duration_ms</code>, <code>run_duration_seconds</code>, <code>ingest_e2e_seconds</code> and <code>triage_diagnosis_seconds</code>. <code>sp metrics</code> reports p50, p95, p99 and max for summary metrics.</p>
+<div class="box concept"><div class="box-head"><span class="ico">📘</span><span class="kind">Concept</span><span class="title">p95 latency</span></div><div class="box-body"><p>The value below which 95% of observed requests completed. It is usually more useful than average latency because users and SLOs feel the slow tail.</p>
+</div></div>
+<p>Concurrency controls live in deterministic code. <code>engine.workers</code> controls worker threads. <code>engine.llm_concurrency</code> is a bulkhead semaphore around model calls, so slow Ollama or hosted calls do not consume the whole runtime. <code>watcher.backpressure_high_watermark</code> stops admitting more files when queued/running work is too deep. These are boring controls, and boring is good.</p>
+<figure class="diagram"><div class="layers"><div class="layer"><div class="layer-t">Admission</div><div class="layer-s">watcher stability checks and backpressure</div></div><div class="layer"><div class="layer-t">Execution</div><div class="layer-s">worker count, durable leases and retries</div></div><div class="layer"><div class="layer-t">Model bulkhead</div><div class="layer-s"><code>engine.llm_concurrency</code></div></div><div class="layer"><div class="layer-t">Budgets</div><div class="layer-s">per-run dollars/tokens and tenant daily quotas</div></div><div class="layer"><div class="layer-t">SLOs</div><div class="layer-s">p95-oriented ingest and triage objectives</div></div></div><figcaption>Capacity controls</figcaption></figure>
+<h2 id="hands-on-compare-ingest-and-incident-cost">Hands-on: compare ingest and incident cost</h2>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Cost of clean ingest vs incident</span></div><div class="box-body"><ol>
+<li>
+<p>Start clean and run baseline plus one incident:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --process
+sp scenarios drop volume_drop --process
+sp status
+sp incidents list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>LLM: 30 calls, $0.0184, 36582 tokens | profile offline | kill switches: none | inbox: C:\...\data\inbox
+| inc_mumhq8or17b7fb | mitigated | critical | default | sales_daily | 1 | truncated_extract | 0.011965 |</code></pre></div>
+</li>
+<li>
+<p>Open <strong>Cost &amp; Metrics</strong>. Compare <strong>By agent</strong> and <strong>Per incident</strong>. A verification run showed:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>by_agent
+{&#x27;agent&#x27;: &#x27;agent:planner&#x27;, &#x27;model&#x27;: &#x27;sim-large&#x27;, &#x27;calls&#x27;: 1, &#x27;usd&#x27;: 0.00694, ...}
+{&#x27;agent&#x27;: &#x27;agent:supervisor&#x27;, &#x27;model&#x27;: &#x27;sim-large&#x27;, &#x27;calls&#x27;: 2, &#x27;usd&#x27;: 0.005285, ...}
+{&#x27;agent&#x27;: &#x27;agent:profiler&#x27;, &#x27;model&#x27;: &#x27;sim-small&#x27;, &#x27;calls&#x27;: 8, &#x27;usd&#x27;: 0.002558, ...}
+per_incident
+{&#x27;incident_id&#x27;: &#x27;inc_mumhq8or17b7fb&#x27;, &#x27;calls&#x27;: 11, &#x27;usd&#x27;: 0.011965}</code></pre></div>
+</li>
+<li>
+<p>Interpret it: clean ingestion used router/profiler calls; the incident added specialist, diagnoser, planner and learner calls. That is the multi-agent multiplier from <a href="08-why-multi-agent.html">Chapter 8</a>, made measurable.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Tenant quota trip</span></div><div class="box-body"><ol>
+<li>
+<p>Reset and create <code>acme</code> data:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --tenant acme --process</code></pre></div>
+</li>
+<li>
+<p>Lower the tenant quota and drop a failure:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>$quotaFlag = &quot;quota.acme.daily_llm_requests&quot;
+sp chaos set $quotaFlag 1
+sp scenarios drop volume_drop --tenant acme --process
+sp incidents list</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>quota.acme.daily_llm_requests = 1
+| inc_mumhu7fk052412 | escalated | critical | acme | sales_daily | 1 | truncated_extract | 0.0 | ...</code></pre></div>
+</li>
+<li>
+<p>Open <strong>Cost &amp; Metrics</strong> -&gt; <strong>Tenant quotas</strong>. You should see <code>acme</code> request counts for the day. The important behavior is isolation: <code>acme</code> degrades, but the default tenant's quota and data remain separate.</p>
+</li>
+<li>
+<p>Clear the override when done:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>$quotaFlag = &quot;quota.acme.daily_llm_requests&quot;
+sp chaos set $quotaFlag 40</code></pre></div>
+<p>Runtime flags persist in the state database. A reset clears them because it moves the whole <code>data</code> folder aside.</p>
+</li>
+</ol>
+</div></div>
+<div class="box lab"><div class="box-head"><span class="ico">🧪</span><span class="kind">Hands-on lab</span><span class="title">Cache experiment</span></div><div class="box-body"><ol>
+<li>
+<p>In a baseline workspace, run a deterministic workload twice:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp scenarios drop clean_day --process
+sp scenarios drop clean_day --process
+sp metrics</code></pre></div>
+<p>In a verification run, the second identical file was idempotently skipped, so model-call counts did not rise:</p>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>| ingest_file | skipped | 1 |
+| llm_calls_total | 32 | 32.0 | ...</code></pre></div>
+</li>
+<li>
+<p>Disable the cache and repeat an equivalent deterministic workload:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp chaos set llm.cache_disabled true
+sp scenarios drop clean_day --process
+sp metrics</code></pre></div>
+<div class="code output" data-lang="output"><div class="code-head"><span>Expected output</span></div><pre><code>llm.cache_disabled = true
+| ingest_file | skipped | 2 |
+| llm_calls_total | 32 | 32.0 | ...</code></pre></div>
+</li>
+<li>
+<p>The skipped duplicate shows a second cost control: idempotency can save more than cache. To see <code>llm_cache_hits_total</code>, use a workload that repeats the same cacheable call without triggering file-level duplicate skipping, such as repeated eval trials or repeated model tests inside one process.</p>
+</li>
+</ol>
+</div></div>
+<div class="box breakit"><div class="box-head"><span class="ico">💥</span><span class="kind">Break it</span><span class="title">Quota equals one</span></div><div class="box-body"><p>Set a tenant's quota to one, then observe what still works:</p>
+<div class="code" data-lang="powershell"><div class="code-head"><span>PowerShell</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code>sp reset --yes
+sp init
+sp scenarios drop baseline --tenant acme --process
+$quotaFlag = &quot;quota.acme.daily_llm_requests&quot;
+sp chaos set $quotaFlag 1
+sp scenarios drop volume_drop --tenant acme --process
+sp incidents show &lt;incident_id&gt;</code></pre></div>
+<p>You will still get deterministic admission, checks and quarantine. Model-heavy diagnosis may abstain or degrade. That is the production lesson: cost controls should reduce quality or autonomy before they reduce safety.</p>
+</div></div>
+<h2 id="cost-slos-and-what-to-alert-on">Cost SLOs and what to alert on</h2>
+<p>SwarmPipe's configured SLOs cover latency and success, not a separate dollar SLO. The cost SLO is still visible operationally: track <code>llm_cost_usd_total</code>, <code>cost_per_resolved_incident</code>, quota burn and p95 latency in <strong>Cost &amp; Metrics</strong>. Industry practice beyond SwarmPipe is to define budget alerts such as &quot;projected daily model spend &gt; 80% of budget&quot; and efficiency SLOs such as &quot;p95 diagnosis latency under 180 seconds while average incident cost stays below X.&quot;</p>
+<p>Alert on budget exhaustion, quota exhaustion for important tenants, sustained p95 latency, DLQ growth and breaker opens. Record individual high-cost calls for review unless they threaten a budget.</p>
+<div class="box warning"><div class="box-head"><span class="ico">⚠️</span><span class="kind">Production gotcha</span><span class="title">Do not optimize cost by hiding evidence</span></div><div class="box-body"><p>The most dangerous cost reduction is removing grounding, critics or verification and calling it &quot;efficiency.&quot; Optimize routing, retrieval, caching and clustering first. If you remove an agent or check, prove with evals that quality and safety remain acceptable.</p>
+</div></div>
+<h2 id="production-notes">Production notes</h2>
+<p>At real scale, put costs into showback/chargeback by tenant and feature. Separate hard limits from soft budgets. Use queue length and p95 latency to autoscale workers, but scale model concurrency carefully; increasing <code>engine.llm_concurrency</code> can move the bottleneck to a provider rate limit. Keep &quot;cluster before you reason&quot; as a design rule: six related signals should become one incident and one diagnosis, not six expensive swarms.</p>
+<div class="box quiz"><div class="box-head"><span class="ico">❓</span><span class="kind">Check your understanding</span></div><div class="box-body"><div class="q"><div class="q-text"><span class="q-num">1</span><div>Where does SwarmPipe record cost per model call?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">Only in the dashboard DOM</button></li><li><button type="button" class="opt" data-correct="true">In the <code>llm_calls</code> table and related metrics</button></li><li><button type="button" class="opt" data-correct="false">Only in audit rows</button></li></ul><div class="q-explain" hidden><code>llm_calls</code> is the source for run, incident, agent, model and tenant attribution.</div></div><div class="q"><div class="q-text"><span class="q-num">2</span><div>Why are output tokens important?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">They are always free</button></li><li><button type="button" class="opt" data-correct="true">They often cost more and increase latency</button></li><li><button type="button" class="opt" data-correct="false">They are not recorded</button></li></ul><div class="q-explain" hidden>SwarmPipe records input and output tokens separately.</div></div><div class="q"><div class="q-text"><span class="q-num">3</span><div>What does <code>llm.cache_disabled</code> do?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="true">Stops the gateway from serving deterministic cache hits</button></li><li><button type="button" class="opt" data-correct="false">Deletes published datasets</button></li><li><button type="button" class="opt" data-correct="false">Disables tenant quotas</button></li></ul><div class="q-explain" hidden>It is an efficiency experiment flag, not a correctness flag.</div></div><div class="q"><div class="q-text"><span class="q-num">4</span><div>What should happen when a tenant quota is exceeded?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false">The system should silently bypass the quota</button></li><li><button type="button" class="opt" data-correct="true">Model-heavy work should degrade or abstain while deterministic safety still runs</button></li><li><button type="button" class="opt" data-correct="false">The default tenant should also stop</button></li></ul><div class="q-explain" hidden>Quotas are per tenant, and safe deterministic controls should remain available.</div></div><div class="q"><div class="q-text"><span class="q-num">5</span><div>Which capacity control protects model calls from consuming all runtime concurrency?</div></div><ul class="opts"><li><button type="button" class="opt" data-correct="false"><code>watcher.extensions</code></button></li><li><button type="button" class="opt" data-correct="true"><code>engine.llm_concurrency</code></button></li><li><button type="button" class="opt" data-correct="false"><code>prompts.enforce_lock</code></button></li></ul><div class="q-explain" hidden>The model gateway uses a bulkhead semaphore from <code>engine.llm_concurrency</code>.</div></div></div></div>
+<div class="box takeaways"><div class="box-head"><span class="ico">✅</span><span class="kind">Key takeaways</span></div><div class="box-body"><ul>
+<li>Multi-agent cost is measurable only if every model call records tokens, cost, role, agent, tenant, run and incident.</li>
+<li>Route small models to simple roles and stronger models to roles where evals justify the quality/cost trade-off.</li>
+<li>Cache, idempotency, clustering and bounded retrieval reduce spend before you remove safety agents.</li>
+<li>Per-run budgets and tenant quotas intentionally cause graceful degradation or abstention.</li>
+<li>Watch p95 latency, queue depth, breaker opens and SLO burn alongside dollars.</li>
+<li>Cost SLOs are operational policy even when the local config focuses on latency and success SLOs.</li>
+</ul>
+</div></div>
+
+<div class="complete-box"><button class="complete-btn" type="button" data-slug="24-cost-capacity"><span class="when-todo">Mark this chapter as complete</span><span class="when-done">&#10003; Completed &mdash; click to undo</span></button></div>
+<nav class="pager" aria-label="Chapter navigation"><a class="prev" href="23-observability.html" data-nav="prev"><span class="dir">&larr; Previous</span><span class="ptitle">Chapter 23 &middot; Observability: traces, metrics, logs and SLOs</span></a><a class="next" href="25-model-strategy.html" data-nav="next"><span class="dir">Next &rarr;</span><span class="ptitle">Chapter 25 &middot; Model strategy: simulated, local and hosted models</span></a></nav>
+</article>
+  </main>
+  <aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li class="h2"><a href="#token-economics">Token economics</a></li><li class="h2"><a href="#routing-caching-and-budgets">Routing, caching and budgets</a></li><li class="h2"><a href="#tenant-quotas-and-graceful-degradation">Tenant quotas and graceful degradation</a></li><li class="h2"><a href="#latency-concurrency-and-capacity">Latency, concurrency and capacity</a></li><li class="h2"><a href="#hands-on-compare-ingest-and-incident-cost">Hands-on: compare ingest and incident cost</a></li><li class="h2"><a href="#cost-slos-and-what-to-alert-on">Cost SLOs and what to alert on</a></li><li class="h2"><a href="#production-notes">Production notes</a></li></ol></aside>
+</div>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>
