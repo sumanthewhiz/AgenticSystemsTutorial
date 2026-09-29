@@ -19,7 +19,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sitegen.render import BuildError, Page, render_md, render_page_body  # noqa: E402
-from sitegen.templates import SITE, chapter_body, home_body, shell, sidebar, toc_html  # noqa: E402
+from sitegen.templates import SITE, chapter_body, home_body, notfound_page, shell, sidebar, toc_html  # noqa: E402
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
@@ -168,14 +168,8 @@ def main() -> int:
     (ROOT / "index.html").write_text(home, encoding="utf-8")
 
     # Cloudflare Pages serves the closest 404.html for unknown URLs (without one it falls back to SPA mode and
-    # silently serves the home page). It can be served at any depth, so it uses root-absolute links.
-    notfound = ('<article class="chapter"><div class="crumbs"><a href="/">Home</a></div>'
-                '<h1><span class="num">404</span>Page not found</h1>'
-                "<p class=\"lede\">That page doesn't exist. It may have moved, or the link may be mistyped.</p>"
-                '<p><a class="btn primary" href="/">Go to the home page</a></p>'
-                "<p>Or press <kbd>/</kbd> to search every chapter.</p></article>")
-    (ROOT / "404.html").write_text(shell(title=f"Page not found · {SITE}", root="/", slug="404", body=notfound,
-                                         side=sidebar(outline, "", "/chapters/")), encoding="utf-8")
+    # silently serves the home page). The page is standalone (inline CSS/JS) so it renders at any URL depth and from disk.
+    (ROOT / "404.html").write_text(notfound_page(outline), encoding="utf-8")
 
     index = [{"u": f"chapters/{p.slug}.html", "t": plain(p.title), "l": p.label, "p": (p.part or {}).get("name", ""),
               "s": plain(str(p.meta.get("summary", ""))), "h": search_entries(p)} for p in pages.values()]

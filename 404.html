@@ -3,31 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
 <title>Page not found · Agentic Systems, Hands-on</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="/assets/style.css">
 <script>(function(){try{var t=localStorage.getItem('ast-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root { --bg:#f6f8fb; --panel:#fff; --text:#1c2430; --muted:#5d6978; --border:#e3e8ef; --accent:#3b5bdb; --accent-2:#0ca678;
+  --soft:#edf2ff; --shadow:0 10px 30px rgba(16,24,40,.10); }
+[data-theme="dark"] { --bg:#0d1117; --panel:#151b23; --text:#e6edf3; --muted:#a2afbd; --border:#262f3a; --accent:#7aa2ff;
+  --accent-2:#38d9a9; --soft:#1a2340; --shadow:0 12px 32px rgba(0,0,0,.5); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { min-height: 100vh; display: flex; flex-direction: column; color: var(--text);
+  font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: radial-gradient(1100px 560px at 8% -12%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%),
+              radial-gradient(900px 520px at 108% 112%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 62%), var(--bg); }
+a { color: var(--accent); text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.top { padding: 18px 24px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); }
+.logo { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; color: #fff; font-size: 17px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px 18px 56px; }
+.card { width: 100%; max-width: 660px; min-width: 0; text-align: center; background: var(--panel); border: 1px solid var(--border);
+  border-radius: 18px; box-shadow: var(--shadow); padding: 40px 36px 28px; }
+.code { margin: 0; font-size: clamp(4.5rem, 16vw, 7.5rem); font-weight: 800; line-height: 1; letter-spacing: -.04em;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h1 { margin: 12px 0 8px; font-size: 1.7rem; letter-spacing: -.01em; }
+.msg { margin: 0 auto; max-width: 470px; color: var(--muted); }
+.path { display: inline-block; max-width: 100%; margin: 12px 0 0; padding: 3px 10px; overflow-wrap: anywhere; color: var(--text);
+  font: 13px "Cascadia Code", Consolas, monospace; background: var(--soft); border: 1px solid var(--border); border-radius: 8px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 26px 0 28px; }
+.btn { display: inline-block; padding: 11px 20px; border-radius: 10px; font-weight: 650; color: var(--text); background: var(--panel);
+  border: 1px solid var(--border); }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { color: #fff; border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, var(--accent-2))); }
+.quick { padding-top: 18px; border-top: 1px solid var(--border); }
+.quick h2 { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.quick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); text-align: left; }
+.quick a { display: block; height: 100%; padding: 9px 12px; border-radius: 10px; color: var(--text); border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--soft) 45%, var(--panel)); }
+.quick a:hover { border-color: var(--accent); }
+.lbl { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+.ttl { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; }
+.hint { margin: 20px 0 0; font-size: 13px; color: var(--muted); }
+kbd { font: 12px Consolas, monospace; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--border); border-bottom-width: 2px; background: var(--soft); }
+@media (max-width: 520px) { .card { padding: 30px 18px 22px; } }
+</style>
 </head>
-<body data-page="404" data-root="/">
-<a class="skip" href="#main">Skip to content</a>
-<header class="topbar">
-  <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-  <a class="brand" href="/index.html"><span class="logo" aria-hidden="true">&#11041;</span><span>Agentic Systems, Hands-on</span></a>
-  <div class="search" role="search">
-    <input type="search" id="search" placeholder="Search the tutorial  ( / )" aria-label="Search the tutorial" autocomplete="off">
-    <div class="search-results" id="search-results" hidden></div>
-  </div>
-  <div class="progress-mini" title="Chapters completed"><span class="bar"><span class="fill"></span></span><span class="pct">0%</span></div>
-  <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">&#9680;</button>
-</header>
-<div class="layout no-toc">
-  <nav class="sidebar" aria-label="Chapters"><details class="part" open><summary><span class="part-label">Part 0</span><span class="part-name">Start here</span></summary><ol><li><a href="/chapters/00-welcome.html" data-slug="00-welcome"><span class="n">0</span><span class="t">Welcome: how this tutorial works</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part I</span><span class="part-name">Foundations of agentic systems</span></summary><ol><li><a href="/chapters/01-llm-to-agent.html" data-slug="01-llm-to-agent"><span class="n">1</span><span class="t">From an LLM call to an agent</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/02-architecture-tour.html" data-slug="02-architecture-tour"><span class="n">2</span><span class="t">A guided tour of SwarmPipe's architecture</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/03-prompts-models-gateway.html" data-slug="03-prompts-models-gateway"><span class="n">3</span><span class="t">Prompts, models and the model gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/04-tools-and-gateway.html" data-slug="04-tools-and-gateway"><span class="n">4</span><span class="t">Tools, tool contracts and the tool gateway</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part II</span><span class="part-name">The data pipeline backbone</span></summary><ol><li><a href="/chapters/05-ingestion.html" data-slug="05-ingestion"><span class="n">5</span><span class="t">Ingestion: watched folders, readers and admission control</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/06-contracts-and-quality.html" data-slug="06-contracts-and-quality"><span class="n">6</span><span class="t">Data contracts, quality checks and the circuit breaker</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/07-publishing-lineage.html" data-slug="07-publishing-lineage"><span class="n">7</span><span class="t">Publishing, versioning, lineage and trusted context</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part III</span><span class="part-name">Multi-agent systems: the swarm</span></summary><ol><li><a href="/chapters/08-why-multi-agent.html" data-slug="08-why-multi-agent"><span class="n">8</span><span class="t">Why (and when) to use multiple agents</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/09-triage-swarm.html" data-slug="09-triage-swarm"><span class="n">9</span><span class="t">The triage swarm, step by step</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/10-communication-protocols.html" data-slug="10-communication-protocols"><span class="n">10</span><span class="t">How agents talk: shared state, messages, A2A and MCP</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/11-context-memory.html" data-slug="11-context-memory"><span class="n">11</span><span class="t">Context engineering, grounding and memory</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part IV</span><span class="part-name">Reliability engineering for agents</span></summary><ol><li><a href="/chapters/12-durable-execution.html" data-slug="12-durable-execution"><span class="n">12</span><span class="t">Durable execution: checkpoints, leases, retries and sagas</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/13-model-resilience.html" data-slug="13-model-resilience"><span class="n">13</span><span class="t">Resilience at the model layer</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/14-failure-modes.html" data-slug="14-failure-modes"><span class="n">14</span><span class="t">A field guide to agent failure modes</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part V</span><span class="part-name">Evaluation</span></summary><ol><li><a href="/chapters/15-eval-fundamentals.html" data-slug="15-eval-fundamentals"><span class="n">15</span><span class="t">Evaluation fundamentals</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/16-llm-judge.html" data-slug="16-llm-judge"><span class="n">16</span><span class="t">LLM-as-judge and why it must be calibrated</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/17-red-teaming.html" data-slug="17-red-teaming"><span class="n">17</span><span class="t">Red teaming and safety evaluations</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/18-ci-gates-certification.html" data-slug="18-ci-gates-certification"><span class="n">18</span><span class="t">CI gates, change control and the eval flywheel</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VI</span><span class="part-name">Security, identity and governance</span></summary><ol><li><a href="/chapters/19-threat-model.html" data-slug="19-threat-model"><span class="n">19</span><span class="t">Threat modeling agents: prompt injection and defense in depth</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/20-identity-access.html" data-slug="20-identity-access"><span class="n">20</span><span class="t">Identity, delegation and governed data access</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/21-policy-autonomy.html" data-slug="21-policy-autonomy"><span class="n">21</span><span class="t">Policy-as-code, approvals and the autonomy ladder</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/22-audit-evidence.html" data-slug="22-audit-evidence"><span class="n">22</span><span class="t">Audit, evidence packs and kill switches</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VII</span><span class="part-name">Observability, cost and operations</span></summary><ol><li><a href="/chapters/23-observability.html" data-slug="23-observability"><span class="n">23</span><span class="t">Observability: traces, metrics, logs and SLOs</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/24-cost-capacity.html" data-slug="24-cost-capacity"><span class="n">24</span><span class="t">Cost, latency and capacity</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/25-model-strategy.html" data-slug="25-model-strategy"><span class="n">25</span><span class="t">Model strategy: simulated, local and hosted models</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/26-operations.html" data-slug="26-operations"><span class="n">26</span><span class="t">Operating an agent platform day to day</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Part VIII</span><span class="part-name">Putting it all together</span></summary><ol><li><a href="/chapters/27-capstone.html" data-slug="27-capstone"><span class="n">27</span><span class="t">Capstone: specify, build and ship an agent feature</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details><details class="part" open><summary><span class="part-label">Appendices</span><span class="part-name">Reference</span></summary><ol><li><a href="/chapters/glossary.html" data-slug="glossary"><span class="n">A</span><span class="t">Glossary</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/cheatsheet.html" data-slug="cheatsheet"><span class="n">B</span><span class="t">Command cheat sheet</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/concept-map.html" data-slug="concept-map"><span class="n">C</span><span class="t">Concept → code map</span><span class="done" aria-label="completed">&#10003;</span></a></li><li><a href="/chapters/further-reading.html" data-slug="further-reading"><span class="n">D</span><span class="t">Further reading</span><span class="done" aria-label="completed">&#10003;</span></a></li></ol></details></nav>
-  <main id="main" class="content">
-<article class="chapter"><div class="crumbs"><a href="/">Home</a></div><h1><span class="num">404</span>Page not found</h1><p class="lede">That page doesn't exist. It may have moved, or the link may be mistyped.</p><p><a class="btn primary" href="/">Go to the home page</a></p><p>Or press <kbd>/</kbd> to search every chapter.</p></article>
-  </main>
-  
-</div>
-<script src="/assets/search-index.js"></script>
-<script src="/assets/app.js"></script>
+<body>
+<header class="top"><a class="brand" href="/" data-local="index.html"><span class="logo" aria-hidden="true">&#11041;</span>Agentic Systems, Hands-on</a></header>
+<main>
+  <section class="card" aria-labelledby="nf-title">
+    <p class="code" aria-hidden="true">404</p>
+    <h1 id="nf-title">Page not found</h1>
+    <p class="msg">The page you're looking for doesn't exist. It may have moved, or the link may be mistyped.</p>
+    <p class="path" id="nf-path" hidden></p>
+    <div class="actions">
+      <a class="btn primary" href="/" data-local="index.html">Go to the home page</a>
+      <a class="btn" href="/chapters/00-welcome.html" data-local="chapters/00-welcome.html">Start with Chapter 0</a>
+    </div>
+    <nav class="quick" aria-labelledby="nf-quick"><h2 id="nf-quick">Popular starting points</h2><ul><li><a href="/chapters/01-llm-to-agent.html" data-local="chapters/01-llm-to-agent.html"><span class="lbl">Chapter 1</span><span class="ttl">From an LLM call to an agent</span></a></li><li><a href="/chapters/09-triage-swarm.html" data-local="chapters/09-triage-swarm.html"><span class="lbl">Chapter 9</span><span class="ttl">The triage swarm, step by step</span></a></li><li><a href="/chapters/15-eval-fundamentals.html" data-local="chapters/15-eval-fundamentals.html"><span class="lbl">Chapter 15</span><span class="ttl">Evaluation fundamentals</span></a></li><li><a href="/chapters/19-threat-model.html" data-local="chapters/19-threat-model.html"><span class="lbl">Chapter 19</span><span class="ttl">Threat modeling agents: prompt injection and defense in depth</span></a></li><li><a href="/chapters/cheatsheet.html" data-local="chapters/cheatsheet.html"><span class="lbl">Appendix B</span><span class="ttl">Command cheat sheet</span></a></li><li><a href="/chapters/glossary.html" data-local="chapters/glossary.html"><span class="lbl">Appendix A</span><span class="ttl">Glossary</span></a></li></ul></nav>
+    <p class="hint">Tip: on any tutorial page, press <kbd>/</kbd> to search every chapter.</p>
+  </section>
+</main>
+<script>(function () {
+  if (location.protocol === "file:") {
+    document.querySelectorAll("a[data-local]").forEach(function (a) { a.setAttribute("href", a.getAttribute("data-local")); });
+    return;
+  }
+  var p = document.getElementById("nf-path");
+  if (p && !/^\/404(\.html)?$/.test(location.pathname)) { p.textContent = location.pathname; p.hidden = false; }
+})();</script>
 </body>
 </html>

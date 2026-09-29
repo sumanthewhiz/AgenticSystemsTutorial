@@ -147,3 +147,101 @@ def home_body(outline: dict, intro_html: str, stats: dict) -> str:
 <section class="intro">{intro_html}</section>
 {''.join(cards)}
 """
+
+
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' "
+           "rx='8' fill='%233b5bdb'/%3E%3Cpath d='M16 7l8 4.5v9L16 25l-8-4.5v-9z' fill='none' stroke='white' stroke-width='2.4'/%3E%3C/svg%3E")
+NOTFOUND_LINKS = ("01-llm-to-agent", "09-triage-swarm", "15-eval-fundamentals", "19-threat-model", "cheatsheet", "glossary")
+NOTFOUND_CSS = """
+:root { --bg:#f6f8fb; --panel:#fff; --text:#1c2430; --muted:#5d6978; --border:#e3e8ef; --accent:#3b5bdb; --accent-2:#0ca678;
+  --soft:#edf2ff; --shadow:0 10px 30px rgba(16,24,40,.10); }
+[data-theme="dark"] { --bg:#0d1117; --panel:#151b23; --text:#e6edf3; --muted:#a2afbd; --border:#262f3a; --accent:#7aa2ff;
+  --accent-2:#38d9a9; --soft:#1a2340; --shadow:0 12px 32px rgba(0,0,0,.5); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { min-height: 100vh; display: flex; flex-direction: column; color: var(--text);
+  font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: radial-gradient(1100px 560px at 8% -12%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%),
+              radial-gradient(900px 520px at 108% 112%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 62%), var(--bg); }
+a { color: var(--accent); text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.top { padding: 18px 24px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); }
+.logo { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; color: #fff; font-size: 17px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px 18px 56px; }
+.card { width: 100%; max-width: 660px; min-width: 0; text-align: center; background: var(--panel); border: 1px solid var(--border);
+  border-radius: 18px; box-shadow: var(--shadow); padding: 40px 36px 28px; }
+.code { margin: 0; font-size: clamp(4.5rem, 16vw, 7.5rem); font-weight: 800; line-height: 1; letter-spacing: -.04em;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h1 { margin: 12px 0 8px; font-size: 1.7rem; letter-spacing: -.01em; }
+.msg { margin: 0 auto; max-width: 470px; color: var(--muted); }
+.path { display: inline-block; max-width: 100%; margin: 12px 0 0; padding: 3px 10px; overflow-wrap: anywhere; color: var(--text);
+  font: 13px "Cascadia Code", Consolas, monospace; background: var(--soft); border: 1px solid var(--border); border-radius: 8px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 26px 0 28px; }
+.btn { display: inline-block; padding: 11px 20px; border-radius: 10px; font-weight: 650; color: var(--text); background: var(--panel);
+  border: 1px solid var(--border); }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { color: #fff; border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, var(--accent-2))); }
+.quick { padding-top: 18px; border-top: 1px solid var(--border); }
+.quick h2 { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.quick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); text-align: left; }
+.quick a { display: block; height: 100%; padding: 9px 12px; border-radius: 10px; color: var(--text); border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--soft) 45%, var(--panel)); }
+.quick a:hover { border-color: var(--accent); }
+.lbl { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); }
+.ttl { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; }
+.hint { margin: 20px 0 0; font-size: 13px; color: var(--muted); }
+kbd { font: 12px Consolas, monospace; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--border); border-bottom-width: 2px; background: var(--soft); }
+@media (max-width: 520px) { .card { padding: 30px 18px 22px; } }
+"""
+# Cloudflare Pages serves 404.html for unknown URLs at any depth, so links are root-absolute there; opened from disk
+# (file://) they switch to the relative data-local targets. Everything is inline so nothing can fail to load.
+NOTFOUND_JS = """(function () {
+  if (location.protocol === "file:") {
+    document.querySelectorAll("a[data-local]").forEach(function (a) { a.setAttribute("href", a.getAttribute("data-local")); });
+    return;
+  }
+  var p = document.getElementById("nf-path");
+  if (p && !/^\\/404(\\.html)?$/.test(location.pathname)) { p.textContent = location.pathname; p.hidden = false; }
+})();"""
+
+
+def notfound_page(outline: dict) -> str:
+    chapters = {ch["slug"]: ch for part in outline["parts"] for ch in part["chapters"]}
+    first = outline["parts"][0]["chapters"][0]
+    quick = "".join(f'<li><a href="/chapters/{s}.html" data-local="chapters/{s}.html"><span class="lbl">{esc(chapters[s]["short_label"])}</span>'
+                    f'<span class="ttl">{esc(chapters[s]["title"])}</span></a></li>' for s in NOTFOUND_LINKS if s in chapters)
+    return f"""<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page not found · {SITE}</title>
+<link rel="icon" href="{FAVICON}">
+{THEME_INIT}
+<style>{NOTFOUND_CSS}</style>
+</head>
+<body>
+<header class="top"><a class="brand" href="/" data-local="index.html"><span class="logo" aria-hidden="true">&#11041;</span>{SITE}</a></header>
+<main>
+  <section class="card" aria-labelledby="nf-title">
+    <p class="code" aria-hidden="true">404</p>
+    <h1 id="nf-title">Page not found</h1>
+    <p class="msg">The page you're looking for doesn't exist. It may have moved, or the link may be mistyped.</p>
+    <p class="path" id="nf-path" hidden></p>
+    <div class="actions">
+      <a class="btn primary" href="/" data-local="index.html">Go to the home page</a>
+      <a class="btn" href="/chapters/{first['slug']}.html" data-local="chapters/{first['slug']}.html">Start with {esc(first['short_label'])}</a>
+    </div>
+    <nav class="quick" aria-labelledby="nf-quick"><h2 id="nf-quick">Popular starting points</h2><ul>{quick}</ul></nav>
+    <p class="hint">Tip: on any tutorial page, press <kbd>/</kbd> to search every chapter.</p>
+  </section>
+</main>
+<script>{NOTFOUND_JS}</script>
+</body>
+</html>
+"""
