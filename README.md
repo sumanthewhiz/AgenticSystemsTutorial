@@ -17,7 +17,7 @@ files can be hosted as a static website (see [Host it on Cloudflare Pages](#host
 
 | Path | Contents |
 |---|---|
-| `index.html`, `chapters/`, `404.html` | the tutorial (generated - edit the sources instead) |
+| `index.html`, `chapters/`, `404.html` | the tutorial |
 | `assets/` | styles, behavior and the search index |
 | `_source/` | the Markdown sources, curriculum outline, SwarmPipe facts and the site generator |
 
