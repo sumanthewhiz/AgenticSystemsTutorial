@@ -22,6 +22,7 @@
   --tint: 12%;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }  /* class rules like .btn { display: inline-block } must not unhide [hidden] elements */
 html { scroll-padding-top: calc(var(--top) + 16px); -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.68 var(--font); }
 a { color: var(--accent); text-decoration: none; }
