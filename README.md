@@ -49,3 +49,7 @@ $env:SWARMPIPE_DIR = "<your-SwarmPipe-folder>"   # the folder where you installe
 plus all cross-links. If SwarmPipe itself changes, refresh the ground truth first with
 `& "$env:SWARMPIPE_DIR\.venv\Scripts\python.exe" _source\extract_facts.py`. Commit the regenerated HTML along with the
 sources, because the hosted site is served straight from the repository.
+
+## License
+
+The tutorial content and the site code are released under the [MIT License](LICENSE).
